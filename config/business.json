@@ -1,0 +1,27 @@
+{
+  "bedrijfsnaam": "Cadeau Glazenwas",
+  "eigenaar": "Nico",
+  "tagline": "Kristalhelder resultaat, elke keer",
+  "diensten": ["ramen wassen", "gevelreiniging", "serre reinigen", "dakkapel ramen"],
+  "hoofd_dienst": "ramen wassen",
+  "regio": "Antwerpen-Noord",
+  "gemeenten": ["Brasschaat", "Schilde", "Schoten", "Wijnegem", "Zoersel", "Kapellen"],
+  "hoofd_gemeente": "Brasschaat",
+  "usp": [
+    "Vaste prijs, geen verrassingen",
+    "Betrouwbaar en op tijd",
+    "Zelfstandige vakman, geen uitzendkracht",
+    "Online boeken in 60 seconden"
+  ],
+  "tarieven": {
+    "appartement": "vanaf €45",
+    "rijwoning": "vanaf €65",
+    "villa": "vanaf €95"
+  },
+  "telefoon": "+32 XXX XX XX XX",
+  "email": "info@cadeauglazenwas.be",
+  "website": "www.cadeauglazenwas.be",
+  "btw_nummer": "BE 0XXX.XXX.XXX",
+  "taal": "nl-BE",
+  "tone_of_voice": "betrouwbaar, lokaal, direct, geen overdreven verkooptaal"
+}
