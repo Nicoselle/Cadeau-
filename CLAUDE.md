@@ -10,32 +10,47 @@ This file provides guidance for AI assistants (Claude and others) working in thi
 **Owner:** Nicoselle
 **Branch model:** Feature branches prefixed with `claude/` for AI-driven work
 
-> This repository is currently in its initial state (no source code committed yet). This document will evolve as the project grows. Update this file whenever significant architectural or workflow decisions are made.
+> **What this is:** Preuve AI — a startup-idea validation tool (MVP). A founder
+> describes an idea; the app calls Claude to return a structured viability report
+> (0–100 score, verdict, competitors, market sizing, demand signals, risks, and
+> pivots). See `README.md` for setup and architecture.
+>
+> **Stack:** Next.js (App Router) + TypeScript + Tailwind CSS + the Anthropic SDK.
+> Update this file whenever significant architectural or workflow decisions are made.
 
 ---
 
 ## Repository Structure
 
-As the project is initialized, the expected structure should be documented here. Update this section when the first code is committed. A typical layout to aim for:
-
 ```
 Cadeau-/
 ├── CLAUDE.md              # This file — AI assistant guide
 ├── README.md              # Human-facing project overview
-├── .gitignore             # Files excluded from version control
 ├── .env.example           # Template for environment variables (never commit .env)
-├── src/                   # Main source code
-│   ├── components/        # UI components (if frontend)
-│   ├── pages/ or routes/  # Routing layer
-│   ├── services/          # Business logic / external integrations
-│   ├── utils/             # Pure utility functions
-│   └── types/             # Shared type definitions (TypeScript)
-├── tests/                 # Test files mirroring src/ structure
-├── docs/                  # Additional documentation
-└── scripts/               # Dev/ops helper scripts
+├── app/
+│   ├── layout.tsx         # Root layout + metadata
+│   ├── page.tsx           # Landing page
+│   ├── globals.css        # Tailwind + design tokens
+│   ├── validate/page.tsx  # Results page (Suspense wrapper)
+│   └── api/validate/route.ts  # POST { idea } -> Claude -> structured report
+├── components/
+│   ├── IdeaInput.tsx      # Hero idea textarea + CTA
+│   ├── ScoreGauge.tsx     # Score ring + verdict badge
+│   ├── ValidateClient.tsx # Loading sequence + fetch + render
+│   ├── marketing/         # Hero, StatsStrip, FeatureGrid, HowItWorks, Footer
+│   └── report/ReportView.tsx  # Full report dashboard
+└── lib/
+    ├── report.ts          # ValidationReport types (shared client/server)
+    ├── anthropic.ts       # Anthropic client + model constant
+    └── prompt.ts          # System prompt + report tool schema
 ```
 
-> Update this section with the actual structure once the project is scaffolded.
+**Key conventions in this codebase:**
+- The validation engine uses a single **forced tool** (`lib/prompt.ts`) whose
+  input schema mirrors `ValidationReport` — structured output, no JSON parsing.
+- `ValidationReport` (`lib/report.ts`) is the single source of truth shared by
+  the API route and the report components.
+- The model is env-overridable via `ANTHROPIC_MODEL` (default `claude-opus-4-8`).
 
 ---
 
