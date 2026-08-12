@@ -80,16 +80,18 @@ behouden blijft tussen pagina's.
 
 ## Resilience Score (methodiek)
 
-De score (0–100) is **niet handmatig toegekend** maar berekend uit vijf gewogen,
-op 0–100 genormaliseerde componenten (zie `src/lib/resilience.ts`):
+De score (0–100) is **niet handmatig toegekend** maar berekend uit een
+financiële-ROI-model (zie `src/lib/resilience.ts`):
 
-| Component | Gewicht | Doel voor 100 |
+| Onderdeel | Bijdrage | Formule |
 |---|---|---|
-| Houdbaarheid | 30% | 25 jaar |
-| Calorie-adequaatheid | 20% | 2000 kcal/persoon/dag |
-| Wateronafhankelijkheid | 20% | geen water nodig |
-| Kant-en-klaar | 15% | direct eetbaar |
-| Eiwit-adequaatheid | 15% | 50 g/persoon/dag |
+| Calorie-ROI | max 60 pt | `min(kcal/prijs ÷ 250, 1) × 60` |
+| Levensduur | max 40 pt | `houdbaarheid ÷ 25 jaar × 40` |
+| Logistieke penalty | −10 pt per stuk | −10 voor water, −10 voor hittebron |
+
+Eindscore = `clamp(round(ROI + levensduur − penalty), 0, 100)`. Kern: hoeveel
+calorieën krijg je per euro, hoe lang blijft het goed, en hoeveel gedoe kost de
+bereiding.
 
 De uitsplitsing is zichtbaar op elke productpagina en zit ook in de JSON-API,
 zodat de score reproduceerbaar en uitlegbaar is voor mens én AI.

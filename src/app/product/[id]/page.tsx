@@ -227,8 +227,9 @@ export default async function ProductDetailPage({
               Resilience Score: {product.resilienceScore} / 100
             </h2>
             <p className="mt-1 text-sm text-muted-foreground">
-              Berekend uit vijf gewogen componenten (geen handmatig cijfer), zodat
-              de score reproduceerbaar en uitlegbaar is voor mens én AI.
+              Berekend (geen handmatig cijfer): calorie-ROI per euro (max 60 pt) +
+              houdbaarheid (max 40 pt), minus 10 pt per logistieke afhankelijkheid
+              (water, hittebron). Reproduceerbaar en uitlegbaar voor mens én AI.
             </p>
             <div className="mt-4 max-w-md">
               <ResilienceBreakdown components={resilience.components} />

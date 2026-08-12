@@ -1,23 +1,30 @@
 import type { ProductInput } from "@/types/product";
 
 /**
- * Transparent Resilience Score.
+ * Resilience Score (v2 — financiële-ROI model).
  *
- * Instead of a hand-assigned number, the score is derived from five weighted
- * components, each normalised to 0–100. This makes the score reproducible and
- * explainable to both people and AI agents.
+ * De score weegt hoeveel calorieën je per euro krijgt (60%) en de houdbaarheid
+ * (40%), en trekt een logistieke penalty af voor afhankelijkheden (water en/of
+ * hittebron). Reproduceerbaar en per onderdeel uitlegbaar aan mens én AI.
  *
- * Targets used for normalisation:
- * - Shelf life: 25 years = full marks
- * - Calorie adequacy: 2000 kcal/person/day = full marks
- * - Protein adequacy: 50 g/person/day = full marks
+ *   E      = totale kcal / prijs            (kcal per euro)
+ *   S_roi  = min(E / E_MAX, 1) * 60         (E_MAX = 250 kcal/€)
+ *   S_life = (H / H_MAX) * 40               (H_MAX = 25 jaar)
+ *   L_p    = (W + F) * -10                  (-10 per afhankelijkheid)
+ *   R      = clamp(round(S_roi + S_life + L_p), 0, 100)
  */
+
+export const E_MAX = 250; // hoogst gewaardeerde kcal per euro
+export const H_MAX = 25; // maximale industriële houdbaarheid (jaren)
+export const ROI_WEIGHT = 60;
+export const LIFE_WEIGHT = 40;
+export const DEPENDENCY_PENALTY = 10;
 
 export interface ResilienceComponent {
   key: string;
   label: string;
-  score: number; // 0–100
-  weight: number; // 0–1, weights sum to 1
+  points: number; // signed bijdrage aan de eindscore
+  maxPoints: number; // max haalbare punten (0 voor de penalty: ideaal = geen)
   detail: string;
 }
 
@@ -26,83 +33,56 @@ export interface ResilienceResult {
   components: ResilienceComponent[];
 }
 
-const CALORIE_TARGET = 2000;
-const PROTEIN_TARGET = 50;
-const SHELF_TARGET = 25;
+function clamp(n: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, n));
+}
 
-function clamp01(n: number): number {
-  return Math.max(0, Math.min(1, n));
+function round1(n: number): number {
+  return Math.round(n * 10) / 10;
 }
 
 export function computeResilience(p: ProductInput): ResilienceResult {
-  const caloriesPerDay = p.totalCalories / p.daysOfSupply;
-  const proteinPerDay = p.totalProteinGrams / p.daysOfSupply;
+  const water = p.waterRequired ? 1 : 0;
+  const heat = p.hotWaterMandatory ? 1 : 0;
+  const shelf = p.shelfLifeYearsMax;
 
-  const shelf = clamp01(p.shelfLifeYearsMax / SHELF_TARGET);
-  const calories = clamp01(caloriesPerDay / CALORIE_TARGET);
-  const protein = clamp01(proteinPerDay / PROTEIN_TARGET);
+  const efficiency = p.totalCalories / p.priceEUR; // kcal per euro
+  const roi = Math.min(efficiency / E_MAX, 1) * ROI_WEIGHT;
+  const life = (shelf / H_MAX) * LIFE_WEIGHT;
+  const penalty = (water + heat) * -DEPENDENCY_PENALTY;
 
-  // Water independence: no water needed is ideal; hot water is the hardest.
-  const water = !p.waterRequired ? 1 : p.hotWaterMandatory ? 0.3 : 0.6;
+  const score = clamp(Math.round(roi + life + penalty), 0, 100);
 
-  // Readiness: can it be eaten with little/no preparation?
-  const readiness = !p.waterRequired ? 1 : p.hotWaterMandatory ? 0.2 : 0.7;
+  const dependencies = [water ? "water" : null, heat ? "hittebron" : null].filter(
+    Boolean,
+  ) as string[];
 
   const components: ResilienceComponent[] = [
     {
-      key: "shelf",
-      label: "Houdbaarheid",
-      score: Math.round(shelf * 100),
-      weight: 0.3,
-      detail: `${p.shelfLifeYearsMax} jaar (doel: ${SHELF_TARGET})`,
+      key: "roi",
+      label: "Calorie-ROI",
+      points: round1(roi),
+      maxPoints: ROI_WEIGHT,
+      detail: `${Math.round(efficiency)} kcal/€ (doel: ${E_MAX})`,
     },
     {
-      key: "calories",
-      label: "Calorie-adequaatheid",
-      score: Math.round(calories * 100),
-      weight: 0.2,
-      detail: `${Math.round(caloriesPerDay)} kcal/dag (doel: ${CALORIE_TARGET})`,
+      key: "life",
+      label: "Levensduur",
+      points: round1(life),
+      maxPoints: LIFE_WEIGHT,
+      detail: `${shelf} jaar (doel: ${H_MAX})`,
     },
     {
-      key: "water",
-      label: "Wateronafhankelijkheid",
-      score: Math.round(water * 100),
-      weight: 0.2,
-      detail: p.waterRequired
-        ? p.hotWaterMandatory
-          ? "Heet water/koken vereist"
-          : "Koud water volstaat"
-        : "Geen water nodig",
-    },
-    {
-      key: "readiness",
-      label: "Kant-en-klaar",
-      score: Math.round(readiness * 100),
-      weight: 0.15,
-      detail: !p.waterRequired
-        ? "Direct eetbaar"
-        : p.hotWaterMandatory
-          ? "Bereiding met warmtebron"
-          : "Weken in koud water mogelijk",
-    },
-    {
-      key: "protein",
-      label: "Eiwit-adequaatheid",
-      score: Math.round(protein * 100),
-      weight: 0.15,
-      detail: `${Math.round(proteinPerDay)} g/dag (doel: ${PROTEIN_TARGET})`,
+      key: "logistics",
+      label: "Logistieke penalty",
+      points: penalty,
+      maxPoints: 0,
+      detail:
+        dependencies.length === 0
+          ? "Geen afhankelijkheden"
+          : `−${DEPENDENCY_PENALTY} per afhankelijkheid: ${dependencies.join(" + ")}`,
     },
   ];
 
-  const weighted =
-    shelf * 0.3 +
-    calories * 0.2 +
-    water * 0.2 +
-    readiness * 0.15 +
-    protein * 0.15;
-
-  return {
-    score: Math.round(weighted * 100),
-    components,
-  };
+  return { score, components };
 }

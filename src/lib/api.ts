@@ -38,8 +38,9 @@ export function serializeProduct(p: Product) {
       resilience_breakdown: resilience.components.map((c) => ({
         key: c.key,
         label: c.label,
-        score: c.score,
-        weight: c.weight,
+        points: c.points,
+        max_points: c.maxPoints,
+        detail: c.detail,
       })),
       diet_options: p.dietOptions,
       available_in_netherlands: p.availableInNetherlands,
