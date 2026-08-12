@@ -1,11 +1,11 @@
 import Link from "next/link";
 import type { Product } from "@/types/product";
-import { SCENARIO_LABELS, TYPE_LABELS } from "@/types/product";
+import { SCENARIO_LABELS, TYPE_LABELS, dietLabel } from "@/types/product";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ResilienceScore } from "@/components/resilience-score";
-import { formatShelfLife, formatUSD, formatNumber } from "@/lib/utils";
+import { formatShelfLife, formatEUR, formatNumber } from "@/lib/utils";
 
 export function ProductCard({
   product,
@@ -37,13 +37,18 @@ export function ProductCard({
         </div>
         <div className="flex flex-wrap gap-1.5">
           <Badge variant="secondary">{TYPE_LABELS[product.type]}</Badge>
-          {product.availableInEU ? <Badge variant="accent">EU</Badge> : null}
-          {product.availableInSweden ? (
-            <Badge variant="accent">Zweden</Badge>
+          {product.availableInNetherlands ? (
+            <Badge variant="accent">NL</Badge>
+          ) : null}
+          {product.availableInBelgium ? (
+            <Badge variant="accent">BE</Badge>
+          ) : null}
+          {product.availableInEU && !product.availableInNetherlands && !product.availableInBelgium ? (
+            <Badge variant="accent">EU</Badge>
           ) : null}
           {product.dietOptions.map((d) => (
             <Badge key={d} variant="outline">
-              {d}
+              {dietLabel(d)}
             </Badge>
           ))}
         </div>
@@ -53,13 +58,13 @@ export function ProductCard({
           <div>
             <dt className="text-xs text-muted-foreground">Prijs / 100 kcal</dt>
             <dd className="font-semibold tabular-nums">
-              {formatUSD(product.pricePer100Kcal)}
+              {formatEUR(product.pricePer100Kcal)}
             </dd>
           </div>
           <div>
             <dt className="text-xs text-muted-foreground">Totaalprijs</dt>
             <dd className="font-semibold tabular-nums">
-              {formatUSD(product.priceUSD)}
+              {formatEUR(product.priceEUR)}
             </dd>
           </div>
           <div>

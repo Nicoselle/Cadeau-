@@ -81,8 +81,8 @@ export function buildProductJsonLd(p: Product) {
     url: `${SITE.url}/product/${p.id}`,
     offers: {
       "@type": "Offer",
-      priceCurrency: "USD",
-      price: p.priceUSD.toFixed(2),
+      priceCurrency: "EUR",
+      price: p.priceEUR.toFixed(2),
       availability: "https://schema.org/InStock",
       url: p.affiliateUrl,
     },
@@ -100,10 +100,33 @@ export function buildProductJsonLd(p: Product) {
         ? [prop("Waterbehoefte", p.totalWaterLiters, "L")]
         : []),
       prop("Heet water verplicht", p.hotWaterMandatory ? "ja" : "nee"),
-      prop("Prijs per 100 kcal", p.pricePer100Kcal, "USD"),
+      prop("Prijs per 100 kcal", p.pricePer100Kcal, "EUR"),
       prop("Resilience Score", p.resilienceScore, "/100"),
+      prop("Beschikbaar in Nederland", p.availableInNetherlands ? "ja" : "nee"),
+      prop("Beschikbaar in België", p.availableInBelgium ? "ja" : "nee"),
       prop("Beschikbaar in EU", p.availableInEU ? "ja" : "nee"),
       prop("Beschikbaar in Zweden", p.availableInSweden ? "ja" : "nee"),
+    ],
+  };
+}
+
+export function buildBreadcrumbJsonLd(p: Product) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Directory",
+        item: SITE.url,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: `${p.brand} ${p.name}`,
+        item: `${SITE.url}/product/${p.id}`,
+      },
     ],
   };
 }

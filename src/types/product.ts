@@ -15,24 +15,32 @@ export interface Product {
   daysOfSupply: number;
   intendedPersons: number;
   totalCalories: number;
-  caloriesPerDay: number;
+  caloriesPerDay: number; // derived: totalCalories / daysOfSupply
   totalProteinGrams: number;
   shelfLifeYearsMin: number;
   shelfLifeYearsMax: number;
   waterRequired: boolean;
   totalWaterLiters: number | null;
   hotWaterMandatory: boolean;
-  priceUSD: number;
-  pricePer100Kcal: number;
+  priceEUR: number;
+  pricePer100Kcal: number; // derived (EUR): priceEUR / totalCalories * 100
   dietOptions: string[]; // e.g. "gluten-free", "vegetarian"
   preparation: string;
   scenarios: Scenario[];
-  resilienceScore: number; // 0–100
+  resilienceScore: number; // derived: 0–100, see lib/resilience.ts
   availableInEU: boolean;
+  availableInNetherlands: boolean;
+  availableInBelgium: boolean;
   availableInSweden: boolean;
   affiliateUrl: string;
   lastUpdated: string; // ISO date
 }
+
+/** Raw product facts. Derived fields are computed in src/data/products.ts. */
+export type ProductInput = Omit<
+  Product,
+  "caloriesPerDay" | "pricePer100Kcal" | "resilienceScore"
+>;
 
 export const SCENARIO_LABELS: Record<Scenario, string> = {
   SHELTER_IN_PLACE: "Shelter in place",
@@ -48,3 +56,14 @@ export const TYPE_LABELS: Record<ProductType, string> = {
   bar: "Reep",
   mre: "MRE",
 };
+
+export const DIET_LABELS: Record<string, string> = {
+  "gluten-free": "Glutenvrij",
+  vegetarian: "Vegetarisch",
+  vegan: "Veganistisch",
+  "dairy-free": "Lactosevrij",
+};
+
+export function dietLabel(slug: string): string {
+  return DIET_LABELS[slug] ?? slug;
+}

@@ -5,7 +5,7 @@ import type { Product } from "@/types/product";
 import { SCENARIO_LABELS, TYPE_LABELS } from "@/types/product";
 import { CompareEmpty } from "@/components/compare-empty";
 import { ResilienceScore } from "@/components/resilience-score";
-import { formatShelfLife, formatUSD, formatNumber } from "@/lib/utils";
+import { formatShelfLife, formatEUR, formatNumber } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Vergelijken",
@@ -67,7 +67,7 @@ export default async function ComparePage({
 
 function CompareTable({ products }: { products: Product[] }) {
   const price100 = products.map((p) => p.pricePer100Kcal);
-  const price = products.map((p) => p.priceUSD);
+  const price = products.map((p) => p.priceEUR);
   const totalKcal = products.map((p) => p.totalCalories);
   const kcalDay = products.map((p) => p.caloriesPerDay);
   const protein = products.map((p) => p.totalProteinGrams);
@@ -124,14 +124,14 @@ function CompareTable({ products }: { products: Product[] }) {
                 key={p.id}
                 className={cellClass(price100[i], price100, "min")}
               >
-                {formatUSD(p.pricePer100Kcal)}
+                {formatEUR(p.pricePer100Kcal)}
               </Cell>
             ))}
           </Row>
           <Row label="Totaalprijs">
             {products.map((p, i) => (
               <Cell key={p.id} className={cellClass(price[i], price, "min")}>
-                {formatUSD(p.priceUSD)}
+                {formatEUR(p.priceEUR)}
               </Cell>
             ))}
           </Row>
@@ -208,6 +208,18 @@ function CompareTable({ products }: { products: Product[] }) {
               >
                 {p.resilienceScore} / 100
               </Cell>
+            ))}
+          </Row>
+          <Row label="Beschikbaar in Nederland">
+            {products.map((p) => (
+              <Cell key={p.id}>
+                {p.availableInNetherlands ? "Ja" : "Nee"}
+              </Cell>
+            ))}
+          </Row>
+          <Row label="Beschikbaar in België">
+            {products.map((p) => (
+              <Cell key={p.id}>{p.availableInBelgium ? "Ja" : "Nee"}</Cell>
             ))}
           </Row>
           <Row label="Beschikbaar in EU">

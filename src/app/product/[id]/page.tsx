@@ -2,18 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { products, getProductById } from "@/data/products";
-import { SCENARIO_LABELS, TYPE_LABELS } from "@/types/product";
+import { SCENARIO_LABELS, TYPE_LABELS, dietLabel } from "@/types/product";
 import {
+  buildBreadcrumbJsonLd,
   buildFaq,
   buildFaqJsonLd,
   buildProductJsonLd,
 } from "@/lib/product-schema";
+import { computeResilience } from "@/lib/resilience";
 import { ResilienceScore } from "@/components/resilience-score";
+import { ResilienceBreakdown } from "@/components/resilience-breakdown";
 import { LastUpdated } from "@/components/last-updated";
 import { AddToCompare } from "@/components/add-to-compare";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { formatShelfLife, formatUSD, formatNumber } from "@/lib/utils";
+import { formatShelfLife, formatEUR, formatNumber } from "@/lib/utils";
 import { SITE } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -35,7 +38,7 @@ export async function generateMetadata({
   )} kcal/dag · houdbaar ${formatShelfLife(
     product.shelfLifeYearsMin,
     product.shelfLifeYearsMax,
-  )} · ${formatUSD(product.pricePer100Kcal)} per 100 kcal.`;
+  )} · ${formatEUR(product.pricePer100Kcal)} per 100 kcal.`;
 
   return {
     title,
@@ -77,12 +80,19 @@ export default async function ProductDetailPage({
   const faq = buildFaq(product);
   const productJsonLd = buildProductJsonLd(product);
   const faqJsonLd = buildFaqJsonLd(faq);
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(product);
+  const resilience = computeResilience(product);
+  const costPer2000 = (product.priceEUR / product.totalCalories) * 2000;
 
   return (
     <article className="container py-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <script
         type="application/ld+json"
@@ -109,15 +119,21 @@ export default async function ProductDetailPage({
               </h1>
               <div className="mt-3 flex flex-wrap gap-2">
                 <Badge variant="secondary">{TYPE_LABELS[product.type]}</Badge>
+                {product.availableInNetherlands ? (
+                  <Badge variant="accent">Beschikbaar in Nederland</Badge>
+                ) : null}
+                {product.availableInBelgium ? (
+                  <Badge variant="accent">Beschikbaar in België</Badge>
+                ) : null}
                 {product.availableInEU ? (
-                  <Badge variant="accent">Beschikbaar in EU</Badge>
+                  <Badge variant="accent">EU</Badge>
                 ) : null}
                 {product.availableInSweden ? (
-                  <Badge variant="accent">Beschikbaar in Zweden</Badge>
+                  <Badge variant="accent">Zweden</Badge>
                 ) : null}
                 {product.dietOptions.map((d) => (
                   <Badge key={d} variant="outline">
-                    {d}
+                    {dietLabel(d)}
                   </Badge>
                 ))}
               </div>
@@ -206,6 +222,19 @@ export default async function ProductDetailPage({
             </div>
           </section>
 
+          <section aria-labelledby="resilience-heading" className="mt-10">
+            <h2 id="resilience-heading" className="text-xl font-semibold">
+              Resilience Score: {product.resilienceScore} / 100
+            </h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Berekend uit vijf gewogen componenten (geen handmatig cijfer), zodat
+              de score reproduceerbaar en uitlegbaar is voor mens én AI.
+            </p>
+            <div className="mt-4 max-w-md">
+              <ResilienceBreakdown components={resilience.components} />
+            </div>
+          </section>
+
           <section aria-labelledby="faq-heading" className="mt-10">
             <h2 id="faq-heading" className="text-xl font-semibold">
               Veelgestelde vragen
@@ -229,18 +258,21 @@ export default async function ProductDetailPage({
               <div>
                 <p className="text-xs text-muted-foreground">Prijs per 100 kcal</p>
                 <p className="text-3xl font-bold tabular-nums">
-                  {formatUSD(product.pricePer100Kcal)}
+                  {formatEUR(product.pricePer100Kcal)}
                 </p>
               </div>
               <dl className="text-sm">
                 <SpecRow term="Totaalprijs">
-                  {formatUSD(product.priceUSD)}
+                  {formatEUR(product.priceEUR)}
+                </SpecRow>
+                <SpecRow term="Kosten per 2000 kcal">
+                  {formatEUR(costPer2000)}
                 </SpecRow>
                 <SpecRow term="Prijs per dag">
-                  {formatUSD(product.priceUSD / product.daysOfSupply)}
+                  {formatEUR(product.priceEUR / product.daysOfSupply)}
                 </SpecRow>
                 <SpecRow term="Prijs per portie">
-                  {formatUSD(product.priceUSD / product.servings)}
+                  {formatEUR(product.priceEUR / product.servings)}
                 </SpecRow>
               </dl>
               <a

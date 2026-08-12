@@ -1,7 +1,7 @@
 "use client";
 
 import type { ProductType, Scenario } from "@/types/product";
-import { SCENARIO_LABELS, TYPE_LABELS } from "@/types/product";
+import { SCENARIO_LABELS, TYPE_LABELS, dietLabel } from "@/types/product";
 import {
   CALORIES_OPTIONS,
   PRICE_100_OPTIONS,
@@ -170,7 +170,7 @@ export function ProductFilters({
                 onChange={() =>
                   onChange({ ...filters, diets: toggle(filters.diets, d) })
                 }
-                label={d}
+                label={dietLabel(d)}
               />
             ))}
           </div>
@@ -181,11 +181,21 @@ export function ProductFilters({
         <FieldLabel>Beschikbaarheid</FieldLabel>
         <div className="space-y-1.5">
           <Checkbox
+            id="avail-nl"
+            checked={filters.nlOnly}
+            onChange={(e) => onChange({ ...filters, nlOnly: e.target.checked })}
+            label="Beschikbaar in Nederland"
+          />
+          <Checkbox
+            id="avail-be"
+            checked={filters.beOnly}
+            onChange={(e) => onChange({ ...filters, beOnly: e.target.checked })}
+            label="Beschikbaar in België"
+          />
+          <Checkbox
             id="avail-eu"
             checked={filters.euOnly}
-            onChange={(e) =>
-              onChange({ ...filters, euOnly: e.target.checked })
-            }
+            onChange={(e) => onChange({ ...filters, euOnly: e.target.checked })}
             label="Beschikbaar in EU"
           />
           <Checkbox

@@ -3,26 +3,17 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
-const STORAGE_KEY = "cadeau-compare";
+import { readCompareIds } from "@/lib/compare";
 
 export function CompareEmpty() {
   const router = useRouter();
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem(STORAGE_KEY);
-      const parsed = raw ? JSON.parse(raw) : [];
-      const ids = Array.isArray(parsed)
-        ? parsed.filter((x): x is string => typeof x === "string")
-        : [];
-      if (ids.length > 0) {
-        router.replace(`/compare?ids=${ids.join(",")}`);
-        return;
-      }
-    } catch {
-      // ignore
+    const ids = readCompareIds();
+    if (ids.length > 0) {
+      router.replace(`/compare?ids=${ids.join(",")}`);
+      return;
     }
     setChecked(true);
   }, [router]);

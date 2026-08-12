@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Product } from "@/types/product";
 import { TYPE_LABELS } from "@/types/product";
 import { Checkbox } from "@/components/ui/checkbox";
-import { formatShelfLife, formatUSD, formatNumber } from "@/lib/utils";
+import { formatShelfLife, formatEUR, formatNumber } from "@/lib/utils";
 
 export function ProductTable({
   products,
@@ -32,7 +32,7 @@ export function ProductTable({
               Type
             </th>
             <th scope="col" className="px-3 py-2.5 text-right font-semibold">
-              $/100 kcal
+              €/100 kcal
             </th>
             <th scope="col" className="px-3 py-2.5 text-right font-semibold">
               Prijs
@@ -79,10 +79,10 @@ export function ProductTable({
                 </td>
                 <td className="px-3 py-2.5">{TYPE_LABELS[p.type]}</td>
                 <td className="px-3 py-2.5 text-right font-medium tabular-nums">
-                  {formatUSD(p.pricePer100Kcal)}
+                  {formatEUR(p.pricePer100Kcal)}
                 </td>
                 <td className="px-3 py-2.5 text-right tabular-nums">
-                  {formatUSD(p.priceUSD)}
+                  {formatEUR(p.priceEUR)}
                 </td>
                 <td className="px-3 py-2.5 text-right tabular-nums">
                   {formatNumber(p.caloriesPerDay)}

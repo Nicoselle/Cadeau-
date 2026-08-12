@@ -7,6 +7,8 @@ export type SortKey =
   | "kcal-desc"
   | "shelf-desc";
 
+export const DEFAULT_SORT: SortKey = "resilience-desc";
+
 export interface Filters {
   search: string;
   minShelfYears: number; // 0 = any
@@ -16,6 +18,8 @@ export interface Filters {
   types: ProductType[]; // OR
   scenarios: Scenario[]; // product must include ANY selected
   euOnly: boolean;
+  nlOnly: boolean;
+  beOnly: boolean;
   swedenOnly: boolean;
 }
 
@@ -28,6 +32,8 @@ export const DEFAULT_FILTERS: Filters = {
   types: [],
   scenarios: [],
   euOnly: false,
+  nlOnly: false,
+  beOnly: false,
   swedenOnly: false,
 };
 
@@ -38,6 +44,8 @@ export const SORT_OPTIONS: { value: SortKey; label: string }[] = [
   { value: "kcal-desc", label: "Totale calorieën (hoog → laag)" },
   { value: "shelf-desc", label: "Houdbaarheid (lang → kort)" },
 ];
+
+const SORT_KEYS = new Set<SortKey>(SORT_OPTIONS.map((o) => o.value));
 
 export const SHELF_OPTIONS = [
   { value: 0, label: "Alle" },
@@ -57,10 +65,10 @@ export const CALORIES_OPTIONS = [
 
 export const PRICE_100_OPTIONS = [
   { value: 0, label: "Alle" },
-  { value: 0.5, label: "≤ $0,50" },
-  { value: 1.0, label: "≤ $1,00" },
-  { value: 1.5, label: "≤ $1,50" },
-  { value: 2.0, label: "≤ $2,00" },
+  { value: 0.5, label: "≤ € 0,50" },
+  { value: 1.0, label: "≤ € 1,00" },
+  { value: 1.5, label: "≤ € 1,50" },
+  { value: 2.0, label: "≤ € 2,00" },
 ];
 
 export function collectDietOptions(products: Product[]): string[] {
@@ -91,6 +99,8 @@ export function filterProducts(products: Product[], f: Filters): Product[] {
     )
       return false;
     if (f.euOnly && !p.availableInEU) return false;
+    if (f.nlOnly && !p.availableInNetherlands) return false;
+    if (f.beOnly && !p.availableInBelgium) return false;
     if (f.swedenOnly && !p.availableInSweden) return false;
     return true;
   });
@@ -104,7 +114,7 @@ export function sortProducts(products: Product[], key: SortKey): Product[] {
     case "price100-asc":
       return copy.sort((a, b) => a.pricePer100Kcal - b.pricePer100Kcal);
     case "price-asc":
-      return copy.sort((a, b) => a.priceUSD - b.priceUSD);
+      return copy.sort((a, b) => a.priceEUR - b.priceEUR);
     case "kcal-desc":
       return copy.sort((a, b) => b.totalCalories - a.totalCalories);
     case "shelf-desc":
@@ -124,6 +134,75 @@ export function countActiveFilters(f: Filters): number {
   n += f.types.length;
   n += f.scenarios.length;
   if (f.euOnly) n++;
+  if (f.nlOnly) n++;
+  if (f.beOnly) n++;
   if (f.swedenOnly) n++;
   return n;
+}
+
+const VALID_TYPES: ProductType[] = ["kit", "bucket", "pouch", "bar", "mre"];
+const VALID_SCENARIOS: Scenario[] = [
+  "72_HOUR_KIT",
+  "BUG_OUT_BAG",
+  "SHELTER_IN_PLACE",
+  "30_DAY_SUPPLY",
+];
+
+/** Serialise filters + sort into a compact, shareable query string. */
+export function filtersToQuery(f: Filters, sort: SortKey): string {
+  const p = new URLSearchParams();
+  if (f.search.trim()) p.set("q", f.search.trim());
+  if (f.minShelfYears > 0) p.set("shelf", String(f.minShelfYears));
+  if (f.minCaloriesPerDay > 0) p.set("kcal", String(f.minCaloriesPerDay));
+  if (f.maxPricePer100Kcal > 0) p.set("price", String(f.maxPricePer100Kcal));
+  if (f.diets.length) p.set("diet", f.diets.join(","));
+  if (f.types.length) p.set("type", f.types.join(","));
+  if (f.scenarios.length) p.set("scenario", f.scenarios.join(","));
+  if (f.euOnly) p.set("eu", "1");
+  if (f.nlOnly) p.set("nl", "1");
+  if (f.beOnly) p.set("be", "1");
+  if (f.swedenOnly) p.set("se", "1");
+  if (sort !== DEFAULT_SORT) p.set("sort", sort);
+  return p.toString();
+}
+
+function csv<T extends string>(value: string | null, valid: T[]): T[] {
+  if (!value) return [];
+  return value
+    .split(",")
+    .map((s) => s.trim())
+    .filter((s): s is T => (valid as string[]).includes(s));
+}
+
+/** Parse filters + sort from URL search params (inverse of filtersToQuery). */
+export function filtersFromQuery(params: URLSearchParams): {
+  filters: Filters;
+  sort: SortKey;
+} {
+  const num = (key: string) => {
+    const n = Number(params.get(key));
+    return Number.isFinite(n) && n > 0 ? n : 0;
+  };
+  const sortParam = params.get("sort") as SortKey | null;
+  return {
+    filters: {
+      search: params.get("q") ?? "",
+      minShelfYears: num("shelf"),
+      minCaloriesPerDay: num("kcal"),
+      maxPricePer100Kcal: num("price"),
+      diets: csv(params.get("diet"), [
+        "gluten-free",
+        "vegetarian",
+        "vegan",
+        "dairy-free",
+      ]),
+      types: csv(params.get("type"), VALID_TYPES),
+      scenarios: csv(params.get("scenario"), VALID_SCENARIOS),
+      euOnly: params.get("eu") === "1",
+      nlOnly: params.get("nl") === "1",
+      beOnly: params.get("be") === "1",
+      swedenOnly: params.get("se") === "1",
+    },
+    sort: sortParam && SORT_KEYS.has(sortParam) ? sortParam : DEFAULT_SORT,
+  };
 }

@@ -1,10 +1,16 @@
 import type { Product } from "@/types/product";
 import { SCENARIO_LABELS, TYPE_LABELS } from "@/types/product";
+import { computeResilience } from "@/lib/resilience";
 import { SITE } from "@/lib/site";
 
 export const ENDPOINT_VERSION = "v1";
 
+function round2(n: number): number {
+  return Math.round(n * 100) / 100;
+}
+
 export function serializeProduct(p: Product) {
+  const resilience = computeResilience(p);
   return {
     id: p.id,
     name: p.name,
@@ -13,12 +19,12 @@ export function serializeProduct(p: Product) {
     type_label: TYPE_LABELS[p.type],
     url: `${SITE.url}/product/${p.id}`,
     pricing: {
-      price_usd: p.priceUSD,
-      price_per_100kcal_usd: p.pricePer100Kcal,
-      price_per_day_usd:
-        Math.round((p.priceUSD / p.daysOfSupply) * 100) / 100,
-      price_per_serving_usd:
-        Math.round((p.priceUSD / p.servings) * 100) / 100,
+      currency: "EUR",
+      price_eur: p.priceEUR,
+      price_per_100kcal_eur: p.pricePer100Kcal,
+      cost_per_2000kcal_eur: round2((p.priceEUR / p.totalCalories) * 2000),
+      price_per_day_eur: round2(p.priceEUR / p.daysOfSupply),
+      price_per_serving_eur: round2(p.priceEUR / p.servings),
       affiliate_url: p.affiliateUrl,
     },
     specifications: {
@@ -28,7 +34,15 @@ export function serializeProduct(p: Product) {
       shelf_life_years_min: p.shelfLifeYearsMin,
       shelf_life_years_max: p.shelfLifeYearsMax,
       resilience_score: p.resilienceScore,
+      resilience_breakdown: resilience.components.map((c) => ({
+        key: c.key,
+        label: c.label,
+        score: c.score,
+        weight: c.weight,
+      })),
       diet_options: p.dietOptions,
+      available_in_netherlands: p.availableInNetherlands,
+      available_in_belgium: p.availableInBelgium,
       available_in_eu: p.availableInEU,
       available_in_sweden: p.availableInSweden,
     },

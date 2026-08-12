@@ -1,16 +1,21 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { Product } from "@/types/product";
 import {
   DEFAULT_FILTERS,
+  DEFAULT_SORT,
   SORT_OPTIONS,
   collectDietOptions,
   filterProducts,
+  filtersFromQuery,
+  filtersToQuery,
   sortProducts,
   type Filters,
   type SortKey,
 } from "@/lib/filtering";
+import { useCompare } from "@/lib/compare";
 import { ProductFilters } from "@/components/product-filters";
 import { ProductCard } from "@/components/product-card";
 import { ProductTable } from "@/components/product-table";
@@ -18,66 +23,54 @@ import { CompareBar } from "@/components/compare-bar";
 import { Select } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 
-const MAX_COMPARE = 4;
-const STORAGE_KEY = "cadeau-compare";
-
 export function ProductDirectory({ products }: { products: Product[] }) {
-  const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
-  const [sortKey, setSortKey] = useState<SortKey>("resilience-desc");
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const productIds = useMemo(() => products.map((p) => p.id), [products]);
+
+  const initial = useMemo(
+    () => filtersFromQuery(new URLSearchParams(searchParams.toString())),
+    // Seed once from the URL on mount; later changes are driven by state.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+
+  const [filters, setFilters] = useState<Filters>(initial.filters);
+  const [sortKey, setSortKey] = useState<SortKey>(initial.sort);
   const [view, setView] = useState<"cards" | "table">("cards");
-  const [compareIds, setCompareIds] = useState<string[]>([]);
 
-  // Seed selection from localStorage after mount (avoids hydration mismatch).
-  useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed)) {
-          setCompareIds(
-            parsed
-              .filter((id): id is string => typeof id === "string")
-              .filter((id) => products.some((p) => p.id === id))
-              .slice(0, MAX_COMPARE),
-          );
-        }
-      }
-    } catch {
-      // ignore malformed storage
-    }
-  }, [products]);
+  const compare = useCompare(productIds);
 
+  // Reflect filters + sort in the URL so a filtered view is shareable.
+  const firstSync = useRef(true);
   useEffect(() => {
-    try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(compareIds));
-    } catch {
-      // ignore storage write failures
+    const query = filtersToQuery(filters, sortKey);
+    const url = query ? `${pathname}?${query}` : pathname;
+    if (firstSync.current) {
+      firstSync.current = false;
+      const current = searchParams.toString();
+      if (current === query) return; // avoid a redundant initial replace
     }
-  }, [compareIds]);
+    router.replace(url, { scroll: false });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters, sortKey]);
 
   const dietOptions = useMemo(() => collectDietOptions(products), [products]);
 
-  const visible = useMemo(() => {
-    return sortProducts(filterProducts(products, filters), sortKey);
-  }, [products, filters, sortKey]);
+  const visible = useMemo(
+    () => sortProducts(filterProducts(products, filters), sortKey),
+    [products, filters, sortKey],
+  );
 
   const selectedProducts = useMemo(
     () =>
-      compareIds
+      compare.ids
         .map((id) => products.find((p) => p.id === id))
         .filter((p): p is Product => Boolean(p)),
-    [compareIds, products],
+    [compare.ids, products],
   );
-
-  const disableSelect = compareIds.length >= MAX_COMPARE;
-
-  function toggleCompare(id: string) {
-    setCompareIds((prev) => {
-      if (prev.includes(id)) return prev.filter((x) => x !== id);
-      if (prev.length >= MAX_COMPARE) return prev;
-      return [...prev, id];
-    });
-  }
 
   return (
     <div className="container py-8">
@@ -86,7 +79,10 @@ export function ProductDirectory({ products }: { products: Product[] }) {
           <ProductFilters
             filters={filters}
             onChange={setFilters}
-            onReset={() => setFilters(DEFAULT_FILTERS)}
+            onReset={() => {
+              setFilters(DEFAULT_FILTERS);
+              setSortKey(DEFAULT_SORT);
+            }}
             dietOptions={dietOptions}
           />
         </div>
@@ -153,7 +149,10 @@ export function ProductDirectory({ products }: { products: Product[] }) {
                 variant="outline"
                 size="sm"
                 className="mt-4"
-                onClick={() => setFilters(DEFAULT_FILTERS)}
+                onClick={() => {
+                  setFilters(DEFAULT_FILTERS);
+                  setSortKey(DEFAULT_SORT);
+                }}
               >
                 Filters wissen
               </Button>
@@ -164,18 +163,18 @@ export function ProductDirectory({ products }: { products: Product[] }) {
                 <ProductCard
                   key={p.id}
                   product={p}
-                  selected={compareIds.includes(p.id)}
-                  onToggle={toggleCompare}
-                  disableSelect={disableSelect}
+                  selected={compare.isSelected(p.id)}
+                  onToggle={compare.toggle}
+                  disableSelect={compare.isFull}
                 />
               ))}
             </div>
           ) : (
             <ProductTable
               products={visible}
-              isSelected={(id) => compareIds.includes(id)}
-              onToggle={toggleCompare}
-              disableSelect={disableSelect}
+              isSelected={compare.isSelected}
+              onToggle={compare.toggle}
+              disableSelect={compare.isFull}
             />
           )}
 
@@ -186,9 +185,9 @@ export function ProductDirectory({ products }: { products: Product[] }) {
 
       <CompareBar
         selected={selectedProducts}
-        onRemove={toggleCompare}
-        onClear={() => setCompareIds([])}
-        max={MAX_COMPARE}
+        onRemove={compare.remove}
+        onClear={compare.clear}
+        max={4}
       />
     </div>
   );

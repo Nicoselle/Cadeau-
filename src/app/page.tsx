@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { products, DATA_LAST_UPDATED } from "@/data/products";
 import { ProductDirectory } from "@/components/product-directory";
 import { LastUpdated } from "@/components/last-updated";
@@ -18,11 +19,32 @@ export default function HomePage() {
     })),
   };
 
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE.name,
+    url: SITE.url,
+    description: SITE.description,
+    inLanguage: "nl",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${SITE.url}/?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
       />
       <section className="border-b border-border bg-card">
         <div className="container py-12">
@@ -34,9 +56,10 @@ export default function HomePage() {
           </h1>
           <p className="mt-3 max-w-2xl text-muted-foreground">
             Vergelijk emergency food kits en langhoudbare voorraden met unieke
-            maatstaven: prijs per 100 kcal, een Resilience Score, scenario-filters
-            en EU/Zweden-beschikbaarheid. Gebouwd om zowel mensen als AI-agents
-            snel het juiste pakket te laten vinden.
+            maatstaven: prijs per 100 kcal, een transparante Resilience Score,
+            scenario-filters en beschikbaarheid in Nederland, België en de rest
+            van de EU. Gebouwd om zowel mensen als AI-agents snel het juiste
+            pakket te laten vinden.
           </p>
           <div className="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-sm">
             <div>
@@ -61,7 +84,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <ProductDirectory products={products} />
+      <Suspense fallback={<div className="container py-8" />}>
+        <ProductDirectory products={products} />
+      </Suspense>
     </>
   );
 }
