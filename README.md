@@ -9,10 +9,15 @@ Unieke maatstaven: **prijs per 100 kcal**, een **transparante Resilience Score**
 **scenario-filters** en **beschikbaarheid in Nederland, België, EU en Zweden**.
 Markt en prijzen zijn georiënteerd op de **Benelux/EU** (bedragen in **EUR**).
 
-> ⚠️ **Voorbeelddata.** Op de gedocumenteerde Mountain House "Just in Case"
-> 3-Day (SKU `mh-83608`) na bevat de dataset plausibele, illustratieve waarden
-> voor demonstratie. Prijzen zijn indicatieve EUR-bedragen. Controleer
-> specificaties en prijzen bij de leverancier vóór aankoop.
+> ⚠️ **Echte producten, echte links.** De dataset bevat 9 producten die
+> daadwerkelijk in NL/BE/EU te koop zijn, met **live geverifieerde
+> retailerlinks** (o.a. Prepshop.nl, Goedvoorbereid.nl, Darkshop.nl,
+> Allprepare.com, Outdoor-food.nl, RealHikingFood.nl, Armed.eu,
+> Freezedriedandco.com). Naam, retailer, prijs (EUR), totale calorieën en
+> houdbaarheid zijn van de winkelpagina gelezen (~2026-08-12). Sommige velden
+> (bv. eiwit in gram, waterbehoefte) worden zelden vermeld en zijn **geschat en
+> als zodanig gemarkeerd** in `src/data/products.ts`. Prijzen en voorraad
+> wijzigen — **controleer altijd bij de retailer vóór aankoop.**
 
 ---
 
@@ -165,7 +170,7 @@ src/
 │   ├── compare-bar.tsx            # Zwevende vergelijkbalk
 │   ├── resilience-score.tsx       # Cirkeldiagram voor de score
 │   └── resilience-breakdown.tsx   # Uitsplitsing van de score
-├── data/products.ts               # 10 voorbeeldproducten (afgeleide velden berekend)
+├── data/products.ts               # 9 echte NL/BE/EU-producten + retailerlinks (afgeleide velden berekend)
 ├── lib/
 │   ├── filtering.ts               # Filter/sorteer-logica + URL-(de)serialisatie
 │   ├── resilience.ts              # Transparante Resilience Score

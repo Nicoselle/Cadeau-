@@ -25,7 +25,8 @@ const base: ProductInput = {
   availableInNetherlands: true,
   availableInBelgium: true,
   availableInSweden: false,
-  affiliateUrl: "https://example.com/affiliate/test",
+  retailer: "TestShop",
+  affiliateUrl: "https://example.com/product/test",
   lastUpdated: "2026-08-01",
 };
 

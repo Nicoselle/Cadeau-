@@ -10,8 +10,9 @@ export function SiteFooter() {
         <div className="space-y-1">
           <p className="font-medium text-foreground">{SITE.name}</p>
           <p className="max-w-md">
-            Voorbeelddata voor demonstratiedoeleinden. Controleer specificaties
-            en prijzen bij de leverancier vóór aankoop.
+            Echte producten met retailerlinks voor de Benelux/EU. Prijzen,
+            voorraad en sommige specs kunnen wijzigen — controleer bij de
+            retailer vóór aankoop.
           </p>
         </div>
         <div className="space-y-1 md:text-right">

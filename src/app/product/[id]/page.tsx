@@ -281,10 +281,10 @@ export default async function ProductDetailPage({
                 rel="nofollow sponsored noopener"
                 className="inline-flex h-10 w-full items-center justify-center rounded-md bg-accent px-4 text-sm font-medium text-accent-foreground transition-colors hover:bg-accent/90"
               >
-                Bekijk bij leverancier
+                Bekijk bij {product.retailer}
               </a>
               <p className="text-center text-[11px] text-muted-foreground">
-                Voorbeeld-affiliatelink · voorbeelddata
+                Echte retailerlink · prijs en voorraad kunnen wijzigen
               </p>
               <AddToCompare id={product.id} />
               <LastUpdated

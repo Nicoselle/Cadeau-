@@ -50,10 +50,10 @@ describe("filterProducts", () => {
   });
 
   it("search matches brand or name, case-insensitive", () => {
-    const f: Filters = { ...DEFAULT_FILTERS, search: "mountain" };
+    const f: Filters = { ...DEFAULT_FILTERS, search: "tactical" };
     const out = filterProducts(products, f);
     expect(out).toHaveLength(1);
-    expect(out[0].brand).toBe("Mountain House");
+    expect(out[0].brand).toBe("Tactical Foodpack");
   });
 });
 

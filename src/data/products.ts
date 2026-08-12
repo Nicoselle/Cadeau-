@@ -2,290 +2,282 @@ import type { Product, ProductInput } from "@/types/product";
 import { computeResilience } from "@/lib/resilience";
 
 /**
- * VOORBEELDDATA — sample data for prototype purposes only.
+ * Real products sold in the Benelux/EU market, gathered from live retailer
+ * pages (see the `affiliateUrl`/`retailer` on each item). Verified fields:
+ * product name, retailer, price (EUR), total calories and shelf life were read
+ * from the linked shop page around 2026-08-12.
  *
- * Prices are indicative retail prices in EUR for the Benelux/EU market and are
- * NOT verified. The Mountain House "Just in Case" 3-Day entry (SKU mh-83608)
- * uses documented US specifications (18 servings, 5.118 kcal, ~1.706 kcal/day,
- * 25–30 yr shelf life, 12 cups / 2,84 L water); its original documented US
- * price was $98.00 / $1.91 per 100 kcal. Verify everything before purchasing.
+ * ESTIMATED / UNVERIFIED fields — retailers rarely publish these, so they are
+ * conservative estimates and flagged per product below:
+ *   - totalProteinGrams (except where the label was published)
+ *   - totalWaterLiters (almost never listed → left null)
+ *   - some shelf-life values where the page only said "several years"
  *
- * Derived fields (caloriesPerDay, pricePer100Kcal, resilienceScore) are
- * COMPUTED below from the raw facts so they can never drift out of sync.
+ * Prices change often and stock varies — always verify on the retailer page
+ * before purchasing. `affiliateUrl` holds the real product page; wrap it with
+ * your own affiliate program if desired.
  */
 
-export const DATA_LAST_UPDATED = "2026-08-01";
+export const DATA_LAST_UPDATED = "2026-08-12";
 
 const rawProducts: ProductInput[] = [
   {
-    id: "mh-83608",
-    name: "Just in Case 3-Day Emergency Food Supply",
-    brand: "Mountain House",
-    type: "kit",
-    servings: 18,
-    daysOfSupply: 3,
+    id: "nrg-5-500g",
+    name: "NRG-5 Noodrantsoen 500 g",
+    brand: "NRG-5 (MSI)",
+    type: "bar",
+    servings: 9,
+    daysOfSupply: 1,
     intendedPersons: 1,
-    totalCalories: 5118,
-    totalProteinGrams: 128,
-    shelfLifeYearsMin: 25,
-    shelfLifeYearsMax: 30,
-    waterRequired: true,
-    totalWaterLiters: 2.84,
+    totalCalories: 2300,
+    totalProteinGrams: 73, // verified: 14,5 g eiwit/100 g × 500 g
+    shelfLifeYearsMin: 20,
+    shelfLifeYearsMax: 20,
+    waterRequired: false,
+    totalWaterLiters: null,
     hotWaterMandatory: false,
-    priceEUR: 109.0,
-    dietOptions: [],
+    priceEUR: 8.95,
+    dietOptions: ["vegan", "dairy-free"], // bevat wél gluten (tarwe/gerst)
     preparation:
-      "Voeg heet (of koud) water toe aan de pouch, wacht 8–10 minuten en eet direct uit de zak. Koud water werkt in noodgevallen maar verlengt de weektijd.",
-    scenarios: ["72_HOUR_KIT", "BUG_OUT_BAG"],
+      "Kant-en-klaar noodrantsoen van 9 blokken (2300 kcal). Direct opeten of verkruimelen in water/melk als pap; geen verwarming of koken nodig.",
+    scenarios: ["BUG_OUT_BAG", "72_HOUR_KIT", "SHELTER_IN_PLACE"],
     availableInEU: true,
     availableInNetherlands: true,
     availableInBelgium: true,
     availableInSweden: false,
-    affiliateUrl: "https://example.com/affiliate/mountain-house-just-in-case-3-day",
-    lastUpdated: "2026-08-01",
+    retailer: "Prepshop.nl",
+    affiliateUrl:
+      "https://www.prepshop.nl/eten/noodrantsoenen/detail/28/nrg-5-noodrantsoen-500-gram---2300-kcal.html",
+    lastUpdated: "2026-08-12",
   },
   {
-    id: "af-30day-1p",
-    name: "30-Day Emergency Food Supply (1 persoon)",
-    brand: "Augason Farms",
-    type: "bucket",
-    servings: 307,
-    daysOfSupply: 30,
+    id: "seven-oceans-500g",
+    name: "Seven Oceans Noodrantsoen 500 g",
+    brand: "Seven Oceans (GC Rieber)",
+    type: "bar",
+    servings: 18,
+    daysOfSupply: 1,
     intendedPersons: 1,
-    totalCalories: 55890,
-    totalProteinGrams: 812,
-    shelfLifeYearsMin: 20,
-    shelfLifeYearsMax: 25,
-    waterRequired: true,
-    totalWaterLiters: 41.0,
+    totalCalories: 2440,
+    totalProteinGrams: 46, // estimate: ~9,2 g/100 g × 500 g
+    shelfLifeYearsMin: 5,
+    shelfLifeYearsMax: 5,
+    waterRequired: false,
+    totalWaterLiters: null,
     hotWaterMandatory: false,
-    priceEUR: 189.99,
-    dietOptions: ["vegetarian"],
+    priceEUR: 6.49,
+    dietOptions: ["vegetarian"], // bevat gluten; SOLAS-gecertificeerd zeeredding
     preparation:
-      "Kook of gebruik heet water voor de meeste gerechten; sommige items (ontbijtgranen, melk) vereisen alleen koud water. Roeren en laten staan tot gaar.",
-    scenarios: ["30_DAY_SUPPLY", "SHELTER_IN_PLACE"],
-    availableInEU: false,
-    availableInNetherlands: false,
-    availableInBelgium: false,
+      "Kant-en-klaar zeeredding­rantsoen (18 tabletten). Ontworpen om dorst te beperken; geen water of bereiding nodig, direct eetbaar.",
+    scenarios: ["BUG_OUT_BAG", "72_HOUR_KIT", "SHELTER_IN_PLACE"],
+    availableInEU: true,
+    availableInNetherlands: true,
+    availableInBelgium: true,
     availableInSweden: false,
-    affiliateUrl: "https://example.com/affiliate/augason-farms-30-day",
-    lastUpdated: "2026-08-01",
+    retailer: "Prepshop.nl",
+    affiliateUrl:
+      "https://www.prepshop.nl/eten/noodrantsoenen/detail/156/seven-oceans-noodrantsoen-500-gram---2440-kcal.html",
+    lastUpdated: "2026-08-12",
   },
   {
-    id: "af-deluxe-30",
-    name: "Deluxe 30-Day Emergency Food Supply",
-    brand: "Augason Farms",
-    type: "bucket",
-    servings: 333,
-    daysOfSupply: 30,
+    id: "bp-er-box-24",
+    name: "BP-ER Emergency Food — doos 24 × 500 g",
+    brand: "BP-ER (GC Rieber)",
+    type: "bar",
+    servings: 24, // 24 pakjes van 500 g
+    daysOfSupply: 24, // 1 pakje per persoon per dag
     intendedPersons: 1,
-    totalCalories: 62100,
-    totalProteinGrams: 1104,
-    shelfLifeYearsMin: 20,
-    shelfLifeYearsMax: 25,
-    waterRequired: true,
-    totalWaterLiters: 48.0,
+    totalCalories: 58368, // verified: 24 × 2432 kcal
+    totalProteinGrams: 1104, // estimate: ~46 g per pakje × 24
+    shelfLifeYearsMin: 5,
+    shelfLifeYearsMax: 5, // NL-verkoper garandeert 5 jaar (sommige bronnen claimen 20)
+    waterRequired: false,
+    totalWaterLiters: null,
     hotWaterMandatory: false,
-    priceEUR: 239.99,
-    dietOptions: ["vegetarian"],
+    priceEUR: 129.95,
+    dietOptions: ["vegetarian"], // bevat tarwe (gluten)
     preparation:
-      "Bereid met heet water of kook kort; bevat een bredere variatie aan maaltijden en meer eiwit dan de standaard 30-dagen emmer.",
-    scenarios: ["30_DAY_SUPPLY", "SHELTER_IN_PLACE"],
-    availableInEU: false,
-    availableInNetherlands: false,
-    availableInBelgium: false,
+      "Kant-en-klaar compact noodrantsoen (24 pakjes van 2432 kcal, samen 24 dagen). Direct eetbaar of aan te maken tot pap; geen water of koken nodig.",
+    scenarios: ["30_DAY_SUPPLY", "SHELTER_IN_PLACE", "BUG_OUT_BAG"],
+    availableInEU: true,
+    availableInNetherlands: true,
+    availableInBelgium: true,
     availableInSweden: false,
-    affiliateUrl: "https://example.com/affiliate/augason-farms-deluxe-30-day",
-    lastUpdated: "2026-08-01",
+    retailer: "Goedvoorbereid.nl",
+    affiliateUrl:
+      "https://www.goedvoorbereid.nl/products/bp-er-emergency-food-noodrantsoen-500g",
+    lastUpdated: "2026-08-12",
   },
   {
-    id: "rw-5day-backpack",
-    name: "5-Day Survival Backpack",
-    brand: "ReadyWise",
+    id: "adventure-food-selection-10",
+    name: "Selection 10 Pack — vriesdroogmaaltijden",
+    brand: "Adventure Food",
     type: "kit",
-    servings: 32,
-    daysOfSupply: 5,
+    servings: 10,
+    daysOfSupply: 3, // 10 maaltijden ≈ 3 dagen bij 3/dag
     intendedPersons: 1,
-    totalCalories: 10320,
-    totalProteinGrams: 204,
-    shelfLifeYearsMin: 25,
-    shelfLifeYearsMax: 25,
+    totalCalories: 6000, // verified: gemiddeld 600 kcal × 10 maaltijden
+    totalProteinGrams: 250, // estimate: ~25 g per maaltijd × 10
+    shelfLifeYearsMin: 5,
+    shelfLifeYearsMax: 8, // estimate: pagina noemt "meerdere jaren"
     waterRequired: true,
-    totalWaterLiters: 12.0,
-    hotWaterMandatory: false,
-    priceEUR: 84.99,
-    dietOptions: ["vegetarian"],
+    totalWaterLiters: null,
+    hotWaterMandatory: true, // kokend water direct in de zak vereist
+    priceEUR: 67.49,
+    dietOptions: [], // mix van vlees- en vegetarische maaltijden
     preparation:
-      "Complete grab-and-go rugzak met maaltijden op waterbasis, waterfilter en accessoires. Voeg heet of koud water toe aan de pouches.",
+      "Tien gevarieerde gevriesdroogde maaltijden (Nederlands merk). Kokend water direct in de stazak, roeren en ~8 minuten wachten. Zeer lichtgewicht (~1,6 kg).",
     scenarios: ["BUG_OUT_BAG", "72_HOUR_KIT"],
     availableInEU: true,
     availableInNetherlands: true,
     availableInBelgium: true,
     availableInSweden: false,
-    affiliateUrl: "https://example.com/affiliate/readywise-5-day-backpack",
-    lastUpdated: "2026-08-01",
+    retailer: "Outdoor-food.nl",
+    affiliateUrl:
+      "https://outdoor-food.nl/en/products/adventure-food-selection-10-pack-vriesdroogmaaltijden",
+    lastUpdated: "2026-08-12",
   },
   {
-    id: "rw-72hr-kit",
-    name: "72-Hour Emergency Food Kit",
-    brand: "ReadyWise",
-    type: "pouch",
-    servings: 18,
-    daysOfSupply: 3,
+    id: "tactical-foodpack-juliett",
+    name: "MRE Weekpack Juliett (vegetarisch)",
+    brand: "Tactical Foodpack",
+    type: "kit",
+    servings: 21,
+    daysOfSupply: 7,
     intendedPersons: 1,
-    totalCalories: 6200,
-    totalProteinGrams: 118,
-    shelfLifeYearsMin: 25,
-    shelfLifeYearsMax: 25,
+    totalCalories: 9385, // verified via armed.eu per-gerecht breakdown
+    totalProteinGrams: 240, // verified: 240 g per pack
+    shelfLifeYearsMin: 8,
+    shelfLifeYearsMax: 8,
     waterRequired: true,
-    totalWaterLiters: 7.0,
-    hotWaterMandatory: false,
-    priceEUR: 49.99,
+    totalWaterLiters: null,
+    hotWaterMandatory: false, // heet water aanbevolen; koud water werkt ook (~10 min)
+    priceEUR: 246.87,
     dietOptions: ["vegetarian"],
     preparation:
-      "Compacte set pouches voor drie dagen. Voeg heet of koud water toe en wacht enkele minuten; ideaal voor een auto- of thuisnoodkit.",
-    scenarios: ["72_HOUR_KIT", "BUG_OUT_BAG"],
+      "Estisch weekpakket met 21 porties (9 gerechten). Heet water tot de vouwlijn in de zak, ~10 minuten; koud water kan ook maar duurt langer.",
+    scenarios: ["BUG_OUT_BAG", "72_HOUR_KIT", "SHELTER_IN_PLACE"],
     availableInEU: true,
     availableInNetherlands: true,
     availableInBelgium: true,
-    availableInSweden: true,
-    affiliateUrl: "https://example.com/affiliate/readywise-72-hour-kit",
-    lastUpdated: "2026-08-01",
+    availableInSweden: true, // armed.eu verzendt naar Zweden
+    retailer: "Armed.eu",
+    affiliateUrl: "https://www.armed.eu/en/mre-weekpack-juliett-tactical-foodpack/",
+    lastUpdated: "2026-08-12",
   },
   {
-    id: "ns-14day",
-    name: "14-Day Nutrient Dense Food Supply",
-    brand: "Nutrient Survival",
+    id: "treknee-7day-veg",
+    name: "7 Dagen Noodrantsoen — vegetarisch",
+    brand: "Trek'n Eat",
+    type: "bucket",
+    servings: 21, // estimate: ~3 maaltijden/dag × 7
+    daysOfSupply: 7,
+    intendedPersons: 1,
+    totalCalories: 12640, // verified
+    totalProteinGrams: 300, // estimate
+    shelfLifeYearsMin: 5,
+    shelfLifeYearsMax: 5,
+    waterRequired: true,
+    totalWaterLiters: null,
+    hotWaterMandatory: false, // warm water aanbevolen; koud kan
+    priceEUR: 114.95,
+    dietOptions: ["vegetarian"],
+    preparation:
+      "Weekvoorraad gevriesdroogde maaltijden in een compacte plastic emmer (~1.800 kcal/dag). Water toevoegen, roeren en laten wachten; alleen water nodig.",
+    scenarios: ["72_HOUR_KIT", "SHELTER_IN_PLACE", "30_DAY_SUPPLY"],
+    availableInEU: true,
+    availableInNetherlands: true,
+    availableInBelgium: true,
+    availableInSweden: false,
+    retailer: "Darkshop.nl",
+    affiliateUrl:
+      "https://www.darkshop.nl/trek-n-eat-7-dagen-noodrantsoen-12-640-kcal-vegetarisch/",
+    lastUpdated: "2026-08-12",
+  },
+  {
+    id: "readywise-14day",
+    name: "14 Dagen Noodrantsoen (120 porties)",
+    brand: "ReadyWise",
     type: "bucket",
     servings: 120,
     daysOfSupply: 14,
     intendedPersons: 1,
-    totalCalories: 33600,
-    totalProteinGrams: 924,
-    shelfLifeYearsMin: 25,
-    shelfLifeYearsMax: 25,
+    totalCalories: 24360, // verified: ~1.740 kcal/dag
+    totalProteinGrams: 600, // estimate
+    shelfLifeYearsMin: 20,
+    shelfLifeYearsMax: 25, // pagina noemt zowel 20 (body) als 25 jaar (titel)
     waterRequired: true,
-    totalWaterLiters: 30.0,
-    hotWaterMandatory: false,
-    priceEUR: 479.0,
-    dietOptions: ["gluten-free"],
+    totalWaterLiters: null,
+    hotWaterMandatory: false, // "enkel water toevoegen"; warm aanbevolen
+    priceEUR: 410.0,
+    dietOptions: [], // bevat melk, soja, tarwe (gluten)
     preparation:
-      "Nutriëntdichte maaltijden en dranken verrijkt met vitaminen en mineralen. Meng met heet of koud water; nadruk op micronutriënten naast calorieën.",
-    scenarios: ["30_DAY_SUPPLY", "SHELTER_IN_PLACE"],
-    availableInEU: false,
-    availableInNetherlands: false,
-    availableInBelgium: false,
+      "120 maaltijden in 30 zakjes, verpakt in een stapelbare emmer. Water toevoegen aan de pouch en enkele minuten laten staan. Lichtgewicht door vriesdroging.",
+    scenarios: ["SHELTER_IN_PLACE", "30_DAY_SUPPLY", "72_HOUR_KIT"],
+    availableInEU: true,
+    availableInNetherlands: true,
+    availableInBelgium: true,
     availableInSweden: false,
-    affiliateUrl: "https://example.com/affiliate/nutrient-survival-14-day",
-    lastUpdated: "2026-08-01",
+    retailer: "Allprepare.com",
+    affiliateUrl: "https://www.allprepare.com/readywise-noodrantsoen-14-dagen",
+    lastUpdated: "2026-08-12",
   },
   {
-    id: "lp-120serving",
-    name: "Premium 120 Serving Emergency Food Bucket",
-    brand: "Legacy Premium",
-    type: "bucket",
-    servings: 120,
-    daysOfSupply: 16,
+    id: "real-turmat-zalm-teriyaki",
+    name: "Zalm Teriyaki (losse maaltijd)",
+    brand: "Real Turmat",
+    type: "pouch",
+    servings: 1,
+    daysOfSupply: 1, // losse maaltijd (~1 hoofdmaaltijd, geen volledige dag)
     intendedPersons: 1,
-    totalCalories: 38880,
-    totalProteinGrams: 1440,
-    shelfLifeYearsMin: 25,
-    shelfLifeYearsMax: 25,
-    waterRequired: true,
-    totalWaterLiters: 32.0,
-    hotWaterMandatory: true,
-    priceEUR: 219.99,
-    dietOptions: ["vegetarian"],
-    preparation:
-      "Grote porties met veel eiwit. De meeste maaltijden vereisen koken of heet water; niet geschikt voor bereiding zonder warmtebron.",
-    scenarios: ["30_DAY_SUPPLY", "SHELTER_IN_PLACE"],
-    availableInEU: false,
-    availableInNetherlands: false,
-    availableInBelgium: false,
-    availableInSweden: false,
-    affiliateUrl: "https://example.com/affiliate/legacy-premium-120-serving",
-    lastUpdated: "2026-08-01",
-  },
-  {
-    id: "datrex-3600",
-    name: "3600 kcal Emergency Ration Bar",
-    brand: "Datrex",
-    type: "bar",
-    servings: 18,
-    daysOfSupply: 3,
-    intendedPersons: 1,
-    totalCalories: 3600,
-    totalProteinGrams: 36,
+    totalCalories: 568, // verified
+    totalProteinGrams: 30, // estimate (zalm, eiwitrijk)
     shelfLifeYearsMin: 5,
     shelfLifeYearsMax: 5,
-    waterRequired: false,
+    waterRequired: true,
     totalWaterLiters: null,
-    hotWaterMandatory: false,
+    hotWaterMandatory: true, // heet water in de vacuümzak
     priceEUR: 12.99,
-    dietOptions: ["vegetarian"],
+    dietOptions: [], // bevat vis en soja
     preparation:
-      "Kant-en-klare noodrantsoenreepjes (US Coast Guard-goedgekeurd). Geen water of bereiding nodig — direct eten. 18 blokjes van elk 200 kcal.",
-    scenarios: ["72_HOUR_KIT", "BUG_OUT_BAG"],
+      "Hoogwaardige Noorse gevriesdroogde hoofdmaaltijd (Drytech). Heet water direct in de vacuümzak; ideaal per-maaltijd bevoorrading met hoge kwaliteit/gewicht.",
+    scenarios: ["BUG_OUT_BAG", "72_HOUR_KIT"],
     availableInEU: true,
     availableInNetherlands: true,
     availableInBelgium: true,
-    availableInSweden: true,
-    affiliateUrl: "https://example.com/affiliate/datrex-3600-ration-bar",
-    lastUpdated: "2026-08-01",
+    availableInSweden: false,
+    retailer: "RealHikingFood.nl",
+    affiliateUrl: "https://www.realhikingfood.nl/product/zalm-teriyaki-real-turmat/",
+    lastUpdated: "2026-08-12",
   },
   {
-    id: "xmre-1300-12",
-    name: "1300XT Meals Ready-to-Eat (doos van 12)",
-    brand: "XMRE",
+    id: "nato-mre-24h-menu1",
+    name: "NATO MRE Zelfverwarmend 24H-rantsoen — Menu 1",
+    brand: "NATO MRE (Lyophilise & Co)",
     type: "mre",
-    servings: 12,
-    daysOfSupply: 4,
+    servings: 3, // ontbijt + 2 hoofdgerechten
+    daysOfSupply: 1,
     intendedPersons: 1,
-    totalCalories: 15600,
-    totalProteinGrams: 468,
+    totalCalories: 3600, // verified
+    totalProteinGrams: 100, // estimate
     shelfLifeYearsMin: 3,
-    shelfLifeYearsMax: 5,
+    shelfLifeYearsMax: 4, // estimate (best-before ~2028); gesteriliseerde natte MRE
     waterRequired: false,
     totalWaterLiters: null,
-    hotWaterMandatory: false,
-    priceEUR: 149.99,
-    dietOptions: [],
+    hotWaterMandatory: false, // vlamloze verwarmers inbegrepen; water alleen voor de heater
+    priceEUR: 25.55,
+    dietOptions: [], // sommige gerechten batch-afhankelijk halal
     preparation:
-      "Volledige maaltijden met vlameloze rantsoenverwarmer (FRH) inbegrepen. Zelfverwarmend, geen water of kooktoestel nodig — direct eetbaar.",
-    scenarios: ["BUG_OUT_BAG", "72_HOUR_KIT"],
-    availableInEU: false,
-    availableInNetherlands: false,
-    availableInBelgium: false,
-    availableInSweden: false,
-    affiliateUrl: "https://example.com/affiliate/xmre-1300xt-case-12",
-    lastUpdated: "2026-08-01",
-  },
-  {
-    id: "tfp-3day",
-    name: "3-Day Ration Pack",
-    brand: "Tactical Foodpack",
-    type: "kit",
-    servings: 9,
-    daysOfSupply: 3,
-    intendedPersons: 1,
-    totalCalories: 6600,
-    totalProteinGrams: 186,
-    shelfLifeYearsMin: 5,
-    shelfLifeYearsMax: 7,
-    waterRequired: true,
-    totalWaterLiters: 6.0,
-    hotWaterMandatory: false,
-    priceEUR: 59.99,
-    dietOptions: [],
-    preparation:
-      "Europees (Estland) gevriesdroogd rantsoen voor drie dagen: ontbijt, hoofdmaaltijd en snacks. Voeg heet of koud water toe aan de pouches.",
-    scenarios: ["BUG_OUT_BAG", "72_HOUR_KIT"],
+      "Volledig 24-uursrantsoen met gesteriliseerde kant-en-klare hoofdgerechten en 2 vlamloze verwarmers. Geen kooktoestel of drinkwater nodig; incl. 4 waterzuiveringstabletten.",
+    scenarios: ["BUG_OUT_BAG", "72_HOUR_KIT", "SHELTER_IN_PLACE"],
     availableInEU: true,
     availableInNetherlands: true,
     availableInBelgium: true,
-    availableInSweden: true,
-    affiliateUrl: "https://example.com/affiliate/tactical-foodpack-3-day",
-    lastUpdated: "2026-08-01",
+    availableInSweden: false,
+    retailer: "Freezedriedandco.com",
+    affiliateUrl:
+      "https://www.freezedriedandco.com/8352-nato-mre-ration-24h-menu-1-3600-kcal.html",
+    lastUpdated: "2026-08-12",
   },
 ];
 

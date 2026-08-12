@@ -33,12 +33,19 @@ describe("product data integrity", () => {
     }
   });
 
-  it("keeps the documented Mountain House specs", () => {
-    const mh = products.find((p) => p.id === "mh-83608");
-    expect(mh).toBeDefined();
-    expect(mh!.totalCalories).toBe(5118);
-    expect(mh!.caloriesPerDay).toBe(1706);
-    expect(mh!.servings).toBe(18);
+  it("keeps the verified NRG-5 specs", () => {
+    const nrg = products.find((p) => p.id === "nrg-5-500g");
+    expect(nrg).toBeDefined();
+    expect(nrg!.totalCalories).toBe(2300);
+    expect(nrg!.shelfLifeYearsMax).toBe(20);
+  });
+
+  it("every product has a real retailer link", () => {
+    for (const p of products) {
+      expect(p.retailer.length).toBeGreaterThan(0);
+      expect(p.affiliateUrl).toMatch(/^https:\/\//);
+      expect(p.affiliateUrl).not.toContain("example.com");
+    }
   });
 });
 

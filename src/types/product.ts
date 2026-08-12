@@ -32,7 +32,8 @@ export interface Product {
   availableInNetherlands: boolean;
   availableInBelgium: boolean;
   availableInSweden: boolean;
-  affiliateUrl: string;
+  retailer: string; // name of the shop the link points to
+  affiliateUrl: string; // real retailer product page (wrap with your affiliate program)
   lastUpdated: string; // ISO date
 }
 

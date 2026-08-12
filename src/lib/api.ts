@@ -25,6 +25,7 @@ export function serializeProduct(p: Product) {
       cost_per_2000kcal_eur: round2((p.priceEUR / p.totalCalories) * 2000),
       price_per_day_eur: round2(p.priceEUR / p.daysOfSupply),
       price_per_serving_eur: round2(p.priceEUR / p.servings),
+      retailer: p.retailer,
       affiliate_url: p.affiliateUrl,
     },
     specifications: {
@@ -71,7 +72,7 @@ export function apiMeta(lastUpdated: string, extra?: Record<string, unknown>) {
     last_updated: lastUpdated,
     endpoint_version: ENDPOINT_VERSION,
     disclaimer:
-      "Sample data for prototype/demo purposes. Verify with the supplier before purchasing.",
+      "Real Benelux/EU products with live retailer links. Prices, stock and some specs (e.g. protein) may be estimated or change over time — verify on the retailer page before purchasing.",
     ...extra,
   };
 }
