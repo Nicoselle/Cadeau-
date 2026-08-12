@@ -10,7 +10,9 @@ import { computeResilience } from "@/lib/resilience";
  * ESTIMATED / UNVERIFIED fields — retailers rarely publish these, so they are
  * conservative estimates and flagged per product below:
  *   - totalProteinGrams (except where the label was published)
- *   - totalWaterLiters (almost never listed → left null)
+ *   - totalWaterLiters: retailers rarely list this. Ready-to-eat rations that
+ *     need no water are null; water-required meals carry a planning estimate of
+ *     ~0.25 L per serving (flagged inline).
  *   - some shelf-life values where the page only said "several years"
  *
  * Prices change often and stock varies — always verify on the retailer page
@@ -121,7 +123,7 @@ const rawProducts: ProductInput[] = [
     shelfLifeYearsMin: 5,
     shelfLifeYearsMax: 8, // estimate: pagina noemt "meerdere jaren"
     waterRequired: true,
-    totalWaterLiters: null,
+    totalWaterLiters: 2.5, // estimate: ~0,25 L per maaltijd × 10
     hotWaterMandatory: true, // kokend water direct in de zak vereist
     priceEUR: 67.49,
     dietOptions: [], // mix van vlees- en vegetarische maaltijden
@@ -150,7 +152,7 @@ const rawProducts: ProductInput[] = [
     shelfLifeYearsMin: 8,
     shelfLifeYearsMax: 8,
     waterRequired: true,
-    totalWaterLiters: null,
+    totalWaterLiters: 5, // estimate: ~0,24 L per portie × 21
     hotWaterMandatory: false, // heet water aanbevolen; koud water werkt ook (~10 min)
     priceEUR: 246.87,
     dietOptions: ["vegetarian"],
@@ -178,7 +180,7 @@ const rawProducts: ProductInput[] = [
     shelfLifeYearsMin: 5,
     shelfLifeYearsMax: 5,
     waterRequired: true,
-    totalWaterLiters: null,
+    totalWaterLiters: 5.3, // estimate: ~0,25 L per maaltijd × 21
     hotWaterMandatory: false, // warm water aanbevolen; koud kan
     priceEUR: 114.95,
     dietOptions: ["vegetarian"],
@@ -207,7 +209,7 @@ const rawProducts: ProductInput[] = [
     shelfLifeYearsMin: 20,
     shelfLifeYearsMax: 25, // pagina noemt zowel 20 (body) als 25 jaar (titel)
     waterRequired: true,
-    totalWaterLiters: null,
+    totalWaterLiters: 28, // estimate: ~0,24 L per portie × 120
     hotWaterMandatory: false, // "enkel water toevoegen"; warm aanbevolen
     priceEUR: 410.0,
     dietOptions: [], // bevat melk, soja, tarwe (gluten)
@@ -235,7 +237,7 @@ const rawProducts: ProductInput[] = [
     shelfLifeYearsMin: 5,
     shelfLifeYearsMax: 5,
     waterRequired: true,
-    totalWaterLiters: null,
+    totalWaterLiters: 0.25, // estimate: ~2,3 dl per maaltijd
     hotWaterMandatory: true, // heet water in de vacuümzak
     priceEUR: 12.99,
     dietOptions: [], // bevat vis en soja
