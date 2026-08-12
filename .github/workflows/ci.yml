@@ -1,9 +1,15 @@
 name: CI
 
 on:
+  # Feature branches are covered by pull_request; push only guards trunk
+  # branches so a branch with an open PR isn't checked twice.
   push:
-    branches: ["**"]
+    branches: [main, master]
   pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
