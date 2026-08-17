@@ -1,0 +1,20 @@
+observation_date,DFF,opmerking
+2025-01-01,4.33,startwaarde venster
+2025-09-17,4.33,laatste dag oude niveau
+2025-09-18,4.08,daling (FOMC-verlaging sep 2025)
+2025-09-22,4.09,drift
+2025-10-08,4.10,drift
+2025-10-16,4.11,drift
+2025-10-27,4.12,drift
+2025-10-30,3.87,daling (FOMC-verlaging okt 2025)
+2025-10-31,3.86,drift
+2025-11-03,3.87,drift
+2025-11-13,3.88,drift
+2025-11-28,3.89,drift
+2025-12-11,3.64,daling (FOMC-verlaging dec 2025)
+2026-05-07,3.63,drift
+2026-05-19,3.62,drift
+2026-06-15,3.63,drift
+2026-07-08,3.62,drift
+2026-07-14,3.63,drift
+2026-08-14,3.63,laatste waarneming in opgehaalde reeks
