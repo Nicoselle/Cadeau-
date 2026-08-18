@@ -26,7 +26,7 @@ ORAKELBOEK = os.path.join(BASIS, "registers", "orakelboek.md")
 def lees_reeks(pad, kolom=None):
     """Geeft (kolomnaam, [(datum_string, waarde_float)]) terug; lege waarden overgeslagen."""
     with open(pad, newline="", encoding="utf-8") as f:
-        rijen = list(csv.reader(f))
+        rijen = [r for r in csv.reader(f) if r and not r[0].startswith("#")]
     kop, *rest = rijen
     if kolom is None:
         kolom = kop[1]
