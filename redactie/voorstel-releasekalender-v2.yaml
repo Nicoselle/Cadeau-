@@ -1,0 +1,115 @@
+# voorstel-releasekalender-v2.yaml
+# Zetter, 2026-08-17 (vijfde werkronde). Vervangt v1 niet — staat ernaast.
+# Verschil met v1: de velden die "te verifiëren" droegen zijn vervangen door geverifieerde
+# publicatiedata uit de kalenders van de bronnen zelf. Bonnen in
+# meetrapport-2026-08-17-kalendertoets.md.
+
+reeksen:
+  - id: be_cpi_gezondheidsindex
+    naam: "Consumptieprijsindex, gezondheidsindex, afgevlakte index (België)"
+    bron: statbel-bestat
+    url: "https://bestat.statbel.fgov.be/bestat/api/views/6354a929-6969-4172-8143-e57aab550cc3/result/JSON"
+    route: "JSON-export; CSV-export en datasetpagina (CAPTCHA) werken niet"
+    frequentie: maandelijks
+    publicatie: "GEVERIFIEERD — einde van de verslagmaand zelf (juli 2026 verscheen 30-07-2026)"
+    volgende_publicatie: 2026-08-28
+    laatst_gezien: "juli 2026 (opgehaald 2026-08-17)"
+    volgende_check: 2026-08-29
+    basis: "2025 = 100 sinds januari 2026 (referentiejaar omgezet door Statbel)"
+
+  - id: be_hicp
+    naam: "Geharmoniseerde consumptieprijsindex (België, Statbel-publicatie)"
+    bron: statbel
+    frequentie: maandelijks
+    publicatie: "GEVERIFIEERD — midden van de maand ná de verslagmaand (15-10-2026 voor sep, 17-11-2026 voor okt)"
+    controlereeks_via_fred: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CP0000BEM086NEST&cosd=2019-01-01"
+    volgende_check: 2026-09-16
+
+  - id: be_spilindex_vooruitzichten
+    naam: "Inflatievooruitzichten en spilindex (Federaal Planbureau)"
+    bron: plan.be
+    url: "https://www.plan.be/nl/data/indexcijfer-der-consumptieprijzen"
+    route: "webpagina; crawler kan een oudere vintage serveren — datum in de titel controleren"
+    frequentie: maandelijks
+    publicatie: "begin van de maand; exacte datum staat als 'volgende update' op de pagina zelf"
+    volgende_check: 2026-09-08
+    huidige_drempel: "102,29 (basis 2025) — bevestigd door Statbel-persbericht 30-07-2026"
+    opmerking: "Nog niet op de bronnenladder; voorstel tot toevoeging ligt bij Nico."
+
+  - id: us_m2
+    naam: "M2 geldhoeveelheid (VS), H.6-release"
+    bron: fred
+    url_sa: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=M2SL&cosd=2019-01-01"
+    url_nsa: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=M2NS&cosd=2024-01-01"
+    frequentie: maandelijks
+    publicatie: "GEVERIFIEERD — vaste dinsdag, 12:00 US Central: 25-08, 22-09, 27-10, 24-11, 22-12-2026"
+    volgende_publicatie: 2026-08-25
+    volgende_check: 2026-08-26
+    waarschuwing: >
+      Methodologiebreuk vanaf de release van 28-07-2026: IRA/Keogh-saldi worden op
+      aggregaatniveau uit M2 genetteerd in plaats van op componentniveau. NSA ongewijzigd,
+      SA licht herzien. Altijd tegen M2NS toetsen voordat een SA-signaal wordt geduid.
+
+  - id: us_cpi
+    naam: "CPI alle posten, seizoensgecorrigeerd (VS)"
+    bron: fred
+    url: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL&cosd=2019-01-01"
+    frequentie: maandelijks
+    publicatie: "GEVERIFIEERD — BLS, 08:30 ET: 11-09 (aug), 14-10 (sep), 10-11 (okt), 10-12-2026 (nov)"
+    volgende_publicatie: 2026-09-11
+    volgende_check: 2026-09-12
+    opmerking: "Waarneming 2025-10 ontbreekt in de bronreeks zelf."
+
+  - id: us_fed_funds
+    naam: "Effectieve federal funds rate (VS, dagelijks)"
+    bron: fred
+    url: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFF&cosd=2025-01-01"
+    frequentie: dagelijks
+    volgende_check: 2026-09-18
+    opmerking: "Extra check na de FOMC-vergadering van september 2026."
+
+  - id: us_lange_rente
+    naam: "Tienjaarsrente en breakeven-inflatieverwachting (VS, dagelijks)"
+    bron: fred
+    url_dgs10: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10&cosd=2025-06-01"
+    url_t10yie: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=T10YIE&cosd=2025-06-01"
+    frequentie: dagelijks
+    volgende_check: 2026-08-26
+    doel: "spreadmeting uit meetnotitie-2026-08-17-lange-rente.md maandelijks verlengen"
+
+  - id: ez_hicp
+    naam: "HICP eurozone (index, via FRED-spiegel van Eurostat)"
+    bron: fred
+    url: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CP0000EZ19M086NEST&cosd=2019-01-01"
+    frequentie: maandelijks
+    publicatie: "Eurostat-flash einde verslagmaand, definitief medio maand erna"
+    volgende_check: 2026-09-01
+
+  - id: ez_headlines
+    naam: "Eurozone-kerncijfers (HICP j/j, M3, €STR, USD/EUR, bbp, werkloosheid, schuld)"
+    bron: ecb-data-portal
+    url: "https://data.ecb.europa.eu/"
+    route: "alleen homepage-headlines; de CSV/JSON-API is vanaf deze omgeving dood"
+    volgende_check: 2026-09-01
+
+definities_let_op:
+  be_kerninflatie: >
+    Statbels officiële kerninflatie sluit energie en onbewerkte voeding uit (juli 2026: 3,13%).
+    De maat "zonder energie, levensmiddelen, alcohol en tabak" uit de bestat-view is een ándere,
+    eurozone-stijl kernmaat (juli 2026: 3,67%). Altijd het etiket erbij vermelden.
+
+dode_routes:
+  - bron: nbb-dataexplorer
+    status: "drie pogingen (webapp, SDMX-pad, api/v1-pad): dood, stand 2026-08-17"
+  - bron: stooq
+    status: "geen enkele route werkt, stand 2026-08-17"
+  - bron: ecb-data-api
+    status: "vier varianten getest: content-type geweigerd / onbekende fout, stand 2026-08-17"
+  - bron: statbel-datasetpagina
+    status: "CAPTCHA voor de crawler; gebruik de bestat-API"
+
+open_te_onderzoeken:
+  - "29-04-2026: Indexcommissie bereikt geen consensus over de CPI van april 2026 — dezelfde maand als de energiesprong. Uitzoeken wat daar speelde."
+
+structureel:
+  netwerkbeleid: "Alle vijf ladderbronnen direct geblokkeerd (proxy 403); alles loopt via de indirecte route. Verzoek aan Nico: domeinen toelaten."
