@@ -1,0 +1,98 @@
+# voorstel-releasekalender.yaml
+# Vervangkalender van Zetter, 2026-08-17 — geldt tot de pack-kalender (releasekalender.yaml)
+# zichtbaar is. Status: VOORSTEL. Velden met "te verifiëren" zijn nog niet tegen een
+# publicatiekalender van de bron zelf gecontroleerd.
+#
+# Conventie: "volgende_check" is de datum waarop Zetter de reeks opnieuw ophaalt;
+# die ligt na de verwachte publicatie, nooit ervoor.
+
+reeksen:
+  - id: be_cpi_gezondheidsindex
+    naam: "Consumptieprijsindex, gezondheidsindex, afgevlakte index (België)"
+    bron: statbel-bestat
+    url: "https://bestat.statbel.fgov.be/bestat/api/views/6354a929-6969-4172-8143-e57aab550cc3/result/JSON"
+    route: "JSON-export (CSV-export en datasetpagina werken niet, zie meetrapport 2026-08-17)"
+    frequentie: maandelijks
+    publicatie: "rond het einde van de verslagmaand (te verifiëren tegen de Statbel-kalender)"
+    laatst_gezien: "juli 2026 (opgehaald 2026-08-17)"
+    volgende_check: 2026-09-01
+
+  - id: be_spilindex_vooruitzichten
+    naam: "Inflatievooruitzichten en spilindex (Federaal Planbureau)"
+    bron: plan.be
+    url: "https://www.plan.be/nl/data/indexcijfer-der-consumptieprijzen"
+    route: "webpagina; let op: crawler kan een oudere vintage serveren, datum in de titel controleren"
+    frequentie: maandelijks
+    publicatie: "begin van de maand, exacte datum staat als 'volgende update' op de pagina"
+    laatst_gezien: "vintage 02/06/2026 direct, 07/07/2026 via zoekindex (opgehaald 2026-08-17)"
+    volgende_check: 2026-09-08
+    opmerking: "Bron staat nog niet op de bronnenladder; voorstel tot toevoeging ligt bij Nico."
+
+  - id: us_m2
+    naam: "M2 geldhoeveelheid (VS)"
+    bron: fred
+    url: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=M2SL&cosd=2019-01-01"
+    frequentie: maandelijks
+    publicatie: "H.6-release, doorgaans vierde week van de maand over de voorgaande maand (te verifiëren)"
+    laatst_gezien: "juni 2026 (opgehaald 2026-08-17)"
+    volgende_check: 2026-08-26
+
+  - id: us_cpi
+    naam: "CPI alle posten, seizoensgecorrigeerd (VS)"
+    bron: fred
+    url: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL&cosd=2019-01-01"
+    frequentie: maandelijks
+    publicatie: "BLS, doorgaans tussen de 10e en 15e over de voorgaande maand (te verifiëren)"
+    laatst_gezien: "juli 2026 (opgehaald 2026-08-17)"
+    volgende_check: 2026-09-14
+    opmerking: "Waarneming 2025-10 ontbreekt in de bronreeks zelf."
+
+  - id: us_fed_funds
+    naam: "Effectieve federal funds rate (VS, dagelijks)"
+    bron: fred
+    url: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFF&cosd=2025-01-01"
+    frequentie: dagelijks
+    publicatie: "één werkdag vertraging"
+    laatst_gezien: "2026-08-14 (opgehaald 2026-08-17)"
+    volgende_check: 2026-09-18
+    opmerking: "Extra check gepland na de FOMC-vergadering van september 2026."
+
+  - id: ez_hicp
+    naam: "HICP eurozone (index, via FRED-spiegel van Eurostat)"
+    bron: fred
+    url: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CP0000EZ19M086NEST&cosd=2019-01-01"
+    frequentie: maandelijks
+    publicatie: "Eurostat-flash einde verslagmaand, definitief medio maand erna (te verifiëren)"
+    laatst_gezien: "juni 2026 (opgehaald 2026-08-17)"
+    volgende_check: 2026-09-01
+
+  - id: be_hicp_controle
+    naam: "HICP België (controlereeks naast Statbel-CPI)"
+    bron: fred
+    url: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CP0000BEM086NEST&cosd=2019-01-01"
+    frequentie: maandelijks
+    publicatie: "volgt Eurostat-ritme"
+    laatst_gezien: "juni 2026 (opgehaald 2026-08-17)"
+    volgende_check: 2026-09-01
+
+  - id: ez_headlines
+    naam: "Eurozone-kerncijfers (HICP j/j, M3, €STR, USD/EUR, bbp, werkloosheid, schuld)"
+    bron: ecb-data-portal
+    url: "https://data.ecb.europa.eu/"
+    route: "alleen homepage-headlines; de CSV/JSON-API is vanaf deze omgeving dood (vier varianten getest)"
+    frequentie: doorlopend
+    volgende_check: 2026-09-01
+
+dode_routes:
+  - bron: nbb-dataexplorer
+    url: "https://dataexplorer.nbb.be/"
+    status: "app-fout via crawler; geen data-route gevonden (stand 2026-08-17)"
+  - bron: stooq
+    url: "https://stooq.com/"
+    status: "geen enkele route werkt (stand 2026-08-17)"
+  - bron: ecb-data-api
+    url: "https://data-api.ecb.europa.eu/"
+    status: "content-type geweigerd via crawler; direct geblokkeerd door netwerkbeleid"
+
+structureel:
+  netwerkbeleid: "Alle vijf ladderbronnen zijn direct geblokkeerd (proxy 403); alles loopt via de indirecte Exa-route. Verzoek aan Nico: domeinen toelaten."
