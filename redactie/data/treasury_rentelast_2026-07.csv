@@ -1,0 +1,15 @@
+# Rentelast Amerikaanse staatsschuld, standregel 2026-07-31 (boekjaar 2026 = okt 2025 t/m sep 2026)
+# Bron: api.fiscaldata.treasury.gov/.../od/interest_expense, opgehaald 2026-08-18
+# LET OP: de tabel mengt opgelopen (accrual) en kasbasis (GAS) posten; onderstaande selectie
+# betreft de hoofdcomponenten van de verhandelbare schuld. Het is GEEN officieel totaal.
+post,groep,maand_juli_usd,boekjaar_tot_juli_usd
+Treasury Notes,opgelopen rente,43854569972.32,410489525953.71
+Treasury Bonds,opgelopen rente,15684270760.28,147146678634.84
+Treasury Bills,geamortiseerde disconto,21174544780.84,209232548156.02
+Inflation Protected Securities (TIPS),opgelopen rente,2206636455.08,20067002899.27
+Int. Expense Inflation Compensation (TIPS),opgelopen rente,13675575219.35,76930058819.24
+Treasury Floating Rate Notes (FRN),opgelopen rente,2387535872.57,22120547218.86
+Government Account Series - Interest Payments,kasbasis,3661567890.71,184642467914.69
+Government Account Series - Inflation Compensation,kasbasis,12196405882.10,68466705348.70
+Series I savings bonds,spaarobligaties,310795399.45,2914033475.87
+Series E/EE savings bonds,spaarobligaties,70125794.03,807871404.80
