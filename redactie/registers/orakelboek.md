@@ -37,3 +37,13 @@ officieel vastgelegde drempelwaarde in plaats van op een Planbureau-vermelding a
 | # | Uitspraak | Herkomst | Vastgelegd | Vervaldag | Toetsdatum | Uitkomst |
 |---|---|---|---|---|---|---|
 | 7 | De spread tussen de Amerikaanse beleidsrente (DFF) en de tienjaarsrente (DGS10) is op 31-12-2026 groter dan de +1,06 pp van 06-08-2026 — d.w.z. de lange rente blijft de verlagingen weigeren te volgen (fiscale lezing wint van de disinflatielezing). | Zetter, meetnotitie lange rente (eigen vermoeden, laag vertrouwen — bewust als verliesbare inzet genoteerd) | 2026-08-17 | 2026-12-31 | 2027-01-05 | — |
+
+**2026-08-17 (zevende werkronde) — voorbehoud bij regel 1 vervallen.**
+De centenindex is wet: Programmawet van 30 mei 2026, goedgekeurd door de Kamer in de nacht van
+28 op 29 mei, gepubliceerd vóór 1 juni en in werking sinds 01-06-2026 (bonnen in
+`dossier-2026-08-17-centenindex-stand.md`). De Raad van State had zijn advies al op 28-01-2026
+uitgebracht. Daarmee vervalt de wetgevende onzekerheid die ik bij regel 1 had genoteerd; wat
+resteert is de feitelijke toepassing in september, en dat blijft de toets op 05-10-2026.
+Regeltekst ongewijzigd. Twee preciseringen voor toekomstig gebruik: het plafond van €2.000
+geldt voor uitkeringen **en pensioenen**, en de 2% is een **cumulatieve** grens binnen de
+matigingsperiode — daarna wordt weer onbeperkt geïndexeerd, tot periode 2 (vanaf 01-01-2028).
