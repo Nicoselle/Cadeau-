@@ -142,12 +142,20 @@ export default function HomePage() {
               {WATCHLIST.filter((item) => item.kind === "aandeel").length}{" "}
               namen die we volgen. Educatief, geen adviesrelatie.
             </p>
-            <Link
-              href="/piramide"
-              className="mt-5 inline-block border-b border-foreground pb-0.5 text-sm font-medium uppercase tracking-[0.12em] hover:border-accent hover:text-accent"
-            >
-              Uitleg en volglijst
-            </Link>
+            <div className="mt-5 flex flex-wrap gap-6">
+              <Link
+                href="/piramide"
+                className="inline-block border-b border-foreground pb-0.5 text-sm font-medium uppercase tracking-[0.12em] hover:border-accent hover:text-accent"
+              >
+                Uitleg en volglijst
+              </Link>
+              <Link
+                href="/onderzoek"
+                className="inline-block border-b border-foreground pb-0.5 text-sm font-medium uppercase tracking-[0.12em] hover:border-accent hover:text-accent"
+              >
+                Naar de onderzoekdesk
+              </Link>
+            </div>
           </div>
           <aside className="border border-foreground p-5 lg:col-span-5">
             <p className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">

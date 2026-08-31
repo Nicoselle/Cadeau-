@@ -24,7 +24,7 @@ een bewuste beslissing, geen automatische feed.
 ├── src/app/                 # Next.js App Router — krant + /cadeau
 │   ├── page.tsx             # Voorpagina
 │   ├── stuk/[slug]/         # Stukken
-│   ├── markten/ piramide/ orakelboek/ methode/ archief/ desk/
+│   ├── markten/ piramide/ onderzoek/ orakelboek/ methode/ archief/ desk/
 │   └── api/v1/              # krant, stukken, markten, volgen, products
 ├── src/data/                # articles, edition, markets, oracles, watchlist, products
 ├── src/lib/series.ts        # CSV-parser en j/j-groei (alleen opgeslagen data)

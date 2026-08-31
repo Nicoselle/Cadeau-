@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { dossierForAsset } from "@/data/dossiers";
 import {
   ASSET_STANDS,
   PYRAMID_COPY,
@@ -202,7 +204,18 @@ function LayerTable({
             {rows.map((row) => (
               <tr key={row.item.id} className="border-t border-hairline">
                 <td className="px-3 py-2.5">
-                  <p className="font-medium">{row.item.name}</p>
+                  <p className="font-medium">
+                    {dossierForAsset(row.item.id) ? (
+                      <Link
+                        href={`/onderzoek/${dossierForAsset(row.item.id)?.slug}`}
+                        className="hover:text-accent"
+                      >
+                        {row.item.name}
+                      </Link>
+                    ) : (
+                      row.item.name
+                    )}
+                  </p>
                   <p className="text-[11px] uppercase tracking-[0.1em] text-muted-foreground">
                     {row.item.exchange}
                   </p>

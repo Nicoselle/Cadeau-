@@ -98,6 +98,24 @@ export default function MethodPage() {
       </section>
 
       <section className="mt-12 max-w-3xl font-serif leading-relaxed">
+        <h2 className="font-display text-2xl font-semibold">Onderzoeksgroep</h2>
+        <p className="mt-4">
+          Deze krant is in beginsel bedoeld voor de onderzoeksgroep van
+          SafeCapital. We gaan in detail over de gevolgde assets: wat het is,
+          welke macro het raakt, wat we in de gaten houden. Macro-nieuws komt
+          alleen binnen als de kop de naam of het dossier raakt — titel, bron,
+          link, geen nabewerkte reportage. De datavloer blijft de CSV; de
+          koppen zijn geen reeks.
+        </p>
+        <p className="mt-4">
+          <Link href="/onderzoek" className="underline hover:text-accent">
+            Naar Onderzoek
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section className="mt-12 max-w-3xl font-serif leading-relaxed">
         <h2 className="font-display text-2xl font-semibold">Lokale desk</h2>
         <p className="mt-4">
           De lokale desk is de uitzondering op «geen automatische feed».

@@ -19,6 +19,7 @@ broker. Een krant die op zichzelf staat:
 - marktenpagina uit CSV’s (M2, CPI, HICP, rente, S&P, VIX, spilindex, VS-schuld)
 - orakelboek met zeven toetsbare uitspraken
 - piramide: SafeCapital-methode 40/30/20/10 + volglijst
+- onderzoek: dossiers per asset en macrokoppen die die namen raken
 - methodepagina (bronnenladder, etiketten, wat we niet doen)
 - publieke JSON-API
 
@@ -53,6 +54,7 @@ Optioneel: `NEXT_PUBLIC_SITE_URL` voor canonieke URL’s.
 | `/stuk/[slug]` | Stuk met cijfers, bonnen, steenman |
 | `/markten` | Datavloer |
 | `/piramide` | Investeringspiramide en volglijst (publieke tape) |
+| `/onderzoek` | Dossiers en macro die de volglijst raakt |
 | `/orakelboek` | Toetsbare uitspraken |
 | `/methode` | Huisregels |
 | `/archief` | Edities |

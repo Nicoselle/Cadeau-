@@ -7,6 +7,7 @@ const NAV = [
   { href: "/", label: "Voorpagina" },
   { href: "/markten", label: "Markten" },
   { href: "/piramide", label: "Piramide" },
+  { href: "/onderzoek", label: "Onderzoek" },
   { href: "/desk/belgie", label: "België" },
   { href: "/lokaal", label: "Lokaal" },
   { href: "/orakelboek", label: "Orakelboek" },
@@ -33,6 +34,9 @@ export function SiteHeader() {
           </Link>
           <p className="mt-2 font-serif text-sm italic text-muted-foreground sm:text-base">
             {SITE.tagline}
+          </p>
+          <p className="mt-1 text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+            {SITE.audience}
           </p>
         </div>
         <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 py-3 text-[13px] font-medium uppercase tracking-[0.14em]">
