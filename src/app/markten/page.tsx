@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { EditionFigure } from "@/components/krant/edition-figure";
 import { Sparkline } from "@/components/krant/sparkline";
 import { MARKTEN_IMAGE } from "@/data/page-images";
@@ -8,7 +9,7 @@ import { formatNlDate } from "@/lib/newspaper";
 export const metadata: Metadata = {
   title: "Markten",
   description:
-    "De datavloer van de Kapitaalkrant: M2, inflatie, rente, spilindex en markten, herberekend uit opgeslagen reeksen.",
+    "De datavloer van de Kapitaalkrant: M2, inflatie, rente, olie, koper, uranium en de overige reeksen, herberekend uit opgeslagen bestanden.",
 };
 
 export default function MarketsPage() {
@@ -16,15 +17,20 @@ export default function MarketsPage() {
 
   return (
     <div className="container py-10">
-      <p className="text-[11px] uppercase tracking-[0.18em] text-accent">
-        Datavloer
-      </p>
-      <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.02em] sm:text-5xl">
+      <p className="kicker">Datavloer</p>
+      <h1 className="mt-2 font-display text-4xl font-bold tracking-[-0.025em] sm:text-5xl">
         Markten
       </h1>
       <p className="mt-4 max-w-2xl font-serif text-lg text-muted-foreground">
         Geen live-ticker. Elk cijfer komt uit een CSV die de redactie heeft
-        opgehaald en bewaard. Peil {formatNlDate(board.asOf)}.
+        opgehaald en bewaard. Peildatum publicatie: {formatNlDate(board.asOf)}.
+        Per reeks de laatste waarneming; die datums lopen niet gelijk.
+        Afgeleide cijfers alleen op de laatste gemeenschappelijke datum. De
+        volglijst met extra aandacht — de piramide van SafeCapital — staat op de{" "}
+        <Link href="/piramide" className="underline hover:text-accent">
+          piramide
+        </Link>
+        ; dat is een laatste notering, geen reeks.
       </p>
       <EditionFigure image={MARKTEN_IMAGE} className="mt-8 max-w-3xl" />
 
@@ -32,14 +38,12 @@ export default function MarketsPage() {
         {board.tiles.map((tile) => (
           <article
             key={tile.id}
-            className="border border-hairline bg-card p-5"
+            className="rule-story"
           >
             <div className="flex items-start justify-between gap-3">
               <div>
-                <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-                  {tile.label}
-                </p>
-                <p className="mt-1 font-display text-3xl font-semibold tabular-nums">
+                <p className="kicker text-muted-foreground">{tile.label}</p>
+                <p className="mt-1 font-display text-3xl font-bold tabular-nums">
                   {tile.value}
                 </p>
               </div>

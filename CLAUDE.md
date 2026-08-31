@@ -14,7 +14,8 @@ This file provides guidance for AI assistants (Claude and others) working in thi
 
 De krant publiceert edities met stukken, een datavloer (CSV’s in `redactie/data`)
 en een orakelboek. Geen beleggingsadvies. Publicatie van een nieuwe editie is
-een bewuste beslissing, geen automatische feed.
+een bewuste beslissing van Nico om **14:00 Europe/Brussels**. De Grokbot
+(`redactie/grokbot.md`) zet het stuk tussen 14:00 en 15:00; hij publiceert niet.
 
 ---
 
@@ -24,13 +25,21 @@ een bewuste beslissing, geen automatische feed.
 ├── src/app/                 # Next.js App Router — krant + /cadeau
 │   ├── page.tsx             # Voorpagina
 │   ├── stuk/[slug]/         # Stukken
-│   ├── markten/ orakelboek/ methode/ archief/ desk/
-│   └── api/v1/              # krant, stukken, markten, products
-├── src/data/                # articles.ts, edition.ts, markets.ts, oracles.ts, products.ts
-├── src/lib/series.ts        # CSV-parser en j/j-groei (alleen opgeslagen data)
+│   ├── piramide/            # Eén desk: allocatie, dossiers, SMC
+│   ├── onderzoek/[slug]/    # Dossierdiepte
+│   ├── markten/ orakelboek/ methode/ nazien/ archief/[nummer]/ desk/
+│   └── api/v1/              # krant, stukken, markten, briefing, volgen, products
+├── src/data/                # articles, edition, markets, oracles, watchlist, products
+├── src/lib/series.ts        # CSV-parser, j/j-groei, lastOnOrBefore
+├── src/lib/as-of.ts         # Peil per dag (geen vooruitkijken)
+├── src/data/opinie-augustus.ts  # Terugwerkende meningen augustus 2026
+├── src/lib/quotes.ts        # Publieke tape (Yahoo chart) voor de volglijst
 ├── src/components/krant/    # Masthead-hulp, tape, story-card, article-body
 ├── redactie/                # Bronnenstaat, dossiers, CSV-vloer, zetter.py
 │   ├── INDEX.md             # Ene ingang tot de redactiemap
+│   ├── grokbot.md           # Dagelijkse zetter: 13 briefing, 14 beslissing, 15 stuk
+│   ├── beslissingen/        # JSON van Nico; voorbeeld.json telt niet
+│   ├── mening/              # Ledger augustus 2026 + LEESMIJ
 │   ├── data/                # FRED, Statbel, Treasury
 │   └── scripts/zetter.py    # agenda / jj / dekking
 └── tests/                   # newspaper, series, filtering, resilience
@@ -245,11 +254,21 @@ Geen database, geen geheimen in v1. Marktcijfers komen uit `redactie/data`.
 3. Centenindex is **wet sinds 01-06-2026**; 2% is cumulatief; €2.000 geldt ook pensioenen.
 4. Seizoensgecorrigeerde reeks nooit alleen duiden (M2SL naast M2NS).
 5. Headlines (ECB-homepage) zijn geen reeks.
-6. Alleen Nico duwt een nieuwe **macro-editie** door.
-7. **Lokaal is vraaggestuurd en automatisch:** abonnees kiezen gemeenten;
-   alleen die plaatsen worden afgezocht. Ondernemersverhalen gaan door
-   `moderateIntake` en verschijnen uitsluitend waar vraag is. Geen
-   redacteur die een stad kiest. Gevonden berichten: titel, bron, link.
+6. Alleen Nico beslist om **14:00 Europe/Brussels**. Standaard dagelijks:
+   *De mening* (vroegere Knack: één stelling, geen lijstje). Een nieuwe
+   genummerde editie is extra. Grokbot zet ná de beslissing
+   (`redactie/grokbot.md`). Geen merge naar productie zonder uitdrukkelijk ja.
+7. **Eén desk** op `/piramide`. `/onderzoek` en `/smc` verwijzen door.
+   Standen hebben datum + ongeldigverklaring; geen koersdoel.
+8. **Lokaal en Vesting** blijven routes, niet de masthead. Lokaal is
+   vraaggestuurd: abonnees kiezen gemeenten; alleen die plaatsen worden
+   afgezocht. Ondernemersverhalen gaan door `moderateIntake`. Geen
+   redacteur die een stad kiest. Vesting blijft op `/cadeau`.
+9. **Peilregel publicatie (31 augustus 2026).** Per reeks de laatste
+   waarneming ≤ peildatum; datums lopen niet gelijk. Afgeleide cijfers
+   alleen op `lastCommonDate` van de gebruikte reeksen. Augustus:
+   `/nazien` + `redactie/mening/`. M2-juli pas vanaf 2026-08-25; de
+   juni-editievloer blijft 23.155,2. Geen stille revisie.
 
 ---
 

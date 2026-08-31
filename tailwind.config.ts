@@ -44,11 +44,13 @@ const config: Config = {
         },
         gold: "hsl(var(--gold))",
         hairline: "hsl(var(--hairline))",
+        "markets-up": "hsl(var(--markets-up))",
+        "markets-down": "hsl(var(--markets-down))",
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "0",
+        md: "0",
+        sm: "0",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],

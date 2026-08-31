@@ -1,4 +1,4 @@
-export type Desk = "vs" | "eurozone" | "belgie" | "methode";
+export type Desk = "vs" | "eurozone" | "belgie" | "methode" | "opinie";
 
 export type ClaimKind = "feit" | "duiding" | "raming";
 
@@ -35,6 +35,7 @@ export type Article = {
   title: string;
   dek: string;
   desk: Desk;
+  edition: number;
   published: string;
   author: string;
   lead: boolean;

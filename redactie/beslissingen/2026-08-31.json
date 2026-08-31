@@ -1,0 +1,12 @@
+{
+  "date": "2026-08-31",
+  "timezone": "Europe/Brussels",
+  "publish": false,
+  "leadThesis": "",
+  "tiles": ["brent", "koper", "uranium"],
+  "standen": "houden",
+  "orakel": "ongewijzigd",
+  "notes": "Geen nummer 3. Wel de eerste dagelijkse mening.",
+  "opinion": true,
+  "opinionThesis": "Het vat liegt minder dan de index."
+}

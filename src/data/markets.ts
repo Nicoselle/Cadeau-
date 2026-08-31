@@ -1,14 +1,16 @@
-import { EDITION } from "@/data/edition";
+import { EDITION, PEIL_RULE, PUBLICATION_AS_OF } from "@/data/edition";
 import {
   annualizedGrowth,
-  lastObservation,
+  lastCommonDate,
+  lastOnOrBefore,
   observations,
   round1,
   round2,
   sparkValues,
+  valueOnDate,
   yoyGrowth,
 } from "@/lib/series";
-import { formatPct, formatPlainNumber } from "@/lib/newspaper";
+import { formatPct, formatPlainNumber } from "@/lib/format";
 import type { MarketTile } from "@/types/newspaper";
 
 export type MarketBoard = {
@@ -42,6 +44,10 @@ export function getMarketBoard(): MarketBoard {
     "afgevlakte_gezondheidsindex",
   );
   const debt = observations("treasury_debt_to_penny_2026-08.csv", "total_public_debt_usd");
+  const brent = observations("fred_DCOILBRENTEU_2025-01_2026-08.csv");
+  const wti = observations("fred_DCOILWTICO_2025-01_2026-08.csv");
+  const copper = observations("fred_PCOPPUSDM_2024-01_2026-07.csv");
+  const uranium = observations("fred_PURANUSDM_2024-01_2026-07.csv");
 
   const m2Yoy = yoyGrowth(m2sl);
   const m2nsYoy = yoyGrowth(m2ns);
@@ -52,17 +58,33 @@ export function getMarketBoard(): MarketBoard {
   const beNatYoy = yoyGrowth(beCpi);
   const beHealthYoy = yoyGrowth(beHealth);
 
-  const lastDff = lastObservation(dff);
-  const lastDgs10 = lastObservation(dgs10);
-  const lastDgs30 = lastObservation(dgs30);
-  const lastBe = lastObservation(breakeven);
-  const lastSpx = lastObservation(spx);
-  const lastVix = lastObservation(vix);
-  const lastDebt = lastObservation(debt);
-  const lastSmoothed = lastObservation(beSmoothed);
+  const peil = PUBLICATION_AS_OF;
+  const lastDff = lastOnOrBefore(dff, peil);
+  const lastDgs10 = lastOnOrBefore(dgs10, peil);
+  const lastDgs30 = lastOnOrBefore(dgs30, peil);
+  const lastBe = lastOnOrBefore(breakeven, peil);
+  const lastSpx = lastOnOrBefore(spx, peil);
+  const lastVix = lastOnOrBefore(vix, peil);
+  const lastDebt = lastOnOrBefore(debt, peil);
+  const lastSmoothed = lastOnOrBefore(beSmoothed, peil);
+  const lastBrent = lastOnOrBefore(brent, peil);
+  const lastWti = lastOnOrBefore(wti, peil);
+  const lastCopper = lastOnOrBefore(copper, peil);
+  const lastUranium = lastOnOrBefore(uranium, peil);
+  const lastM2 = lastOnOrBefore(m2sl, peil);
+  const lastCpi = lastOnOrBefore(cpiUs, peil);
+  const lastEz = lastOnOrBefore(hicpEz, peil);
+  const lastBeCpi = lastOnOrBefore(beCpi, peil);
+  const brentYoy = yoyGrowth(brent);
+  const wtiYoy = yoyGrowth(wti);
+  const copperYoy = yoyGrowth(copper);
+  const uraniumYoy = yoyGrowth(uranium);
 
+  const spreadDate = lastCommonDate([dgs10, dff], peil);
+  const spreadA = spreadDate == null ? null : valueOnDate(dgs10, spreadDate);
+  const spreadB = spreadDate == null ? null : valueOnDate(dff, spreadDate);
   const spread =
-    lastDff && lastDgs10 ? lastDgs10.value - lastDff.value : null;
+    spreadA == null || spreadB == null ? null : spreadA - spreadB;
 
   const tiles: MarketTile[] = [
     {
@@ -71,7 +93,7 @@ export function getMarketBoard(): MarketBoard {
       value: m2Yoy == null ? "—" : formatPct(round1(m2Yoy)),
       detail: `SA ${m2Yoy == null ? "—" : formatPct(round2(m2Yoy), 2)} · NSA ${m2nsYoy == null ? "—" : formatPct(round2(m2nsYoy), 2)}${m2Ann6 == null ? "" : ` · 6m ann. ${formatPct(round1(m2Ann6 * 100))}`}`,
       seriesFile: "fred_M2SL_2019-2026.csv",
-      asOf: lastObservation(m2sl)?.date ?? EDITION.asOf,
+      asOf: lastM2?.date ?? EDITION.asOf,
       spark: sparkValues(m2sl, 24),
     },
     {
@@ -80,7 +102,7 @@ export function getMarketBoard(): MarketBoard {
       value: cpiYoy == null ? "—" : formatPct(round1(cpiYoy)),
       detail: "FRED CPIAUCSL, seizoensgecorrigeerd. Oktober 2025 ontbreekt in de bron.",
       seriesFile: "fred_CPIAUCSL_2019-2026.csv",
-      asOf: lastObservation(cpiUs)?.date ?? EDITION.asOf,
+      asOf: lastCpi?.date ?? EDITION.asOf,
       spark: sparkValues(cpiUs, 24),
     },
     {
@@ -89,7 +111,7 @@ export function getMarketBoard(): MarketBoard {
       value: ezYoy == null ? "—" : formatPct(round1(ezYoy)),
       detail: "FRED-spiegel van Eurostat, t/m juni. ECB-homepage noemde juli 2,9% — dat is een headline, geen reeks in onze vloer.",
       seriesFile: "fred_HICP_EZ_2019-2026.csv",
-      asOf: lastObservation(hicpEz)?.date ?? EDITION.asOf,
+      asOf: lastEz?.date ?? EDITION.asOf,
       spark: sparkValues(hicpEz, 24),
     },
     {
@@ -98,7 +120,7 @@ export function getMarketBoard(): MarketBoard {
       value: beNatYoy == null ? "—" : formatPct(round1(beNatYoy)),
       detail: `Nationale CPI. Gezondheidsindex ${beHealthYoy == null ? "—" : formatPct(round1(beHealthYoy))} · HICP-spiegel juni ${beFredYoy == null ? "—" : formatPct(round1(beFredYoy))}`,
       seriesFile: "statbel_cpi_gezondheidsindex_2025-07_2026-07.csv",
-      asOf: lastObservation(beCpi)?.date ?? EDITION.asOf,
+      asOf: lastBeCpi?.date ?? EDITION.asOf,
       spark: sparkValues(beCpi, 13),
     },
     {
@@ -123,7 +145,10 @@ export function getMarketBoard(): MarketBoard {
       id: "dgs10",
       label: "VS 10-jaars",
       value: lastDgs10 ? `${formatPlainNumber(lastDgs10.value, 2)}%` : "—",
-      detail: spread == null ? "Tienjaars staatsrente." : `Spread t.o.v. Fed funds ${formatPct(round2(spread), 2)}`,
+      detail:
+        spread == null || spreadDate == null
+          ? "Tienjaars staatsrente."
+          : `Spread t.o.v. Fed funds ${formatPct(round2(spread), 2)} op ${spreadDate}, de laatste gemeenschappelijke datum.`,
       seriesFile: "fred_DGS10_2025-06_2026-08.csv",
       asOf: lastDgs10?.date ?? EDITION.asOf,
       spark: sparkValues(dgs10, 40),
@@ -165,6 +190,33 @@ export function getMarketBoard(): MarketBoard {
       spark: sparkValues(vix, 32),
     },
     {
+      id: "brent",
+      label: "Brent, vat",
+      value: lastBrent ? `${formatPlainNumber(lastBrent.value, 2)} $` : "—",
+      detail: `EIA via FRED, dagslot. Jaar-op-jaar ${brentYoy == null ? "—" : formatPct(round1(brentYoy))}${lastWti ? ` · WTI ${formatPlainNumber(lastWti.value, 2)} $` : ""}${wtiYoy == null ? "" : ` (${formatPct(round1(wtiYoy))} j/j)`}.`,
+      seriesFile: "fred_DCOILBRENTEU_2025-01_2026-08.csv",
+      asOf: lastBrent?.date ?? EDITION.asOf,
+      spark: sparkValues(brent, 40),
+    },
+    {
+      id: "koper",
+      label: "Koper, ton",
+      value: lastCopper ? `${formatPlainNumber(lastCopper.value, 2)} $` : "—",
+      detail: `IMF-wereldprijs via FRED, maandreeks, dollar per metrische ton. Jaar-op-jaar ${copperYoy == null ? "—" : formatPct(round1(copperYoy))}.`,
+      seriesFile: "fred_PCOPPUSDM_2024-01_2026-07.csv",
+      asOf: lastCopper?.date ?? EDITION.asOf,
+      spark: sparkValues(copper, 24),
+    },
+    {
+      id: "uranium",
+      label: "Uranium, pond",
+      value: lastUranium ? `${formatPlainNumber(lastUranium.value, 2)} $` : "—",
+      detail: `IMF-wereldprijs via FRED, maandreeks, dollar per pond (U3O8). Jaar-op-jaar ${uraniumYoy == null ? "—" : formatPct(round1(uraniumYoy))}.`,
+      seriesFile: "fred_PURANUSDM_2024-01_2026-07.csv",
+      asOf: lastUranium?.date ?? EDITION.asOf,
+      spark: sparkValues(uranium, 24),
+    },
+    {
       id: "ust-debt",
       label: "VS-staatsschuld",
       value: lastDebt ? `${formatPlainNumber(lastDebt.value / 1e12, 2)} bln $` : "—",
@@ -179,9 +231,11 @@ export function getMarketBoard(): MarketBoard {
     asOf: EDITION.asOf,
     tiles,
     notes: [
+      PEIL_RULE,
       "Elk cijfer is herberekend uit de opgeslagen CSV in redactie/data. Geen live-feed.",
       "Seizoensgecorrigeerde reeksen worden altijd naast hun ongecorrigeerde tegenhanger gelegd.",
-      "ECB-headlines (M3, €STR, juli-HICP) staan in de stukken als headlines, niet als reeks.",
+      "Bekendmakingen van de ECB-startpagina (M3, €STR, juli-HICP) staan in de stukken als bekendmaking, niet als reeks.",
+      "Olie is een dagreeks (Brent en WTI). Koper en uranium zijn maandreeksen van het IMF.",
     ],
   };
 }

@@ -1,6 +1,12 @@
 import { articles } from "@/data/articles";
-import { EDITION } from "@/data/edition";
+import { EDITION, EDITIONS } from "@/data/edition";
 import { getMarketBoard } from "@/data/markets";
+import {
+  getEdition,
+  leadOfEdition,
+  newsOfEdition,
+  opinionsOfEdition,
+} from "@/lib/newspaper";
 import { oracles } from "@/data/oracles";
 import { SITE } from "@/lib/site";
 import type { Article } from "@/types/newspaper";
@@ -43,5 +49,61 @@ export function serializeEdition() {
     articles: articles.map(serializeArticle),
     oracles,
     markets: getMarketBoard(),
+  };
+}
+
+export function serializeArchiveIndex() {
+  return {
+    meta: {
+      status: "ok" as const,
+      publication: SITE.name,
+      endpoint_version: "v1",
+    },
+    editions: EDITIONS.map((edition) => {
+      const lead = leadOfEdition(edition.number);
+      const news = newsOfEdition(edition.number);
+      const opinions = opinionsOfEdition(edition.number);
+      return {
+        number: edition.number,
+        date: edition.date,
+        as_of: edition.asOf,
+        name: edition.name,
+        folio: edition.folio,
+        note: edition.note,
+        lead: { slug: lead.slug, title: lead.title },
+        news_count: news.length,
+        opinion_count: opinions.length,
+        url: `${SITE.url}/archief/${edition.number}`,
+        json_url: `${SITE.url}/api/v1/archief/${edition.number}`,
+      };
+    }),
+  };
+}
+
+export function serializeArchivedEdition(number: number) {
+  const edition = getEdition(number);
+  if (!edition) return null;
+  const lead = leadOfEdition(number);
+  const news = newsOfEdition(number);
+  const opinions = opinionsOfEdition(number);
+  return {
+    meta: {
+      status: "ok" as const,
+      publication: SITE.name,
+      edition: edition.number,
+      date: edition.date,
+      as_of: edition.asOf,
+      endpoint_version: "v1",
+    },
+    edition: {
+      number: edition.number,
+      name: edition.name,
+      folio: edition.folio,
+      note: edition.note,
+      url: `${SITE.url}/archief/${edition.number}`,
+    },
+    lead: serializeArticle(lead),
+    articles: news.map(serializeArticle),
+    opinions: opinions.map(serializeArticle),
   };
 }

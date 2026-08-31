@@ -13,7 +13,7 @@ export function ArticleBody({ article }: { article: Article }) {
 function Block({ block, first }: { block: BodyBlock; first: boolean }) {
   if (block.type === "h2") {
     return (
-      <h2 className="mb-3 mt-10 font-display text-2xl font-semibold leading-tight">
+      <h2 className="mb-3 mt-10 font-display text-2xl font-bold leading-tight tracking-[-0.02em]">
         {block.text}
       </h2>
     );
@@ -29,7 +29,7 @@ function Block({ block, first }: { block: BodyBlock; first: boolean }) {
 
   if (block.type === "note") {
     return (
-      <p className="my-6 border border-hairline bg-card px-4 py-3 text-[0.95rem] text-muted-foreground">
+      <p className="my-6 border-y border-hairline py-3 text-[0.95rem] text-muted-foreground">
         {block.text}
       </p>
     );
@@ -94,11 +94,9 @@ export function SteenmanBox({
   antwoord: string;
 }) {
   return (
-    <aside className="mt-12 border-2 border-foreground bg-card p-6">
-      <p className="text-[11px] uppercase tracking-[0.18em] text-accent">
-        De steenman
-      </p>
-      <h2 className="mt-2 font-display text-2xl font-semibold">
+    <aside className="mt-12 border-y-2 border-foreground py-6">
+      <p className="kicker">De steenman</p>
+      <h2 className="mt-2 font-display text-2xl font-bold tracking-[-0.02em]">
         De sterkste tegenwerping, eerlijk weergegeven
       </h2>
       <p className="mt-4 font-serif leading-relaxed">{objection}</p>

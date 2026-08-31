@@ -17,7 +17,7 @@ export function EditionFigure({
     <figure className={cn(className)}>
       <div
         className={cn(
-          "relative overflow-hidden border border-hairline bg-[hsl(36_22%_88%)]",
+          "relative overflow-hidden border border-hairline bg-muted",
           ratio === "still" ? "aspect-[4/3]" : "aspect-[16/9]",
         )}
       >

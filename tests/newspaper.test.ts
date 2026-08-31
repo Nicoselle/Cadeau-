@@ -5,10 +5,11 @@ import { articles } from "@/data/articles";
 import { oracles } from "@/data/oracles";
 import { getMarketBoard } from "@/data/markets";
 import { serializeArticle, serializeEdition } from "@/lib/krant-api";
-import { getArticle, leadArticle } from "@/lib/newspaper";
+import { getArticle, latestOpinion, leadArticle } from "@/lib/newspaper";
 import {
   annualizedGrowth,
   observations,
+  round1,
   round2,
   yoyGrowth,
 } from "@/lib/series";
@@ -64,14 +65,43 @@ describe("editie", () => {
 
   it("has exactly one lead story", () => {
     expect(articles.filter((article) => article.lead)).toHaveLength(1);
-    expect(leadArticle().slug).toBe("kraan-weer-open");
+    expect(leadArticle().slug).toBe("reele-rente-houdt-de-bodem");
+    expect(leadArticle().edition).toBe(2);
   });
 
-  it("uses the Statbel core-inflation label 3,13% in the lead", () => {
-    const lead = leadArticle();
-    const haystack = JSON.stringify(lead);
+  it("keeps the Statbel core-inflation label 3,13% in editie 1", () => {
+    const piece = getArticle("kraan-weer-open");
+    expect(piece).toBeDefined();
+    const haystack = JSON.stringify(piece);
     expect(haystack).toContain("3,13");
     expect(haystack).not.toContain("kerninflatie van 3,7");
+  });
+
+  it("peilt editie 2 against the same floor, not a new print", () => {
+    const lead = leadArticle();
+    const haystack = JSON.stringify(lead);
+    expect(haystack).toContain("5,53");
+    expect(haystack).toContain("2,43");
+    expect(haystack).toContain("3,63");
+    expect(haystack).toMatch(/zelfde datum|uitgelijnd/i);
+    expect(
+      articles.filter((article) => article.edition === 1 && article.desk !== "opinie"),
+    ).toHaveLength(6);
+    expect(
+      articles.filter((article) => article.edition === 2 && article.desk !== "opinie"),
+    ).toHaveLength(1);
+  });
+
+  it("keeps a daily Knack-style opinion on the floor", () => {
+    const piece = latestOpinion();
+    expect(piece?.slug).toBe("vat-liegt-minder-dan-de-index");
+    expect(piece?.desk).toBe("opinie");
+    expect(piece?.lead).toBe(false);
+    expect(piece?.author).toBe("De mening");
+    const haystack = JSON.stringify(piece);
+    expect(haystack).toContain("88,24");
+    expect(haystack).toContain("13.542,82");
+    expect(haystack).not.toMatch(/vijf dingen|in 3 punten/i);
   });
 
   it("looks up articles by slug", () => {
@@ -90,6 +120,23 @@ describe("editie", () => {
     expect(board.tiles.length).toBeGreaterThanOrEqual(10);
     expect(board.tiles.every((tile) => tile.value !== "—")).toBe(true);
     expect(board.tiles.find((tile) => tile.id === "m2")?.value).toContain("5,5");
+    expect(board.tiles.find((tile) => tile.id === "brent")?.value).toContain("88,24");
+    expect(board.tiles.find((tile) => tile.id === "koper")?.value).toContain("13.542,82");
+    expect(board.tiles.find((tile) => tile.id === "uranium")?.value).toContain("69,23");
+  });
+
+  it("reproduces last oil, copper and uranium prints from the floor", () => {
+    const brent = observations("fred_DCOILBRENTEU_2025-01_2026-08.csv");
+    const wti = observations("fred_DCOILWTICO_2025-01_2026-08.csv");
+    const copper = observations("fred_PCOPPUSDM_2024-01_2026-07.csv");
+    const uranium = observations("fred_PURANUSDM_2024-01_2026-07.csv");
+    expect(brent.at(-1)).toEqual({ date: "2026-08-25", value: 88.24 });
+    expect(wti.at(-1)).toEqual({ date: "2026-08-25", value: 83.9 });
+    expect(copper.at(-1)).toEqual({ date: "2026-07-01", value: 13542.82 });
+    expect(uranium.at(-1)).toEqual({ date: "2026-07-01", value: 69.23 });
+    expect(round1(yoyGrowth(brent, "2026-08") ?? 0)).toBe(30.1);
+    expect(round1(yoyGrowth(copper, "2026-07") ?? 0)).toBe(38.6);
+    expect(round1(yoyGrowth(uranium, "2026-07") ?? 0)).toBe(17.4);
   });
 
   it("serializes the edition for the public API", () => {

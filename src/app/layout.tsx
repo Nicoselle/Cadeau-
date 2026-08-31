@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Fraunces, IBM_Plex_Sans, Newsreader } from "next/font/google";
+import { Newsreader, Source_Sans_3, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SITE } from "@/lib/site";
 
-const display = Fraunces({
+const display = Source_Serif_4({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
-  weight: ["500", "600", "700"],
+  weight: ["600", "700"],
 });
 
 const serif = Newsreader({
@@ -19,11 +19,11 @@ const serif = Newsreader({
   weight: ["400", "500", "600", "700"],
 });
 
-const sans = IBM_Plex_Sans({
+const sans = Source_Sans_3({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
-  weight: ["400", "500", "600"],
+  weight: ["400", "600"],
 });
 
 export const metadata: Metadata = {
@@ -68,7 +68,7 @@ export default function RootLayout({
       lang="nl"
       className={`${display.variable} ${serif.variable} ${sans.variable}`}
     >
-      <body className="min-h-screen font-sans">
+      <body className="min-h-screen bg-background font-sans text-foreground">
         <div className="flex min-h-screen flex-col">
           <SiteHeader />
           <main className="flex-1">{children}</main>
