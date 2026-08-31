@@ -22,6 +22,11 @@ export function SiteFooter() {
           <p className="kicker">Redactie</p>
           <ul className="mt-2 space-y-1 font-serif">
             <li>
+              <Link href="/archief" className="hover:text-accent">
+                Archief van de edities
+              </Link>
+            </li>
+            <li>
               <Link href="/methode" className="hover:text-accent">
                 Methode en statuut
               </Link>

@@ -133,7 +133,11 @@ export default function MethodPage() {
           De Kapitaalkrant is een zelfstandige uitgave. De redactie schrijft
           en rekent; een nieuwe editie is een bewuste beslissing, geen
           automatische stroom. Editie 2 sluit op 31 augustus 2026; de vloer is
-          dezelfde als die van editie 1.
+          dezelfde als die van editie 1. Alle nummers blijven leesbaar in het{" "}
+          <Link href="/archief" className="underline hover:text-accent">
+            archief
+          </Link>
+          .
         </p>
         <p className="mt-4">
           De dagelijkse klok, Brussels tijd: om 13 uur ligt de briefing, om

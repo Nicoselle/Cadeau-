@@ -27,7 +27,7 @@ een bewuste beslissing van Nico om **14:00 Europe/Brussels**. De Grokbot
 │   ├── stuk/[slug]/         # Stukken
 │   ├── piramide/            # Eén desk: allocatie, dossiers, SMC
 │   ├── onderzoek/[slug]/    # Dossierdiepte
-│   ├── markten/ orakelboek/ methode/ nazien/ archief/ desk/
+│   ├── markten/ orakelboek/ methode/ nazien/ archief/[nummer]/ desk/
 │   └── api/v1/              # krant, stukken, markten, briefing, volgen, products
 ├── src/data/                # articles, edition, markets, oracles, watchlist, products
 ├── src/lib/series.ts        # CSV-parser, j/j-groei, lastOnOrBefore

@@ -62,11 +62,14 @@ Optioneel: `NEXT_PUBLIC_SITE_URL` voor canonieke URL’s.
 | `/nazien` | Augustus 2026: peil per weekdag, met bestand |
 | `/methode` | Huisregels |
 | `/briefing` | Dagelijkse redactiebriefing (niet in de kop) |
-| `/archief` | Edities |
+| `/archief` | Alle genummerde edities |
+| `/archief/[n]` | Het nummer zelf, zoals het verscheen |
 | `/desk/vs` `/desk/eurozone` `/desk/belgie` | Geografie in de stukken |
 | `/lokaal` | Andere desk — vraaggestuurd lokaal |
 | `/cadeau` | Andere desk — Vesting |
-| `/api/v1/krant` | Volledige editie als JSON |
+| `/api/v1/krant` | Huidige editie als JSON |
+| `/api/v1/archief` | Lijst van alle nummers |
+| `/api/v1/archief/[n]` | Eén nummer als JSON |
 | `/api/v1/nazien` | Augustus-ledger (peil per weekdag) |
 | `/api/v1/briefing` | Briefing voor de 14:00-beslissing |
 | `/api/v1/stukken` `/api/v1/markten` `/api/v1/volgen` | Deel-API’s |

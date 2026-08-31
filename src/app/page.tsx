@@ -100,7 +100,7 @@ export default function HomePage() {
             {rest.length === 0 ? (
               <p className="font-serif text-sm leading-relaxed text-muted-foreground">
                 Deze editie telt één voorpaginastuk.{" "}
-                <Link href="/archief#editie-1" className="underline hover:text-accent">
+                <Link href="/archief/1" className="underline hover:text-accent">
                   Nummer 1 in het archief
                 </Link>
                 .

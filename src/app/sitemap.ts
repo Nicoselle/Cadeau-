@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { articles } from "@/data/articles";
 import { DOSSIERS } from "@/data/dossiers";
-import { EDITION } from "@/data/edition";
+import { EDITION, EDITIONS } from "@/data/edition";
 import { products } from "@/data/products";
 import { SITE } from "@/lib/site";
 
@@ -35,6 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === "/" ? 1 : 0.7,
   }));
 
+  const editionRoutes: MetadataRoute.Sitemap = EDITIONS.map((edition) => ({
+    url: `${SITE.url}/archief/${edition.number}`,
+    lastModified: new Date(edition.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.75,
+  }));
+
   const articleRoutes: MetadataRoute.Sitemap = articles.map((article) => ({
     url: `${SITE.url}/stuk/${article.slug}`,
     lastModified: new Date(article.published),
@@ -56,5 +63,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.4,
   }));
 
-  return [...staticRoutes, ...articleRoutes, ...dossierRoutes, ...productRoutes];
+  return [
+    ...staticRoutes,
+    ...editionRoutes,
+    ...articleRoutes,
+    ...dossierRoutes,
+    ...productRoutes,
+  ];
 }
