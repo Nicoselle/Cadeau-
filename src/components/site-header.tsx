@@ -4,9 +4,9 @@ import { SITE } from "@/lib/site";
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
-      <div className="container flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2.5">
-          <span className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
+      <div className="container flex min-h-16 flex-wrap items-center justify-between gap-x-3 gap-y-2 py-2">
+        <Link href="/" className="flex min-w-0 items-center gap-2.5">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground">
             <svg
               width="18"
               height="18"
@@ -26,33 +26,33 @@ export function SiteHeader() {
             <span className="text-sm font-semibold tracking-tight">
               {SITE.shortName}
             </span>
-            <span className="text-[11px] text-muted-foreground">
+            <span className="hidden text-[11px] text-muted-foreground sm:block">
               Noodvoedsel-directory
             </span>
           </span>
         </Link>
-        <nav className="flex items-center gap-1 text-sm">
+        <nav className="flex flex-wrap items-center justify-end gap-1 text-sm">
           <Link
             href="/"
-            className="rounded-md px-3 py-1.5 font-medium text-foreground hover:bg-muted"
+            className="hidden rounded-md px-3 py-1.5 font-medium text-foreground hover:bg-muted sm:inline-flex"
           >
             Directory
           </Link>
           <Link
             href="/compare"
-            className="rounded-md px-3 py-1.5 font-medium text-foreground hover:bg-muted"
+            className="rounded-md px-2 py-1.5 font-medium text-foreground hover:bg-muted sm:px-3"
           >
             Vergelijken
           </Link>
           <Link
             href="/keuze"
-            className="rounded-md px-3 py-1.5 font-medium text-foreground hover:bg-muted"
+            className="rounded-md px-2 py-1.5 font-medium text-foreground hover:bg-muted sm:px-3"
           >
             Keuze
           </Link>
           <Link
             href="/api/v1/products"
-            className="rounded-md px-3 py-1.5 font-medium text-muted-foreground hover:bg-muted"
+            className="hidden rounded-md px-3 py-1.5 font-medium text-muted-foreground hover:bg-muted md:inline-flex"
           >
             API
           </Link>
