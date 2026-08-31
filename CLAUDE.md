@@ -252,6 +252,9 @@ Geen database, geen geheimen in v1. Marktcijfers komen uit `redactie/data`.
 2. Kerninflatie België = **3,13%** (Statbel: excl. energie en onbewerkte voeding).
    3,67% is de eurozone-stijl maat — etiket erbij.
 3. Centenindex is **wet sinds 01-06-2026**; 2% is cumulatief; €2.000 geldt ook pensioenen.
+   Tijdelijk in de regel ≠ tijdelijk in de portemonnee. Inhaal: ja, nee, of
+   onbekend. Alleen bij aantoonbaar ja: «geen blijvende korting». Centenindex:
+   nee. Zie `redactie/schrijfregel-effectketen.md`.
 4. Seizoensgecorrigeerde reeks nooit alleen duiden (M2SL naast M2NS).
 5. Headlines (ECB-homepage) zijn geen reeks.
 6. Alleen Nico beslist om **14:00 Europe/Brussels**. Standaard dagelijks:

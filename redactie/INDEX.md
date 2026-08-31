@@ -13,13 +13,14 @@ bestand toevoegt of een versie vervangt, werkt deze index bij in dezelfde commit
 | Releasekalender | `voorstel-releasekalender-v2.yaml` (geverifieerde data) | `voorstel-releasekalender.yaml` (v1, schattingen) |
 | Proefstuk | `proefstuk-2026-08-17-v2.md` (drie blokken VS/EZ/BE) | `proefstuk-2026-08-17.md` (v1, zonder Belgische poot) |
 | Kernmaat-België-etiket | kerninflatie = **3,13%** (Statbel-definitie); 3,67% is de eurozone-stijl maat — zie `meetrapport-2026-08-17-kalendertoets.md` §3 | de "kerninflatie 3,7%" in proefstuk v1/v2 en het meetrapport Belgische poot draagt het **oude, onjuiste etiket** |
-| Centenindex-formulering | cumulatieve 2%-grens; plafond €2.000 geldt óók pensioenen — zie `dossier-2026-08-17-centenindex-stand.md` | de statische formulering "2% op de schijf" in eerdere stukken |
+| Centenindex-formulering | cumulatieve 2%-grens; plafond €2.000 geldt óók pensioenen; **geen inhaal → blijvend niveauverschil** — dossier + `schrijfregel-effectketen.md` | «geen blijvende korting» in stukken van 18 augustus; statische "2% op de schijf" |
 | Stand centenindex | **wet, in werking sinds 01-06-2026** (dossier centenindex) | de aprilstand "nog niet van kracht" in `dossier-2026-08-17-indexcommissie-april.md` §"Wat nog uitgezocht" |
 | Yahoo-oordeel | quotepagina werkt, dataroutes dood, account lost niets op — `bronnenstaat-2026-08-18-yahoo.md` + `notitie-2026-08-18-geen-account.md` | de kale regel "betaalmuur" in de rolprompt |
 | M2-editievloer | `data/fred_M2SL_2019-2026.csv` juni **23.155,2 · +5,53%** — geldt in editie 1 en 2 | vintage 31-08 herziet juni tot 23.115,2; die revisie overschrijft de editie **niet** |
 | M2-vintage 31-08 | `data/fred_M2SL_vintage_2026-08-31.csv` + `fred_M2NS_vintage_2026-08-31.csv` — juli 23.218,0 · +5,41% SA / +5,43% NSA (H.6 25-08) | alleen in de dagelijkse mening vanaf 2026-08-25 |
 | Augustus-nazien | `/nazien` + `mening/2026-08-ledger.json` — peil = laatste waarneming ≤ die dag | geen weekend verzonnen; 31 augustus blijft `vat-liegt-minder-dan-de-index` |
 | Peilregel publicatie | 31 augustus 2026. Per reeks laatste waarneming; afgeleiden alleen op laatste gemeenschappelijke datum (`lastCommonDate`) | twee datums van elkaar aftrekken |
+| Effectketen | `schrijfregel-effectketen.md` — tijdelijk in de regel ≠ tijdelijk in de portemonnee; inhaal ja/nee/onbekend | juridische einddatum als economische einddatum verkopen |
 
 De verslagen (`verslag*.md`, a t/m 18b) zijn een **chronologisch logboek** — die vervangen
 elkaar nooit. Zelfde geldt voor `registers/overdrachten.jsonl` (10 regels, append-only).
@@ -32,6 +33,7 @@ elkaar nooit. Zelfde geldt voor `registers/overdrachten.jsonl` (10 regels, appen
 | Wanneer publiceert welke bron? | `voorstel-releasekalender-v2.yaml` (of `scripts/zetter.py agenda`) |
 | Belgische inflatie/gezondheidsindex | `meetrapport-2026-08-17-belgische-poot.md` (route + cijfers) — etiketcorrectie in kalendertoets §3 |
 | Spilindex, drempels, indexering | `meetrapport-2026-08-17-spilindex.md` (vondst) + `dossier-2026-08-17-centenindex-stand.md` (wettelijke stand, geldend) |
+| Tijdelijke regel vs blijvend geld-effect | `schrijfregel-effectketen.md` |
 | Indexcommissie-conflict april 2026 | `dossier-2026-08-17-indexcommissie-april.md` — sterkste stukkandidaat; ontknoping in het centenindex-dossier |
 | M2 / Amerikaanse geldgroei (incl. methodologiebreuk 28-07-2026) | `meetrapport-2026-08-17-kalendertoets.md` §2 |
 | Lange rente, spread, breakevens | `meetnotitie-2026-08-17-lange-rente.md` + 30-jaars/S&P/VIX-aanvulling in `bronnenstaat-2026-08-18-yahoo.md` §bijvangst |
