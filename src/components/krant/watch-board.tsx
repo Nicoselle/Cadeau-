@@ -10,7 +10,7 @@ import {
   PYRAMID_WEIGHTS,
   type PyramidLayer,
 } from "@/data/watchlist";
-import { formatNlDate } from "@/lib/newspaper";
+import { formatNlDate } from "@/lib/format";
 import type { WatchBoard, WatchRow } from "@/lib/quotes";
 import { formatTapeChange, formatTapePrice } from "@/lib/quotes";
 
