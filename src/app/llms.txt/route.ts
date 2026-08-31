@@ -17,6 +17,7 @@ export function GET() {
     `- Huidige editie: ${SITE.url}/api/v1/krant`,
     `- Stukken: ${SITE.url}/api/v1/stukken`,
     `- Markten: ${SITE.url}/api/v1/markten`,
+    `- Lokaal (vraaggestuurd): ${SITE.url}/api/v1/lokaal?plaatsen=gent`,
     `- Noodvoedsel-directory (zuster): ${SITE.url}/api/v1/products`,
     "",
     "## Stukken",
@@ -31,6 +32,8 @@ export function GET() {
     `- Orakelboek: ${SITE.url}/orakelboek`,
     `- Methode: ${SITE.url}/methode`,
     `- Archief: ${SITE.url}/archief`,
+    `- Lokaal: ${SITE.url}/lokaal`,
+    `- Ondernemersverhaal: ${SITE.url}/lokaal/verhaal`,
     "",
   ];
 

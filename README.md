@@ -55,6 +55,8 @@ Optioneel: `NEXT_PUBLIC_SITE_URL` voor canonieke URL’s.
 | `/methode` | Huisregels |
 | `/archief` | Edities |
 | `/desk/vs` `/desk/eurozone` `/desk/belgie` | Desks |
+| `/lokaal` | Vraaggerichte lokale ondernemersdesk |
+| `/lokaal/verhaal` | Zaakvoerders sturen hun verhaal in |
 | `/api/v1/krant` | Volledige editie als JSON |
 | `/api/v1/stukken` `/api/v1/markten` | Deel-API’s |
 

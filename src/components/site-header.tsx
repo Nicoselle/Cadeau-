@@ -7,6 +7,7 @@ const NAV = [
   { href: "/", label: "Voorpagina" },
   { href: "/markten", label: "Markten" },
   { href: "/desk/belgie", label: "België" },
+  { href: "/lokaal", label: "Lokaal" },
   { href: "/orakelboek", label: "Orakelboek" },
   { href: "/methode", label: "Methode" },
   { href: "/archief", label: "Archief" },

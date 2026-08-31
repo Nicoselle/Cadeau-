@@ -117,6 +117,26 @@ export default function HomePage() {
             <StoryCard key={article.slug} article={article} />
           ))}
         </section>
+
+        <section className="mt-14 border-t-2 border-foreground pt-8">
+          <p className="text-[11px] uppercase tracking-[0.18em] text-accent">
+            Nieuwe desk
+          </p>
+          <h2 className="mt-2 font-display text-3xl font-semibold">
+            Lokaal, maar alleen waar u om vraagt
+          </h2>
+          <p className="mt-3 max-w-2xl font-serif text-lg leading-relaxed text-muted-foreground">
+            Abonnees zetten hun gemeente. De desk zoekt daarna zelf
+            ondernemersnieuws en zet verhalen van zaakvoerders — automatisch,
+            zonder dat een redacteur een stad kiest.
+          </p>
+          <Link
+            href="/lokaal"
+            className="mt-5 inline-block border-b border-foreground pb-0.5 text-sm font-medium uppercase tracking-[0.12em] hover:border-accent hover:text-accent"
+          >
+            Naar de lokale desk
+          </Link>
+        </section>
       </div>
     </>
   );

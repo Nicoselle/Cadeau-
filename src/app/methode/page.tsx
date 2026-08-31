@@ -73,6 +73,24 @@ export default function MethodPage() {
       </section>
 
       <section className="mt-12 max-w-3xl font-serif leading-relaxed">
+        <h2 className="font-display text-2xl font-semibold">Lokale desk</h2>
+        <p className="mt-4">
+          De lokale desk is de uitzondering op «geen automatische feed».
+          Abonnees kiezen gemeenten; alleen die plaatsen worden afgezocht.
+          Gevonden berichten zijn titels met bron en link, geen nabewerkte
+          reportage. Eigen verhalen van ondernemers gaan door een automatische
+          poort (lengte, plaats, spam) en verschijnen uitsluitend waar vraag
+          is. Geen redacteur die een stad «belangrijk» verklaart.
+        </p>
+        <p className="mt-4">
+          <Link href="/lokaal" className="underline hover:text-accent">
+            Naar Lokaal
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section className="mt-12 max-w-3xl font-serif leading-relaxed">
         <h2 className="font-display text-2xl font-semibold">Statuut</h2>
         <p className="mt-4">
           De Kapitaalkrant is een zelfstandige publicatie. De redactie schrijft

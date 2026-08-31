@@ -245,7 +245,11 @@ Geen database, geen geheimen in v1. Marktcijfers komen uit `redactie/data`.
 3. Centenindex is **wet sinds 01-06-2026**; 2% is cumulatief; €2.000 geldt ook pensioenen.
 4. Seizoensgecorrigeerde reeks nooit alleen duiden (M2SL naast M2NS).
 5. Headlines (ECB-homepage) zijn geen reeks.
-6. Alleen Nico duwt een nieuwe editie door.
+6. Alleen Nico duwt een nieuwe **macro-editie** door.
+7. **Lokaal is vraaggestuurd en automatisch:** abonnees kiezen gemeenten;
+   alleen die plaatsen worden afgezocht. Ondernemersverhalen gaan door
+   `moderateIntake` en verschijnen uitsluitend waar vraag is. Geen
+   redacteur die een stad kiest. Gevonden berichten: titel, bron, link.
 
 ---
 

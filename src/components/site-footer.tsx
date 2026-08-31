@@ -26,6 +26,16 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link href="/lokaal" className="hover:text-accent">
+                Lokaal
+              </Link>
+            </li>
+            <li>
+              <Link href="/lokaal/verhaal" className="hover:text-accent">
+                Ondernemersverhaal
+              </Link>
+            </li>
+            <li>
               <Link href="/orakelboek" className="hover:text-accent">
                 Orakelboek
               </Link>

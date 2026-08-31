@@ -1,0 +1,115 @@
+import type { Place } from "@/types/local";
+
+function be(name: string, province: string): Place {
+  return {
+    slug: name
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/['’]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, ""),
+    name,
+    country: "BE",
+    province,
+  };
+}
+
+function nl(name: string, province: string): Place {
+  return { ...be(name, province), country: "NL" };
+}
+
+export const SUGGESTED_PLACES = [
+  "gent",
+  "antwerpen",
+  "brugge",
+  "leuven",
+  "mechelen",
+  "hasselt",
+  "brussel",
+  "amsterdam",
+  "rotterdam",
+  "utrecht",
+] as const;
+
+export const PLACES: Place[] = [
+  be("Antwerpen", "Antwerpen"),
+  be("Gent", "Oost-Vlaanderen"),
+  be("Brugge", "West-Vlaanderen"),
+  be("Leuven", "Vlaams-Brabant"),
+  be("Mechelen", "Antwerpen"),
+  be("Hasselt", "Limburg"),
+  be("Kortrijk", "West-Vlaanderen"),
+  be("Oostende", "West-Vlaanderen"),
+  be("Aalst", "Oost-Vlaanderen"),
+  be("Sint-Niklaas", "Oost-Vlaanderen"),
+  be("Genk", "Limburg"),
+  be("Roeselare", "West-Vlaanderen"),
+  be("Turnhout", "Antwerpen"),
+  be("Vilvoorde", "Vlaams-Brabant"),
+  be("Dendermonde", "Oost-Vlaanderen"),
+  be("Sint-Truiden", "Limburg"),
+  be("Herentals", "Antwerpen"),
+  be("Lier", "Antwerpen"),
+  be("Waregem", "West-Vlaanderen"),
+  be("Ieper", "West-Vlaanderen"),
+  be("Knokke-Heist", "West-Vlaanderen"),
+  be("Tongeren", "Limburg"),
+  be("Tienen", "Vlaams-Brabant"),
+  be("Geel", "Antwerpen"),
+  be("Mol", "Antwerpen"),
+  be("Beringen", "Limburg"),
+  be("Maasmechelen", "Limburg"),
+  be("Lokeren", "Oost-Vlaanderen"),
+  be("Halle", "Vlaams-Brabant"),
+  be("Dilbeek", "Vlaams-Brabant"),
+  be("Asse", "Vlaams-Brabant"),
+  be("Zaventem", "Vlaams-Brabant"),
+  be("Tervuren", "Vlaams-Brabant"),
+  be("Overijse", "Vlaams-Brabant"),
+  be("Beveren", "Oost-Vlaanderen"),
+  be("Boom", "Antwerpen"),
+  be("Brasschaat", "Antwerpen"),
+  be("Schilde", "Antwerpen"),
+  be("Mortsel", "Antwerpen"),
+  be("Brussel", "Brussel"),
+  be("Anderlecht", "Brussel"),
+  be("Schaarbeek", "Brussel"),
+  be("Elsene", "Brussel"),
+  be("Namen", "Namen"),
+  be("Luik", "Luik"),
+  be("Charleroi", "Henegouwen"),
+  be("Bergen", "Henegouwen"),
+  be("Nijvel", "Waals-Brabant"),
+  be("Waver", "Waals-Brabant"),
+  be("Waterloo", "Waals-Brabant"),
+  nl("Amsterdam", "Noord-Holland"),
+  nl("Rotterdam", "Zuid-Holland"),
+  nl("Den Haag", "Zuid-Holland"),
+  nl("Utrecht", "Utrecht"),
+  nl("Eindhoven", "Noord-Brabant"),
+  nl("Groningen", "Groningen"),
+  nl("Tilburg", "Noord-Brabant"),
+  nl("Almere", "Flevoland"),
+  nl("Breda", "Noord-Brabant"),
+  nl("Nijmegen", "Gelderland"),
+  nl("Apeldoorn", "Gelderland"),
+  nl("Haarlem", "Noord-Holland"),
+  nl("Arnhem", "Gelderland"),
+  nl("Enschede", "Overijssel"),
+  nl("Amersfoort", "Utrecht"),
+  nl("Zwolle", "Overijssel"),
+  nl("Maastricht", "Limburg"),
+  nl("Leiden", "Zuid-Holland"),
+  nl("Dordrecht", "Zuid-Holland"),
+  nl("Delft", "Zuid-Holland"),
+  nl("Leeuwarden", "Friesland"),
+  nl("'s-Hertogenbosch", "Noord-Brabant"),
+  nl("Venlo", "Limburg"),
+  nl("Hilversum", "Noord-Holland"),
+  nl("Amstelveen", "Noord-Holland"),
+  nl("Gouda", "Zuid-Holland"),
+  nl("Lelystad", "Flevoland"),
+  nl("Middelburg", "Zeeland"),
+  nl("Assen", "Drenthe"),
+];
