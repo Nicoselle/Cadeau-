@@ -8,7 +8,7 @@ import {
   sparkValues,
   yoyGrowth,
 } from "@/lib/series";
-import { formatPct, formatPlainNumber } from "@/lib/newspaper";
+import { formatPct, formatPlainNumber } from "@/lib/format";
 import type { MarketTile } from "@/types/newspaper";
 
 export type MarketBoard = {

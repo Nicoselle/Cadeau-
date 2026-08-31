@@ -1,5 +1,5 @@
 import { observations, lastOnOrBefore, yoyGrowth, monthKey, round1, round2 } from "@/lib/series";
-import { formatPlainNumber, formatPct } from "@/lib/newspaper";
+import { formatPlainNumber, formatPct } from "@/lib/format";
 
 export type NamedPrint = {
   id: string;

@@ -1,5 +1,5 @@
 import { WATCH_SOURCE, WATCHLIST, type WatchItem } from "@/data/watchlist";
-import { formatPlainNumber } from "@/lib/newspaper";
+import { formatPlainNumber } from "@/lib/format";
 
 export type TapeQuote = {
   symbol: string;

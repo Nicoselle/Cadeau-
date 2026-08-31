@@ -14,8 +14,8 @@ import { getArticle, latestOpinion } from "@/lib/newspaper";
 import { lastOnOrBefore, observations, yoyGrowth, round2 } from "@/lib/series";
 
 function isoFromSource(source: string): string | null {
-  const match = source.match(/(\d{4}-\d{2}-\d{2})/);
-  return match?.[1] ?? null;
+  const matches = source.match(/\d{4}-\d{2}-\d{2}/g);
+  return matches?.at(-1) ?? null;
 }
 
 describe("augustus 2026 — peil zonder vooruitkijken", () => {
