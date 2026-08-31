@@ -139,9 +139,9 @@ export const RUBRIEK_STUKKEN: Article[] = [
         caption: "Tegels op 31 augustus 2026. Afgeleiden alleen op de laatste gemeenschappelijke datum.",
         headers: ["Cijfer", "Datum", "Waarde", "Regel"],
         rows: [
-          ["VS 10-jaars (tegel)", "2026-08-27", "4,67%", "lastOnOrBefore"],
-          ["VS 30-jaars (tegel)", "2026-08-27", "5,19%", "lastOnOrBefore"],
-          ["10j breakeven (tegel)", "2026-08-28", "2,31%", "lastOnOrBefore"],
+          ["VS 10-jaars (tegel)", "2026-08-27", "4,67%", "laatste waarneming"],
+          ["VS 30-jaars (tegel)", "2026-08-27", "5,19%", "laatste waarneming"],
+          ["10j breakeven (tegel)", "2026-08-28", "2,31%", "laatste waarneming"],
           ["Reële 10-jaars", "2026-08-27", "2,34%", "4,67 − 2,33"],
           ["Spread 10j − Fed funds", "2026-08-14", "+1,05 pp", "4,68 − 3,63"],
         ],
