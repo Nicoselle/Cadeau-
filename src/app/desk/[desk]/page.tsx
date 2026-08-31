@@ -3,10 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { StoryCard } from "@/components/krant/story-card";
 import { articlesByDesk } from "@/lib/newspaper";
+import { desks, rubriekByDesk } from "@/lib/rubrieken";
 import { DESK_LABELS } from "@/lib/site";
 import type { Desk } from "@/types/newspaper";
 
-const DESKS = Object.keys(DESK_LABELS) as Desk[];
+const DESKS = desks();
 
 export function generateStaticParams() {
   return DESKS.map((desk) => ({ desk }));
@@ -18,7 +19,7 @@ export async function generateMetadata({
   params: Promise<{ desk: string }>;
 }): Promise<Metadata> {
   const { desk } = await params;
-  const label = DESK_LABELS[desk];
+  const label = DESK_LABELS[desk as Desk];
   if (!label) return { title: "Desk niet gevonden" };
   return {
     title: label,
@@ -33,7 +34,8 @@ export default async function DeskPage({
 }) {
   const { desk } = await params;
   if (!DESKS.includes(desk as Desk)) notFound();
-  const label = DESK_LABELS[desk];
+  const label = DESK_LABELS[desk as Desk];
+  const rubriek = rubriekByDesk(desk as Desk);
   const items = articlesByDesk(desk as Desk);
 
   return (
@@ -44,7 +46,12 @@ export default async function DeskPage({
       <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.02em] sm:text-5xl">
         {label}
       </h1>
-      <p className="mt-4 font-serif text-lg text-muted-foreground">
+      {rubriek ? (
+        <p className="mt-4 max-w-2xl font-serif text-lg text-muted-foreground">
+          {rubriek.blurb}
+        </p>
+      ) : null}
+      <p className="mt-3 font-serif text-muted-foreground">
         {items.length} {items.length === 1 ? "stuk" : "stukken"}.
       </p>
       {desk === "opinie" ? (

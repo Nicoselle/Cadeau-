@@ -100,6 +100,9 @@ Dat is geen lijstje, geen «vijf dingen», geen SEO-kop. Het is een essay van
 - Slot met een steek, geen samenvatting.
 - Steenman verplicht. Geen beleggingsadvies, geen koersdoel.
 - `desk: "opinie"`, kicker `De mening`, auteur `De mening`, `lead: false`.
+- Andere rubrieken: `vs`, `eurozone`, `belgie`, `geld`, `rente`,
+  `grondstoffen`, `titels`, `methode`. Nieuwe plank? Eerst
+  `src/lib/rubrieken.ts`. Lege rubriek bestaat niet.
 - Slug en gravure. Bestaande gravure hergebruiken als er geen nieuwe is.
 - Precedent: `vat-liegt-minder-dan-de-index`.
 - Augustus 2026 staat terugwerkend: weekdagen 3–28 plus het bestaande

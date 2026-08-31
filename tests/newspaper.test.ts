@@ -89,7 +89,7 @@ describe("editie", () => {
     ).toHaveLength(6);
     expect(
       articles.filter((article) => article.edition === 2 && article.desk !== "opinie"),
-    ).toHaveLength(1);
+    ).toHaveLength(5);
   });
 
   it("keeps a daily Knack-style opinion on the floor", () => {

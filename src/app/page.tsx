@@ -6,12 +6,14 @@ import { EDITION } from "@/data/edition";
 import { oracles } from "@/data/oracles";
 import { WATCHLIST } from "@/data/watchlist";
 import {
+  articlesByDesk,
   firstParagraph,
   formatNlDate,
   latestOpinion,
   leadArticle,
   secondaryArticles,
 } from "@/lib/newspaper";
+import { mastheadRubrieken } from "@/lib/rubrieken";
 import { DESK_LABELS, SITE } from "@/lib/site";
 
 export default function HomePage() {
@@ -159,6 +161,58 @@ export default function HomePage() {
             ))}
           </section>
         ) : null}
+
+        <section className="mt-14 border-t border-foreground pt-8">
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <p className="kicker">De krant</p>
+              <h2 className="mt-2 font-display text-3xl font-bold tracking-[-0.02em]">
+                Rubrieken
+              </h2>
+            </div>
+            <Link
+              href="/rubrieken"
+              className="hidden text-sm font-medium uppercase tracking-[0.12em] underline hover:text-accent sm:inline"
+            >
+              Alle rubrieken
+            </Link>
+          </div>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {mastheadRubrieken()
+              .filter((item) => item.desk && item.desk !== "opinie")
+              .map((item) => {
+                const latest = articlesByDesk(item.desk!)[0];
+                return (
+                  <article key={item.id} className="rule-story">
+                    <p className="kicker">
+                      <Link href={item.href} className="hover:text-accent">
+                        {item.label}
+                      </Link>
+                    </p>
+                    {latest ? (
+                      <>
+                        <h3 className="mt-2 font-display text-xl font-bold leading-tight tracking-[-0.02em]">
+                          <Link
+                            href={`/stuk/${latest.slug}`}
+                            className="hover:text-accent"
+                          >
+                            {latest.title}
+                          </Link>
+                        </h3>
+                        <p className="mt-2 font-serif text-sm leading-relaxed text-muted-foreground">
+                          {latest.dek}
+                        </p>
+                      </>
+                    ) : (
+                      <p className="mt-2 font-serif text-sm text-muted-foreground">
+                        {item.blurb}
+                      </p>
+                    )}
+                  </article>
+                );
+              })}
+          </div>
+        </section>
 
         <section className="mt-14 grid gap-8 border-t border-foreground pt-8 lg:grid-cols-12">
           <div className="lg:col-span-7">

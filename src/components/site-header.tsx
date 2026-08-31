@@ -3,14 +3,14 @@ import { MarketTape } from "@/components/krant/market-tape";
 import { EDITION } from "@/data/edition";
 import { getMarketBoard } from "@/data/markets";
 import { formatNlDate, formatWeekday } from "@/lib/newspaper";
+import { mastheadRubrieken } from "@/lib/rubrieken";
 import { SITE } from "@/lib/site";
 
 const NAV = [
   { href: "/", label: "Voorpagina" },
-  { href: "/desk/opinie", label: "Mening" },
+  { href: "/rubrieken", label: "Rubrieken" },
   { href: "/markten", label: "Markten" },
   { href: "/piramide", label: "Piramide" },
-  { href: "/desk/belgie", label: "België" },
   { href: "/orakelboek", label: "Orakelboek" },
   { href: "/methode", label: "Methode" },
   { href: "/archief", label: "Archief" },
@@ -18,6 +18,7 @@ const NAV = [
 
 export function SiteHeader() {
   const board = getMarketBoard();
+  const rubrieken = mastheadRubrieken();
 
   return (
     <header className="bg-background">
@@ -51,6 +52,20 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               className="text-foreground hover:text-accent"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        <nav
+          aria-label="Rubrieken"
+          className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 border-t border-hairline py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground"
+        >
+          {rubrieken.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="hover:text-accent"
             >
               {item.label}
             </Link>

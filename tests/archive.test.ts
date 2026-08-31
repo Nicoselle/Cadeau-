@@ -42,7 +42,7 @@ describe("archief van alle edities", () => {
   });
 
   it("keeps edition 2 as the bodem lead and the vat of 31 August", () => {
-    expect(newsOfEdition(2)).toHaveLength(1);
+    expect(newsOfEdition(2)).toHaveLength(5);
     expect(leadOfEdition(2).slug).toBe("reele-rente-houdt-de-bodem");
     expect(opinionOnEditionDate(2)?.slug).toBe("vat-liegt-minder-dan-de-index");
     expect(opinionsOfEdition(2).length).toBeGreaterThanOrEqual(1);
@@ -70,7 +70,7 @@ describe("archief van alle edities", () => {
 
     const second = serializeArchivedEdition(2);
     expect(second?.lead.slug).toBe("reele-rente-houdt-de-bodem");
-    expect(second?.articles).toHaveLength(1);
+    expect(second?.articles).toHaveLength(5);
     expect(serializeArchivedEdition(99)).toBeNull();
   });
 });

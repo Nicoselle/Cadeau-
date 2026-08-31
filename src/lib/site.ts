@@ -16,10 +16,4 @@ export const CADEAU = {
   path: "/cadeau",
 } as const;
 
-export const DESK_LABELS: Record<string, string> = {
-  vs: "Verenigde Staten",
-  eurozone: "Eurozone",
-  belgie: "België",
-  methode: "Methode",
-  opinie: "De mening",
-};
+export { DESK_LABELS, RUBRIEKEN, mastheadRubrieken, rubriekByDesk } from "@/lib/rubrieken";

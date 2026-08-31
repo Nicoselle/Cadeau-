@@ -27,6 +27,7 @@ een bewuste beslissing van Nico om **14:00 Europe/Brussels**. De Grokbot
 │   ├── stuk/[slug]/         # Stukken
 │   ├── piramide/            # Eén desk: allocatie, dossiers, SMC
 │   ├── onderzoek/[slug]/    # Dossierdiepte
+│   ├── rubrieken/           # Inhoudsopgave: landen, geld, rente, grondstoffen, titels
 │   ├── markten/ orakelboek/ methode/ nazien/ archief/[nummer]/ desk/
 │   └── api/v1/              # krant, stukken, markten, briefing, volgen, products
 ├── src/data/                # articles, edition, markets, oracles, watchlist, products
@@ -261,7 +262,9 @@ Geen database, geen geheimen in v1. Marktcijfers komen uit `redactie/data`.
    *De mening* (vroegere Knack: één stelling, geen lijstje). Een nieuwe
    genummerde editie is extra. Grokbot zet ná de beslissing
    (`redactie/grokbot.md`). Geen merge naar productie zonder uitdrukkelijk ja.
-7. **Eén desk** op `/piramide`. `/onderzoek` en `/smc` verwijzen door.
+7. **Eén weging** op `/piramide`. `/onderzoek` en `/smc` verwijzen door.
+   Rubrieken daarnaast: VS, eurozone, België, geld, rente, grondstoffen,
+   titels, mening. Inhoudsopgave: `/rubrieken`.
    Standen hebben datum + ongeldigverklaring; geen koersdoel.
 8. **Lokaal en Vesting** blijven routes, niet de masthead. Lokaal is
    vraaggestuurd: abonnees kiezen gemeenten; alleen die plaatsen worden
