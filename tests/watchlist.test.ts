@@ -23,7 +23,7 @@ const followedTickers = [
   "BTC",
   "SKY",
   "xrm",
-  "TON",
+  "GRAM",
   "LWLG",
   "NB",
   "GCU",
@@ -74,15 +74,16 @@ describe("safecapital-piramide", () => {
     expect(allocationIds("cash")).toEqual(["eur", "usd", "chf", "nok"]);
   });
 
-  it("houdt alleen BTC, XMR en TON in de cryptolaag", () => {
-    expect(CRYPTO_ALLOCATION).toEqual(["btc", "xmr", "ton"]);
-    expect(allocationIds("crypto")).toEqual(["btc", "xmr", "ton"]);
+  it("houdt alleen BTC, XMR en GRAM in de cryptolaag", () => {
+    expect(CRYPTO_ALLOCATION).toEqual(["btc", "xmr", "gram"]);
+    expect(allocationIds("crypto")).toEqual(["btc", "xmr", "gram"]);
     const byId = Object.fromEntries(WATCHLIST.map((item) => [item.id, item]));
-    expect(byId.ton?.yahoo).toBe("TON11419-USD");
-    expect(byId.ton?.listedAs).toBe("TON");
+    expect(byId.gram?.yahoo).toBe("GRAM-USD");
+    expect(byId.gram?.listedAs).toBe("GRAM");
+    expect(byId.gram?.name).toMatch(/Gram/);
     expect(byId.sky?.role).toBe("volgen");
     expect(yahooSymbols()).not.toContain("TON-USD");
-    expect(yahooSymbols()).not.toContain("GRAM-USD");
+    expect(yahooSymbols()).not.toContain("TON11419-USD");
   });
 
   it("zet alle gevolgde aandelen in de laag van 20 %", () => {
@@ -126,7 +127,7 @@ describe("safecapital-piramide", () => {
       "cash",
       "btc",
       "xmr",
-      "ton",
+      "gram",
     ]);
   });
 });

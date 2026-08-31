@@ -39,7 +39,7 @@ export const CASH_MIX = [
   { id: "nok", currency: "NOK", shareOfCash: 5 },
 ] as const;
 
-export const CRYPTO_ALLOCATION = ["btc", "xmr", "ton"] as const;
+export const CRYPTO_ALLOCATION = ["btc", "xmr", "gram"] as const;
 
 export const PYRAMID_COPY: Record<
   PyramidLayer,
@@ -62,8 +62,8 @@ export const PYRAMID_COPY: Record<
   },
   crypto: {
     label: "Crypto — 10 %",
-    kicker: "BTC · XMR · TON",
-    text: "De smalste laag. Alleen Bitcoin, Monero en Toncoin zitten in de 10 %. Sky blijft op de volglijst, maar telt niet mee in de allocatie. xrm is Monero.",
+    kicker: "BTC · XMR · GRAM",
+    text: "De smalste laag. Alleen Bitcoin, Monero en Gram zitten in de 10 %. Gram is Toncoin; één tape, geen twee tokens. Sky blijft op de volglijst, maar telt niet mee in de allocatie. xrm is Monero.",
   },
 };
 
@@ -125,11 +125,11 @@ export const ASSET_STANDS: AssetStand[] = [
     text: "Aangevraagd als xrm. XRM bestaat niet op de tape; dit is XMR. Zelfde regel: de punt blijft de punt.",
   },
   {
-    id: "ton",
-    title: "Toncoin",
+    id: "gram",
+    title: "Gram (Toncoin)",
     layer: "crypto",
     status: "In de 10 %",
-    text: "TON, niet het microtoken TON-USD. Yahoo noemt het TON11419-USD; Gram (prev. Toncoin) is dezelfde tape.",
+    text: "Ton is Gram. Eén allocatie, ticker GRAM-USD (Yahoo: Gram, prev. Toncoin). Niet het microtoken TON-USD.",
   },
 ];
 
@@ -443,15 +443,15 @@ export const WATCHLIST: WatchItem[] = [
     note: "In de 10 %. Aangevraagd als xrm; de tape kent XMR.",
   },
   {
-    id: "ton",
-    name: "Toncoin",
-    listedAs: "TON",
-    yahoo: "TON11419-USD",
+    id: "gram",
+    name: "Gram (Toncoin)",
+    listedAs: "GRAM",
+    yahoo: "GRAM-USD",
     layer: "crypto",
     kind: "crypto",
     exchange: "crypto",
     role: "allocatie",
-    note: "In de 10 %. Niet TON-USD (ander token). Gram (prev. Toncoin) is dezelfde tape.",
+    note: "In de 10 %. Ton is Gram: één tape (GRAM-USD). Niet het microtoken TON-USD.",
   },
   {
     id: "sky",

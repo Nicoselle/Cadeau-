@@ -36,7 +36,8 @@ export default async function PyramidPage() {
           ligt <strong>30 % puur liquide cash</strong> — daarvan 50 % EUR, 40 %
           USD, 5 % CHF en 5 % NOK. Pas wanneer die fundamenten stevig staan,
           komen <strong>publieke aandelen (20 %)</strong>. Ten slotte{" "}
-          <strong>crypto (10 %)</strong>: Bitcoin, Monero en Toncoin.
+          <strong>crypto (10 %)</strong>: Bitcoin, Monero en Gram
+          (Toncoin).
         </p>
         <p className="duiding border-l-2 border-[hsl(var(--gold))] pl-4">
           Hieronder de namen die we de moeite waard vinden, en de huidige stand

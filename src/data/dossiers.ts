@@ -189,9 +189,9 @@ export const DOSSIERS: Dossier[] = [
   {
     slug: "crypto",
     title: "Crypto — de 10 %",
-    kicker: "BTC · XMR · TON · Sky volgt",
-    dek: "Alleen Bitcoin, Monero en Toncoin zitten in de allocatie. Liquiditeit, dollar en risk-on/off zijn de macros. Sky blijft op de band.",
-    assetIds: ["btc", "xmr", "ton", "sky"],
+    kicker: "BTC · XMR · GRAM · Sky volgt",
+    dek: "Alleen Bitcoin, Monero en Gram zitten in de allocatie. Gram is Toncoin. Liquiditeit, dollar en risk-on/off zijn de macros. Sky blijft op de band.",
+    assetIds: ["btc", "xmr", "gram", "sky"],
     drivers: [
       { tileId: "m2", relation: "Versnellende dollarliquiditeit is de klassieke staartwind voor BTC." },
       { tileId: "dff", relation: "Ruimer beleid tilt risk-assets; krapper beleid doet het omgekeerde." },
@@ -201,7 +201,7 @@ export const DOSSIERS: Dossier[] = [
     ],
     channelId: "crypto",
     body: [
-      "Feit: 10 % van de piramide. xrm is XMR. TON is Toncoin (TON11419-USD), niet het microtoken TON-USD.",
+      "Feit: 10 % van de piramide. xrm is XMR. Ton is Gram (GRAM-USD), niet het microtoken TON-USD.",
       "Feit: Sky staat op volgen, niet in de 10 %.",
       "Duiding: winst in deze laag verstevigt eerst edelmetaal en cash. De punt blijft de punt.",
     ],
@@ -382,10 +382,10 @@ export const ASSET_NOTES: AssetNote[] = [
     duiding: "Beweegt met BTC, plus een eigen regelgevingskanaal. Dat kanaal heeft geen CSV.",
   },
   {
-    id: "ton",
-    what: "Toncoin. Yahoo TON11419-USD. Gram (prev. Toncoin) is dezelfde tape.",
-    watch: "Telegram-ecosysteem, BTC-bèta, liquiditeit, TON-specifieke bridges/ETF-ruis.",
-    duiding: "In de 10 %, niet TON-USD (ander token).",
+    id: "gram",
+    what: "Gram. Toncoin onder de oude naam. Yahoo GRAM-USD (prev. Toncoin).",
+    watch: "Telegram-ecosysteem, BTC-bèta, liquiditeit. Zelfde asset als TON in de piramidetekst.",
+    duiding: "In de 10 %. Ton is Gram. Niet TON-USD (ander token).",
   },
   {
     id: "sky",
@@ -454,8 +454,8 @@ export const NEWS_CHANNELS: NewsChannel[] = [
   },
   {
     id: "crypto",
-    label: "BTC, XMR, TON",
-    query: "Bitcoin OR Monero OR Toncoin OR \"Gram Toncoin\" M2 OR ETF",
+    label: "BTC, XMR, GRAM",
+    query: "Bitcoin OR Monero OR Gram OR Toncoin M2 OR ETF",
     locale: { hl: "en", gl: "US", ceid: "US:en" },
     keywords: ["bitcoin", "btc", "monero", "xmr", "toncoin", "ton", "gram"],
     dossier: "crypto",

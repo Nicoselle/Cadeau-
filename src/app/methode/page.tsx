@@ -84,7 +84,7 @@ export default function MethodPage() {
           De investeringspiramide is de methode van SafeCapital om kapitaal
           veilig te stellen: 40 % edelmetalen, 30 % liquide cash (50 % EUR,
           40 % USD, 5 % CHF, 5 % NOK), 20 % publieke aandelen, 10 % crypto
-          (BTC, XMR, TON). Winst nemen verstevigt eerst de basis. Nooit in één
+          (BTC, XMR, GRAM — Ton is Gram). Winst nemen verstevigt eerst de basis. Nooit in één
           keer in of uit een aandeel. Nooit met het laatste geld. De inhoud is
           educatief; SafeCapital is geen erkende beleggingsadviseur. Koersen
           komen van de publieke Yahoo-chart. De datavloer blijft de CSV.

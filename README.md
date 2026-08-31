@@ -20,6 +20,7 @@ broker. Een krant die op zichzelf staat:
 - orakelboek met zeven toetsbare uitspraken
 - piramide: SafeCapital-methode 40/30/20/10 + volglijst
 - onderzoek: dossiers per asset en macrokoppen die die namen raken
+- SMC: Smart Money Concept op de zwaardere tapes (BOS, CHOCH, FVG)
 - methodepagina (bronnenladder, etiketten, wat we niet doen)
 - publieke JSON-API
 
@@ -55,6 +56,7 @@ Optioneel: `NEXT_PUBLIC_SITE_URL` voor canonieke URL’s.
 | `/markten` | Datavloer |
 | `/piramide` | Investeringspiramide en volglijst (publieke tape) |
 | `/onderzoek` | Dossiers en macro die de volglijst raakt |
+| `/smc` | Smart Money Concept-lezingen (raming) |
 | `/orakelboek` | Toetsbare uitspraken |
 | `/methode` | Huisregels |
 | `/archief` | Edities |

@@ -165,7 +165,7 @@ export default function HomePage() {
               <li>40 % — edelmetalen (goud, zilver)</li>
               <li>30 % — cash (EUR 50, USD 40, CHF 5, NOK 5)</li>
               <li>20 % — publieke aandelen</li>
-              <li>10 % — crypto (BTC, XMR, TON)</li>
+              <li>10 % — crypto (BTC, XMR, GRAM)</li>
             </ol>
           </aside>
         </section>

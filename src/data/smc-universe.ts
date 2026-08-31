@@ -6,7 +6,7 @@ export const SMC_UNIVERSE = [
   "usd",
   "btc",
   "xmr",
-  "ton",
+  "gram",
   "aem",
   "nem",
   "aya",
