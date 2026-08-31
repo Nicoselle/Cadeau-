@@ -37,6 +37,9 @@ describe("onderzoeksdossiers", () => {
     const m2 = impact.find((row) => row.tile.id === "m2");
     expect(m2?.hits.some((hit) => hit.slug === "edelmetalen")).toBe(true);
     expect(m2?.hits.some((hit) => hit.slug === "crypto")).toBe(true);
+    expect(impact.find((row) => row.tile.id === "brent")?.hits.some((hit) => hit.slug === "kasstroom")).toBe(true);
+    expect(impact.find((row) => row.tile.id === "koper")?.hits.some((hit) => hit.slug === "kritieke-grondstoffen")).toBe(true);
+    expect(impact.find((row) => row.tile.id === "uranium")?.hits.some((hit) => hit.slug === "kritieke-grondstoffen")).toBe(true);
     expect(impact.every((row) => row.hits.length > 0)).toBe(true);
   });
 

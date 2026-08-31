@@ -54,7 +54,8 @@ export default function MethodPage() {
         <ol className="mt-4 max-w-3xl list-decimal space-y-3 pl-5 font-serif leading-relaxed">
           <li>
             <strong>FRED</strong> — hoofdbron voor conjunctuurreeksen, inclusief
-            Eurostat-spiegelreeksen. Route: fredgraph.csv.
+            Eurostat-spiegelreeksen, Brent, WTI, koper en uranium. Route:
+            fredgraph.csv.
           </li>
           <li>
             <strong>Statbel bestat-API</strong> — officiële Belgische CPI,

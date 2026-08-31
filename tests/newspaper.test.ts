@@ -9,6 +9,7 @@ import { getArticle, leadArticle } from "@/lib/newspaper";
 import {
   annualizedGrowth,
   observations,
+  round1,
   round2,
   yoyGrowth,
 } from "@/lib/series";
@@ -103,6 +104,23 @@ describe("editie", () => {
     expect(board.tiles.length).toBeGreaterThanOrEqual(10);
     expect(board.tiles.every((tile) => tile.value !== "—")).toBe(true);
     expect(board.tiles.find((tile) => tile.id === "m2")?.value).toContain("5,5");
+    expect(board.tiles.find((tile) => tile.id === "brent")?.value).toContain("88,24");
+    expect(board.tiles.find((tile) => tile.id === "koper")?.value).toContain("13.542,82");
+    expect(board.tiles.find((tile) => tile.id === "uranium")?.value).toContain("69,23");
+  });
+
+  it("reproduces last oil, copper and uranium prints from the floor", () => {
+    const brent = observations("fred_DCOILBRENTEU_2025-01_2026-08.csv");
+    const wti = observations("fred_DCOILWTICO_2025-01_2026-08.csv");
+    const copper = observations("fred_PCOPPUSDM_2024-01_2026-07.csv");
+    const uranium = observations("fred_PURANUSDM_2024-01_2026-07.csv");
+    expect(brent.at(-1)).toEqual({ date: "2026-08-25", value: 88.24 });
+    expect(wti.at(-1)).toEqual({ date: "2026-08-25", value: 83.9 });
+    expect(copper.at(-1)).toEqual({ date: "2026-07-01", value: 13542.82 });
+    expect(uranium.at(-1)).toEqual({ date: "2026-07-01", value: 69.23 });
+    expect(round1(yoyGrowth(brent, "2026-08") ?? 0)).toBe(30.1);
+    expect(round1(yoyGrowth(copper, "2026-07") ?? 0)).toBe(38.6);
+    expect(round1(yoyGrowth(uranium, "2026-07") ?? 0)).toBe(17.4);
   });
 
   it("serializes the edition for the public API", () => {

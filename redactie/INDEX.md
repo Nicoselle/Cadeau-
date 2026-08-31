@@ -37,7 +37,7 @@ elkaar nooit. Zelfde geldt voor `registers/overdrachten.jsonl` (10 regels, appen
 | Rolprompt-verbeteringen | `voorstel-rolpromptreparatie-zetter.md` (7 punten) + Yahoo-aanscherping in `verslag-2026-08-18.md` §aanbeveling |
 | Waarom geen accounts? | `notitie-2026-08-18-geen-account.md` |
 
-## 3. Datavloer (`data/`, 14 bestanden; controle: `python3 scripts/zetter.py dekking`)
+## 3. Datavloer (`data/`, 18 bestanden; controle: `python3 scripts/zetter.py dekking`)
 
 | Bestand | Reeks | Loopt t/m | Route |
 |---|---|---|---|
@@ -47,13 +47,17 @@ elkaar nooit. Zelfde geldt voor `registers/overdrachten.jsonl` (10 regels, appen
 | fred_DGS10 / fred_DGS30 | 10j/30j rente VS | 2026-08-06 / 08-14 | FRED |
 | fred_T10YIE | 10j breakeven | 2026-08-17 | FRED |
 | fred_SP500 / fred_VIXCLS | S&P 500 / VIX | 2026-08-17 / 08-13 | FRED |
+| fred_DCOILBRENTEU / fred_DCOILWTICO | Brent / WTI, dollar per vat | 2026-08-25 | FRED (EIA), dagreeks |
+| fred_PCOPPUSDM | Koper, dollar per metrische ton | 2026-07 | FRED (IMF), maandreeks |
+| fred_PURANUSDM | Uranium, dollar per pond | 2026-07 | FRED (IMF), maandreeks |
 | fred_HICP_EZ / fred_HICP_BE | HICP eurozone/België | 2026-06 | FRED-spiegel (verser dan Eurostat-API!) |
 | statbel_cpi_gezondheidsindex | CPI, gezondheidsindex, afgevlakt, energie (BE) | 2026-07 | Statbel bestat-JSON |
 | treasury_debt_to_penny | staatsschuld VS per dag | 2026-08-13 | Treasury FiscalData |
 | treasury_rentelast | rentelastcomponenten VS (géén tijdreeks — staat daarom niet in `dekking`; géén totaal, zie kop in het bestand) | boekjaar t/m 2026-07 | Treasury FiscalData |
 
-**Gat in de vloer:** BEL 20 (alleen Yahoo-quotepagina, niet machineleesbaar) en eurozone-M3
-(alleen ECB-homepage-headline).
+**Gat in de vloer:** BEL 20 (alleen Yahoo-quotepagina, niet machineleesbaar), eurozone-M3
+(alleen bekendmaking ECB-startpagina) en vrachttarieven (nog geen reeks). Olie, koper en
+uranium liggen sinds 31 augustus 2026 in de vloer.
 
 ## 4. Registers & gereedschap
 - `registers/orakelboek.md` — 7 toetsbare uitspraken; eerstvolgende toets **05-10-2026** (regel 1).

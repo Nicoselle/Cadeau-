@@ -42,6 +42,10 @@ export function getMarketBoard(): MarketBoard {
     "afgevlakte_gezondheidsindex",
   );
   const debt = observations("treasury_debt_to_penny_2026-08.csv", "total_public_debt_usd");
+  const brent = observations("fred_DCOILBRENTEU_2025-01_2026-08.csv");
+  const wti = observations("fred_DCOILWTICO_2025-01_2026-08.csv");
+  const copper = observations("fred_PCOPPUSDM_2024-01_2026-07.csv");
+  const uranium = observations("fred_PURANUSDM_2024-01_2026-07.csv");
 
   const m2Yoy = yoyGrowth(m2sl);
   const m2nsYoy = yoyGrowth(m2ns);
@@ -60,6 +64,14 @@ export function getMarketBoard(): MarketBoard {
   const lastVix = lastObservation(vix);
   const lastDebt = lastObservation(debt);
   const lastSmoothed = lastObservation(beSmoothed);
+  const lastBrent = lastObservation(brent);
+  const lastWti = lastObservation(wti);
+  const lastCopper = lastObservation(copper);
+  const lastUranium = lastObservation(uranium);
+  const brentYoy = yoyGrowth(brent);
+  const wtiYoy = yoyGrowth(wti);
+  const copperYoy = yoyGrowth(copper);
+  const uraniumYoy = yoyGrowth(uranium);
 
   const spread =
     lastDff && lastDgs10 ? lastDgs10.value - lastDff.value : null;
@@ -165,6 +177,33 @@ export function getMarketBoard(): MarketBoard {
       spark: sparkValues(vix, 32),
     },
     {
+      id: "brent",
+      label: "Brent, vat",
+      value: lastBrent ? `${formatPlainNumber(lastBrent.value, 2)} $` : "—",
+      detail: `EIA via FRED, dagslot. Jaar-op-jaar ${brentYoy == null ? "—" : formatPct(round1(brentYoy))}${lastWti ? ` · WTI ${formatPlainNumber(lastWti.value, 2)} $` : ""}${wtiYoy == null ? "" : ` (${formatPct(round1(wtiYoy))} j/j)`}.`,
+      seriesFile: "fred_DCOILBRENTEU_2025-01_2026-08.csv",
+      asOf: lastBrent?.date ?? EDITION.asOf,
+      spark: sparkValues(brent, 40),
+    },
+    {
+      id: "koper",
+      label: "Koper, ton",
+      value: lastCopper ? `${formatPlainNumber(lastCopper.value, 2)} $` : "—",
+      detail: `IMF-wereldprijs via FRED, maandreeks, dollar per metrische ton. Jaar-op-jaar ${copperYoy == null ? "—" : formatPct(round1(copperYoy))}.`,
+      seriesFile: "fred_PCOPPUSDM_2024-01_2026-07.csv",
+      asOf: lastCopper?.date ?? EDITION.asOf,
+      spark: sparkValues(copper, 24),
+    },
+    {
+      id: "uranium",
+      label: "Uranium, pond",
+      value: lastUranium ? `${formatPlainNumber(lastUranium.value, 2)} $` : "—",
+      detail: `IMF-wereldprijs via FRED, maandreeks, dollar per pond (U3O8). Jaar-op-jaar ${uraniumYoy == null ? "—" : formatPct(round1(uraniumYoy))}.`,
+      seriesFile: "fred_PURANUSDM_2024-01_2026-07.csv",
+      asOf: lastUranium?.date ?? EDITION.asOf,
+      spark: sparkValues(uranium, 24),
+    },
+    {
       id: "ust-debt",
       label: "VS-staatsschuld",
       value: lastDebt ? `${formatPlainNumber(lastDebt.value / 1e12, 2)} bln $` : "—",
@@ -181,7 +220,8 @@ export function getMarketBoard(): MarketBoard {
     notes: [
       "Elk cijfer is herberekend uit de opgeslagen CSV in redactie/data. Geen live-feed.",
       "Seizoensgecorrigeerde reeksen worden altijd naast hun ongecorrigeerde tegenhanger gelegd.",
-      "ECB-headlines (M3, €STR, juli-HICP) staan in de stukken als headlines, niet als reeks.",
+      "Bekendmakingen van de ECB-startpagina (M3, €STR, juli-HICP) staan in de stukken als bekendmaking, niet als reeks.",
+      "Olie is een dagreeks (Brent en WTI). Koper en uranium zijn maandreeksen van het IMF.",
     ],
   };
 }

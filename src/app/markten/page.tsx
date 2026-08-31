@@ -9,7 +9,7 @@ import { formatNlDate } from "@/lib/newspaper";
 export const metadata: Metadata = {
   title: "Markten",
   description:
-    "De datavloer van de Kapitaalkrant: M2, inflatie, rente, spilindex en markten, herberekend uit opgeslagen reeksen.",
+    "De datavloer van de Kapitaalkrant: M2, inflatie, rente, olie, koper, uranium en de overige reeksen, herberekend uit opgeslagen bestanden.",
 };
 
 export default function MarketsPage() {
