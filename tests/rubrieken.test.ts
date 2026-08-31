@@ -56,6 +56,27 @@ describe("meer rubrieken dan landen alleen", () => {
     expect(JSON.stringify(titels)).toMatch(/geen koersdoel/i);
   });
 
+  it("gives the four new desks newspaper volume, not a teaser", () => {
+    for (const slug of [
+      "juni-blijft-de-editievloer",
+      "spread-is-van-veertien-augustus",
+      "vat-koper-pond",
+      "namen-zonder-koersdoel",
+    ]) {
+      const article = getArticle(slug);
+      expect(article, slug).toBeDefined();
+      expect(article!.readingMinutes, slug).toBeGreaterThanOrEqual(7);
+      const headings = article!.body.filter((block) => block.type === "h2");
+      const paragraphs = article!.body.filter((block) => block.type === "p");
+      expect(headings.length, `${slug} h2`).toBeGreaterThanOrEqual(2);
+      expect(paragraphs.length, `${slug} p`).toBeGreaterThanOrEqual(6);
+      expect(
+        article!.body.some((block) => block.type === "table"),
+        `${slug} table`,
+      ).toBe(true);
+    }
+  });
+
   it("keeps every article desk in the registry", () => {
     const known = new Set(desks());
     for (const article of articles) {
