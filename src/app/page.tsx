@@ -2,9 +2,11 @@ import Link from "next/link";
 import { EditionFigure } from "@/components/krant/edition-figure";
 import { MarketTape } from "@/components/krant/market-tape";
 import { StoryCard } from "@/components/krant/story-card";
+import { WatchTape } from "@/components/krant/watch-tape";
 import { EDITION } from "@/data/edition";
 import { LOKAAL_IMAGE } from "@/data/page-images";
 import { oracles } from "@/data/oracles";
+import { WATCHLIST } from "@/data/watchlist";
 import { getMarketBoard } from "@/data/markets";
 import {
   firstParagraph,
@@ -53,6 +55,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
       <MarketTape tiles={board.tiles} />
+      <WatchTape />
 
       <div className="container py-10">
         <section className="grid gap-10 lg:grid-cols-12">
@@ -123,6 +126,41 @@ export default function HomePage() {
           {rest.slice(2).map((article) => (
             <StoryCard key={article.slug} article={article} />
           ))}
+        </section>
+
+        <section className="mt-14 grid gap-8 border-t-2 border-foreground pt-8 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <p className="text-[11px] uppercase tracking-[0.18em] text-accent">
+              Extra aandacht
+            </p>
+            <h2 className="mt-2 font-display text-3xl font-semibold">
+              De piramide, geen modelportefeuille
+            </h2>
+            <p className="mt-3 max-w-2xl font-serif text-lg leading-relaxed text-muted-foreground">
+              {WATCHLIST.length} namen die de redactie extra volgt: edelmetalen
+              onderop, producenten en kasstroom daarboven, technologie en de
+              punt (crypto) bovenaan. Laatste print van de publieke tape, geen
+              koopadvies.
+            </p>
+            <Link
+              href="/piramide"
+              className="mt-5 inline-block border-b border-foreground pb-0.5 text-sm font-medium uppercase tracking-[0.12em] hover:border-accent hover:text-accent"
+            >
+              Uitleg en volglijst
+            </Link>
+          </div>
+          <aside className="border border-foreground p-5 lg:col-span-5">
+            <p className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+              Lagen
+            </p>
+            <ol className="mt-3 space-y-2 font-serif text-sm leading-relaxed">
+              <li>Bodem — goud, zilver</li>
+              <li>Producenten — mijn, royalty, cake</li>
+              <li>Kasstroom — olie, zee, energie</li>
+              <li>Thema — software, quantum, fotonica</li>
+              <li>Punt — crypto en wat kantelt</li>
+            </ol>
+          </aside>
         </section>
 
         <section className="mt-14 grid gap-8 border-t-2 border-foreground pt-8 lg:grid-cols-12">

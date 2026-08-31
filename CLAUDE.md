@@ -24,10 +24,11 @@ een bewuste beslissing, geen automatische feed.
 ├── src/app/                 # Next.js App Router — krant + /cadeau
 │   ├── page.tsx             # Voorpagina
 │   ├── stuk/[slug]/         # Stukken
-│   ├── markten/ orakelboek/ methode/ archief/ desk/
-│   └── api/v1/              # krant, stukken, markten, products
-├── src/data/                # articles.ts, edition.ts, markets.ts, oracles.ts, products.ts
+│   ├── markten/ piramide/ orakelboek/ methode/ archief/ desk/
+│   └── api/v1/              # krant, stukken, markten, volgen, products
+├── src/data/                # articles, edition, markets, oracles, watchlist, products
 ├── src/lib/series.ts        # CSV-parser en j/j-groei (alleen opgeslagen data)
+├── src/lib/quotes.ts        # Publieke tape (Yahoo chart) voor de volglijst
 ├── src/components/krant/    # Masthead-hulp, tape, story-card, article-body
 ├── redactie/                # Bronnenstaat, dossiers, CSV-vloer, zetter.py
 │   ├── INDEX.md             # Ene ingang tot de redactiemap

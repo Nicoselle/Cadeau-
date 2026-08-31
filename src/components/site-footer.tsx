@@ -10,9 +10,10 @@ export function SiteFooter() {
         <div>
           <p className="font-display text-2xl font-semibold">{SITE.name}</p>
           <p className="mt-2 max-w-sm font-serif text-sm leading-relaxed text-muted-foreground">
-            Zelfstandige investeerderskrant. Geen live-koersen, geen
-            beleggingsadvies. Wel cijfers met bon, duiding met tegenwerping, en
-            een orakelboek dat wij later zelf toetsen.
+            Zelfstandige investeerderskrant. Geen beleggingsadvies, geen
+            modelportefeuille. Wel cijfers met bon, duiding met tegenwerping,
+            een volglijst met laatste print, en een orakelboek dat wij later
+            zelf toetsen.
           </p>
         </div>
         <div className="text-sm">
@@ -23,6 +24,11 @@ export function SiteFooter() {
             <li>
               <Link href="/methode" className="hover:text-accent">
                 Methode en statuut
+              </Link>
+            </li>
+            <li>
+              <Link href="/piramide" className="hover:text-accent">
+                Piramide en volglijst
               </Link>
             </li>
             <li>

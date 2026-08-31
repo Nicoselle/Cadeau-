@@ -18,8 +18,9 @@ export default function MethodPage() {
       </h1>
       <p className="mt-4 max-w-2xl font-serif text-lg text-muted-foreground">
         Deze krant is zelfstandig: geen socialefeed, geen paywall-aggregator,
-        geen live-koersen van een broker. Wat u leest, staat hier, met de reeks
-        ernaast.
+        geen broker met een koopknop. Wat u leest, staat hier, met de reeks
+        ernaast. De volglijst toont een laatste print van de publieke tape —
+        dat is geen datavloer.
       </p>
 
       <div className="mt-12 grid gap-10 lg:grid-cols-2">
@@ -70,6 +71,27 @@ export default function MethodPage() {
             API bereikbaar is.
           </li>
         </ol>
+      </section>
+
+      <section className="mt-12 max-w-3xl font-serif leading-relaxed">
+        <h2 className="font-display text-2xl font-semibold">
+          Piramide en volglijst
+        </h2>
+        <p className="mt-4">
+          De investeringspiramide is een taxonomie: bodem (edelmetalen),
+          producenten, kasstroom, thema, punt. Extra aandacht is geen weging en
+          geen advies. Koersen op die pagina komen van de publieke Yahoo-chart,
+          90 seconden cache, User-Agent van de krant. Tickers die de lezer
+          anders schrijft (xrm, PBR.A, ACM, GCU, Sky) worden herleid tot wat de
+          tape echt kent; de noot zegt welke keuze dat was. De datavloer blijft
+          de CSV.
+        </p>
+        <p className="mt-4">
+          <Link href="/piramide" className="underline hover:text-accent">
+            Naar de piramide
+          </Link>
+          .
+        </p>
       </section>
 
       <section className="mt-12 max-w-3xl font-serif leading-relaxed">

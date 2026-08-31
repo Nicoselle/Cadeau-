@@ -18,6 +18,7 @@ broker. Een krant die op zichzelf staat:
 - zes stukken, elk met bonnen en waar nodig een steenman
 - marktenpagina uit CSV’s (M2, CPI, HICP, rente, S&P, VIX, spilindex, VS-schuld)
 - orakelboek met zeven toetsbare uitspraken
+- piramide: uitleg investeringspiramide + volglijst met extra aandacht
 - methodepagina (bronnenladder, etiketten, wat we niet doen)
 - publieke JSON-API
 
@@ -51,6 +52,7 @@ Optioneel: `NEXT_PUBLIC_SITE_URL` voor canonieke URL’s.
 | `/` | Voorpagina, editie 1 |
 | `/stuk/[slug]` | Stuk met cijfers, bonnen, steenman |
 | `/markten` | Datavloer |
+| `/piramide` | Investeringspiramide en volglijst (publieke tape) |
 | `/orakelboek` | Toetsbare uitspraken |
 | `/methode` | Huisregels |
 | `/archief` | Edities |
@@ -58,7 +60,7 @@ Optioneel: `NEXT_PUBLIC_SITE_URL` voor canonieke URL’s.
 | `/lokaal` | Vraaggerichte lokale ondernemersdesk |
 | `/lokaal/verhaal` | Zaakvoerders sturen hun verhaal in |
 | `/api/v1/krant` | Volledige editie als JSON |
-| `/api/v1/stukken` `/api/v1/markten` | Deel-API’s |
+| `/api/v1/stukken` `/api/v1/markten` `/api/v1/volgen` | Deel-API’s |
 
 ## Redactieregels (kort)
 

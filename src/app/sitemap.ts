@@ -15,6 +15,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/archief",
     "/lokaal",
     "/lokaal/verhaal",
+    "/piramide",
+    "/volgen",
     "/cadeau",
     "/compare",
     "/desk/vs",
