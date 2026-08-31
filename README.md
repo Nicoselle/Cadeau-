@@ -73,7 +73,8 @@ NEXT_PUBLIC_SITE_URL=https://mijn-domein.nl npm run build
 4. **Productdetailpagina** met stabiele URL `/product/[id]`, incl. **uitgesplitste
    Resilience Score** en genormaliseerde **kosten per 2000 kcal**
 5. **Vergelijkingstabel** (`/compare`) voor 2–4 producten, met de beste waarde per rij gemarkeerd
-6. **Responsief** ontwerp (mobiel → desktop)
+6. **Keuze** (`/keuze`) — Decision Intelligence-referentie: catalogus, DRD, evaluatie, ledger
+7. **Responsief** ontwerp (mobiel → desktop)
 
 De selectie voor vergelijken wordt bewaard in `localStorage`, zodat je selectie
 behouden blijft tussen pagina's.
@@ -184,6 +185,21 @@ src/
 tests/                             # Vitest: filtering, resilience, data/API
 .github/workflows/ci.yml           # CI: lint, typecheck, test, build
 ```
+
+## Keuze — Decision Intelligence
+
+Referentie-implementatie van het bouwplan in `docs/architectuur-van-keuzes.md`.
+Beslissingen zijn first-class: DMN-achtige tabellen, causale duiding,
+counterfactuals en een ledger tegen beslissingsamnesie.
+
+| Pad | Inhoud |
+|---|---|
+| `/keuze` | Catalogus van drie referentiebeslissingen |
+| `/keuze/[id]` | DRD, tabellen, evaluatie, vastlegging |
+| `/keuze/ledger` | Beslissingsgeheugen + hit-rate |
+| `/keuze/architectuur` | Marktanalyse en bouwplan |
+| `GET /api/v1/keuze/decisions` | Catalogus (JSON) |
+| `POST /api/v1/keuze/evaluate` | Zuivere evaluatie |
 
 ## Deployen op Vercel
 

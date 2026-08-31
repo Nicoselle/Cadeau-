@@ -18,6 +18,9 @@ export function SiteFooter() {
         <div className="space-y-1 md:text-right">
           <LastUpdated date={DATA_LAST_UPDATED} />
           <div className="flex gap-3 md:justify-end">
+            <Link href="/keuze" className="hover:text-foreground">
+              Keuze
+            </Link>
             <Link href="/api/v1/products" className="hover:text-foreground">
               JSON API
             </Link>

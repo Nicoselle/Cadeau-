@@ -10,32 +10,31 @@ This file provides guidance for AI assistants (Claude and others) working in thi
 **Owner:** Nicoselle
 **Branch model:** Feature branches prefixed with `claude/` for AI-driven work
 
-> This repository is currently in its initial state (no source code committed yet). This document will evolve as the project grows. Update this file whenever significant architectural or workflow decisions are made.
+De repo bevat twee producten naast elkaar:
+
+1. **Vesting** — noodvoedsel-directory (`/`, `/product`, `/compare`).
+2. **Keuze** — Decision Intelligence-referentie (`/keuze`). Beslissingen zijn
+   first-class assets: DMN-achtige tabellen, een causale laag en een ledger.
+   Architectuur en bouwplan: `docs/architectuur-van-keuzes.md`.
 
 ---
 
 ## Repository Structure
 
-As the project is initialized, the expected structure should be documented here. Update this section when the first code is committed. A typical layout to aim for:
-
 ```
 Cadeau-/
-├── CLAUDE.md              # This file — AI assistant guide
-├── README.md              # Human-facing project overview
-├── .gitignore             # Files excluded from version control
-├── .env.example           # Template for environment variables (never commit .env)
-├── src/                   # Main source code
-│   ├── components/        # UI components (if frontend)
-│   ├── pages/ or routes/  # Routing layer
-│   ├── services/          # Business logic / external integrations
-│   ├── utils/             # Pure utility functions
-│   └── types/             # Shared type definitions (TypeScript)
-├── tests/                 # Test files mirroring src/ structure
-├── docs/                  # Additional documentation
-└── scripts/               # Dev/ops helper scripts
+├── CLAUDE.md
+├── README.md
+├── docs/architectuur-van-keuzes.md   # Marktanalyse + bouwplan Keuze
+├── redactie/                         # Kapitaalkrant / Zetter-dossiers
+├── src/
+│   ├── app/keuze/                    # Catalogus, workspace, ledger, rapport
+│   ├── app/api/v1/keuze/             # Decisions + evaluate
+│   ├── components/keuze/
+│   ├── data/keuze/                   # Drie referentiebeslissingen + zaadsporen
+│   └── lib/keuze/                    # FEEL-subset, engine, causaal, ledger
+└── tests/keuze/
 ```
-
-> Update this section with the actual structure once the project is scaffolded.
 
 ---
 
