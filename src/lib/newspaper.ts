@@ -6,8 +6,19 @@ export function getArticle(slug: string): Article | undefined {
   return articles.find((article) => article.slug === slug);
 }
 
+export function isOpinion(article: Article): boolean {
+  return article.desk === "opinie";
+}
+
 export function articlesByDesk(desk: Desk): Article[] {
   return articles.filter((article) => article.desk === desk);
+}
+
+export function latestOpinion(): Article | undefined {
+  return articles
+    .filter(isOpinion)
+    .slice()
+    .sort((a, b) => b.published.localeCompare(a.published))[0];
 }
 
 export function articlesByEdition(number: number): Article[] {
@@ -29,7 +40,9 @@ export function leadArticle(): Article {
 }
 
 export function secondaryArticles(): Article[] {
-  return currentEditionArticles().filter((article) => !article.lead);
+  return currentEditionArticles().filter(
+    (article) => !article.lead && !isOpinion(article),
+  );
 }
 
 export function editionPath(): string {

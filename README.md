@@ -58,6 +58,7 @@ Optioneel: `NEXT_PUBLIC_SITE_URL` voor canonieke URL’s.
 | `/onderzoek/[slug]` | Dossierdiepte |
 | `/onderzoek` `/smc` | Doorverwijzing naar `/piramide` |
 | `/orakelboek` | Toetsbare uitspraken |
+| `/desk/opinie` | De mening — dagelijks opiniestuk |
 | `/methode` | Huisregels |
 | `/briefing` | Dagelijkse redactiebriefing (niet in de kop) |
 | `/archief` | Edities |

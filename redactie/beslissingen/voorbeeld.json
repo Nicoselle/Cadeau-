@@ -6,5 +6,7 @@
   "tiles": [],
   "standen": "houden",
   "orakel": "ongewijzigd",
-  "notes": "Voorbeeld. Geen echte beslissing. De bot slaat dit bestand over."
+  "notes": "Voorbeeld. Geen echte beslissing. De bot slaat dit bestand over.",
+  "opinion": true,
+  "opinionThesis": ""
 }

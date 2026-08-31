@@ -251,9 +251,10 @@ Geen database, geen geheimen in v1. Marktcijfers komen uit `redactie/data`.
 3. Centenindex is **wet sinds 01-06-2026**; 2% is cumulatief; €2.000 geldt ook pensioenen.
 4. Seizoensgecorrigeerde reeks nooit alleen duiden (M2SL naast M2NS).
 5. Headlines (ECB-homepage) zijn geen reeks.
-6. Alleen Nico beslist om **14:00 Europe/Brussels** of er een macro-editie
-   komt. Grokbot zet ná die beslissing (`redactie/grokbot.md`). Geen merge
-   naar productie zonder uitdrukkelijk ja.
+6. Alleen Nico beslist om **14:00 Europe/Brussels**. Standaard dagelijks:
+   *De mening* (vroegere Knack: één stelling, geen lijstje). Een nieuwe
+   genummerde editie is extra. Grokbot zet ná de beslissing
+   (`redactie/grokbot.md`). Geen merge naar productie zonder uitdrukkelijk ja.
 7. **Eén desk** op `/piramide`. `/onderzoek` en `/smc` verwijzen door.
    Standen hebben datum + ongeldigverklaring; geen koersdoel.
 8. **Lokaal en Vesting** blijven routes, niet de masthead. Lokaal is

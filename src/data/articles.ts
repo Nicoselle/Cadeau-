@@ -120,6 +120,88 @@ export const articles: Article[] = [
     ],
   },
   {
+    slug: "vat-liegt-minder-dan-de-index",
+    kicker: "De mening",
+    title: "Het vat liegt minder dan de index",
+    dek: "De S&P doet alsof hij de wereld is. Brent, koper en uranium zijn de factuur. Een stemming is geen lading.",
+    desk: "opinie",
+    edition: 2,
+    published: "2026-08-31",
+    author: "De mening",
+    lead: false,
+    readingMinutes: 6,
+    image: {
+      src: "/images/vat-liegt-minder-dan-de-index.webp",
+      alt: "Op een eiken tafel staan een deukse oliekannetje, een stuk koperen pijp en een gesloten blik; ernaast een verfrommeld blad met indexcijfers.",
+      caption:
+        "Stof naast stemming. De index blijft staan; hij is niet langer de enige thermometer.",
+    },
+    body: [
+      {
+        type: "p",
+        text: "Er hangt in elke beurszaal een cijfer dat zich als de wereld voordoet. Op 17 augustus stond de S&P 500 in onze vloer op 7.745,06. Het is een gemiddelde van Amerikaanse winstverwachtingen, keurig tot op de cent. Wie dat getal «de markt» noemt, maakt van een stemming een landkaart.",
+      },
+      {
+        type: "p",
+        text: "De landkaart ziet er anders uit als je het vat, de ton en het pond ernaast legt. Brent sloot op 25 augustus op 88,24 dollar het vat. De laatste augustusdag van 2025 in dezelfde reeks: 67,83. Dat is 30,1 procent jaar-op-jaar. WTI ernaast: 83,90. Koper, wereldprijs van het IMF in juli, 13.542,82 dollar de metrische ton — 38,6 procent boven juli 2025. Uranium, dezelfde bron, 69,23 dollar het pond U3O8, 17,4 procent hoger. Geen van die drie is een sentiment. Het is een factuur voor energie, voor elektrificatie, voor de ketens die daarvan leven.",
+      },
+      {
+        type: "p",
+        text: "Een index kan stijgen terwijl het vat duurder wordt, of dalen terwijl koper de rekening schrijft. Dat is geen paradox. Dat is het verschil tussen een stemming en een lading. Wie alleen de stemming herdrukt, herdrukt een beleefdheid.",
+        kind: "duiding",
+      },
+      {
+        type: "table",
+        caption: "Peil 31 augustus 2026. Bonnen in redactie/data. Olie is een dagreeks; koper en uranium zijn maandreeksen van het IMF.",
+        headers: ["Grootheid", "Laatste", "Jaar-op-jaar", "Bon"],
+        rows: [
+          ["S&P 500", "7.745,06 — 17 augustus", "—", "FRED SP500"],
+          ["Brent", "88,24 $ — 25 augustus", "+30,1%", "FRED DCOILBRENTEU"],
+          ["WTI", "83,90 $ — 25 augustus", "+30,4%", "FRED DCOILWTICO"],
+          ["Koper, ton", "13.542,82 $ — juli", "+38,6%", "FRED PCOPPUSDM"],
+          ["Uranium, pond", "69,23 $ — juli", "+17,4%", "FRED PURANUSDM"],
+        ],
+      },
+      {
+        type: "p",
+        text: "Daarom liggen olie, koper en uranium nu naast de index, niet in zijn plaats. De S&P blijft staan als ruwe maat van risicobereidheid. Wij schrappen hem niet. Wij zetten hem terug waar hij hoort: een thermometer van stemming, naast drie thermometers van stof.",
+        kind: "duiding",
+      },
+      {
+        type: "p",
+        text: "De Noorse kroon in de cashlaag ademt met het vat. Petrobras ademt ermee — en met Brasília. Gunnison ademt met de ton, niet met de goudmacro. Yellow Cake houdt de cake, delft niet. Dat zijn feiten van de volglijst. Het is geen koopbrief.",
+      },
+      {
+        type: "quote",
+        text: "Een index zonder lading is een stemming. Een lading zonder index is nog altijd een lading.",
+      },
+      {
+        type: "p",
+        text: "De bodem van de piramide is metaal. De punt is een verhaal. Wie die volgorde omdraait omdat de S&P een hoog cijfer toont, leest de factuur niet. De factuur ligt er, met bon. Dat is de enige beleefdheid die een krant zich mag permitteren.",
+        kind: "duiding",
+      },
+    ],
+    steenman: {
+      objection:
+        "Een maandreeks van het IMF is geen LME-slot, en Brent van 25 augustus is geen koers van vanochtend. De S&P is de enige thermometer die de markt zelf elke dag naziet. Stof ernaast zetten is nostalgisch materialisme.",
+      antwoord:
+        "Juist daarom staat de etikettering erbij: dagreeks, maandreeks, wereldprijs. De index blijft. Hij is alleen niet langer de enige zin van de zin. Wie een loket wil, legt een tweede reeks naast deze. Wie alleen de stemming herhaalt, heeft geen vloer nodig.",
+    },
+    sources: [
+      { label: "FRED SP500", url: "https://fred.stlouisfed.org/series/SP500", retrieved: "2026-08-31" },
+      { label: "FRED DCOILBRENTEU", url: "https://fred.stlouisfed.org/series/DCOILBRENTEU", retrieved: "2026-08-31" },
+      { label: "FRED DCOILWTICO", url: "https://fred.stlouisfed.org/series/DCOILWTICO", retrieved: "2026-08-31" },
+      { label: "FRED PCOPPUSDM", url: "https://fred.stlouisfed.org/series/PCOPPUSDM", retrieved: "2026-08-31" },
+      { label: "FRED PURANUSDM", url: "https://fred.stlouisfed.org/series/PURANUSDM", retrieved: "2026-08-31" },
+    ],
+    figures: [
+      { label: "S&P 500", value: "7.745,06", source: "FRED SP500, 17 augustus 2026", kind: "feit" },
+      { label: "Brent", value: "88,24 $", source: "FRED DCOILBRENTEU, 25 augustus 2026", kind: "feit" },
+      { label: "Koper, ton", value: "13.542,82 $", source: "FRED PCOPPUSDM, juli 2026", kind: "feit" },
+      { label: "Uranium, pond", value: "69,23 $", source: "FRED PURANUSDM, juli 2026", kind: "feit" },
+    ],
+  },
+  {
     slug: "kraan-weer-open",
     kicker: "Voorpagina · Editie 1",
     title: "De kraan weer open, de rekening rondgepompt",

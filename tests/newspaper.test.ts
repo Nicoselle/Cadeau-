@@ -5,7 +5,7 @@ import { articles } from "@/data/articles";
 import { oracles } from "@/data/oracles";
 import { getMarketBoard } from "@/data/markets";
 import { serializeArticle, serializeEdition } from "@/lib/krant-api";
-import { getArticle, leadArticle } from "@/lib/newspaper";
+import { getArticle, latestOpinion, leadArticle } from "@/lib/newspaper";
 import {
   annualizedGrowth,
   observations,
@@ -85,7 +85,21 @@ describe("editie", () => {
     expect(haystack).toContain("3,63");
     expect(haystack).toMatch(/zelfde datum|uitgelijnd/i);
     expect(articles.filter((article) => article.edition === 1)).toHaveLength(6);
-    expect(articles.filter((article) => article.edition === 2)).toHaveLength(1);
+    expect(
+      articles.filter((article) => article.edition === 2 && article.desk !== "opinie"),
+    ).toHaveLength(1);
+  });
+
+  it("keeps a daily Knack-style opinion on the floor", () => {
+    const piece = latestOpinion();
+    expect(piece?.slug).toBe("vat-liegt-minder-dan-de-index");
+    expect(piece?.desk).toBe("opinie");
+    expect(piece?.lead).toBe(false);
+    expect(piece?.author).toBe("De mening");
+    const haystack = JSON.stringify(piece);
+    expect(haystack).toContain("88,24");
+    expect(haystack).toContain("13.542,82");
+    expect(haystack).not.toMatch(/vijf dingen|in 3 punten/i);
   });
 
   it("looks up articles by slug", () => {

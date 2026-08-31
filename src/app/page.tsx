@@ -8,6 +8,7 @@ import { WATCHLIST } from "@/data/watchlist";
 import {
   firstParagraph,
   formatNlDate,
+  latestOpinion,
   leadArticle,
   secondaryArticles,
 } from "@/lib/newspaper";
@@ -16,14 +17,16 @@ import { DESK_LABELS, SITE } from "@/lib/site";
 export default function HomePage() {
   const lead = leadArticle();
   const rest = secondaryArticles();
+  const opinion = latestOpinion();
   const nextOracle = oracles.find((claim) => claim.outcome === "open");
 
   const itemListJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: `${SITE.name} editie ${EDITION.number}`,
-    numberOfItems: 1 + rest.length,
-    itemListElement: [lead, ...rest].map((article, index) => ({
+    numberOfItems: 1 + rest.length + (opinion ? 1 : 0),
+    itemListElement: [lead, ...rest, ...(opinion ? [opinion] : [])].map(
+      (article, index) => ({
       "@type": "ListItem",
       position: index + 1,
       url: `${SITE.url}/stuk/${article.slug}`,
@@ -119,6 +122,35 @@ export default function HomePage() {
             ) : null}
           </aside>
         </section>
+
+        {opinion ? (
+          <section className="mt-14 border-t border-foreground pt-8 lg:grid lg:grid-cols-12 lg:gap-10">
+            <article className="rule-story lg:col-span-8">
+              <p className="kicker">{opinion.kicker}</p>
+              <h2 className="mt-2 font-display text-[clamp(1.8rem,3.6vw,2.8rem)] font-bold leading-[1.08] tracking-[-0.025em]">
+                <Link href={`/stuk/${opinion.slug}`} className="hover:text-accent">
+                  {opinion.title}
+                </Link>
+              </h2>
+              <p className="mt-4 max-w-2xl font-serif text-lg leading-relaxed text-muted-foreground">
+                {opinion.dek}
+              </p>
+              <p className="mt-3 font-sans text-[13px] text-muted-foreground">
+                {DESK_LABELS[opinion.desk]} · {formatNlDate(opinion.published)} ·{" "}
+                {opinion.readingMinutes} minuten
+              </p>
+              <p className="mt-5 max-w-2xl font-serif text-[1.05rem] leading-[1.7]">
+                {firstParagraph(opinion)}
+              </p>
+              <Link
+                href={`/stuk/${opinion.slug}`}
+                className="mt-6 inline-block border-b border-foreground pb-0.5 text-sm font-medium uppercase tracking-[0.12em] hover:border-accent hover:text-accent"
+              >
+                Lees de mening
+              </Link>
+            </article>
+          </section>
+        ) : null}
 
         {rest.length > 2 ? (
           <section className="mt-14 grid gap-8 border-t border-foreground pt-8 md:grid-cols-3">

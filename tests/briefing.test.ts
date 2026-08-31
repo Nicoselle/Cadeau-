@@ -27,12 +27,15 @@ describe("grokbot-briefing", () => {
     expect(briefing.tiles.length).toBe(getMarketBoard().tiles.length);
     expect(briefing.newer).toHaveLength(0);
     expect(briefing.recommendation).toBe("zelfde_vloer");
-    expect(briefing.questions).toHaveLength(5);
-    expect(briefing.decision).toBeNull();
+    expect(briefing.questions).toHaveLength(7);
+    expect(briefing.questions[0]).toMatch(/Knack/i);
+    expect(briefing.decision?.opinion).toBe(true);
+    expect(briefing.decision?.publish).toBe(false);
   });
 
   it("skips the example file as a real decision", () => {
-    expect(latestDecision()).toBeNull();
+    expect(latestDecision()?.date).toBe("2026-08-31");
+    expect(latestDecision()?.opinionThesis).toMatch(/vat/i);
     const voorbeeld = JSON.parse(
       readFileSync(
         path.join(process.cwd(), "redactie", "beslissingen", "voorbeeld.json"),
@@ -59,5 +62,6 @@ describe("grokbot-briefing", () => {
     expect(text).toMatch(/14:00/);
     expect(text).toMatch(/publiceert niet/);
     expect(text).toMatch(/voorbeeld\.json/);
+    expect(text).toMatch(/Knack/);
   });
 });

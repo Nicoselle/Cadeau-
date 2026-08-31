@@ -64,7 +64,7 @@ uranium liggen sinds 31 augustus 2026 in de vloer.
 - `registers/orakelboek.md` — 7 toetsbare uitspraken; eerstvolgende toets **05-10-2026** (regel 1).
 - `registers/overdrachten.jsonl` — append-only logboek van alle rondes.
 - `scripts/zetter.py` — `agenda` / `jj` / `dekking`; rekent alleen met opgeslagen data, haalt niets op.
-- `grokbot.md` — dagelijkse zetter. Briefing 13:00, beslissing Nico 14:00, stuk 15:00. Publiceert niet.
+- `grokbot.md` — dagelijkse zetter. Briefing 13:00, beslissing Nico 14:00, stuk 15:00. Standaard: *De mening* (vroegere Knack). Publiceert niet.
 - `beslissingen/` — JSON per dag. `voorbeeld.json` telt niet als beslissing.
 
 ## 5. Openstaande punten (dé lijst — nergens anders zoeken)

@@ -30,6 +30,8 @@ export type EditorialDecision = {
   standen: "houden" | "herzien";
   orakel: string;
   notes: string;
+  opinion: boolean;
+  opinionThesis: string;
 };
 
 export type Briefing = {
@@ -98,7 +100,9 @@ export function buildBriefing(): Briefing {
         ? `Er ligt ${newer.length === 1 ? "een nieuwere waarneming" : `${newer.length} nieuwere waarnemingen`} dan peil ${EDITION.asOf}. Dat is geen editie. Om ${DESK_CLOCK.decisionHour} uur beslist Nico.`
         : `Geen tegel is nieuwer dan peil ${EDITION.asOf}. Zelfde vloer als ${EDITION.folio}. Alleen een editie als Nico een nieuwe stelling heeft — zoals nummer 2.`,
     questions: [
-      `Publiceren we een nieuwe editie (nr. ${EDITION.number + 1})? ja / nee`,
+      "Opiniestuk, in de adem van de vroegere Knack (één stelling, geen lijstje)? ja — standaard / nee",
+      "Zo ja: de stelling van De mening, in één zin.",
+      `Publiceren we ook een nieuwe genummerde editie (nr. ${EDITION.number + 1})? ja / nee`,
       "Zo ja: wat is de stelling van het voorpaginastuk, in één zin?",
       "Welke drie tegels zijn de peil? (id's, geen verzonnen cijfers)",
       "Blijven de standen staan, of herzien? houden / herzien",
@@ -134,6 +138,8 @@ export function parseDecision(raw: unknown): EditorialDecision | null {
     standen: item.standen,
     orakel: item.orakel,
     notes: item.notes,
+    opinion: typeof item.opinion === "boolean" ? item.opinion : true,
+    opinionThesis: typeof item.opinionThesis === "string" ? item.opinionThesis : "",
   };
 }
 

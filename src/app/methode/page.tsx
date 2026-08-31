@@ -137,9 +137,10 @@ export default function MethodPage() {
         </p>
         <p className="mt-4">
           De dagelijkse klok, Brussels tijd: om 13 uur ligt de briefing, om
-          14 uur neemt de uitgever de vijf beslissingen, om 15 uur staat het
-          stuk klaar — of er komt die dag geen editie. Een bot mag zetten,
-          niet uitgeven.{" "}
+          14 uur neemt de uitgever de beslissingen, om 15 uur staat het stuk
+          klaar. Standaard is dat De mening — één stelling, in de adem van
+          de vroegere Knack, geen lijstje. Een nieuwe genummerde editie is
+          extra. Een bot mag zetten, niet uitgeven.{" "}
           <Link href="/briefing" className="underline hover:text-accent">
             Naar de briefing
           </Link>

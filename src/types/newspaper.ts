@@ -1,4 +1,4 @@
-export type Desk = "vs" | "eurozone" | "belgie" | "methode";
+export type Desk = "vs" | "eurozone" | "belgie" | "methode" | "opinie";
 
 export type ClaimKind = "feit" | "duiding" | "raming";
 
