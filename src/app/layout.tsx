@@ -1,31 +1,36 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Newsreader, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SITE } from "@/lib/site";
 
-const inter = Inter({
+const sans = Source_Sans_3({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
+});
+
+const serif = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-serif",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} — vergelijk emergency food kits`,
+    default: `${SITE.name} — ${SITE.tagline}`,
     template: `%s · ${SITE.shortName}`,
   },
   description: SITE.description,
   keywords: [
-    "noodvoedsel",
-    "emergency food",
-    "food storage",
-    "prepping",
-    "72-uurs kit",
-    "resilience score",
-    "prijs per 100 kcal",
+    "ondernemerschap",
+    "zaakvoerders",
+    "zakelijk kompas",
+    "vennootschap",
+    "risicoprofiel",
+    "Vlaamse ondernemers",
   ],
   openGraph: {
     title: SITE.name,
@@ -46,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="nl" className={inter.variable}>
+    <html lang="nl" className={`${sans.variable} ${serif.variable} dark`}>
       <body className="min-h-screen font-sans">
         <div className="flex min-h-screen flex-col">
           <SiteHeader />

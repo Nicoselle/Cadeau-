@@ -4,62 +4,68 @@
 
 @layer base {
   :root {
-    --background: 210 25% 98%;
-    --foreground: 215 28% 15%;
+    --background: 28 22% 8%;
+    --foreground: 36 32% 93%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 215 28% 15%;
+    --card: 28 18% 12%;
+    --card-foreground: 36 32% 93%;
 
-    --primary: 214 58% 22%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 32 68% 54%;
+    --primary-foreground: 28 24% 10%;
 
-    --secondary: 210 20% 94%;
-    --secondary-foreground: 215 28% 20%;
+    --secondary: 28 14% 16%;
+    --secondary-foreground: 36 24% 88%;
 
-    --muted: 210 20% 95%;
-    --muted-foreground: 215 14% 42%;
+    --muted: 28 14% 15%;
+    --muted-foreground: 30 12% 68%;
 
-    --accent: 152 46% 36%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 32 48% 22%;
+    --accent-foreground: 36 40% 90%;
 
-    --border: 214 22% 88%;
-    --input: 214 22% 84%;
-    --ring: 214 58% 32%;
+    --border: 28 14% 22%;
+    --input: 28 14% 20%;
+    --ring: 32 68% 54%;
 
-    --radius: 0.6rem;
-  }
-
-  .dark {
-    --background: 215 30% 10%;
-    --foreground: 210 20% 94%;
-
-    --card: 215 28% 13%;
-    --card-foreground: 210 20% 94%;
-
-    --primary: 210 55% 62%;
-    --primary-foreground: 215 30% 10%;
-
-    --secondary: 215 22% 20%;
-    --secondary-foreground: 210 20% 94%;
-
-    --muted: 215 22% 18%;
-    --muted-foreground: 214 14% 65%;
-
-    --accent: 152 40% 46%;
-    --accent-foreground: 215 30% 10%;
-
-    --border: 215 20% 24%;
-    --input: 215 20% 28%;
-    --ring: 210 55% 55%;
+    --radius: 1rem;
   }
 
   * {
     border-color: hsl(var(--border));
   }
 
+  html {
+    color-scheme: dark;
+  }
+
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(900px 520px at 8% -12%, rgba(212, 148, 72, 0.16), transparent 55%),
+      radial-gradient(700px 380px at 96% 4%, rgba(255, 220, 170, 0.05), transparent 48%),
+      radial-gradient(500px 280px at 50% 100%, rgba(212, 148, 72, 0.05), transparent 60%);
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-serif {
+    font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+    font-feature-settings: "ss01", "onum";
+  }
+}
+
+@layer utilities {
+  .type-kicker {
+    @apply text-[0.8rem] font-medium tracking-wide text-primary/85;
+  }
+
+  .type-label {
+    @apply text-sm font-medium text-foreground/80;
+  }
+
+  .soft-card {
+    @apply rounded-2xl border border-border/70 bg-card/90 shadow-[0_20px_50px_-28px_rgba(0,0,0,0.55)];
   }
 }
