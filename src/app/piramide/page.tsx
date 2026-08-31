@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ResearchSections } from "@/components/krant/research-sections";
+import { SmcSections } from "@/components/krant/smc-sections";
 import { WatchBoardView } from "@/components/krant/watch-board";
 import { PYRAMID_MANIFEST } from "@/data/watchlist";
 import { fetchWatchBoard } from "@/lib/quotes";
@@ -8,7 +10,7 @@ import { formatNlDate } from "@/lib/newspaper";
 export const metadata: Metadata = {
   title: "Piramide",
   description:
-    "De investeringspiramide van SafeCapital: 40 % edelmetalen, 30 % liquide cash, 20 % publieke aandelen, 10 % crypto. Educatief, geen beleggingsadvies.",
+    "Desk van de SafeCapital-onderzoeksgroep: investeringspiramide, dossiers, macro die die namen raakt, en SMC-lezingen. Educatief, geen beleggingsadvies.",
 };
 
 export const dynamic = "force-dynamic";
@@ -20,7 +22,7 @@ export default async function PyramidPage() {
   return (
     <div className="container py-10">
       <p className="text-[11px] uppercase tracking-[0.18em] text-accent">
-        SafeCapital · methode
+        SafeCapital · desk
       </p>
       <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.02em] sm:text-5xl">
         De investeringspiramide
@@ -29,6 +31,18 @@ export default async function PyramidPage() {
         {PYRAMID_MANIFEST.lead}
         {Number.isNaN(Date.parse(peil)) ? "" : ` Peil ${formatNlDate(peil)}.`}
       </p>
+
+      <nav className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[12px] uppercase tracking-[0.14em]">
+        <a href="#allocatie" className="hover:text-accent">
+          Allocatie
+        </a>
+        <a href="#dossiers" className="hover:text-accent">
+          Dossiers
+        </a>
+        <a href="#smc" className="hover:text-accent">
+          SMC
+        </a>
+      </nav>
 
       <div className="mt-8 max-w-3xl space-y-4 font-serif text-[1.05rem] leading-[1.7]">
         <p>
@@ -40,8 +54,8 @@ export default async function PyramidPage() {
           (Toncoin).
         </p>
         <p className="duiding border-l-2 border-[hsl(var(--gold))] pl-4">
-          Hieronder de namen die we de moeite waard vinden, en de huidige stand
-          voor goud, zilver, cash en crypto. Prints zijn de publieke tape,
+          Hieronder de namen die we de moeite waard vinden, de stand van deze
+          folio, de dossiers, en de SMC-lezing. Prints zijn de publieke tape,
           geen broker.
         </p>
       </div>
@@ -70,8 +84,16 @@ export default async function PyramidPage() {
         .
       </p>
 
-      <div className="mt-10">
+      <div id="allocatie" className="mt-10 scroll-mt-8">
         <WatchBoardView initial={board} />
+      </div>
+
+      <div className="mt-16 border-t-2 border-foreground pt-10">
+        <ResearchSections />
+      </div>
+
+      <div className="mt-16 border-t-2 border-foreground pt-10">
+        <SmcSections />
       </div>
 
       <aside className="mt-14 max-w-3xl border-t border-hairline pt-8 font-serif text-sm leading-relaxed text-muted-foreground">

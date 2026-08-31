@@ -35,6 +35,7 @@ export type Article = {
   title: string;
   dek: string;
   desk: Desk;
+  edition: number;
   published: string;
   author: string;
   lead: boolean;

@@ -84,7 +84,10 @@ export type AssetStand = {
   title: string;
   layer: PyramidLayer;
   status: string;
+  since: string;
   text: string;
+  thesis: string;
+  invalidation: string;
 };
 
 /** Stand van deze editie: de laag zelf, geen koersdoel. */
@@ -94,42 +97,84 @@ export const ASSET_STANDS: AssetStand[] = [
     title: "Goud",
     layer: "edelmetaal",
     status: "Aanhouden in de basis",
-    text: "Deel van de 40 % edelmetalen. Geen koersdoel in deze editie. De laag is het standpunt: eerst de basis, dan de rest.",
+    since: "2026-08-31",
+    text: "Deel van de 40 %. Geen koersdoel.",
+    thesis:
+      "M2 groeit +5,53% j/j terwijl de uitgelijnde reële tienjaars 2,43% is (DGS10 4,69 − T10YIE 2,26, 6 augustus). Dat is geen reden om de basis te slopen.",
+    invalidation:
+      "We herzien deze stand als de uitgelijnde reële tienjaars (DGS10 − T10YIE, zelfde datum) twee opeenvolgende folio’s boven 3,00% blijft, of als M2SL j/j onder 2% zakt terwijl DFF − CPIAUCSL boven +1,5 pp blijft.",
   },
   {
     id: "zilver",
     title: "Zilver",
     layer: "edelmetaal",
     status: "Aanhouden in de basis",
-    text: "Naast goud in de 40 %. Industrieel én monetair; de tape maakt dat onderscheid niet. Geen apart koersdoel.",
+    since: "2026-08-31",
+    text: "Naast goud in de 40 %. Geen apart koersdoel.",
+    thesis:
+      "Industrieel én monetair; de tape maakt dat onderscheid niet. Dezelfde drie cijfers houden de laag: liquiditeit, reële lange rente, beleidsrente.",
+    invalidation:
+      "Zelfde toets als goud. We splitsen de 40 % niet op één print.",
   },
   {
     id: "cash",
     title: "Liquide cash",
     layer: "cash",
     status: "30 %, verdeeld",
-    text: "50 % EUR, 40 % USD, 5 % CHF, 5 % NOK. Dit is de tweede fundering. Geen yield-jacht in deze laag.",
+    since: "2026-08-31",
+    text: "50 % EUR, 40 % USD, 5 % CHF, 5 % NOK. Geen yield-jacht.",
+    thesis:
+      "Fed funds 3,63% (14 augustus) tegen CPI +3,3% — ruwe reële korte rente ≈ +0,3 pp. De mix blijft de tweede fundering.",
+    invalidation:
+      "We herzien de mix als de ruwe reële korte rente in de VS (DFF − CPIAUCSL j/j) twee folio’s onder −1,0 pp blijft, of als de groep de 30 % zelf wijzigt.",
+  },
+  {
+    id: "aandelen",
+    title: "Publieke aandelen",
+    layer: "aandelen",
+    status: "Volgen, geen weging per titel",
+    since: "2026-08-31",
+    text: "De 20 % komt pas als de 70 % eronder staat.",
+    thesis:
+      "De namen op de tape zijn volgen, geen kooporder en geen weging per titel.",
+    invalidation:
+      "We herzien de 20 % als de groep de piramide zelf wijzigt. Een ticker valt af als de notering verdwijnt, niet op een dagprint.",
   },
   {
     id: "btc",
     title: "Bitcoin",
     layer: "crypto",
     status: "In de 10 %",
-    text: "Deel van de cryptolaag, niet van de basis. Winst hier verstevigt eerst edelmetaal en cash.",
+    since: "2026-08-31",
+    text: "Deel van de cryptolaag, niet van de basis.",
+    thesis:
+      "Liquiditeit (M2 +5,53%) is de macro die deze laag raakt. Winst hier verstevigt eerst edelmetaal en cash.",
+    invalidation:
+      "We herzien de plaats in de 10 % als M2SL j/j twee folio’s negatief is én de uitgelijnde reële tienjaars boven 3,50% blijft. Geen koersdoel.",
   },
   {
     id: "xmr",
     title: "Monero",
     layer: "crypto",
     status: "In de 10 %",
-    text: "Aangevraagd als xrm. XRM bestaat niet op de tape; dit is XMR. Zelfde regel: de punt blijft de punt.",
+    since: "2026-08-31",
+    text: "Aangevraagd als xrm. De tape kent XMR.",
+    thesis:
+      "Zelfde laag als Bitcoin. De punt blijft de punt; XRM bestaat niet op de tape.",
+    invalidation:
+      "Zelfde toets als Bitcoin. We halen XMR niet uit de 10 % op één dagprint.",
   },
   {
     id: "gram",
     title: "Gram (Toncoin)",
     layer: "crypto",
     status: "In de 10 %",
-    text: "Ton is Gram. Eén allocatie, ticker GRAM-USD (Yahoo: Gram, prev. Toncoin). Niet het microtoken TON-USD.",
+    since: "2026-08-31",
+    text: "Ton is Gram. Eén tape: GRAM-USD.",
+    thesis:
+      "Eén allocatie, ticker GRAM-USD. Niet het microtoken TON-USD. Zelfde liquiditeitsmacro als de rest van de 10 %.",
+    invalidation:
+      "Zelfde toets als Bitcoin. Daarnaast: als GRAM-USD de Toncoin-tape niet meer is, herschrijven we de ticker — niet de weging.",
   },
 ];
 

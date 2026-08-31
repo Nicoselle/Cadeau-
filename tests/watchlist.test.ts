@@ -125,10 +125,20 @@ describe("safecapital-piramide", () => {
       "goud",
       "zilver",
       "cash",
+      "aandelen",
       "btc",
       "xmr",
       "gram",
     ]);
+    expect(
+      ASSET_STANDS.every(
+        (stand) =>
+          stand.since === "2026-08-31" &&
+          stand.thesis.length > 20 &&
+          stand.invalidation.length > 20 &&
+          !stand.invalidation.toLowerCase().includes("koersdoel van"),
+      ),
+    ).toBe(true);
   });
 });
 

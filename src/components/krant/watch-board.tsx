@@ -10,6 +10,7 @@ import {
   PYRAMID_WEIGHTS,
   type PyramidLayer,
 } from "@/data/watchlist";
+import { formatNlDate } from "@/lib/newspaper";
 import type { WatchBoard, WatchRow } from "@/lib/quotes";
 import { formatTapeChange, formatTapePrice } from "@/lib/quotes";
 
@@ -147,23 +148,30 @@ function StandsBlock() {
   return (
     <section>
       <h2 className="font-display text-2xl font-semibold">
-        Huidige stand — goud, zilver, cash, crypto
+        Stand van deze folio
       </h2>
       <p className="mt-2 max-w-3xl font-serif leading-relaxed text-muted-foreground">
-        Educatieve stand van deze editie, geen koop- of verkooporder. De
-        aandelen staan in de tabel daaronder.
+        Educatieve stand met datum en ongeldigverklaring. Geen koop- of
+        verkooporder, geen koersdoel. De namen staan in de tabel daaronder.
       </p>
       <div className="mt-5 grid gap-4 md:grid-cols-2">
         {ASSET_STANDS.map((stand) => (
           <article key={stand.id} className="border border-hairline bg-card p-4">
             <p className="text-[11px] uppercase tracking-[0.14em] text-accent">
-              {stand.status}
+              {stand.status} · sinds {formatNlDate(stand.since, "short")}
             </p>
             <h3 className="mt-1 font-display text-xl font-semibold">
               {stand.title}
             </h3>
-            <p className="mt-2 font-serif text-sm leading-relaxed text-muted-foreground">
-              {stand.text}
+            <p className="mt-2 font-serif text-sm leading-relaxed">
+              {stand.thesis}
+            </p>
+            <p className="mt-3 font-serif text-sm leading-relaxed text-muted-foreground">
+              <span className="uppercase tracking-[0.08em] text-[11px]">
+                Ongeldig als
+              </span>
+              {" — "}
+              {stand.invalidation}
             </p>
           </article>
         ))}

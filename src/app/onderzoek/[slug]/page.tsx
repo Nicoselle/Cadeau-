@@ -56,7 +56,7 @@ export default async function DossierPage({ params }: Props) {
         {dossier.dek}
       </p>
       <p className="mt-3 text-sm text-muted-foreground">
-        <Link href="/onderzoek" className="underline hover:text-accent">
+        <Link href="/piramide#dossiers" className="underline hover:text-accent">
           Alle dossiers
         </Link>
         {" · "}
@@ -175,7 +175,7 @@ export default async function DossierPage({ params }: Props) {
           </h2>
           <p className="mt-2 max-w-3xl font-serif text-muted-foreground">
             Raming.{" "}
-            <Link href="/smc" className="underline hover:text-accent">
+            <Link href="/piramide#smc" className="underline hover:text-accent">
               Methode en alle lezingen
             </Link>
             .

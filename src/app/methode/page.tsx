@@ -78,7 +78,7 @@ export default function MethodPage() {
 
       <section className="mt-12 max-w-3xl font-serif leading-relaxed">
         <h2 className="font-display text-2xl font-semibold">
-          Piramide en volglijst
+          Piramide — één desk
         </h2>
         <p className="mt-4">
           De investeringspiramide is de methode van SafeCapital om kapitaal
@@ -90,6 +90,14 @@ export default function MethodPage() {
           komen van de publieke Yahoo-chart. De datavloer blijft de CSV.
         </p>
         <p className="mt-4">
+          Op dezelfde desk staan de dossiers per gevolgde naam, macro alleen
+          waar die die namen raakt (titel, bron, link), en de SMC-lezing van
+          de zwaardere tapes: swings (strength 2), BOS/CHOCH bij sluiting
+          voorbij het swing, FVG als driekaars-onevenwicht. Dat is raming, geen
+          order. Standen hebben een datum en een ongeldigverklaring — geen
+          koersdoel.
+        </p>
+        <p className="mt-4">
           <Link href="/piramide" className="underline hover:text-accent">
             Naar de piramide
           </Link>
@@ -98,57 +106,20 @@ export default function MethodPage() {
       </section>
 
       <section className="mt-12 max-w-3xl font-serif leading-relaxed">
-        <h2 className="font-display text-2xl font-semibold">Onderzoeksgroep</h2>
+        <h2 className="font-display text-2xl font-semibold">Andere desks</h2>
         <p className="mt-4">
-          Deze krant is in beginsel bedoeld voor de onderzoeksgroep van
-          SafeCapital. We gaan in detail over de gevolgde assets: wat het is,
-          welke macro het raakt, wat we in de gaten houden. Macro-nieuws komt
-          alleen binnen als de kop de naam of het dossier raakt — titel, bron,
-          link, geen nabewerkte reportage. De datavloer blijft de CSV; de
-          koppen zijn geen reeks.
-        </p>
-        <p className="mt-4">
-          <Link href="/onderzoek" className="underline hover:text-accent">
-            Naar Onderzoek
-          </Link>
-          .
-        </p>
-      </section>
-
-      <section className="mt-12 max-w-3xl font-serif leading-relaxed">
-        <h2 className="font-display text-2xl font-semibold">
-          Smart Money Concept
-        </h2>
-        <p className="mt-4">
-          De onderzoeksgroep leest tapes al met SMC. De krant doet dat nu op
-          dezelfde publieke dagkaart: swings (strength 2), BOS/CHOCH bij
-          sluiting voorbij het swing, FVG als driekaars-onevenwicht, orderblok
-          als laatste tegengestelde kaars voor de breuk, liquiditeitsveeg als
-          wick voorbij het swing met sluiting terug. Dat is raming, geen
-          order, en geen geïmporteerde TradingView-layout. De conventie staat
-          in tests.
-        </p>
-        <p className="mt-4">
-          <Link href="/smc" className="underline hover:text-accent">
-            Naar SMC
-          </Link>
-          .
-        </p>
-      </section>
-
-      <section className="mt-12 max-w-3xl font-serif leading-relaxed">
-        <h2 className="font-display text-2xl font-semibold">Lokale desk</h2>
-        <p className="mt-4">
-          De lokale desk is de uitzondering op «geen automatische feed».
-          Abonnees kiezen gemeenten; alleen die plaatsen worden afgezocht.
-          Gevonden berichten zijn titels met bron en link, geen nabewerkte
-          reportage. Eigen verhalen van ondernemers gaan door een automatische
-          poort (lengte, plaats, spam) en verschijnen uitsluitend waar vraag
-          is. Geen redacteur die een stad «belangrijk» verklaart.
+          Lokaal en Vesting horen niet bij de masthead van deze krant. De
+          routes blijven: abonnees kiezen gemeenten; alleen die plaatsen
+          worden afgezocht. Vesting is de noodvoedsel-directory. Geen
+          redacteur die een stad «belangrijk» verklaart.
         </p>
         <p className="mt-4">
           <Link href="/lokaal" className="underline hover:text-accent">
-            Naar Lokaal
+            Lokaal
+          </Link>
+          {" · "}
+          <Link href="/cadeau" className="underline hover:text-accent">
+            Vesting
           </Link>
           .
         </p>
@@ -159,8 +130,8 @@ export default function MethodPage() {
         <p className="mt-4">
           De Kapitaalkrant is een zelfstandige publicatie. De redactie schrijft
           en rekent; publicatie van een nieuwe editie is een bewuste
-          beslissing, geen automatische feed. Deze eerste editie sluit op de
-          vloer van 18 augustus 2026.
+          beslissing, geen automatische feed. Editie 2 sluit op 31 augustus
+          2026; de vloer is dezelfde als editie 1.
         </p>
         <p className="mt-4">
           Het orakelboek is de geloofwaardigheidsstaat. Op de toetsdatum wordt

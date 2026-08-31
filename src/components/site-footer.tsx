@@ -12,8 +12,8 @@ export function SiteFooter() {
           <p className="mt-2 max-w-sm font-serif text-sm leading-relaxed text-muted-foreground">
             Zelfstandige investeerderskrant. Geen beleggingsadvies, geen
             modelportefeuille. Wel cijfers met bon, duiding met tegenwerping,
-            een volglijst met laatste print, en een orakelboek dat wij later
-            zelf toetsen.
+            één desk met volglijst, dossiers en SMC, en een orakelboek dat wij
+            later zelf toetsen.
           </p>
         </div>
         <div className="text-sm">
@@ -28,27 +28,7 @@ export function SiteFooter() {
             </li>
             <li>
               <Link href="/piramide" className="hover:text-accent">
-                Piramide en volglijst
-              </Link>
-            </li>
-            <li>
-              <Link href="/onderzoek" className="hover:text-accent">
-                Onderzoek
-              </Link>
-            </li>
-            <li>
-              <Link href="/smc" className="hover:text-accent">
-                SMC
-              </Link>
-            </li>
-            <li>
-              <Link href="/lokaal" className="hover:text-accent">
-                Lokaal
-              </Link>
-            </li>
-            <li>
-              <Link href="/lokaal/verhaal" className="hover:text-accent">
-                Ondernemersverhaal
+                Piramide
               </Link>
             </li>
             <li>
@@ -67,6 +47,21 @@ export function SiteFooter() {
               </Link>
             </li>
           </ul>
+          <p className="mt-5 text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+            Andere desks
+          </p>
+          <ul className="mt-2 space-y-1 font-serif text-muted-foreground">
+            <li>
+              <Link href="/lokaal" className="hover:text-accent">
+                Lokaal
+              </Link>
+            </li>
+            <li>
+              <Link href={CADEAU.path} className="hover:text-accent">
+                {CADEAU.shortName}
+              </Link>
+            </li>
+          </ul>
         </div>
         <div className="text-sm md:text-right">
           <p className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
@@ -74,12 +69,6 @@ export function SiteFooter() {
           </p>
           <p className="mt-2 font-serif">
             Gedateerd {formatNlDate(EDITION.date)}. {EDITION.note}
-          </p>
-          <p className="mt-4 text-xs text-muted-foreground">
-            Zusterproject:{" "}
-            <Link href={CADEAU.path} className="underline hover:text-foreground">
-              {CADEAU.shortName}
-            </Link>
           </p>
         </div>
       </div>

@@ -10,8 +10,18 @@ export function articlesByDesk(desk: Desk): Article[] {
   return articles.filter((article) => article.desk === desk);
 }
 
+export function articlesByEdition(number: number): Article[] {
+  return articles.filter((article) => article.edition === number);
+}
+
+export function currentEditionArticles(): Article[] {
+  return articlesByEdition(EDITION.number);
+}
+
 export function leadArticle(): Article {
-  const lead = articles.find((article) => article.lead);
+  const lead =
+    currentEditionArticles().find((article) => article.lead) ??
+    articles.find((article) => article.lead);
   if (!lead) {
     throw new Error("editie heeft geen voorpaginastuk");
   }
@@ -19,7 +29,7 @@ export function leadArticle(): Article {
 }
 
 export function secondaryArticles(): Article[] {
-  return articles.filter((article) => !article.lead);
+  return currentEditionArticles().filter((article) => !article.lead);
 }
 
 export function editionPath(): string {

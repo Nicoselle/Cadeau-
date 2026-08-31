@@ -4,7 +4,6 @@ import { MarketTape } from "@/components/krant/market-tape";
 import { StoryCard } from "@/components/krant/story-card";
 import { WatchTape } from "@/components/krant/watch-tape";
 import { EDITION } from "@/data/edition";
-import { LOKAAL_IMAGE } from "@/data/page-images";
 import { oracles } from "@/data/oracles";
 import { WATCHLIST } from "@/data/watchlist";
 import { getMarketBoard } from "@/data/markets";
@@ -103,6 +102,15 @@ export default function HomePage() {
             {rest.slice(0, 2).map((article) => (
               <StoryCard key={article.slug} article={article} size="compact" />
             ))}
+            {rest.length === 0 ? (
+              <p className="font-serif text-sm leading-relaxed text-muted-foreground">
+                Eén folio.{" "}
+                <Link href="/archief#editie-1" className="underline hover:text-accent">
+                  Nr. 1 in het archief
+                </Link>
+                .
+              </p>
+            ) : null}
             {nextOracle ? (
               <div className="border border-foreground p-4">
                 <p className="text-[11px] uppercase tracking-[0.16em] text-accent">
@@ -122,11 +130,13 @@ export default function HomePage() {
           </aside>
         </section>
 
-        <section className="mt-14 grid gap-8 border-t-2 border-foreground pt-8 md:grid-cols-3">
-          {rest.slice(2).map((article) => (
-            <StoryCard key={article.slug} article={article} />
-          ))}
-        </section>
+        {rest.length > 2 ? (
+          <section className="mt-14 grid gap-8 border-t-2 border-foreground pt-8 md:grid-cols-3">
+            {rest.slice(2).map((article) => (
+              <StoryCard key={article.slug} article={article} />
+            ))}
+          </section>
+        ) : null}
 
         <section className="mt-14 grid gap-8 border-t-2 border-foreground pt-8 lg:grid-cols-12">
           <div className="lg:col-span-7">
@@ -142,18 +152,12 @@ export default function HomePage() {
               {WATCHLIST.filter((item) => item.kind === "aandeel").length}{" "}
               namen die we volgen. Educatief, geen adviesrelatie.
             </p>
-            <div className="mt-5 flex flex-wrap gap-6">
+            <div className="mt-5">
               <Link
                 href="/piramide"
                 className="inline-block border-b border-foreground pb-0.5 text-sm font-medium uppercase tracking-[0.12em] hover:border-accent hover:text-accent"
               >
-                Uitleg en volglijst
-              </Link>
-              <Link
-                href="/onderzoek"
-                className="inline-block border-b border-foreground pb-0.5 text-sm font-medium uppercase tracking-[0.12em] hover:border-accent hover:text-accent"
-              >
-                Naar de onderzoekdesk
+                Naar de desk
               </Link>
             </div>
           </div>
@@ -168,31 +172,6 @@ export default function HomePage() {
               <li>10 % — crypto (BTC, XMR, GRAM)</li>
             </ol>
           </aside>
-        </section>
-
-        <section className="mt-14 grid gap-8 border-t-2 border-foreground pt-8 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <EditionFigure image={LOKAAL_IMAGE} />
-          </div>
-          <div className="lg:col-span-7">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-accent">
-              Nieuwe desk
-            </p>
-            <h2 className="mt-2 font-display text-3xl font-semibold">
-              Lokaal, maar alleen waar u om vraagt
-            </h2>
-            <p className="mt-3 max-w-2xl font-serif text-lg leading-relaxed text-muted-foreground">
-              Abonnees zetten hun gemeente. De desk zoekt daarna zelf
-              ondernemersnieuws en zet verhalen van zaakvoerders — automatisch,
-              zonder dat een redacteur een stad kiest.
-            </p>
-            <Link
-              href="/lokaal"
-              className="mt-5 inline-block border-b border-foreground pb-0.5 text-sm font-medium uppercase tracking-[0.12em] hover:border-accent hover:text-accent"
-            >
-              Naar de lokale desk
-            </Link>
-          </div>
         </section>
       </div>
     </>

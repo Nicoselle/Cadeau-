@@ -1,11 +1,11 @@
 # Kapitaalkrant
 
-Zelfstandige Nederlandstalige investeerderskrant. Cijfers met bon. Duiding
-met tegenwerping. Drie desks: Verenigde Staten, eurozone, België.
+Zelfstandige Nederlandstalige investeerderskrant van de SafeCapital-onderzoeksgroep.
+Cijfers met bon. Duiding met tegenwerping.
 
-Editie 1 — *De kraan weer open* — peilt tot **18 augustus 2026**. Alle
-marktcijfers zijn herberekend uit de opgeslagen reeksen in `redactie/data`.
-Dit is geen beleggingsadvies.
+Editie 2 — *De bodem houdt* — peilt tot **31 augustus 2026**. De vloer is
+dezelfde als editie 1; er is geen nieuwe M2-print. Dit is geen
+beleggingsadvies.
 
 ---
 
@@ -15,16 +15,16 @@ Geen bot die ergens anders post, geen aggregator, geen live-koersen van een
 broker. Een krant die op zichzelf staat:
 
 - voorpagina met masthead, datavloer en voorpaginastuk
-- zes stukken, elk met bonnen en waar nodig een steenman
+- folio’s met bonnen en waar nodig een steenman
 - marktenpagina uit CSV’s (M2, CPI, HICP, rente, S&P, VIX, spilindex, VS-schuld)
 - orakelboek met zeven toetsbare uitspraken
-- piramide: SafeCapital-methode 40/30/20/10 + volglijst
-- onderzoek: dossiers per asset en macrokoppen die die namen raken
-- SMC: Smart Money Concept op de zwaardere tapes (BOS, CHOCH, FVG)
+- één desk op `/piramide`: weging 40/30/20/10, standen met datum en
+  ongeldigverklaring, dossiers, macro die die namen raakt, SMC-lezingen
 - methodepagina (bronnenladder, etiketten, wat we niet doen)
 - publieke JSON-API
 
-De noodvoedsel-directory Vesting blijft bereikbaar op `/cadeau`.
+Lokaal en Vesting blijven bereikbaar, maar staan niet in de masthead.
+Vesting: `/cadeau`.
 
 ## Tech-stack
 
@@ -51,18 +51,18 @@ Optioneel: `NEXT_PUBLIC_SITE_URL` voor canonieke URL’s.
 
 | Pad | Inhoud |
 |---|---|
-| `/` | Voorpagina, editie 1 |
+| `/` | Voorpagina, huidige editie |
 | `/stuk/[slug]` | Stuk met cijfers, bonnen, steenman |
 | `/markten` | Datavloer |
-| `/piramide` | Investeringspiramide en volglijst (publieke tape) |
-| `/onderzoek` | Dossiers en macro die de volglijst raakt |
-| `/smc` | Smart Money Concept-lezingen (raming) |
+| `/piramide` | Desk: allocatie, standen, dossiers, SMC |
+| `/onderzoek/[slug]` | Dossierdiepte |
+| `/onderzoek` `/smc` | Doorverwijzing naar `/piramide` |
 | `/orakelboek` | Toetsbare uitspraken |
 | `/methode` | Huisregels |
 | `/archief` | Edities |
-| `/desk/vs` `/desk/eurozone` `/desk/belgie` | Desks |
-| `/lokaal` | Vraaggerichte lokale ondernemersdesk |
-| `/lokaal/verhaal` | Zaakvoerders sturen hun verhaal in |
+| `/desk/vs` `/desk/eurozone` `/desk/belgie` | Geografie in de stukken |
+| `/lokaal` | Andere desk — vraaggestuurd lokaal |
+| `/cadeau` | Andere desk — Vesting |
 | `/api/v1/krant` | Volledige editie als JSON |
 | `/api/v1/stukken` `/api/v1/markten` `/api/v1/volgen` | Deel-API’s |
 
@@ -74,6 +74,7 @@ Optioneel: `NEXT_PUBLIC_SITE_URL` voor canonieke URL’s.
    (excl. energie en onbewerkte voeding), niet de eurozone-stijl 3,67%.
 4. Feiten, duiding en ramingen blijven gescheiden.
 5. Alleen een mens duwt een nieuwe editie door.
+6. Standen hebben een datum en een ongeldigverklaring. Geen koersdoel.
 
 Zie `redactie/INDEX.md` voor de bronnenstaat en openstaande punten.
 

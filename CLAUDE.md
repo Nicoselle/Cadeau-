@@ -24,7 +24,9 @@ een bewuste beslissing, geen automatische feed.
 ├── src/app/                 # Next.js App Router — krant + /cadeau
 │   ├── page.tsx             # Voorpagina
 │   ├── stuk/[slug]/         # Stukken
-│   ├── markten/ piramide/ onderzoek/ orakelboek/ methode/ archief/ desk/
+│   ├── piramide/            # Eén desk: allocatie, dossiers, SMC
+│   ├── onderzoek/[slug]/    # Dossierdiepte
+│   ├── markten/ orakelboek/ methode/ archief/ desk/
 │   └── api/v1/              # krant, stukken, markten, volgen, products
 ├── src/data/                # articles, edition, markets, oracles, watchlist, products
 ├── src/lib/series.ts        # CSV-parser en j/j-groei (alleen opgeslagen data)
@@ -247,10 +249,12 @@ Geen database, geen geheimen in v1. Marktcijfers komen uit `redactie/data`.
 4. Seizoensgecorrigeerde reeks nooit alleen duiden (M2SL naast M2NS).
 5. Headlines (ECB-homepage) zijn geen reeks.
 6. Alleen Nico duwt een nieuwe **macro-editie** door.
-7. **Lokaal is vraaggestuurd en automatisch:** abonnees kiezen gemeenten;
-   alleen die plaatsen worden afgezocht. Ondernemersverhalen gaan door
-   `moderateIntake` en verschijnen uitsluitend waar vraag is. Geen
-   redacteur die een stad kiest. Gevonden berichten: titel, bron, link.
+7. **Eén desk** op `/piramide`. `/onderzoek` en `/smc` verwijzen door.
+   Standen hebben datum + ongeldigverklaring; geen koersdoel.
+8. **Lokaal en Vesting** blijven routes, niet de masthead. Lokaal is
+   vraaggestuurd: abonnees kiezen gemeenten; alleen die plaatsen worden
+   afgezocht. Ondernemersverhalen gaan door `moderateIntake`. Geen
+   redacteur die een stad kiest. Vesting blijft op `/cadeau`.
 
 ---
 
