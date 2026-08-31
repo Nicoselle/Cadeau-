@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/piramide",
     "/volgen",
     "/onderzoek",
+    "/smc",
     "/cadeau",
     "/compare",
     "/desk/vs",

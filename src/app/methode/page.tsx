@@ -116,6 +116,27 @@ export default function MethodPage() {
       </section>
 
       <section className="mt-12 max-w-3xl font-serif leading-relaxed">
+        <h2 className="font-display text-2xl font-semibold">
+          Smart Money Concept
+        </h2>
+        <p className="mt-4">
+          De onderzoeksgroep leest tapes al met SMC. De krant doet dat nu op
+          dezelfde publieke dagkaart: swings (strength 2), BOS/CHOCH bij
+          sluiting voorbij het swing, FVG als driekaars-onevenwicht, orderblok
+          als laatste tegengestelde kaars voor de breuk, liquiditeitsveeg als
+          wick voorbij het swing met sluiting terug. Dat is raming, geen
+          order, en geen geïmporteerde TradingView-layout. De conventie staat
+          in tests.
+        </p>
+        <p className="mt-4">
+          <Link href="/smc" className="underline hover:text-accent">
+            Naar SMC
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section className="mt-12 max-w-3xl font-serif leading-relaxed">
         <h2 className="font-display text-2xl font-semibold">Lokale desk</h2>
         <p className="mt-4">
           De lokale desk is de uitzondering op «geen automatische feed».

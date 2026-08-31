@@ -37,6 +37,11 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link href="/smc" className="hover:text-accent">
+                SMC
+              </Link>
+            </li>
+            <li>
               <Link href="/lokaal" className="hover:text-accent">
                 Lokaal
               </Link>

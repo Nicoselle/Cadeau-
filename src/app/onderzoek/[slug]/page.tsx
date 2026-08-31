@@ -13,6 +13,8 @@ import { searchChannel } from "@/lib/macro-news";
 import { formatNlDate } from "@/lib/newspaper";
 import { fetchWatchBoard } from "@/lib/quotes";
 import { formatTapeChange, formatTapePrice } from "@/lib/quotes";
+import { isSmcUniverse } from "@/data/smc-universe";
+import { readSmcBoard } from "@/lib/smc-board";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -40,6 +42,7 @@ export default async function DossierPage({ params }: Props) {
   );
   const news = await searchChannel(dossier.channelId);
   const names = assetsInDossier(dossier);
+  const smc = await readSmcBoard(dossier.assetIds.filter(isSmcUniverse));
 
   return (
     <div className="container py-10">
@@ -164,6 +167,39 @@ export default async function DossierPage({ params }: Props) {
           })}
         </ul>
       </section>
+
+      {smc.length > 0 ? (
+        <section className="mt-12">
+          <h2 className="font-display text-2xl font-semibold">
+            SMC op deze tapes
+          </h2>
+          <p className="mt-2 max-w-3xl font-serif text-muted-foreground">
+            Raming.{" "}
+            <Link href="/smc" className="underline hover:text-accent">
+              Methode en alle lezingen
+            </Link>
+            .
+          </p>
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            {smc.map((card) => (
+              <article key={card.item.id} className="border border-hairline bg-card p-4">
+                <p className="text-[11px] uppercase tracking-[0.14em] text-accent">
+                  {card.reading.bias}
+                  {card.reading.lastEvent
+                    ? ` · ${card.reading.lastEvent.kind.toUpperCase()}`
+                    : ""}
+                </p>
+                <h3 className="mt-1 font-display text-xl font-semibold">
+                  {card.item.name}
+                </h3>
+                <p className="mt-2 font-serif text-sm leading-relaxed">
+                  {card.reading.narrative}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="mt-12 border border-foreground p-5">
         <p className="text-[11px] uppercase tracking-[0.16em] text-accent">

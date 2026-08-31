@@ -89,7 +89,10 @@ export default async function ResearchPage() {
                 {dossier.dek}
               </p>
               <p className="mt-3 text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
-                {dossier.assetIds.length} namen
+                {dossier.assetIds.length} namen ·{" "}
+                <Link href="/smc" className="underline hover:text-accent">
+                  SMC
+                </Link>
               </p>
             </article>
           ))}
