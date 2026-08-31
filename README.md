@@ -29,7 +29,7 @@ Vesting: `/cadeau`.
 ## Tech-stack
 
 - **Next.js 15** (App Router) + **TypeScript** (strict)
-- **Tailwind CSS** — krantenhuisstijl (Fraunces / Newsreader / IBM Plex Sans)
+- **Tailwind CSS** — broadsheet (Source Serif 4 / Newsreader / Source Sans 3)
 - Data: redactie-CSV’s + getypte stukken, geen CMS
 - **Vitest** + **GitHub Actions** (lint, typecheck, test, build)
 - Deploy-klaar voor Vercel
