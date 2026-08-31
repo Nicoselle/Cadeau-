@@ -46,6 +46,11 @@ export default function MethodPage() {
               onbekend — en reken één voorbeeld. De centenindex stopt na
               2 procent; het niveauverschil blijft.
             </li>
+            <li>
+              Rubrieken zijn meer dan landen. Geld, rente, grondstoffen en
+              titels hebben een eigen plank. De inhoudsopgave staat op{" "}
+              <Link href="/rubrieken">rubrieken</Link>.
+            </li>
           </ul>
         </section>
         <section>

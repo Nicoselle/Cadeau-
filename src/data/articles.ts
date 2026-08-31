@@ -1,5 +1,6 @@
 import type { Article } from "@/types/newspaper";
 import { AUGUST_OPINIONS } from "./opinie-augustus";
+import { RUBRIEK_STUKKEN } from "./rubriek-stukken";
 
 const NUMBERED_ARTICLES: Article[] = [
   {
@@ -709,4 +710,8 @@ const NUMBERED_ARTICLES: Article[] = [
   },
 ];
 
-export const articles: Article[] = [...NUMBERED_ARTICLES, ...AUGUST_OPINIONS];
+export const articles: Article[] = [
+  ...NUMBERED_ARTICLES,
+  ...RUBRIEK_STUKKEN,
+  ...AUGUST_OPINIONS,
+];

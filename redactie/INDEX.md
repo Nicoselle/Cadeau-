@@ -21,6 +21,7 @@ bestand toevoegt of een versie vervangt, werkt deze index bij in dezelfde commit
 | Augustus-nazien | `/nazien` + `mening/2026-08-ledger.json` — peil = laatste waarneming ≤ die dag | geen weekend verzonnen; 31 augustus blijft `vat-liegt-minder-dan-de-index` |
 | Peilregel publicatie | 31 augustus 2026. Per reeks laatste waarneming; afgeleiden alleen op laatste gemeenschappelijke datum (`lastCommonDate`) | twee datums van elkaar aftrekken |
 | Effectketen | `schrijfregel-effectketen.md` — tijdelijk in de regel ≠ tijdelijk in de portemonnee; inhaal ja/nee/onbekend | juridische einddatum als economische einddatum verkopen |
+| Rubrieken | `/rubrieken` + `src/lib/rubrieken.ts` — VS, eurozone, België, geld, rente, grondstoffen, titels, mening | alleen landen in de kop |
 
 De verslagen (`verslag*.md`, a t/m 18b) zijn een **chronologisch logboek** — die vervangen
 elkaar nooit. Zelfde geldt voor `registers/overdrachten.jsonl` (10 regels, append-only).

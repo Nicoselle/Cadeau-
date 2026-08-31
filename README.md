@@ -64,7 +64,8 @@ Optioneel: `NEXT_PUBLIC_SITE_URL` voor canonieke URL’s.
 | `/briefing` | Dagelijkse redactiebriefing (niet in de kop) |
 | `/archief` | Alle genummerde edities |
 | `/archief/[n]` | Het nummer zelf, zoals het verscheen |
-| `/desk/vs` `/desk/eurozone` `/desk/belgie` | Geografie in de stukken |
+| `/rubrieken` | Inhoudsopgave van alle rubrieken |
+| `/desk/vs` `/eurozone` `/belgie` `/geld` `/rente` `/grondstoffen` `/titels` | Rubrieken |
 | `/lokaal` | Andere desk — vraaggestuurd lokaal |
 | `/cadeau` | Andere desk — Vesting |
 | `/api/v1/krant` | Huidige editie als JSON |

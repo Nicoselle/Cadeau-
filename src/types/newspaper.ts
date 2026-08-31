@@ -1,4 +1,13 @@
-export type Desk = "vs" | "eurozone" | "belgie" | "methode" | "opinie";
+export type Desk =
+  | "vs"
+  | "eurozone"
+  | "belgie"
+  | "geld"
+  | "rente"
+  | "grondstoffen"
+  | "titels"
+  | "methode"
+  | "opinie";
 
 export type ClaimKind = "feit" | "duiding" | "raming";
 
