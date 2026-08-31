@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { EditionFigure } from "@/components/krant/edition-figure";
 import { Sparkline } from "@/components/krant/sparkline";
+import { MARKTEN_IMAGE } from "@/data/page-images";
 import { getMarketBoard } from "@/data/markets";
 import { formatNlDate } from "@/lib/newspaper";
 
@@ -24,6 +26,7 @@ export default function MarketsPage() {
         Geen live-ticker. Elk cijfer komt uit een CSV die de redactie heeft
         opgehaald en bewaard. Peil {formatNlDate(board.asOf)}.
       </p>
+      <EditionFigure image={MARKTEN_IMAGE} className="mt-8 max-w-3xl" />
 
       <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {board.tiles.map((tile) => (

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { EditionFigure } from "@/components/krant/edition-figure";
+import { ORAKEL_IMAGE } from "@/data/page-images";
 import { oracles } from "@/data/oracles";
 import { formatNlDate } from "@/lib/newspaper";
 
@@ -29,6 +31,11 @@ export default function OraclePage() {
         het Planbureau toetsen de bron. Uitspraken van de krant toetsen de
         krant.
       </p>
+      <EditionFigure
+        image={ORAKEL_IMAGE}
+        ratio="still"
+        className="mt-8 max-w-md"
+      />
 
       <div className="mt-10 overflow-x-auto">
         <table className="w-full min-w-[52rem] border-collapse text-left text-sm">

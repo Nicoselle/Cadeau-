@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { EditionFigure } from "@/components/krant/edition-figure";
 import { MarketTape } from "@/components/krant/market-tape";
 import { StoryCard } from "@/components/krant/story-card";
 import { EDITION } from "@/data/edition";
+import { LOKAAL_IMAGE } from "@/data/page-images";
 import { oracles } from "@/data/oracles";
 import { getMarketBoard } from "@/data/markets";
 import {
@@ -70,6 +72,11 @@ export default function HomePage() {
               {DESK_LABELS[lead.desk]} · {formatNlDate(lead.published)} ·{" "}
               {lead.readingMinutes} minuten
             </p>
+            <EditionFigure
+              image={lead.image}
+              priority
+              className="mt-7 max-w-3xl"
+            />
             <p className="drop-cap mt-8 max-w-2xl font-serif text-[1.08rem] leading-[1.7]">
               {firstParagraph(lead)}
             </p>
@@ -118,24 +125,29 @@ export default function HomePage() {
           ))}
         </section>
 
-        <section className="mt-14 border-t-2 border-foreground pt-8">
-          <p className="text-[11px] uppercase tracking-[0.18em] text-accent">
-            Nieuwe desk
-          </p>
-          <h2 className="mt-2 font-display text-3xl font-semibold">
-            Lokaal, maar alleen waar u om vraagt
-          </h2>
-          <p className="mt-3 max-w-2xl font-serif text-lg leading-relaxed text-muted-foreground">
-            Abonnees zetten hun gemeente. De desk zoekt daarna zelf
-            ondernemersnieuws en zet verhalen van zaakvoerders — automatisch,
-            zonder dat een redacteur een stad kiest.
-          </p>
-          <Link
-            href="/lokaal"
-            className="mt-5 inline-block border-b border-foreground pb-0.5 text-sm font-medium uppercase tracking-[0.12em] hover:border-accent hover:text-accent"
-          >
-            Naar de lokale desk
-          </Link>
+        <section className="mt-14 grid gap-8 border-t-2 border-foreground pt-8 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <EditionFigure image={LOKAAL_IMAGE} />
+          </div>
+          <div className="lg:col-span-7">
+            <p className="text-[11px] uppercase tracking-[0.18em] text-accent">
+              Nieuwe desk
+            </p>
+            <h2 className="mt-2 font-display text-3xl font-semibold">
+              Lokaal, maar alleen waar u om vraagt
+            </h2>
+            <p className="mt-3 max-w-2xl font-serif text-lg leading-relaxed text-muted-foreground">
+              Abonnees zetten hun gemeente. De desk zoekt daarna zelf
+              ondernemersnieuws en zet verhalen van zaakvoerders — automatisch,
+              zonder dat een redacteur een stad kiest.
+            </p>
+            <Link
+              href="/lokaal"
+              className="mt-5 inline-block border-b border-foreground pb-0.5 text-sm font-medium uppercase tracking-[0.12em] hover:border-accent hover:text-accent"
+            >
+              Naar de lokale desk
+            </Link>
+          </div>
         </section>
       </div>
     </>

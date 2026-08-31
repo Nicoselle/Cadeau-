@@ -11,6 +11,12 @@ export const articles: Article[] = [
     author: "Redactie Kapitaalkrant",
     lead: true,
     readingMinutes: 9,
+    image: {
+      src: "/images/kraan-weer-open.webp",
+      alt: "Een ijzeren kraan stort bankbiljetten in een bassin, terwijl een klein tappunt één rode druppel in een beker laat vallen.",
+      caption:
+        "De kraan gaat open voor wie al aan tafel zit. De compensatie komt als een gerantsoeneerde druppel.",
+    },
     body: [
       {
         type: "p",
@@ -130,6 +136,12 @@ export const articles: Article[] = [
     author: "Redactie Kapitaalkrant",
     lead: false,
     readingMinutes: 5,
+    image: {
+      src: "/images/lange-rente.webp",
+      alt: "Een locomotief weigert te keren terwijl het spoor de mist in stijgt en een seinarm omlaag wijst.",
+      caption:
+        "De korte kant zakt. De lange kant blijft staan. Twee lezingen, één meetbaar verschil.",
+    },
     body: [
       {
         type: "p",
@@ -192,6 +204,12 @@ export const articles: Article[] = [
     author: "Redactie Kapitaalkrant",
     lead: false,
     readingMinutes: 7,
+    image: {
+      src: "/images/thermometer.webp",
+      alt: "Ambtenaren buigen zich over een grote kwikthermometer op een commissietafel, terwijl de koorts op de achtergrond onbesproken blijft.",
+      caption:
+        "April 2026: niet de koorts stond ter discussie, maar hoe je de thermometer mag aflezen.",
+    },
     body: [
       {
         type: "p",
@@ -270,6 +288,12 @@ export const articles: Article[] = [
     author: "Redactie Kapitaalkrant",
     lead: false,
     readingMinutes: 6,
+    image: {
+      src: "/images/centenindex.webp",
+      alt: "Een zware schaar knipt één strook uit een lang loonregister, de rest van de rol blijft heel.",
+      caption:
+        "Eén schijf van twee procent, cumulatief. Daarna loopt de index weer door — tot de volgende periode.",
+    },
     body: [
       {
         type: "p",
@@ -340,6 +364,12 @@ export const articles: Article[] = [
     author: "Redactie Kapitaalkrant",
     lead: false,
     readingMinutes: 4,
+    image: {
+      src: "/images/m2-twee-keer.webp",
+      alt: "Twee koperen weegschalen in een telkamer, dezelfde stapel munten twee keer gewogen.",
+      caption:
+        "M2SL naast M2NS. Wijkt het beeld af, dan is dat het verhaal.",
+    },
     body: [
       {
         type: "p",
@@ -392,6 +422,12 @@ export const articles: Article[] = [
     author: "Redactie Kapitaalkrant",
     lead: false,
     readingMinutes: 4,
+    image: {
+      src: "/images/euro-onder-water.webp",
+      alt: "Eurobiljetten en munten zakken langzaam in stil water, gezien van vlak onder het oppervlak.",
+      caption:
+        "Korte rente onder de inflatie: wie cash aanhoudt, levert reëel in.",
+    },
     body: [
       {
         type: "p",

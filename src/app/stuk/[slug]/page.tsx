@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleBody, SteenmanBox } from "@/components/krant/article-body";
+import { EditionFigure } from "@/components/krant/edition-figure";
 import { articles } from "@/data/articles";
 import { formatNlDate, getArticle } from "@/lib/newspaper";
 import { DESK_LABELS, SITE } from "@/lib/site";
@@ -27,6 +28,7 @@ export async function generateMetadata({
       type: "article",
       url: `${SITE.url}/stuk/${article.slug}`,
       publishedTime: article.published,
+      images: [{ url: article.image.src, alt: article.image.alt }],
     },
   };
 }
@@ -76,6 +78,7 @@ export default async function ArticlePage({
           {article.author} · {DESK_LABELS[article.desk]} ·{" "}
           {formatNlDate(article.published)} · {article.readingMinutes} minuten
         </p>
+        <EditionFigure image={article.image} priority className="mt-8 max-w-4xl" />
 
         <div className="mt-10 grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-8">

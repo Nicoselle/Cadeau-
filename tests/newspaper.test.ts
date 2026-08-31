@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { articles } from "@/data/articles";
 import { oracles } from "@/data/oracles";
@@ -47,6 +49,14 @@ describe("series", () => {
 });
 
 describe("editie", () => {
+  it("gives every article an editorial image that exists on disk", () => {
+    for (const article of articles) {
+      expect(article.image.src).toMatch(/^\/images\/.+\.webp$/);
+      const file = path.join(process.cwd(), "public", article.image.src);
+      expect(existsSync(file), article.image.src).toBe(true);
+    }
+  });
+
   it("has unique article slugs", () => {
     const slugs = articles.map((article) => article.slug);
     expect(new Set(slugs).size).toBe(slugs.length);

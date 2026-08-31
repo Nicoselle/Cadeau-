@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { EditionFigure } from "@/components/krant/edition-figure";
 import { LocalDesk } from "@/components/lokaal/local-desk";
+import { LOKAAL_IMAGE } from "@/data/page-images";
 
 export const metadata: Metadata = {
   title: "Lokaal",
@@ -22,6 +24,7 @@ export default function LocalPage() {
         zaakvoerders hun eigen verhaal doen — alleen voor wie die gemeente
         vroeg.
       </p>
+      <EditionFigure image={LOKAAL_IMAGE} className="mt-8 max-w-3xl" />
       <div className="mt-10">
         <LocalDesk />
       </div>

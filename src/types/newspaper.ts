@@ -23,6 +23,12 @@ export type ArticleFigure = {
   kind: ClaimKind;
 };
 
+export type ArticleImage = {
+  src: string;
+  alt: string;
+  caption: string;
+};
+
 export type Article = {
   slug: string;
   kicker: string;
@@ -33,6 +39,7 @@ export type Article = {
   author: string;
   lead: boolean;
   readingMinutes: number;
+  image: ArticleImage;
   body: BodyBlock[];
   steenman?: { objection: string; antwoord: string };
   sources: ArticleSource[];

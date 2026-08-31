@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EditionFigure } from "@/components/krant/edition-figure";
 import type { Article } from "@/types/newspaper";
 import { formatNlDate } from "@/lib/newspaper";
 import { DESK_LABELS } from "@/lib/site";
@@ -12,6 +13,11 @@ export function StoryCard({
 }) {
   return (
     <article className={size === "compact" ? "" : "border-t border-hairline pt-5"}>
+      {size === "default" ? (
+        <Link href={`/stuk/${article.slug}`} className="mb-4 block">
+          <EditionFigure image={{ ...article.image, caption: "" }} />
+        </Link>
+      ) : null}
       <p className="text-[11px] uppercase tracking-[0.16em] text-accent">
         {article.kicker}
       </p>
