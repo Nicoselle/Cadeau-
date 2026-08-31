@@ -65,10 +65,8 @@ export default async function ArticlePage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <article className="container py-10">
-        <p className="text-[11px] uppercase tracking-[0.18em] text-accent">
-          {article.kicker}
-        </p>
-        <h1 className="mt-3 max-w-4xl font-display text-[clamp(2rem,4.5vw,3.6rem)] font-semibold leading-[1.05] tracking-[-0.02em]">
+        <p className="kicker">{article.kicker}</p>
+        <h1 className="mt-2 max-w-4xl font-display text-[clamp(2rem,4.4vw,3.4rem)] font-bold leading-[1.06] tracking-[-0.025em]">
           {article.title}
         </h1>
         <p className="mt-5 max-w-3xl font-serif text-xl leading-relaxed text-muted-foreground">
@@ -91,17 +89,15 @@ export default async function ArticlePage({
             ) : null}
           </div>
           <aside className="lg:col-span-4">
-            <div className="border border-hairline bg-card p-5">
-              <p className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-                Cijfers in dit stuk
-              </p>
+            <div className="rule-story">
+              <p className="kicker">Cijfers in dit stuk</p>
               <dl className="mt-4 space-y-3">
                 {article.figures.map((figure) => (
                   <div key={figure.label}>
                     <dt className="text-[12px] uppercase tracking-[0.1em] text-muted-foreground">
                       {figure.label}
                     </dt>
-                    <dd className="font-display text-2xl font-semibold">
+                    <dd className="font-display text-2xl font-bold tabular-nums">
                       {figure.value}
                     </dd>
                     <dd className="text-[12px] text-muted-foreground">

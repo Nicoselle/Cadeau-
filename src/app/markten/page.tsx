@@ -17,10 +17,8 @@ export default function MarketsPage() {
 
   return (
     <div className="container py-10">
-      <p className="text-[11px] uppercase tracking-[0.18em] text-accent">
-        Datavloer
-      </p>
-      <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.02em] sm:text-5xl">
+      <p className="kicker">Datavloer</p>
+      <h1 className="mt-2 font-display text-4xl font-bold tracking-[-0.025em] sm:text-5xl">
         Markten
       </h1>
       <p className="mt-4 max-w-2xl font-serif text-lg text-muted-foreground">
@@ -38,14 +36,12 @@ export default function MarketsPage() {
         {board.tiles.map((tile) => (
           <article
             key={tile.id}
-            className="border border-hairline bg-card p-5"
+            className="rule-story"
           >
             <div className="flex items-start justify-between gap-3">
               <div>
-                <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-                  {tile.label}
-                </p>
-                <p className="mt-1 font-display text-3xl font-semibold tabular-nums">
+                <p className="kicker text-muted-foreground">{tile.label}</p>
+                <p className="mt-1 font-display text-3xl font-bold tabular-nums">
                   {tile.value}
                 </p>
               </div>

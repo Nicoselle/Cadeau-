@@ -71,26 +71,25 @@ export function WatchTape() {
   }, []);
 
   return (
-    <div className="no-print overflow-hidden border-b border-hairline bg-[hsl(0_42%_18%)] text-[hsl(40_38%_93%)]">
-      <div className="container flex flex-wrap items-center gap-x-6 gap-y-2 py-2.5 text-[12px] tracking-wide">
-        <Link
-          href="/piramide"
-          className="shrink-0 text-[10px] uppercase tracking-[0.2em] text-[hsl(12_40%_72%)] hover:text-white"
-        >
+    <div className="no-print border-b border-hairline bg-background">
+      <div className="container flex flex-wrap items-baseline gap-x-5 gap-y-1 py-2 text-[12px]">
+        <Link href="/piramide" className="kicker shrink-0 hover:text-foreground">
           Extra aandacht
         </Link>
         {prints.map((print) => (
-          <div key={print.id} className="flex items-baseline gap-2">
-            <span className="uppercase tracking-[0.12em] text-[hsl(12_30%_72%)]">
+          <div key={print.id} className="flex items-baseline gap-1.5">
+            <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
               {print.name}
             </span>
-            <span className="font-medium tabular-nums">{print.price_label}</span>
+            <span className="font-sans text-[13px] font-semibold tabular-nums">
+              {print.price_label}
+            </span>
             {print.change_label ? (
               <span
-                className={`tabular-nums ${
+                className={`font-sans text-[12px] tabular-nums ${
                   (print.change_pct ?? 0) < 0
-                    ? "text-[hsl(12_40%_72%)]"
-                    : "text-[hsl(40_38%_88%)]"
+                    ? "text-markets-down"
+                    : "text-markets-up"
                 }`}
               >
                 {print.change_label}
@@ -100,9 +99,9 @@ export function WatchTape() {
         ))}
         <Link
           href="/piramide"
-          className="ml-auto text-[10px] uppercase tracking-[0.16em] text-[hsl(12_40%_72%)] hover:text-white"
+          className="ml-auto font-sans text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground hover:text-accent"
         >
-          {WATCHLIST.length} namen · piramide
+          {WATCHLIST.length} namen
         </Link>
       </div>
     </div>

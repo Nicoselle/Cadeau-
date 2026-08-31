@@ -4,24 +4,26 @@
 
 @layer base {
   :root {
-    --background: 40 38% 93%;
-    --foreground: 28 20% 9%;
-    --card: 40 42% 96%;
-    --card-foreground: 28 20% 9%;
-    --primary: 28 20% 9%;
-    --primary-foreground: 40 38% 93%;
-    --secondary: 36 22% 86%;
-    --secondary-foreground: 28 20% 12%;
-    --muted: 36 18% 87%;
-    --muted-foreground: 28 10% 34%;
-    --accent: 0 62% 32%;
-    --accent-foreground: 40 40% 96%;
-    --gold: 38 42% 34%;
-    --border: 30 16% 70%;
-    --input: 30 16% 70%;
-    --ring: 0 62% 32%;
-    --radius: 0.15rem;
-    --hairline: 30 16% 62%;
+    --background: 40 33% 98%;
+    --foreground: 0 0% 10%;
+    --card: 40 25% 97%;
+    --card-foreground: 0 0% 10%;
+    --primary: 0 0% 10%;
+    --primary-foreground: 40 33% 98%;
+    --secondary: 40 14% 92%;
+    --secondary-foreground: 0 0% 14%;
+    --muted: 40 12% 92%;
+    --muted-foreground: 0 0% 36%;
+    --accent: 358 68% 38%;
+    --accent-foreground: 40 33% 98%;
+    --gold: 38 28% 32%;
+    --border: 40 10% 82%;
+    --input: 40 10% 82%;
+    --ring: 358 68% 38%;
+    --radius: 0;
+    --hairline: 40 10% 82%;
+    --markets-up: 140 66% 28%;
+    --markets-down: 356 88% 42%;
   }
 
   * {
@@ -36,18 +38,10 @@
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     -webkit-font-smoothing: antialiased;
-    background-image:
-      radial-gradient(ellipse at top, hsl(38 30% 90% / 0.7), transparent 55%),
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 31px,
-        hsl(30 16% 70% / 0.08) 32px
-      );
   }
 
   ::selection {
-    background: hsl(0 62% 32% / 0.18);
+    background: hsl(var(--accent) / 0.16);
   }
 }
 
@@ -56,15 +50,30 @@
     border-color: hsl(var(--hairline));
   }
 
+  .kicker {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: hsl(var(--accent));
+  }
+
+  .rule-story {
+    border-top: 1px solid hsl(var(--accent));
+    padding-top: 0.7rem;
+  }
+
   .drop-cap::first-letter {
     float: left;
-    font-family: var(--font-display), serif;
-    font-size: 4.4rem;
-    line-height: 0.8;
-    padding-right: 0.55rem;
-    padding-top: 0.18rem;
-    color: hsl(var(--accent));
-    font-weight: 650;
+    font-family: var(--font-display), Georgia, serif;
+    font-size: 4.1rem;
+    line-height: 0.82;
+    padding-right: 0.5rem;
+    padding-top: 0.12rem;
+    color: hsl(var(--foreground));
+    font-weight: 700;
   }
 
   .article-prose p {
@@ -72,7 +81,7 @@
   }
 
   .article-prose p.duiding {
-    border-left: 2px solid hsl(var(--gold));
+    border-left: 2px solid hsl(var(--accent));
     padding-left: 0.9rem;
   }
 }
@@ -80,7 +89,6 @@
 @media print {
   body {
     background: white;
-    background-image: none;
     color: black;
   }
 

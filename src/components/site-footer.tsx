@@ -5,10 +5,12 @@ import { CADEAU, SITE } from "@/lib/site";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-16 border-t-2 border-foreground bg-[hsl(40_42%_96%)]">
-      <div className="container grid gap-8 py-10 md:grid-cols-3">
+    <footer className="mt-16 border-t-[3px] border-foreground">
+      <div className="container grid gap-8 border-t border-foreground py-10 md:grid-cols-3">
         <div>
-          <p className="font-display text-2xl font-semibold">{SITE.name}</p>
+          <p className="font-display text-2xl font-bold tracking-[-0.02em]">
+            {SITE.name}
+          </p>
           <p className="mt-2 max-w-sm font-serif text-sm leading-relaxed text-muted-foreground">
             Zelfstandige beleggingskrant. Geen advies, geen
             modelportefeuille. Wel cijfers met bon, duiding met tegenwerping,
@@ -17,9 +19,7 @@ export function SiteFooter() {
           </p>
         </div>
         <div className="text-sm">
-          <p className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-            Redactie
-          </p>
+          <p className="kicker">Redactie</p>
           <ul className="mt-2 space-y-1 font-serif">
             <li>
               <Link href="/methode" className="hover:text-accent">
@@ -47,9 +47,7 @@ export function SiteFooter() {
               </Link>
             </li>
           </ul>
-          <p className="mt-5 text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-            Andere uitgaven
-          </p>
+          <p className="kicker mt-5">Andere uitgaven</p>
           <ul className="mt-2 space-y-1 font-serif text-muted-foreground">
             <li>
               <Link href="/lokaal" className="hover:text-accent">
@@ -64,9 +62,7 @@ export function SiteFooter() {
           </ul>
         </div>
         <div className="text-sm md:text-right">
-          <p className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-            Editie {EDITION.number}
-          </p>
+          <p className="kicker">Editie {EDITION.number}</p>
           <p className="mt-2 font-serif">
             Gedateerd {formatNlDate(EDITION.date)}. {EDITION.note}
           </p>

@@ -12,20 +12,18 @@ export function StoryCard({
   size?: "default" | "compact";
 }) {
   return (
-    <article className={size === "compact" ? "" : "border-t border-hairline pt-5"}>
+    <article className="rule-story">
       {size === "default" ? (
         <Link href={`/stuk/${article.slug}`} className="mb-4 block">
           <EditionFigure image={{ ...article.image, caption: "" }} />
         </Link>
       ) : null}
-      <p className="text-[11px] uppercase tracking-[0.16em] text-accent">
-        {article.kicker}
-      </p>
+      <p className="kicker">{article.kicker}</p>
       <h2
         className={
           size === "compact"
-            ? "mt-1 font-display text-xl font-semibold leading-tight"
-            : "mt-2 font-display text-2xl font-semibold leading-tight sm:text-[1.7rem]"
+            ? "mt-1 font-display text-xl font-bold leading-tight tracking-[-0.02em]"
+            : "mt-2 font-display text-2xl font-bold leading-tight tracking-[-0.02em] sm:text-[1.7rem]"
         }
       >
         <Link href={`/stuk/${article.slug}`} className="hover:text-accent">
@@ -35,7 +33,7 @@ export function StoryCard({
       <p className="mt-2 font-serif text-[15px] leading-relaxed text-muted-foreground">
         {article.dek}
       </p>
-      <p className="mt-3 text-[12px] text-muted-foreground">
+      <p className="mt-3 font-sans text-[12px] text-muted-foreground">
         {DESK_LABELS[article.desk]} · {formatNlDate(article.published, "short")} ·{" "}
         {article.readingMinutes} min
       </p>

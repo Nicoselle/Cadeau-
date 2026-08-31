@@ -43,8 +43,8 @@ export async function SmcSections() {
         {board.map((card) => {
           const dossier = dossierForAsset(card.item.id);
           return (
-            <article key={card.item.id} className="border border-hairline bg-card p-5">
-              <p className="text-[11px] uppercase tracking-[0.14em] text-accent">
+            <article key={card.item.id} className="rule-story">
+              <p className="kicker">
                 {card.item.layer} · {card.reading.bias}
                 {card.reading.lastEvent
                   ? ` · ${card.reading.lastEvent.kind.toUpperCase()}`

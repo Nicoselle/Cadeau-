@@ -115,13 +115,13 @@ function PyramidStack({ rows }: { rows: WatchRow[] }) {
           return (
             <article
               key={layer}
-              className="border border-foreground bg-card px-3 py-3 text-center"
+              className="rule-story px-3 py-3 text-center"
               style={{ width: STACK_WIDTH[layer], minWidth: "16rem" }}
             >
-              <p className="text-[10px] uppercase tracking-[0.16em] text-accent">
+              <p className="kicker text-[10px]">
                 {PYRAMID_WEIGHTS[layer]} % · {PYRAMID_COPY[layer].kicker}
               </p>
-              <p className="mt-1 font-display text-lg font-semibold leading-tight">
+              <p className="mt-1 font-display text-lg font-bold leading-tight tracking-[-0.02em]">
                 {PYRAMID_COPY[layer].label}
               </p>
               <p className="mt-2 flex flex-wrap justify-center gap-x-3 gap-y-1 text-[12px]">
@@ -156,11 +156,11 @@ function StandsBlock() {
       </p>
       <div className="mt-5 grid gap-4 md:grid-cols-2">
         {ASSET_STANDS.map((stand) => (
-          <article key={stand.id} className="border border-hairline bg-card p-4">
-            <p className="text-[11px] uppercase tracking-[0.14em] text-accent">
+          <article key={stand.id} className="rule-story">
+            <p className="kicker">
               {stand.status} · sinds {formatNlDate(stand.since, "short")}
             </p>
-            <h3 className="mt-1 font-display text-xl font-semibold">
+            <h3 className="mt-1 font-display text-xl font-bold tracking-[-0.02em]">
               {stand.title}
             </h3>
             <p className="mt-2 font-serif text-sm leading-relaxed">

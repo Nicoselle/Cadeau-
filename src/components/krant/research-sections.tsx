@@ -22,11 +22,11 @@ export async function ResearchSections() {
         </p>
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {impact.map((row) => (
-            <article key={row.tile.id} className="border border-hairline bg-card p-4">
-              <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+            <article key={row.tile.id} className="rule-story">
+              <p className="kicker text-muted-foreground">
                 {row.tile.label}
               </p>
-              <p className="mt-1 font-display text-3xl font-semibold tabular-nums">
+              <p className="mt-1 font-display text-3xl font-bold tabular-nums">
                 {row.tile.value}
               </p>
               <p className="mt-1 text-[11px] text-muted-foreground">
@@ -54,11 +54,9 @@ export async function ResearchSections() {
         <h2 className="font-display text-2xl font-semibold">Dossiers</h2>
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {DOSSIERS.map((dossier) => (
-            <article key={dossier.slug} className="border border-foreground p-5">
-              <p className="text-[11px] uppercase tracking-[0.16em] text-accent">
-                {dossier.kicker}
-              </p>
-              <h3 className="mt-2 font-display text-2xl font-semibold">
+            <article key={dossier.slug} className="rule-story">
+              <p className="kicker">{dossier.kicker}</p>
+              <h3 className="mt-2 font-display text-2xl font-bold tracking-[-0.02em]">
                 <Link href={`/onderzoek/${dossier.slug}`} className="hover:text-accent">
                   {dossier.title}
                 </Link>

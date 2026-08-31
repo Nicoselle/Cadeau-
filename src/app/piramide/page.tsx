@@ -21,10 +21,10 @@ export default async function PyramidPage() {
 
   return (
     <div className="container py-10">
-      <p className="text-[11px] uppercase tracking-[0.18em] text-accent">
+      <p className="kicker">
         SafeCapital · methode
       </p>
-      <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.02em] sm:text-5xl">
+      <h1 className="mt-2 font-display text-4xl font-bold tracking-[-0.025em] sm:text-5xl">
         De investeringspiramide
       </h1>
       <p className="mt-4 max-w-2xl font-serif text-lg text-muted-foreground">

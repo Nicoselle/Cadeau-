@@ -15,10 +15,10 @@ export default function BriefingPage() {
 
   return (
     <div className="container py-10">
-      <p className="text-[11px] uppercase tracking-[0.18em] text-accent">
+      <p className="kicker">
         Redactie · {briefing.clock.timezone}
       </p>
-      <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.02em] sm:text-5xl">
+      <h1 className="mt-2 font-display text-4xl font-bold tracking-[-0.025em] sm:text-5xl">
         Briefing
       </h1>
       <p className="mt-4 max-w-2xl font-serif text-lg text-muted-foreground">
@@ -29,10 +29,10 @@ export default function BriefingPage() {
       </p>
 
       <section className="mt-10 max-w-3xl border-t-2 border-foreground pt-8">
-        <p className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+        <p className="kicker text-muted-foreground">
           Geldende editie
         </p>
-        <p className="mt-2 font-display text-2xl font-semibold">
+        <p className="mt-2 font-display text-2xl font-bold tracking-[-0.02em]">
           {briefing.edition.folio} — {briefing.edition.name}
         </p>
         <p className="mt-2 font-serif text-muted-foreground">
@@ -41,8 +41,8 @@ export default function BriefingPage() {
         </p>
       </section>
 
-      <section className="mt-10 max-w-3xl border border-foreground p-5">
-        <p className="text-[11px] uppercase tracking-[0.16em] text-accent">
+      <section className="mt-10 max-w-3xl rule-story">
+        <p className="kicker">
           {briefing.recommendation === "nieuwe_waarneming"
             ? "Nieuwere waarneming"
             : "Zelfde vloer"}
@@ -54,11 +54,11 @@ export default function BriefingPage() {
         <h2 className="font-display text-2xl font-semibold">Vloer</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {briefing.tiles.map((tile) => (
-            <article key={tile.id} className="border border-hairline bg-card p-5">
-              <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+            <article key={tile.id} className="rule-story">
+              <p className="kicker text-muted-foreground">
                 {tile.label}
               </p>
-              <p className="mt-1 font-display text-3xl font-semibold tabular-nums">
+              <p className="mt-1 font-display text-3xl font-bold tabular-nums">
                 {tile.value}
               </p>
               <p className="mt-3 text-[11px] uppercase tracking-[0.12em] text-muted-foreground">

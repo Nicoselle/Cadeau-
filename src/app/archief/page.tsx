@@ -14,10 +14,10 @@ export default function ArchivePage() {
 
   return (
     <div className="container py-10">
-      <p className="text-[11px] uppercase tracking-[0.18em] text-accent">
+      <p className="kicker">
         Archief
       </p>
-      <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.02em] sm:text-5xl">
+      <h1 className="mt-2 font-display text-4xl font-bold tracking-[-0.025em] sm:text-5xl">
         Edities
       </h1>
 
@@ -27,12 +27,12 @@ export default function ArchivePage() {
           <section
             key={edition.number}
             id={`editie-${edition.number}`}
-            className="mt-10 border-t-2 border-foreground pt-8"
+            className="mt-10 border-t border-foreground pt-8"
           >
-            <p className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+            <p className="kicker text-muted-foreground">
               {edition.folio} · {formatNlDate(edition.date)}
             </p>
-            <h2 className="mt-2 font-display text-3xl font-semibold">
+            <h2 className="mt-2 font-display text-3xl font-bold tracking-[-0.02em]">
               {edition.name}
             </h2>
             <p className="mt-3 max-w-2xl font-serif text-muted-foreground">
