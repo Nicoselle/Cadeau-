@@ -22,6 +22,14 @@ const ENV_LABEL = {
   "large-group": "Grote groep",
 } as const;
 
+const ELEMENT_LABEL = {
+  wood: "Groei en menselijk kapitaal",
+  fire: "Zichtbaarheid en tempo",
+  earth: "Stabiliteit en activa",
+  metal: "Precisie en kapitaal",
+  water: "Distributie en netwerken",
+} as const;
+
 function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div className="space-y-1 border-t border-border/70 pt-3 first:border-t-0 first:pt-0">
@@ -163,11 +171,15 @@ export function BriefingReport({ result }: { result: BriefingResponse }) {
             <CardTitle className="text-base">Bewijs · sector</CardTitle>
           </CardHeader>
           <CardContent>
-            <Metric label="Dominant" value={layers.bazi.day.stemLabel} />
+            <Metric label="Dominant kanaal" value={ELEMENT_LABEL[layers.bazi.dominant]} />
             <Metric label="Industrie" value={layers.bazi.sectors.slice(0, 3).join(" · ")} />
             <Metric
-              label="Ontbrekend"
-              value={layers.bazi.missing.length ? layers.bazi.missing.join(", ") : "geen"}
+              label="Complement"
+              value={
+                layers.bazi.missing.length
+                  ? layers.bazi.missing.map((item) => ELEMENT_LABEL[item]).join(" · ")
+                  : "geen structureel gat"
+              }
             />
           </CardContent>
         </Card>

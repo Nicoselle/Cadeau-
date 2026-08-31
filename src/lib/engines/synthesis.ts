@@ -31,7 +31,7 @@ const AUTHORITY_PROTOCOL: Record<DesignResult["authority"], string> = {
   mental:
     "Je hebt geen interne autoriteit. Win advies in bij mensen die de operatie leven, en weeg hun input — niet je mentale model.",
   lunar:
-    "Wacht een volle maancyclus (~28 dagen) voor structurele beslissingen. Jouw helderheid is cyclisch.",
+    "Wacht 28 dagen voor structurele beslissingen. Jouw helderheid is cyclisch, niet momentaan.",
 };
 
 const LIFE_PATH_MISSION: Record<number, string> = {
@@ -273,7 +273,7 @@ export function synthesize(
     confidence: confidenceOf(rae, bazi, numerology, design, paradoxes),
     evidence: {
       rae: `${rae.cutoffLabel}. Positie in het cohort: ${rae.cohortPosition}. Risicobereidheid ${rae.riskAppetite}/100.`,
-      bazi: `Dominant element wijst naar ${bazi.sectors[0]}. Dagmeester: ${bazi.day.stemLabel}.`,
+      bazi: `Dominant kanaal wijst naar ${bazi.sectors[0]}.`,
       numerology: `Levenspad ${numerology.lifePath} (${mission}). Expressie ${numerology.expression}. Persoonlijk jaar ${numerology.personalYear}.`,
       design: `Career type ${design.careerType}, profiel ${design.profile}, autoriteit ${design.authority}, schaal ${design.environment}.`,
     },
