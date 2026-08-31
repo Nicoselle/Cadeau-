@@ -26,7 +26,7 @@ export default function MarketsPage() {
       <p className="mt-4 max-w-2xl font-serif text-lg text-muted-foreground">
         Geen live-ticker. Elk cijfer komt uit een CSV die de redactie heeft
         opgehaald en bewaard. Peil {formatNlDate(board.asOf)}. De volglijst met
-        extra aandacht — edelmetalen, producenten, crypto — staat op de{" "}
+        extra aandacht — de piramide van SafeCapital — staat op de{" "}
         <Link href="/piramide" className="underline hover:text-accent">
           piramide
         </Link>

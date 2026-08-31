@@ -236,6 +236,7 @@ export function serializeWatchBoard(board: WatchBoard) {
       yahoo: row.item.yahoo,
       layer: row.item.layer,
       kind: row.item.kind,
+      role: row.item.role,
       exchange: row.item.exchange,
       note: row.item.note,
       price: row.quote.price,

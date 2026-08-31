@@ -1,7 +1,13 @@
 import { describe, expect, it } from "vitest";
 import {
+  ASSET_STANDS,
+  CASH_MIX,
+  CRYPTO_ALLOCATION,
   PYRAMID_LAYERS,
+  PYRAMID_MANIFEST,
+  PYRAMID_WEIGHTS,
   WATCHLIST,
+  allocationIds,
   watchByLayer,
   yahooSymbols,
 } from "@/data/watchlist";
@@ -11,13 +17,13 @@ import {
   parseChartPayload,
 } from "@/lib/quotes";
 
-const listed = [
+const followedTickers = [
   "goud",
   "zilver",
   "BTC",
-  "GRAM",
   "SKY",
   "xrm",
+  "TON",
   "LWLG",
   "NB",
   "GCU",
@@ -40,55 +46,88 @@ const listed = [
   "BTG",
 ];
 
-describe("volglijst", () => {
-  it("volgt elke gevraagde naam precies één keer", () => {
-    expect(WATCHLIST).toHaveLength(listed.length);
-    expect(WATCHLIST.map((item) => item.listedAs).sort()).toEqual(
-      [...listed].sort(),
-    );
-    expect(new Set(WATCHLIST.map((item) => item.id)).size).toBe(
-      WATCHLIST.length,
-    );
-  });
-
-  it("negeert UI-restafval zoals Select a shortcode", () => {
-    expect(JSON.stringify(WATCHLIST).toLowerCase()).not.toContain("shortcode");
-    expect(WATCHLIST.some((item) => item.listedAs === "Select a shortcode")).toBe(
-      false,
-    );
-  });
-
-  it("zet de piramide in vijf lagen en vult elke laag", () => {
+describe("safecapital-piramide", () => {
+  it("weegt 40 / 30 / 20 / 10 en somt tot honderd", () => {
     expect(PYRAMID_LAYERS).toEqual([
-      "bodem",
-      "producent",
-      "kasstroom",
-      "thema",
-      "punt",
+      "edelmetaal",
+      "cash",
+      "aandelen",
+      "crypto",
     ]);
-    for (const layer of PYRAMID_LAYERS) {
-      expect(watchByLayer(layer).length).toBeGreaterThan(0);
-    }
-    expect(watchByLayer("bodem").map((item) => item.id)).toEqual([
+    expect(PYRAMID_WEIGHTS.edelmetaal).toBe(40);
+    expect(PYRAMID_WEIGHTS.cash).toBe(30);
+    expect(PYRAMID_WEIGHTS.aandelen).toBe(20);
+    expect(PYRAMID_WEIGHTS.crypto).toBe(10);
+    expect(
+      Object.values(PYRAMID_WEIGHTS).reduce((sum, value) => sum + value, 0),
+    ).toBe(100);
+  });
+
+  it("verdeelt cash als 50 EUR, 40 USD, 5 CHF, 5 NOK", () => {
+    expect(CASH_MIX.map((item) => [item.currency, item.shareOfCash])).toEqual([
+      ["EUR", 50],
+      ["USD", 40],
+      ["CHF", 5],
+      ["NOK", 5],
+    ]);
+    expect(CASH_MIX.reduce((sum, item) => sum + item.shareOfCash, 0)).toBe(100);
+    expect(allocationIds("cash")).toEqual(["eur", "usd", "chf", "nok"]);
+  });
+
+  it("houdt alleen BTC, XMR en TON in de cryptolaag", () => {
+    expect(CRYPTO_ALLOCATION).toEqual(["btc", "xmr", "ton"]);
+    expect(allocationIds("crypto")).toEqual(["btc", "xmr", "ton"]);
+    const byId = Object.fromEntries(WATCHLIST.map((item) => [item.id, item]));
+    expect(byId.ton?.yahoo).toBe("TON11419-USD");
+    expect(byId.ton?.listedAs).toBe("TON");
+    expect(byId.sky?.role).toBe("volgen");
+    expect(yahooSymbols()).not.toContain("TON-USD");
+    expect(yahooSymbols()).not.toContain("GRAM-USD");
+  });
+
+  it("zet alle gevolgde aandelen in de laag van 20 %", () => {
+    const stocks = watchByLayer("aandelen");
+    expect(stocks.every((item) => item.kind === "aandeel")).toBe(true);
+    expect(stocks.length).toBe(20);
+    expect(watchByLayer("edelmetaal").map((item) => item.id)).toEqual([
       "goud",
       "zilver",
     ]);
-    expect(watchByLayer("punt").some((item) => item.kind === "crypto")).toBe(
-      true,
-    );
+  });
+
+  it("behoudt de gevraagde namen en slaat shortcode over", () => {
+    const listed = WATCHLIST.map((item) => item.listedAs);
+    for (const ticker of followedTickers) {
+      expect(listed).toContain(ticker);
+    }
+    expect(listed).not.toContain("Select a shortcode");
+    expect(JSON.stringify(WATCHLIST).toLowerCase()).not.toContain("shortcode");
   });
 
   it("herleidt lastige tickers tot wat de tape kent", () => {
     const byId = Object.fromEntries(WATCHLIST.map((item) => [item.id, item]));
     expect(byId.xmr?.yahoo).toBe("XMR-USD");
-    expect(byId.xmr?.listedAs).toBe("xrm");
     expect(byId.sky?.yahoo).toBe("SKY33038-USD");
-    expect(byId.sky?.yahoo).not.toBe("SKY");
     expect(byId.gcu?.yahoo).toBe("GCU.TO");
     expect(byId.acm?.yahoo).toBe("ACM.CN");
     expect(byId.pbra?.yahoo).toBe("PBR-A");
     expect(yahooSymbols()).not.toContain("ACM.V");
     expect(yahooSymbols()).not.toContain("GCU.V");
+  });
+
+  it("draagt huisregels, standen en de SafeCapital-disclaimer", () => {
+    expect(PYRAMID_MANIFEST.lead).toMatch(/kapitaal veilig te stellen/);
+    expect(PYRAMID_MANIFEST.houseRules).toHaveLength(4);
+    expect(PYRAMID_MANIFEST.disclaimer).toMatch(/SafeCapital/);
+    expect(PYRAMID_MANIFEST.disclaimer).toMatch(/educatieve/);
+    expect(ASSET_STANDS.map((stand) => stand.id)).toEqual([
+      "goud",
+      "zilver",
+      "cash",
+      "btc",
+      "xmr",
+      "ton",
+    ]);
   });
 });
 

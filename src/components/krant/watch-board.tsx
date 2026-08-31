@@ -2,12 +2,21 @@
 
 import { useEffect, useState } from "react";
 import {
+  ASSET_STANDS,
   PYRAMID_COPY,
   PYRAMID_LAYERS,
+  PYRAMID_WEIGHTS,
   type PyramidLayer,
 } from "@/data/watchlist";
 import type { WatchBoard, WatchRow } from "@/lib/quotes";
 import { formatTapeChange, formatTapePrice } from "@/lib/quotes";
+
+const STACK_WIDTH: Record<PyramidLayer, string> = {
+  edelmetaal: "100%",
+  cash: "84%",
+  aandelen: "68%",
+  crypto: "50%",
+};
 
 export function WatchBoardView({ initial }: { initial: WatchBoard }) {
   const [board, setBoard] = useState(initial);
@@ -76,8 +85,9 @@ export function WatchBoardView({ initial }: { initial: WatchBoard }) {
   }, []);
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-12">
       <PyramidStack rows={board.rows} />
+      <StandsBlock />
       {PYRAMID_LAYERS.map((layer) => (
         <LayerTable
           key={layer}
@@ -91,36 +101,70 @@ export function WatchBoardView({ initial }: { initial: WatchBoard }) {
 
 function PyramidStack({ rows }: { rows: WatchRow[] }) {
   return (
-    <section aria-label="Investeringspiramide">
+    <section aria-label="Investeringspiramide van SafeCapital">
       <div className="mx-auto flex max-w-3xl flex-col-reverse items-center gap-2">
-        {PYRAMID_LAYERS.map((layer, index) => {
+        {PYRAMID_LAYERS.map((layer) => {
           const items = rows.filter((row) => row.item.layer === layer);
-          const width = 42 + index * 14;
+          const shown =
+            layer === "aandelen"
+              ? items.filter((row) => row.item.role === "volgen")
+              : items.filter((row) => row.item.role === "allocatie");
           return (
             <article
               key={layer}
               className="border border-foreground bg-card px-3 py-3 text-center"
-              style={{ width: `${width}%`, minWidth: "16rem" }}
+              style={{ width: STACK_WIDTH[layer], minWidth: "16rem" }}
             >
               <p className="text-[10px] uppercase tracking-[0.16em] text-accent">
-                {PYRAMID_COPY[layer].kicker}
+                {PYRAMID_WEIGHTS[layer]} % · {PYRAMID_COPY[layer].kicker}
               </p>
               <p className="mt-1 font-display text-lg font-semibold leading-tight">
                 {PYRAMID_COPY[layer].label}
               </p>
               <p className="mt-2 flex flex-wrap justify-center gap-x-3 gap-y-1 text-[12px]">
-                {items.map((row) => (
+                {shown.map((row) => (
                   <span key={row.item.id} className="tabular-nums">
                     <span className="uppercase tracking-[0.08em] text-muted-foreground">
                       {row.item.listedAs}
                     </span>{" "}
-                    {formatTapePrice(row.quote.price, row.quote.currency)}
+                    {layer === "aandelen"
+                      ? null
+                      : formatTapePrice(row.quote.price, row.quote.currency)}
                   </span>
                 ))}
               </p>
             </article>
           );
         })}
+      </div>
+    </section>
+  );
+}
+
+function StandsBlock() {
+  return (
+    <section>
+      <h2 className="font-display text-2xl font-semibold">
+        Huidige stand — goud, zilver, cash, crypto
+      </h2>
+      <p className="mt-2 max-w-3xl font-serif leading-relaxed text-muted-foreground">
+        Educatieve stand van deze editie, geen koop- of verkooporder. De
+        aandelen staan in de tabel daaronder.
+      </p>
+      <div className="mt-5 grid gap-4 md:grid-cols-2">
+        {ASSET_STANDS.map((stand) => (
+          <article key={stand.id} className="border border-hairline bg-card p-4">
+            <p className="text-[11px] uppercase tracking-[0.14em] text-accent">
+              {stand.status}
+            </p>
+            <h3 className="mt-1 font-display text-xl font-semibold">
+              {stand.title}
+            </h3>
+            <p className="mt-2 font-serif text-sm leading-relaxed text-muted-foreground">
+              {stand.text}
+            </p>
+          </article>
+        ))}
       </div>
     </section>
   );
@@ -150,6 +194,7 @@ function LayerTable({
               <th className="px-3 py-2 font-medium">Tape</th>
               <th className="px-3 py-2 font-medium">Print</th>
               <th className="px-3 py-2 font-medium">Dag</th>
+              <th className="px-3 py-2 font-medium">Rol</th>
               <th className="px-3 py-2 font-medium">Noot</th>
             </tr>
           </thead>
@@ -177,6 +222,9 @@ function LayerTable({
                   }`}
                 >
                   {formatTapeChange(row.quote.changePct)}
+                </td>
+                <td className="px-3 py-2.5 text-[12px] uppercase tracking-[0.08em] text-muted-foreground">
+                  {row.item.role}
                 </td>
                 <td className="px-3 py-2.5 font-serif text-[13px] leading-snug text-muted-foreground">
                   {row.quote.ok ? row.item.note : row.quote.error ?? row.item.note}

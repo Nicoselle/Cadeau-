@@ -38,7 +38,10 @@ export default function MethodPage() {
         <section>
           <h2 className="font-display text-2xl font-semibold">Wat wij niet doen</h2>
           <ul className="mt-4 space-y-3 font-serif leading-relaxed">
-            <li>Geen beleggingsadvies, geen koop- of verkooporders, geen modelportefeuille.</li>
+            <li>
+              Geen erkende adviesrelatie, geen koopknop. De piramide is
+              educatief; ieder blijft verantwoordelijk voor eigen beslissingen.
+            </li>
             <li>Geen accounts bij databronnen. Publieke routes of het staat er niet.</li>
             <li>Geen headlines als reeks verkopen. Een ECB-homepagecijfer blijft een headline.</li>
             <li>Geen stille revisies. Correcties — zoals het etiket kerninflatie — blijven zichtbaar.</li>
@@ -78,13 +81,13 @@ export default function MethodPage() {
           Piramide en volglijst
         </h2>
         <p className="mt-4">
-          De investeringspiramide is een taxonomie: bodem (edelmetalen),
-          producenten, kasstroom, thema, punt. Extra aandacht is geen weging en
-          geen advies. Koersen op die pagina komen van de publieke Yahoo-chart,
-          90 seconden cache, User-Agent van de krant. Tickers die de lezer
-          anders schrijft (xrm, PBR.A, ACM, GCU, Sky) worden herleid tot wat de
-          tape echt kent; de noot zegt welke keuze dat was. De datavloer blijft
-          de CSV.
+          De investeringspiramide is de methode van SafeCapital om kapitaal
+          veilig te stellen: 40 % edelmetalen, 30 % liquide cash (50 % EUR,
+          40 % USD, 5 % CHF, 5 % NOK), 20 % publieke aandelen, 10 % crypto
+          (BTC, XMR, TON). Winst nemen verstevigt eerst de basis. Nooit in één
+          keer in of uit een aandeel. Nooit met het laatste geld. De inhoud is
+          educatief; SafeCapital is geen erkende beleggingsadviseur. Koersen
+          komen van de publieke Yahoo-chart. De datavloer blijft de CSV.
         </p>
         <p className="mt-4">
           <Link href="/piramide" className="underline hover:text-accent">

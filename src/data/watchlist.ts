@@ -1,14 +1,15 @@
 export const PYRAMID_LAYERS = [
-  "bodem",
-  "producent",
-  "kasstroom",
-  "thema",
-  "punt",
+  "edelmetaal",
+  "cash",
+  "aandelen",
+  "crypto",
 ] as const;
 
 export type PyramidLayer = (typeof PYRAMID_LAYERS)[number];
 
-export type WatchKind = "metaal" | "crypto" | "aandeel";
+export type WatchKind = "metaal" | "cash" | "crypto" | "aandeel";
+
+export type WatchRole = "allocatie" | "volgen";
 
 export type WatchItem = {
   id: string;
@@ -20,39 +21,117 @@ export type WatchItem = {
   layer: PyramidLayer;
   kind: WatchKind;
   exchange: string;
+  role: WatchRole;
   note: string;
 };
+
+export const PYRAMID_WEIGHTS: Record<PyramidLayer, number> = {
+  edelmetaal: 40,
+  cash: 30,
+  aandelen: 20,
+  crypto: 10,
+};
+
+export const CASH_MIX = [
+  { id: "eur", currency: "EUR", shareOfCash: 50 },
+  { id: "usd", currency: "USD", shareOfCash: 40 },
+  { id: "chf", currency: "CHF", shareOfCash: 5 },
+  { id: "nok", currency: "NOK", shareOfCash: 5 },
+] as const;
+
+export const CRYPTO_ALLOCATION = ["btc", "xmr", "ton"] as const;
 
 export const PYRAMID_COPY: Record<
   PyramidLayer,
   { label: string; kicker: string; text: string }
 > = {
-  bodem: {
-    label: "Bodem — bewaren",
-    kicker: "Edelmetalen",
-    text: "De klassieke investeringspiramide begint onderaan: wat u kunt bewaren als de rest wankelt. Goud en zilver zijn hier de meetlat, geen koopadvies. De termijnprijs is een thermometer, geen kluis.",
+  edelmetaal: {
+    label: "Edelmetalen — 40 %",
+    kicker: "De basis",
+    text: "De bodem van de piramide. Goud en zilver zijn wat SafeCapital aanhoudt om kapitaal te bewaren. Pas als deze laag stevig staat, mag er iets in de lagen daarboven.",
   },
-  producent: {
-    label: "Producenten — wie wint en wie int",
-    kicker: "Mijn, royalty, cake",
-    text: "Daarboven wie het metaal, het erts of de cake echt wint, of er een royalty op int. Senioren, zilverhuizen, exploratie, koper, niobium, kritische metalen, uraniumcake. Extra aandacht, geen rangorde.",
+  cash: {
+    label: "Liquide cash — 30 %",
+    kicker: "EUR · USD · CHF · NOK",
+    text: "Puur liquide. Van deze laag is 50 % euro, 40 % dollar, 5 % Zwitserse frank en 5 % Noorse kroon. De kruisen op de tape zijn thermometers, geen vervanging van het saldo.",
   },
-  kasstroom: {
-    label: "Kasstroom — de echte wereld",
-    kicker: "Olie, zee, energie",
-    text: "Namen die hun geld niet uit een lab of een token halen, maar uit vaten, containers of energie-infrastructuur. Volgen is niet hetzelfde als aanbevelen.",
+  aandelen: {
+    label: "Publieke aandelen — 20 %",
+    kicker: "Namen die we volgen",
+    text: "Pas wanneer edelmetaal en cash staan, komt deze laag. Hieronder de namen die we de moeite waard vinden. Dat is geen kooporder en geen weging per titel.",
   },
-  thema: {
-    label: "Thema — technologie",
-    kicker: "Software, quantum, fotonica",
-    text: "Hier zit het verhaal, niet de bodem. Software, quantum, fotonica, laboratoriumapparatuur. De redactie volgt ze omdat ze bewegen; dat is geen modelportefeuille.",
-  },
-  punt: {
-    label: "Punt — wat kantelt",
-    kicker: "Crypto en speculatief",
-    text: "De punt van de piramide is het smalst en het luidst. Crypto en de kleinste, meest kantelbare namen. Extra aandacht juist omdat een print hier het minst zegt over morgen.",
+  crypto: {
+    label: "Crypto — 10 %",
+    kicker: "BTC · XMR · TON",
+    text: "De smalste laag. Alleen Bitcoin, Monero en Toncoin zitten in de 10 %. Sky blijft op de volglijst, maar telt niet mee in de allocatie. xrm is Monero.",
   },
 };
+
+export const PYRAMID_MANIFEST = {
+  lead: "De investeringspiramide is onze methode om kapitaal veilig te stellen.",
+  houseRules: [
+    "Als u winst neemt, verstevig dan eerst uw basis alvorens u in de hogere lagen iets onderneemt.",
+    "Stap nooit in één keer in of uit een aandeel.",
+    "Investeer nooit met uw laatste geld, en enkel met geld dat u bereid bent volledig te verliezen.",
+    "Schakel zowel hebzucht en blind optimisme als angst en blind pessimisme uit, en blijf nuchter kijken naar de feiten.",
+  ],
+  disclaimer:
+    "De inhoud die door SafeCapital wordt gedeeld (in edities, blogposts, lezingen, opnames, mails, of andere documenten en platforms), is uitsluitend bedoeld voor educatieve en informatieve doeleinden. Niets in de inhoud mag worden beschouwd als financieel, juridisch, of fiscaal advies, noch als een aanbeveling om bepaalde financiële instrumenten te kopen of te verkopen. SafeCapital is geen erkende beleggingsadviseur, analist, of tussenpersoon. Elk individu blijft volledig verantwoordelijk voor zijn of haar eigen investeringsbeslissingen. Beleggen brengt steeds risico’s met zich mee, waaronder mogelijk verlies van (een deel van) het kapitaal. Doe altijd uw eigen onderzoek en raadpleeg een erkend financieel adviseur voordat u handelt.",
+} as const;
+
+export type AssetStand = {
+  id: string;
+  title: string;
+  layer: PyramidLayer;
+  status: string;
+  text: string;
+};
+
+/** Stand van deze editie: de laag zelf, geen koersdoel. */
+export const ASSET_STANDS: AssetStand[] = [
+  {
+    id: "goud",
+    title: "Goud",
+    layer: "edelmetaal",
+    status: "Aanhouden in de basis",
+    text: "Deel van de 40 % edelmetalen. Geen koersdoel in deze editie. De laag is het standpunt: eerst de basis, dan de rest.",
+  },
+  {
+    id: "zilver",
+    title: "Zilver",
+    layer: "edelmetaal",
+    status: "Aanhouden in de basis",
+    text: "Naast goud in de 40 %. Industrieel én monetair; de tape maakt dat onderscheid niet. Geen apart koersdoel.",
+  },
+  {
+    id: "cash",
+    title: "Liquide cash",
+    layer: "cash",
+    status: "30 %, verdeeld",
+    text: "50 % EUR, 40 % USD, 5 % CHF, 5 % NOK. Dit is de tweede fundering. Geen yield-jacht in deze laag.",
+  },
+  {
+    id: "btc",
+    title: "Bitcoin",
+    layer: "crypto",
+    status: "In de 10 %",
+    text: "Deel van de cryptolaag, niet van de basis. Winst hier verstevigt eerst edelmetaal en cash.",
+  },
+  {
+    id: "xmr",
+    title: "Monero",
+    layer: "crypto",
+    status: "In de 10 %",
+    text: "Aangevraagd als xrm. XRM bestaat niet op de tape; dit is XMR. Zelfde regel: de punt blijft de punt.",
+  },
+  {
+    id: "ton",
+    title: "Toncoin",
+    layer: "crypto",
+    status: "In de 10 %",
+    text: "TON, niet het microtoken TON-USD. Yahoo noemt het TON11419-USD; Gram (prev. Toncoin) is dezelfde tape.",
+  },
+];
 
 export const WATCHLIST: WatchItem[] = [
   {
@@ -60,29 +139,76 @@ export const WATCHLIST: WatchItem[] = [
     name: "Goud",
     listedAs: "goud",
     yahoo: "GC=F",
-    layer: "bodem",
+    layer: "edelmetaal",
     kind: "metaal",
     exchange: "COMEX",
-    note: "Termijncontract als thermometer. Geen fysieke voorraad van de redactie.",
+    role: "allocatie",
+    note: "Termijncontract als thermometer. De basis is fysiek metaal, niet dit contract.",
   },
   {
     id: "zilver",
     name: "Zilver",
     listedAs: "zilver",
     yahoo: "SI=F",
-    layer: "bodem",
+    layer: "edelmetaal",
     kind: "metaal",
     exchange: "COMEX",
-    note: "Termijncontract. Industrieel én monetair; de tape maakt dat onderscheid niet.",
+    role: "allocatie",
+    note: "Termijncontract. Industrieel én monetair.",
+  },
+  {
+    id: "eur",
+    name: "Euro",
+    listedAs: "EUR",
+    yahoo: "EURUSD=X",
+    layer: "cash",
+    kind: "cash",
+    exchange: "FX",
+    role: "allocatie",
+    note: "50 % van de cashlaag (15 % van het geheel). Print is EUR/USD.",
+  },
+  {
+    id: "usd",
+    name: "Amerikaanse dollar",
+    listedAs: "USD",
+    yahoo: "DX-Y.NYB",
+    layer: "cash",
+    kind: "cash",
+    exchange: "ICE",
+    role: "allocatie",
+    note: "40 % van de cashlaag (12 % van het geheel). Print is de dollarindex, geen saldo.",
+  },
+  {
+    id: "chf",
+    name: "Zwitserse frank",
+    listedAs: "CHF",
+    yahoo: "USDCHF=X",
+    layer: "cash",
+    kind: "cash",
+    exchange: "FX",
+    role: "allocatie",
+    note: "5 % van de cashlaag. Print is USD/CHF.",
+  },
+  {
+    id: "nok",
+    name: "Noorse kroon",
+    listedAs: "NOK",
+    yahoo: "EURNOK=X",
+    layer: "cash",
+    kind: "cash",
+    exchange: "FX",
+    role: "allocatie",
+    note: "5 % van de cashlaag. Print is EUR/NOK — past bij MPCC in Oslo.",
   },
   {
     id: "aem",
     name: "Agnico Eagle Mines",
     listedAs: "AEM",
     yahoo: "AEM",
-    layer: "producent",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "NYSE",
+    role: "volgen",
     note: "Senior goudproducent.",
   },
   {
@@ -90,9 +216,10 @@ export const WATCHLIST: WatchItem[] = [
     name: "Newmont Corporation",
     listedAs: "NEM",
     yahoo: "NEM",
-    layer: "producent",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "NYSE",
+    role: "volgen",
     note: "Senior goudproducent.",
   },
   {
@@ -100,9 +227,10 @@ export const WATCHLIST: WatchItem[] = [
     name: "B2Gold",
     listedAs: "BTG",
     yahoo: "BTG",
-    layer: "producent",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "NYSE American",
+    role: "volgen",
     note: "Goudproducent.",
   },
   {
@@ -110,9 +238,10 @@ export const WATCHLIST: WatchItem[] = [
     name: "Hecla Mining",
     listedAs: "HL",
     yahoo: "HL",
-    layer: "producent",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "NYSE",
+    role: "volgen",
     note: "Zilver- en goudproducent.",
   },
   {
@@ -120,9 +249,10 @@ export const WATCHLIST: WatchItem[] = [
     name: "Aya Gold & Silver",
     listedAs: "AYA.TO",
     yahoo: "AYA.TO",
-    layer: "producent",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "TSX",
+    role: "volgen",
     note: "Zilver en goud, Toronto.",
   },
   {
@@ -130,9 +260,10 @@ export const WATCHLIST: WatchItem[] = [
     name: "Triple Flag Precious Metals",
     listedAs: "TFPM",
     yahoo: "TFPM",
-    layer: "producent",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "NYSE",
+    role: "volgen",
     note: "Royalty en streaming op edelmetaal, geen eigen groeve.",
   },
   {
@@ -140,9 +271,10 @@ export const WATCHLIST: WatchItem[] = [
     name: "Tudor Gold",
     listedAs: "TUD.V",
     yahoo: "TUD.V",
-    layer: "producent",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "TSXV",
+    role: "volgen",
     note: "Goud-exploratie, Treaty Creek.",
   },
   {
@@ -150,9 +282,10 @@ export const WATCHLIST: WatchItem[] = [
     name: "Gunnison Copper",
     listedAs: "GCU",
     yahoo: "GCU.TO",
-    layer: "producent",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "TSX",
+    role: "volgen",
     note: "Toronto-notering. GCU.V op Yahoo is een ander instrument, geen koper.",
   },
   {
@@ -160,9 +293,10 @@ export const WATCHLIST: WatchItem[] = [
     name: "NioCorp Developments",
     listedAs: "NB",
     yahoo: "NB",
-    layer: "producent",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "Nasdaq",
+    role: "volgen",
     note: "Niobium, scandium, titanium — Elk Creek.",
   },
   {
@@ -170,9 +304,10 @@ export const WATCHLIST: WatchItem[] = [
     name: "Allied Critical Metals",
     listedAs: "ACM",
     yahoo: "ACM.CN",
-    layer: "producent",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "CSE",
+    role: "volgen",
     note: "CSE-notering. ACM.V is gedelisted; niet het cryptotoken ACM.",
   },
   {
@@ -180,9 +315,10 @@ export const WATCHLIST: WatchItem[] = [
     name: "Yellow Cake",
     listedAs: "YCA.L",
     yahoo: "YCA.L",
-    layer: "producent",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "LSE",
+    role: "volgen",
     note: "Houdt uraniumoxide (cake), delft zelf niet. Koers op Yahoo in pence (GBp).",
   },
   {
@@ -190,9 +326,10 @@ export const WATCHLIST: WatchItem[] = [
     name: "Petrobras",
     listedAs: "PBR.A",
     yahoo: "PBR-A",
-    layer: "kasstroom",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "NYSE",
+    role: "volgen",
     note: "Preferente ADR. Yahoo schrijft PBR-A, geen punt.",
   },
   {
@@ -200,9 +337,10 @@ export const WATCHLIST: WatchItem[] = [
     name: "MPC Container Ships",
     listedAs: "MPCC.OL",
     yahoo: "MPCC.OL",
-    layer: "kasstroom",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "Oslo",
+    role: "volgen",
     note: "Containervaart, Oslo.",
   },
   {
@@ -210,29 +348,32 @@ export const WATCHLIST: WatchItem[] = [
     name: "Green Impact Partners",
     listedAs: "GIP.V",
     yahoo: "GIP.V",
-    layer: "kasstroom",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "TSXV",
-    note: "Energie- en waterinfrastructuur, geen groene etiketmachine.",
+    role: "volgen",
+    note: "Energie- en waterinfrastructuur.",
   },
   {
     id: "pltr",
     name: "Palantir Technologies",
     listedAs: "PLTR",
     yahoo: "PLTR",
-    layer: "thema",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "Nasdaq",
-    note: "Software. Volgen is geen waarderingsvonnis.",
+    role: "volgen",
+    note: "Software.",
   },
   {
     id: "qbts",
     name: "D-Wave Quantum",
     listedAs: "QBTS",
     yahoo: "QBTS",
-    layer: "thema",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "NYSE",
+    role: "volgen",
     note: "Quantumcomputing.",
   },
   {
@@ -240,9 +381,10 @@ export const WATCHLIST: WatchItem[] = [
     name: "Lightwave Logic",
     listedAs: "LWLG",
     yahoo: "LWLG",
-    layer: "thema",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "Nasdaq",
+    role: "volgen",
     note: "Elektro-optische polymeren.",
   },
   {
@@ -250,70 +392,77 @@ export const WATCHLIST: WatchItem[] = [
     name: "Nanalysis Scientific",
     listedAs: "NSCI.V",
     yahoo: "NSCI.V",
-    layer: "thema",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "TSXV",
+    role: "volgen",
     note: "NMR-apparatuur, Toronto Venture.",
-  },
-  {
-    id: "btc",
-    name: "Bitcoin",
-    listedAs: "BTC",
-    yahoo: "BTC-USD",
-    layer: "punt",
-    kind: "crypto",
-    exchange: "crypto",
-    note: "Spot tegen dollar. Geen beursvennootschap.",
-  },
-  {
-    id: "gram",
-    name: "Gram",
-    listedAs: "GRAM",
-    yahoo: "GRAM-USD",
-    layer: "punt",
-    kind: "crypto",
-    exchange: "crypto",
-    note: "Yahoo: Gram (voorheen Toncoin). Controleer of dit de token is die u bedoelde.",
-  },
-  {
-    id: "sky",
-    name: "Sky",
-    listedAs: "SKY",
-    yahoo: "SKY33038-USD",
-    layer: "punt",
-    kind: "crypto",
-    exchange: "crypto",
-    note: "Yahoo «Sky USD» (id 33038). Niet Champion Homes (SKY) en niet Skycoin (SKY-USD).",
-  },
-  {
-    id: "xmr",
-    name: "Monero",
-    listedAs: "xrm",
-    yahoo: "XMR-USD",
-    layer: "punt",
-    kind: "crypto",
-    exchange: "crypto",
-    note: "Aangevraagd als xrm. XRM bestaat niet op de tape; dit is Monero (XMR).",
   },
   {
     id: "elc",
     name: "Elysee Development Corp.",
     listedAs: "ELC.V",
     yahoo: "ELC.V",
-    layer: "punt",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "TSXV",
-    note: "Kleine resource-holding. Punt van de piramide, geen bodem.",
+    role: "volgen",
+    note: "Kleine resource-holding.",
   },
   {
     id: "crym",
     name: "CryoMass Technologies",
     listedAs: "CRYM",
     yahoo: "CRYM",
-    layer: "punt",
+    layer: "aandelen",
     kind: "aandeel",
     exchange: "OTC",
-    note: "OTC, extreem dunne tape. Extra aandacht omdat de print hier het minst zegt.",
+    role: "volgen",
+    note: "OTC, extreem dunne tape.",
+  },
+  {
+    id: "btc",
+    name: "Bitcoin",
+    listedAs: "BTC",
+    yahoo: "BTC-USD",
+    layer: "crypto",
+    kind: "crypto",
+    exchange: "crypto",
+    role: "allocatie",
+    note: "In de 10 %. Spot tegen dollar.",
+  },
+  {
+    id: "xmr",
+    name: "Monero",
+    listedAs: "xrm",
+    yahoo: "XMR-USD",
+    layer: "crypto",
+    kind: "crypto",
+    exchange: "crypto",
+    role: "allocatie",
+    note: "In de 10 %. Aangevraagd als xrm; de tape kent XMR.",
+  },
+  {
+    id: "ton",
+    name: "Toncoin",
+    listedAs: "TON",
+    yahoo: "TON11419-USD",
+    layer: "crypto",
+    kind: "crypto",
+    exchange: "crypto",
+    role: "allocatie",
+    note: "In de 10 %. Niet TON-USD (ander token). Gram (prev. Toncoin) is dezelfde tape.",
+  },
+  {
+    id: "sky",
+    name: "Sky",
+    listedAs: "SKY",
+    yahoo: "SKY33038-USD",
+    layer: "crypto",
+    kind: "crypto",
+    exchange: "crypto",
+    role: "volgen",
+    note: "Op de volglijst, niet in de 10 %. Yahoo «Sky USD» (id 33038), niet Champion Homes.",
   },
 ];
 
@@ -334,4 +483,10 @@ export function watchById(id: string): WatchItem | undefined {
 
 export function yahooSymbols(): string[] {
   return WATCHLIST.map((item) => item.yahoo);
+}
+
+export function allocationIds(layer: PyramidLayer): string[] {
+  return watchByLayer(layer)
+    .filter((item) => item.role === "allocatie")
+    .map((item) => item.id);
 }

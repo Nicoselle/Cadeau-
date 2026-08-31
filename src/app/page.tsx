@@ -134,13 +134,13 @@ export default function HomePage() {
               Extra aandacht
             </p>
             <h2 className="mt-2 font-display text-3xl font-semibold">
-              De piramide, geen modelportefeuille
+              De piramide van SafeCapital
             </h2>
             <p className="mt-3 max-w-2xl font-serif text-lg leading-relaxed text-muted-foreground">
-              {WATCHLIST.length} namen die de redactie extra volgt: edelmetalen
-              onderop, producenten en kasstroom daarboven, technologie en de
-              punt (crypto) bovenaan. Laatste print van de publieke tape, geen
-              koopadvies.
+              Methode om kapitaal veilig te stellen: 40 % edelmetalen, 30 %
+              liquide cash, 20 % publieke aandelen, 10 % crypto. Daaronder{" "}
+              {WATCHLIST.filter((item) => item.kind === "aandeel").length}{" "}
+              namen die we volgen. Educatief, geen adviesrelatie.
             </p>
             <Link
               href="/piramide"
@@ -154,11 +154,10 @@ export default function HomePage() {
               Lagen
             </p>
             <ol className="mt-3 space-y-2 font-serif text-sm leading-relaxed">
-              <li>Bodem — goud, zilver</li>
-              <li>Producenten — mijn, royalty, cake</li>
-              <li>Kasstroom — olie, zee, energie</li>
-              <li>Thema — software, quantum, fotonica</li>
-              <li>Punt — crypto en wat kantelt</li>
+              <li>40 % — edelmetalen (goud, zilver)</li>
+              <li>30 % — cash (EUR 50, USD 40, CHF 5, NOK 5)</li>
+              <li>20 % — publieke aandelen</li>
+              <li>10 % — crypto (BTC, XMR, TON)</li>
             </ol>
           </aside>
         </section>

@@ -18,7 +18,7 @@ broker. Een krant die op zichzelf staat:
 - zes stukken, elk met bonnen en waar nodig een steenman
 - marktenpagina uit CSV’s (M2, CPI, HICP, rente, S&P, VIX, spilindex, VS-schuld)
 - orakelboek met zeven toetsbare uitspraken
-- piramide: uitleg investeringspiramide + volglijst met extra aandacht
+- piramide: SafeCapital-methode 40/30/20/10 + volglijst
 - methodepagina (bronnenladder, etiketten, wat we niet doen)
 - publieke JSON-API
 
