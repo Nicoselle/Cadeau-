@@ -6,7 +6,7 @@ export function SiteFooter() {
     <footer className="border-t border-border/80">
       <div className="container flex flex-col gap-3 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
         <p>
-          {SITE.name} — beslissingsondersteuning, geen financieel of juridisch advies.
+          {SITE.name} — hulpmiddel bij beslissingen, geen financieel of juridisch advies.
         </p>
         <div className="flex gap-5">
           <Link href="/methode" className="hover:text-foreground">

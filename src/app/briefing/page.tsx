@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BriefingClient } from "@/components/briefing-client";
 
 export const metadata: Metadata = {
-  title: "Briefing",
+  title: "Dossier",
   robots: { index: false, follow: false },
 };
 

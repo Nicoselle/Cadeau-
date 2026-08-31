@@ -53,7 +53,7 @@ describe("synthesis", () => {
   it("converges the research-report matrix into a boutique consultancy", () => {
     const briefing = synthesize(raeYoung, baziWood, numerology84, advisor);
     expect(briefing.headline.toLowerCase()).toContain("consultancy");
-    expect(briefing.riskStrategy.toLowerCase()).toMatch(/berekend|marges|vc/);
+    expect(briefing.riskStrategy.toLowerCase()).toMatch(/berekend|marges|durfkapitaal/);
     expect(briefing.hiringMandate.join(" ")).toMatch(/implementatie/i);
     expect(briefing.decisionProtocol.toLowerCase()).toContain("nacht");
     expect(briefing.structure).toMatch(/drie tot vijf/i);

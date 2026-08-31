@@ -15,7 +15,7 @@ ${SITE.description}
 POST ${SITE.url}/api/v1/briefing
 JSON: { fullName, birthDate, birthTime, cityId, country, companyFoundedOn? }
 
-Layers: RAE, BaZi, numerology, Human Design/BG5. Output is a business briefing in Dutch.
+Bronnen: klaspositie, sector, drijfveer, organisatie. Output: een zakelijk dossier in het Nederlands.
 `;
   return new NextResponse(body, {
     headers: { "Content-Type": "text/plain; charset=utf-8" },

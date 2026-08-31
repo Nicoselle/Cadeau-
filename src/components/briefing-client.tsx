@@ -24,15 +24,15 @@ export function BriefingClient() {
   if (!result) {
     return (
       <div className="space-y-4">
-        <h1 className="text-3xl font-semibold tracking-tight">Geen briefing in sessie</h1>
+        <h1 className="text-3xl font-semibold tracking-tight">Nog geen dossier</h1>
         <p className="text-muted-foreground">
-          De berekening blijft lokaal in deze browser. Start opnieuw vanaf de intake.
+          De berekening blijft in deze browser. Vul je gegevens opnieuw in.
         </p>
         <Link
           href="/#intake"
           className="inline-flex h-10 items-center rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground"
         >
-          Naar intake
+          Naar de intake
         </Link>
       </div>
     );

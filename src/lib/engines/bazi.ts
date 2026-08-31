@@ -32,11 +32,11 @@ const MONTH_STEM_START = [2, 4, 6, 8, 0, 2, 4, 6, 8, 0];
 const HOUR_STEM_START = [0, 2, 4, 6, 8, 0, 2, 4, 6, 8];
 
 export const ELEMENT_SECTORS: Record<Element, string[]> = {
-  wood: ["educatieve technologie", "management consultancy", "human resources", "leiderschapstraining"],
-  fire: ["entertainment", "public relations", "artificiële intelligentie", "energie", "horeca"],
+  wood: ["opleidingen", "managementconsultancy", "personeelsbeleid", "leiderschapstrajecten"],
+  fire: ["evenementen", "pers en reputatie", "slimme software", "energie", "horeca"],
   earth: ["onroerend goed", "projectontwikkeling", "bouw", "verzekeringen", "risicobeheer"],
-  metal: ["bancaire diensten", "fintech", "accountancy", "engineering", "hardware"],
-  water: ["logistiek", "e-commerce distributie", "telecommunicatie", "maritieme handel", "dranken"],
+  metal: ["banken", "financiële software", "accountancy", "ingenieurswerk", "apparatuur"],
+  water: ["logistiek", "webwinkel en groothandel", "telecom", "havenhandel", "dranken"],
 };
 
 function pillar(stemIndex: number, branchIndex: number): Pillar {

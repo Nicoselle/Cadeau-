@@ -19,74 +19,74 @@ import {
 } from "@/lib/engines/narrative";
 
 const CAREER_ROLE: Record<CareerType, string> = {
-  initiator: "Visionair die processen in gang zet en de dagelijkse operatie delegeert",
-  "classic-builder": "Operationele bouwer met duurzame uitvoeringskracht",
-  "express-builder": "Multi-track bouwer die floreert bij snelle pivots",
-  advisor: "Systeemarchitect en gids — geen uitvoerende 9-tot-5-operator",
-  evaluator: "Onafhankelijke waarnemer van cultuur, kwaliteit en marktsentiment",
+  initiator: "Jij zet dingen in gang. De dagelijkse uitvoering laat je aan iemand anders.",
+  "classic-builder": "Jij voert uit en houdt tempo. De zaak leeft van jouw werkritme.",
+  "express-builder": "Jij houdt twee lijnen tegelijk. Eén tunnel maakt je ongeduldig.",
+  advisor: "Jij geeft richting. Jij sleept de zaak niet zelf.",
+  evaluator: "Jij leest de markt en de ploeg. Jij voert niet zelf uit.",
 };
 
 const LIFE_PATH_MISSION: Record<number, string> = {
-  1: "solo-pionierschap zonder gedeelde autoriteit",
-  2: "diplomatieke partnerships en stille invloed",
-  3: "zichtbare communicatie, merk en publiek",
-  4: "systemen, orde en tastbare structuren",
-  5: "vrijheid, iteratie en commerciële wendbaarheid",
-  6: "verantwoordelijkheid, zorgstructuren en community",
-  7: "onderzoek, data en werk achter de schermen",
-  8: "materiële macht, kapitaalallocatie en schaal",
-  9: "afronding, portfolio's en maatschappelijke reikwijdte",
-  11: "visionair leiderschap via inspiratie",
-  22: "grote, bouwbare systemen op maatschappelijke schaal",
-  33: "mentorschap en het tillen van andere leiders",
+  1: "zelfstandig commando, zonder gedeelde eindbeslissing",
+  2: "diplomatie, tandem en stille invloed",
+  3: "stem, merk en een zichtbaar publiek",
+  4: "orde, systemen en tastbaar werk",
+  5: "bewegingsvrijheid en commerciële wendbaarheid",
+  6: "verantwoordelijkheid voor mensen en verplichtingen",
+  7: "onderzoek, cijfers en werk achter de schermen",
+  8: "kapitaal, onderhandeling en schaal",
+  9: "afronden, overdragen en een bredere cirkel",
+  11: "richting geven via een scherpe visie",
+  22: "grote, bouwbare structuren",
+  33: "andere zaakvoerders tillen zonder zelf het werk te doen",
 };
 
 const ELEMENT_LABEL: Record<Element, string> = {
-  wood: "groei en menselijk kapitaal",
-  fire: "zichtbaarheid en snelle marktpenetratie",
-  earth: "stabiliteit en activa",
-  metal: "precisie en financiële systemen",
-  water: "distributie en connectiviteit",
+  wood: "groei en mensen",
+  fire: "zichtbaarheid en tempo",
+  earth: "stabiliteit en vastgoed",
+  metal: "precisie en geldstromen",
+  water: "distributie en relaties",
 };
 
 const EXTRAVERT_PATHS = new Set([1, 3, 5, 8]);
 
 function structureLine(environment: DesignResult["environment"], careerType: CareerType): string {
   if (environment === "solo") {
-    return "Solo-praktijk of een ultrakleine staf. Hiërarchie van honderden mensen is een structurele mismatch.";
+    return "Alleen of met één vaste hulp. Een zaak van tientallen mensen past niet.";
   }
   if (environment === "partnership") {
-    return "Een-op-een dynamiek: één mede-oprichter of een keten van dyades, geen matrixorganisatie.";
+    return "Eén vennoot of een keten van duo's. Geen organisatie met lagen.";
   }
   if (environment === "small-group") {
-    return "Penta-schaal: drie tot vijf mensen. Boven vijf personen daalt de signaalkwaliteit hard.";
+    return "Een kern van drie tot vijf mensen. Boven de vijf begin je te sturen in plaats van te leveren.";
   }
   if (careerType === "evaluator") {
-    return "Grote groep als observatieveld, niet als hiërarchie die jij dagelijks managet.";
+    return "Een grotere groep als werkveld, niet als ploeg die jij elke dag leidt.";
   }
-  return "Grote groep / OC16: hiërarchische schaal is mogelijk, mits de eerste laag operationeel is ingevuld.";
+  return "Een grotere organisatie kan, als de eerste laag het dagelijkse werk al draait.";
 }
 
 function riskLine(rae: RaeResult): string {
   if (rae.fundingBias === "aggressive-debt") {
-    return "Statistisch profiel van de relatief oudste in het schoolcohort: hogere risicobereidheid en schuldcapaciteit. Bruikbaar voor snelle kapitaalverbranding — alleen met een expliciete kill-switch.";
+    return "Op school was je vaak de oudste. Dat geeft later meer risico-appetijt en meer ruimte voor schuld. Bruikbaar, als de stopregel op papier staat.";
   }
   if (rae.fundingBias === "conservative-margin") {
-    return "Relatief jongste in het cohort: onderneem met berekend risico, veilige marges, geen overmatige schuldfinanciering en geen agressieve VC-druk.";
+    return "Als jongste in de klas: onderneem met berekend risico, veilige marges, geen zware lening en geen durfkapitaal dat tempo eist.";
   }
-  return "Midden-cohort: mix van tempo en voorzichtigheid. Groei in stappen, financier met bewezen unit economics.";
+  return "Midden van de klas: tempo én voorzichtigheid. Groei in stappen. Financier met winst die je al hebt bewezen.";
 }
 
 function hiringFrom(design: DesignResult): string[] {
   const mandate: string[] = [];
   if (design.careerType === "initiator" || design.careerType === "advisor" || design.careerType === "evaluator") {
-    mandate.push("Neem minstens één Classic of Express Builder aan voor back-office implementatie.");
+    mandate.push("Haal minstens één uitvoerder binnen voor de implementatie.");
   }
   for (const skill of design.missingSkills.slice(0, 3)) {
-    mandate.push(`Eerste strategische aanname of mede-oprichter moet ${skill.toLowerCase()} in het team brengen.`);
+    mandate.push(`De eerste aanwerving of vennoot moet ${skill.toLowerCase()} in huis hebben.`);
   }
   if (mandate.length === 0) {
-    mandate.push("Kernvaardigheden zitten in jouw kaart. Huur specialisten, geen tweede generaal.");
+    mandate.push("De kern zit bij jou. Huur specialisten, geen tweede baas.");
   }
   return mandate;
 }
@@ -99,30 +99,30 @@ function detectParadoxes(
   const paradoxes: Paradox[] = [];
   if (EXTRAVERT_PATHS.has(numerology.lifePath) && design.careerType === "evaluator") {
     paradoxes.push({
-      title: "Zichtbaar bereik, verborgen operatie",
+      title: "Zichtbaar bereik, stille werkplek",
       explanation:
-        "Je drijfveer trekt naar een breed publiek, terwijl je mechanica uitputting geeft in permanente sociale druk. Fungeer als asynchrone content creator of analist vanuit een beveiligde, stille omgeving.",
+        "Je wilt een breed publiek, maar permanente druk put je uit. Werk op afspraak. Schrijf en analyseer in stilte. Geen open kantoor de hele week.",
     });
   }
   if (design.careerType === "advisor" && rae.cohortPosition === "oldest") {
     paradoxes.push({
-      title: "Hoge statusdrang, lage uitvoeringsenergie",
+      title: "Zichtbaar leiderschap, geen zware uitvoering",
       explanation:
-        "Het cohortprofiel duwt naar zichtbaar leiderschap; de mechanica verbiedt arbeidsintensieve operaties. Bestuur via een management-BV of fonds, niet via een uitvoerend bedrijf.",
+        "De klaspositie duwt naar de voorgrond. Jouw energie verbiedt lange dagen op de werkvloer. Bestuur via een holding of een kantoor dat anderen laat werken.",
     });
   }
   if (numerology.lifePath === 1 && rae.cohortPosition === "oldest") {
     paradoxes.push({
-      title: "Gevalideerd solo-commando",
+      title: "Solo-commando dat klopt",
       explanation:
-        "Levenspad 1 en relatief-oudste status versterken elkaar. Start als solo-oprichter. Deel geen eindbeslissing.",
+        "Zelfstandig commando en oudste in de klas versterken elkaar. Start alleen. Deel de eindbeslissing niet.",
     });
   }
   if (design.environment === "solo" && design.careerType === "classic-builder") {
     paradoxes.push({
-      title: "Krachtige motor, kleine kamer",
+      title: "Sterk tempo, kleine kamer",
       explanation:
-        "Je hebt duurzame energie maar geen genetische voorkeur voor grote groepen. Bouw diep, niet breed.",
+        "Je houdt wekenlang hetzelfde ritme, maar grote groepen kosten je scherpte. Bouw diep, niet breed.",
     });
   }
   return paradoxes;
@@ -137,63 +137,63 @@ function archetype(
 
   if (careerType === "advisor" && (dominant === "wood" || lifePath === 8 || lifePath === 4)) {
     return {
-      headline: "Boutique management- en leiderschapsconsultancy",
-      company: "Boutique consultancy / management-BV",
-      sector: `Leiderschapsontwikkeling, executive coaching of HR-innovatie — ${sectorFocus}.`,
+      headline: "Leiderschapsconsultancy in een klein kantoor",
+      company: "klein advieskantoor of managementvennootschap",
+      sector: `Leiderschapstrajecten en personeelsbeleid — ${sectorFocus}.`,
     };
   }
   if (careerType === "advisor") {
     return {
-      headline: "Gespecialiseerd advieskantoor met geconcentreerde werkvensters",
-      company: "Adviesbureau, venture-adviseur of kwaliteitsfonds",
-      sector: `Kennisintensieve begeleiding in ${sectorFocus}.`,
+      headline: "Gespecialiseerd advieskantoor met korte, scherpe blokken",
+      company: "advieskantoor of kwaliteitsfonds",
+      sector: `Begeleiding op ${sectorFocus}.`,
     };
   }
   if (careerType === "initiator" && dominant === "fire") {
     return {
-      headline: "Visionair merk- of technologieplatform",
-      company: "Initiatief-gedreven studio met uitvoerend team",
+      headline: "Merk dat jij start, met een ploeg die uitvoert",
+      company: "studio met een uitvoerende ploeg",
       sector: `Snelle zichtbaarheid: ${sectorFocus}.`,
     };
   }
   if (careerType === "initiator") {
     return {
-      headline: "Onafhankelijk initiatief met gedelegeerde operatie",
-      company: "Holding of initiatief-studio",
-      sector: `Nieuwe categorieën in ${sectorFocus}.`,
+      headline: "Zelfstandig initiatief waarvan anderen de zaak draaien",
+      company: "holding of initiatiefvennootschap",
+      sector: `Nieuwe lijnen in ${sectorFocus}.`,
     };
   }
   if (careerType === "express-builder") {
     return {
-      headline: "Multi-track onderneming met iteratieve pivots",
-      company: "Wendbare multi-product onderneming",
-      sector: `Niet-lineaire portefeuille in ${sectorFocus}.`,
+      headline: "Zaak met twee of drie lijnen, geen enkele tunnel",
+      company: "wendbare onderneming met een kleine portefeuille",
+      sector: `Meer dan één aanbod in ${sectorFocus}.`,
     };
   }
   if (careerType === "evaluator") {
     return {
-      headline: "Onafhankelijke kwaliteits- of marktobservatiepraktijk",
-      company: "Analyse-, audit- of researchpraktijk",
-      sector: `Macro-observatie en kwaliteitsbewaking binnen ${sectorFocus}.`,
+      headline: "Onafhankelijk kantoor dat markten en kwaliteit leest",
+      company: "analyse-, audit- of onderzoekskantoor",
+      sector: `Kwaliteit en marktlezing binnen ${sectorFocus}.`,
     };
   }
   if (dominant === "earth" || lifePath === 4 || lifePath === 22) {
     return {
-      headline: "Robuuste activa- of systeemonderneming",
-      company: "Operationeel bouwbedrijf met tastbare output",
-      sector: `Lange-termijn structuren in ${sectorFocus}.`,
+      headline: "Vennootschap met tastbare activa en een lang ritme",
+      company: "operationele vennootschap met tastbaar werk",
+      sector: `Lange lijnen in ${sectorFocus}.`,
     };
   }
   if (dominant === "metal" || lifePath === 8) {
     return {
-      headline: "Financieel-operationele onderneming met harde controles",
-      company: "Fintech, bureau of kapitaalvehikel",
+      headline: "Financieel kantoor met harde controles",
+      company: "kantoor, bureau of kapitaalvennootschap",
       sector: `Precisie en kapitaal in ${sectorFocus}.`,
     };
   }
   return {
-    headline: "Duurzaam operationeel bedrijf met bewezen ritme",
-    company: "Classic operating company",
+    headline: "Operationele vennootschap met een vast ritme",
+    company: "operationele vennootschap",
     sector: `Uitvoering en schaal in ${sectorFocus}.`,
   };
 }
@@ -252,7 +252,7 @@ export function synthesize(
       rae: `${rae.cutoffLabel}. Positie in het cohort: ${rae.cohortPosition}. Risicobereidheid ${rae.riskAppetite}/100.`,
       bazi: `Dominant kanaal wijst naar ${bazi.sectors[0]}.`,
       numerology: `Levenspad ${numerology.lifePath} (${mission}). Expressie ${numerology.expression}. Persoonlijk jaar ${numerology.personalYear}.`,
-      design: `Career type ${design.careerType}, profiel ${design.profile}, autoriteit ${design.authority}, schaal ${design.environment}.`,
+      design: `Rol ${design.careerType}, profiel ${design.profile}, besluitvorming ${design.authority}, schaal ${design.environment}.`,
     },
   };
 }

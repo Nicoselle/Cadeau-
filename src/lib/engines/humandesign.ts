@@ -102,9 +102,9 @@ export function computeHumanDesign(birthUtc: Date): DesignResult {
     skills,
     missingSkills,
     approximationNotes: [
-      "Type, autoriteit en profiel volgen de klassieke Human Design-mechanica op basis van tropische lengtes.",
-      "Omgevingsstijl (solo/penta/OC16) is een BG5-heuristiek tot een gelicentieerde Penta-engine beschikbaar is.",
-      "Historische DST gebruikt EU/US-regels; exotische lokale tijdzone-uitzonderingen vereisen Swiss Ephemeris + timezonefinder.",
+      "Rol, besluitvorming en schaal volgen uit geboortetijd en plaats.",
+      "De schaal — alleen, klein team of grotere groep — is een werkhypothese, geen wet.",
+      "Zomertijd volgt de Europese en Amerikaanse regels. Uitzonderlijke lokale tijden kunnen een kwartier schelen.",
     ],
   };
 }

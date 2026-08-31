@@ -9,199 +9,201 @@ import type {
   RaeResult,
 } from "@/types/briefing";
 
-const FIRST_NAME = (fullName: string) => fullName.trim().split(/\s+/)[0] || "je";
+function firstName(fullName: string): string {
+  return fullName.trim().split(/\s+/)[0] || "Je";
+}
 
 const ROLE_STORY: Record<CareerType, string> = {
   initiator:
-    "Jij bent degene die de eerste beweging maakt. Een product, een merk, een onderhandeling — het start bij jou. Daarna moet het werk uit je handen. Als je blijft uitvoeren, brandt de motor door en wordt het bedrijf een eenmansdienst in plaats van een initiatief.",
+    "Jij zet dingen in gang. Een aanbod, een onderhandeling, een eerste klant: dat begint bij jou. Daarna moet het werk van je bord. Blijf je zelf uitvoeren, dan hou je een eenmanszaak over in plaats van een bedrijf.",
   "classic-builder":
-    "Jij houdt het tempo vast. Waar anderen pieken en crashen, kun jij maandenlang dezelfde kwaliteit leveren — op voorwaarde dat je reageert op echte vraag, niet op een plan dat je jezelf oplegt. Een bedrijf dat van jouw handenwerk leeft, is geen straf; het is de juiste machine.",
+    "Jij kunt tempo houden. Waar anderen opveren en weer inzaken, lever jij wekenlang dezelfde kwaliteit — als je reageert op echte vraag, niet op een plan dat je jezelf oplegt. Een zaak die van jouw uitvoering leeft, is voor jou de juiste vorm.",
   "express-builder":
-    "Jij bouwt niet in een rechte lijn. Twee sporen tegelijk, een snelle pivot, een tweede product naast het eerste: dat is geen chaos als de kern vaststaat. Forceer één tunnel en je wordt ongeduldig. Geef jezelf een portefeuille met harde stopregels.",
+    "Jij werkt zelden op één spoor. Twee lijnen tegelijk, een tweede product naast het eerste: dat is geen wanorde als de kern vaststaat. Dwing je jezelf in één tunnel, dan word je ongeduldig. Houd een kleine portefeuille, met een harde stopdatum per experiment.",
   advisor:
-    "Jij ziet het systeem sneller dan de mensen die erin werken. Dat is een zeldzame rol, en een gevaarlijke als je hem verkeerd inzet. Een uitvoerend bureau met lange dagen is voor jou een val. Jouw waarde zit in korte, scherpe vensters: diagnose, richting, de juiste vraag. Daarna moet iemand anders bouwen.",
+    "Jij ziet het systeem sneller dan de mensen die erin werken. Dat is waardevol, en gevaarlijk als je het verkeerd inzet. Een uitvoerend kantoor met lange dagen is voor jou een val. Jouw werk zit in korte, scherpe blokken: diagnose, richting, de juiste vraag. Daarna moet iemand anders uitvoeren.",
   evaluator:
-    "Jij leest de temperatuur van een markt, een team of een deal. Dat is geen zachte gave — het is een commercieel product als je het verpakt. Blijf je in de waan dat je zelf de operatie moet trekken, dan verdwijnt het signaal. Jouw bedrijf observeert, keurt en waarschuwt. Het hakt niet zelf het hout.",
+    "Jij leest de temperatuur van een markt, een ploeg of een deal. Dat is geen zachte eigenschap. Het is verkoopbaar als je het in een vast rapport of een vaste opdracht giet. Probeer je zelf de operatie te trekken, dan verdwijnt net dat signaal. Jouw zaak observeert, keurt en waarschuwt. Zij voert niet zelf uit.",
 };
 
 const SECTOR_EXAMPLES: Record<Element, BriefingExample[]> = {
   wood: [
     {
-      title: "Leiderschapsatelier voor scale-ups",
+      title: "Leiderschapsprogramma voor groeibedrijven",
       story:
-        "Een praktijk van drie tot vijf mensen die één ding verkoopt: een 90-dagenprogramma waarin een oprichter leert delegeren. Geen losse coachingsuurtjes. Een product met begin, midden en einde, gefactureerd vooraf.",
+        "Een kantoor van drie tot vijf mensen dat één ding verkoopt: een traject van negentig dagen waarin een oprichter leert delegeren. Geen losse coachingsuren. Een aanbod met begin, midden en einde, vooraf gefactureerd.",
     },
     {
-      title: "Fractional people-officer",
+      title: "HR-verantwoordelijke voor een paar dagen per maand",
       story:
-        "Twee dagen per maand bij drie groeibedrijven. Jij zet de hiring-scorecard en het ritme; een interne HR-coördinator voert uit. Omzet uit retainers, niet uit projectchaos.",
+        "Twee dagen per maand bij drie groeibedrijven. Jij zet de aanwervingslijst en het ritme. Een interne coördinator voert uit. Omzet uit een maandelijkse overeenkomst, niet uit losse projecten.",
     },
     {
-      title: "Opleidingsproduct, geen school",
+      title: "Opleiding voor één doelgroep, geen school",
       story:
-        "Eén curriculum voor een smalle doelgroep — bijvoorbeeld eerste-lijn managers in maakbedrijven. Film het één keer, begeleid een cohort per kwartaal, schaal via partners in plaats van extra lesgevers.",
+        "Eén leerlijn voor een smalle groep, bijvoorbeeld eerstelijnschefs in maakbedrijven. Neem het één keer op, begeleid elk kwartaal een groep, groei via partners in plaats van extra lesgevers.",
     },
   ],
   fire: [
     {
       title: "Merkstudio met een vast lanceringsscript",
       story:
-        "Geen full-service agency. Eén belofte: in zes weken een zichtbare categorieclaim plus het eerste campagneblok. Daarna onderhoud op retainer of je stapt eruit.",
+        "Geen bureau dat alles doet. Eén belofte: in zes weken een zichtbare plaats in de markt plus de eerste campagne. Daarna een maandelijkse onderhoudsovereenkomst, of je stapt eruit.",
     },
     {
-      title: "Niche-mediakanaal dat deals voedt",
+      title: "Vakblad of brief die opdrachten oplevert",
       story:
-        "Een wekelijkse brief of show voor één industrie. Het mediakanaal is de lokker; de omzet zit in events, introducties of een betaalde desk. Jij bent het gezicht, iemand anders produceert.",
+        "Elke week één scherpe brief voor één sector. Het kanaal trekt aandacht. De omzet zit in studiedagen, introducties of een betaald bureau. Jij bent het gezicht. Iemand anders maakt het af.",
     },
     {
-      title: "AI-tool met een luide go-to-market",
+      title: "Smal softwarehulpmiddel, luid in één vakgroep",
       story:
-        "Een smalle workflow automatiseren — offertes, claims, roosters — en die luid in één vakgroep zetten. Snelle marktpenetratie, geen platformfantasie in jaar één.",
+        "Automatiseer één vervelende stap — offertes, schadeclaims, roosters — en zet dat hard in één beroepsgroep. Snel zichtbaar. Geen platform dat in jaar één de hele keten wil vervangen.",
     },
   ],
   earth: [
     {
       title: "Kleine vastgoed- of projectvennootschap",
       story:
-        "Eén tot drie activa, lange horizon, conservatieve leverage. Jij bewaakt de onderwriting; een projectleider en een boekhouder houden de machine draaiende.",
+        "Eén tot drie panden of projecten, lange horizon, voorzichtige lening. Jij bewaakt de cijfers voor aankoop. Een projectleider en een boekhouder houden de zaak draaiende.",
     },
     {
-      title: "Kwaliteitsaudit voor bouwers en ontwikkelaars",
+      title: "Kwaliteitscontrole voor bouwers en ontwikkelaars",
       story:
-        "Een productized inspectie vóór aankoop of oplevering. Vaste prijs, vast rapport, geen eindeloze consultancy. Schaal via een netwerk van specialisten, niet via een eigen aannemersploeg.",
+        "Een vaste inspectie vóór aankoop of oplevering. Vaste prijs, vast rapport, geen eindeloos advies. Groei via een netwerk van specialisten, niet via een eigen aannemersploeg.",
     },
     {
-      title: "Verzekerings- of risicopraktijk",
+      title: "Verzekerings- of risicokantoor",
       story:
-        "Niches dekken die banken laten liggen: aannemers, horeca, collectieve polissen. Groei zit in herhaling en relaties, niet in een app die de sector gaat ontwrichten.",
+        "Niches die banken laten liggen: aannemers, horeca, collectieve polissen. Groei zit in herhaling en relaties, niet in een toepassing die de sector zou moeten omgooien.",
     },
   ],
   metal: [
     {
-      title: "CFO-as-a-service voor vijf klanten",
+      title: "Financieel directeur voor vijf klanten",
       story:
-        "Maandelijkse close, cashforecast, bankgesprek. Geen boekhoudkantoor dat honderd microklanten jaagt. Vijf serieuze bedrijven, één standaardpakket, één implementatiepartner.",
+        "Maandelijkse afsluiting, kasprognose, bankgesprek. Geen boekhoudkantoor dat honderd kleine dossiers jaagt. Vijf serieuze bedrijven, één standaardpakket, één partner voor de uitvoering.",
     },
     {
-      title: "Fintech-wig, geen bank",
+      title: "Financiële schakel, geen bank",
       story:
-        "Eén pijn: facturen innen, BTW-voorschotten, escrow tussen aannemer en bouwheer. Regelgeving is het moat. Jij ontwerpt de regels; engineers bouwen.",
+        "Eén pijn: facturen innen, btw-voorschotten, waarborg tussen aannemer en bouwheer. De regelgeving is je bescherming. Jij ontwerpt de afspraken. Technici bouwen het systeem.",
     },
     {
-      title: "Gespecialiseerd hardware- of engineeringbureau",
+      title: "Gespecialiseerd ingenieurskantoor",
       story:
-        "Een meetbaar component of proto-lijn, niet een ‘innovatielab’. Contracten met duidelijke milestones. Jouw scherpte zit in spec en tolerantie, niet in salesavonden.",
+        "Een meetbaar onderdeel of een prototype met duidelijke mijlpalen, geen ‘innovatielab’. Jouw scherpte zit in specificatie en tolerantie, niet in netwerkavonden.",
     },
   ],
   water: [
     {
-      title: "Nichdistributie of wholesale-brug",
+      title: "Distributie in één niche",
       story:
-        "Eén productfamilie, één corridor — bijvoorbeeld Belgische specialiteiten naar Duitse horeca, of onderdelen naar installateurs. Winst zit in voorraaddiscipline en relaties, niet in een marktplaats voor iedereen.",
+        "Eén productfamilie, één corridor. Bijvoorbeeld Belgische specialiteiten naar Duitse horeca, of onderdelen naar installateurs. Winst zit in voorraaddiscipline en relaties, niet in een marktplaats voor iedereen.",
     },
     {
-      title: "E-commerce met eigen logistieke afspraak",
+      title: "Webwinkel met een vaste logistieke afspraak",
       story:
-        "Geen dropship-casino. Een SKU-set die je begrijpt, een 3PL-contract, en wekelijkse cashcontrole. Jij ontwerpt de flow; fulfilment ligt buiten huis.",
+        "Geen winkel zonder eigen voorraad. Een beperkte catalogus die je begrijpt, een contract met een magazijn, wekelijkse kascontrole. Jij ontwerpt de keten. De verzending ligt buiten huis.",
     },
     {
-      title: "B2B-connectiviteit of data-pijp",
+      title: "Koppeling tussen bedrijfssystemen",
       story:
-        "Systemen laten praten: ERP naar shop, shop naar magazijn. Projecten met een vast integratieplaybook. Jij verkoopt de architectuur, een builder legt de leidingen.",
+        "Systemen laten praten: boekhouding naar webwinkel, webwinkel naar magazijn. Projecten met een vast stappenplan. Jij verkoopt de architectuur. Een uitvoerder legt de verbindingen.",
     },
   ],
 };
 
 const RISK_STORY: Record<RaeResult["fundingBias"], string> = {
   "aggressive-debt":
-    "In je formatieve jaren was je vaak de oudste in de groep. Dat kweekt een vroege gewoonte om ruimte in te nemen — nuttig bij onderhandelen, gevaarlijk als het zich vertaalt in te vroege schuld. Gebruik tempo, maar schrijf vooraf op bij welk cashcijfer je stopt.",
+    "Op school was je vaak de oudste in de klas. Dat kweekt de gewoonte om ruimte in te nemen. Handig aan de onderhandelingstafel. Gevaarlijk als het zich vertaalt in te vroege schulden. Tempo mag, als je vooraf opschrijft bij welk kascijfer je stopt.",
   balanced:
-    "Je zat in het midden van het cohort: noch de natuurlijke aanvoerder, noch de eeuwige inhaler. Dat is een bruikbaar temperament. Groei in stappen die een klant al heeft betaald. Geen heldhaftige kapitaalronde om een gat in het ego te dichten.",
+    "Je zat in het midden van de klas: niet de natuurlijke aanvoerder, niet wie altijd moest inhalen. Dat is een bruikbaar temperament. Groei in stappen die een klant al heeft betaald. Geen kapitaalronde om indruk te maken.",
   "conservative-margin":
-    "Als relatief jongste leerde je winnen zonder de luidste stem. Dat geeft later minder overmoed — en dat is een voordeel, geen gebrek. Start met marges die een slechte maand overleven. Laat een VC-verhaal links liggen tot de unit economics saai en herhaalbaar zijn.",
+    "Als jongste in de klas leerde je winnen zonder de luidste stem. Dat geeft later minder overmoed, en dat is een voordeel. Begin met marges die een slechte maand overleven. Laat durfkapitaal links liggen tot de winst per klant saai en herhaalbaar is.",
 };
 
 const DECISION_STORY: Record<DesignResult["authority"], { protocol: string; example: string }> = {
   emotional: {
     protocol:
-      "Jouw eerste ja is zelden het ware ja. Enthousiasme en paniek liegen allebei. Een nacht later — beter: twee — zie je de deal zonder de chemie.",
+      "Je eerste ja is zelden het juiste ja. Enthousiasme en paniek liegen allebei. Een nacht later, beter twee, zie je de afspraak zonder de opwinding.",
     example:
-      "Voorbeeld: een mede-oprichter belt vrijdagavond. Je wilt tekenen. Zeg: ‘Maandag 10 uur, zelfde tafel, zonder wijn.’ Als de deal dan nog rechtop staat, is hij van jou.",
+      "Een mede-oprichter belt vrijdagavond. Je wilt tekenen. Zeg: maandag om tien uur, dezelfde tafel, nuchter. Als de afspraak dan nog overeind staat, is ze van jou.",
   },
   sacral: {
     protocol:
-      "Jouw lichaam antwoordt sneller dan je argument. Een heldere ja voelt als beweging naar voren. Twijfel die je moet praten is bijna altijd een nee.",
+      "Je lijf antwoordt sneller dan je redenering. Een echte ja voelt als beweging naar voren. Twijfel die je moet uitpraten, is bijna altijd een nee.",
     example:
-      "Voorbeeld: een klant vraagt om een custom project buiten je product. Als je buik zakt, verkoop je het standaardpakket of je loopt weg. Geen ‘misschien later uitwerken’.",
+      "Een klant vraagt maatwerk naast je vaste aanbod. Zakt je buik, dan verkoop je het standaardpakket of je zegt nee. Geen ‘we kijken later wel’.",
   },
   splenic: {
     protocol:
-      "Het eerste weten is het juiste. Heroverwegen is geen zorgvuldigheid, het is ruis. Beslis in de kamer, niet in de auto naar huis.",
+      "Het eerste weten is het juiste. Opnieuw overwegen is geen zorgvuldigheid, het is ruis. Beslis in de kamer, niet in de auto naar huis.",
     example:
-      "Voorbeeld: je hoort een kandidaat praten en je weet binnen twee minuten dat het niet past. Beëindig het gesprek beleefd. Geen tweede ronde ‘om zeker te zijn’.",
+      "Je hoort een kandidaat praten en je weet binnen twee minuten dat het niet past. Beëindig het gesprek beleefd. Geen tweede ronde om zeker te zijn.",
   },
   ego: {
     protocol:
       "Jouw ja is een belofte van wil en middelen. Zeg het hardop, of zeg het niet. Een stilzwijgende toezegging is voor jou een valstrik.",
     example:
-      "Voorbeeld: ‘Ik committeer 40.000 euro en zes maanden, en ik zeg dit tegen de boekhouder.’ Klinkt het hol, dan is het geen ja.",
+      "Zeg: ik zet veertigduizend euro en zes maanden in, en ik zeg dat tegen de boekhouder. Klinkt het hol, dan is het geen ja.",
   },
   "self-projected": {
     protocol:
-      "Jij hoort de waarheid pas als je ze uitspreekt. Eén sparringpartner, geen commissie. Luister naar je eigen zin, niet naar hun advies.",
+      "Jij hoort de waarheid pas als je ze uitspreekt. Eén gesprekspartner, geen commissie. Luister naar je eigen zin, niet naar hun advies.",
     example:
-      "Voorbeeld: wandel 30 minuten en vertel hardop waarom je deze vennootschap zou starten. De zin die je twee keer herhaalt, is de lijn. De rest is versiering.",
+      "Loop een halfuur en zeg hardop waarom je deze vennootschap zou starten. De zin die je twee keer herhaalt, is de lijn. De rest is versiering.",
   },
   mental: {
     protocol:
-      "Jij hebt geen intern kompas voor dit soort keuzes. Dat is geen zwakte. Het betekent dat je mensen nodig hebt die in de operatie staan, en dat je hun gewicht groter maakt dan je model.",
+      "Voor dit soort keuzes heb je geen innerlijk kompas. Dat is geen zwakte. Het betekent dat je mensen nodig hebt die het werk doen, en dat hun oordeel zwaarder weegt dan jouw model.",
     example:
-      "Voorbeeld: vóór je een lease tekent, laat twee operators die dit werk doen de aannames afschieten. Als beiden hetzelfde gat zien, bestaat het gat.",
+      "Voor je een huurcontract tekent, laat twee mensen die dit werk kennen de aannames onderuithalen. Zien ze allebei hetzelfde gat, dan bestaat het gat.",
   },
   lunar: {
     protocol:
-      "Jouw helderheid komt in golven van ongeveer een maand. Structurele keuzes — vennootschap, huur, partner — horen die cyclus uit. Impuls is hier geen durf, het is ruis.",
+      "Jouw helderheid komt in golven van ongeveer een maand. Grote keuzes — vennootschap, huur, vennoot — horen die periode uit. Impuls is hier geen durf. Het is ruis.",
     example:
-      "Voorbeeld: noteer de deal op dag 1, herlees op dag 14 en dag 28. Alleen wat op alle drie de dagen overeind blijft, mag naar de notaris.",
+      "Schrijf de afspraak op dag één op. Lees ze opnieuw op dag veertien en dag achtentwintig. Alleen wat op alle drie de dagen overeind blijft, mag naar de notaris.",
   },
 };
 
 const YEAR_MOVES: Record<number, { story: string; move: string }> = {
   1: {
     story: "Dit is een openingsjaar. Wat je nu niet start, start je dit decennium waarschijnlijk niet.",
-    move: "Kies één voertuig, registreer het, en zeg nee tegen het tweede idee tot er omzet is.",
+    move: "Kies één formule, schrijf ze in, en zeg nee tegen het tweede idee tot er omzet is.",
   },
   2: {
-    story: "Dit jaar beloont geduld en de juiste alliantie, niet de solo-sprint.",
-    move: "Zoek één partner of ankerklant. Teken niets in week één van de flirt.",
+    story: "Dit jaar beloont geduld en de juiste alliantie, niet de eenzame sprint.",
+    move: "Zoek één vennoot of ankerklant. Teken niets in de eerste week van het gesprek.",
   },
   3: {
     story: "Zichtbaarheid is dit jaar goedkoop. Stilte is duur.",
-    move: "Publiceer wekelijks één scherpe observatie in jouw sector. Pitch daarna, niet ervoor.",
+    move: "Schrijf wekelijks één scherpe observatie in jouw sector. Stel daarna pas een opdracht voor.",
   },
   4: {
-    story: "Fundamenten. Saaie systemen winnen van charisma.",
-    move: "Zet facturatie, contracten en een maandelijkse close vóór je een tweede product bedenkt.",
+    story: "Dit jaar winnen saaie systemen van charisma.",
+    move: "Zet facturatie, contracten en een maandelijkse afsluiting vóór je een tweede product bedenkt.",
   },
   5: {
-    story: "Beweging is toegestaan, zwerven niet.",
-    move: "Draai één gecontroleerde pilot naast de kern. Kill-datum in de kalender, geen eeuwig experiment.",
+    story: "Beweging mag. Zwerven niet.",
+    move: "Draai één gecontroleerde proef naast de kern. Zet de stopdatum in de agenda. Geen eeuwig experiment.",
   },
   6: {
-    story: "Verantwoordelijkheid wordt zichtbaar: team, klanten, verplichtingen.",
-    move: "Formaliseer wie wat beslist. Mondelinge afspraken horen dit jaar op papier.",
+    story: "Verantwoordelijkheid wordt zichtbaar: ploeg, klanten, verplichtingen.",
+    move: "Zet op papier wie wat beslist. Mondelinge afspraken horen dit jaar in een overeenkomst.",
   },
   7: {
-    story: "Een jaar om te meten en te snijden, niet om te pronken.",
-    move: "Schrap het zwakste aanbod. Publiceer geen rebrand, publiceer een schonere P&L.",
+    story: "Een jaar om te meten en te schrappen, niet om te pronken.",
+    move: "Schrap het zwakste aanbod. Publiceer geen nieuwe huisstijl. Publiceer een schonere resultatenrekening.",
   },
   8: {
-    story: "Kapitaal en macht liggen op tafel — voor wie cijfers heeft, niet verhalen.",
-    move: "Heronderhandel je grootste contract. Vraag de prijs die de data draagt.",
+    story: "Kapitaal en macht liggen op tafel voor wie cijfers heeft, niet verhalen.",
+    move: "Heronderhandel je grootste contract. Vraag de prijs die de cijfers dragen.",
   },
   9: {
     story: "Afronden is dit jaar winst. Vasthouden uit gewoonte is verlies.",
-    move: "Sluit of verkoop wat geen kern is. Maak ruimte; het volgende voertuig komt daarna.",
+    move: "Sluit of verkoop wat geen kern is. Maak ruimte. Het volgende bedrijf komt daarna.",
   },
 };
 
@@ -215,15 +217,15 @@ export function buildLede(
   careerType: CareerType,
   bazi: BaziResult,
 ): string {
-  const first = FIRST_NAME(name);
+  const first = firstName(name);
   const opener: Record<CareerType, string> = {
     initiator: `${first}, jij moet iets in beweging zetten dat anderen afmaken.`,
     "classic-builder": `${first}, jij moet iets bouwen dat je wekenlang kunt volhouden.`,
     "express-builder": `${first}, jij moet een wendbare portefeuille bouwen, geen enkele tunnel.`,
-    advisor: `${first}, jij moet gidsen — niet sleuren.`,
+    advisor: `${first}, jij moet richting geven. Niet zelf sleuren.`,
     evaluator: `${first}, jij moet de markt lezen, niet de ploeg aanvoeren.`,
   };
-  return `${opener[careerType]} Het passende voertuig is een ${headline.toLowerCase()}, geworteld in ${sectorNoun(bazi)}. Geen daghoroscoop: een werkafspraak met jezelf.`;
+  return `${opener[careerType]} Het passende bedrijf is een ${headline.toLowerCase()}, in ${sectorNoun(bazi)}. Geen horoscoop. Een werkafspraak.`;
 }
 
 export function buildNarrative(
@@ -232,27 +234,26 @@ export function buildNarrative(
   bazi: BaziResult,
   numerology: NumerologyResult,
   design: DesignResult,
-  headline: string,
+  company: string,
 ): string {
-  const first = FIRST_NAME(name);
+  const first = firstName(name);
   const year = YEAR_MOVES[numerology.personalYear] ?? YEAR_MOVES[1];
   const decision = DECISION_STORY[design.authority];
-  const parts = [
-    `${first}, het patroon is consistent. ${ROLE_STORY[design.careerType]} In jouw geval wijst de industriële laag naar ${sectorNoun(bazi)} — niet omdat het ‘spiritueel past’, maar omdat die markten dezelfde spier vragen als jouw profiel.`,
+  return [
+    `${first}, het beeld is helder. ${ROLE_STORY[design.careerType]} In jouw geval wijst dat naar ${sectorNoun(bazi)}. Niet omdat het zweverig past, maar omdat die markten dezelfde inzet vragen als jij van nature levert.`,
     RISK_STORY[rae.fundingBias],
-    `Onder de motorkap zit een drijfveer die draait om ${lifePathPlain(numerology.lifePath)}. ${year.story} ${decision.protocol}`,
-    `Concreet: richt het bedrijf in als ${headline.toLowerCase()}. Houd de eerste versie kleiner dan je ego. Als het werkt, schaal je de machine — niet jouw agenda.`,
-  ];
-  return parts.join("\n\n");
+    `Daaronder zit een drijfveer die draait om ${lifePathPlain(numerology.lifePath)}. ${year.story} ${decision.protocol}`,
+    `Concreet: richt de zaak in als ${company.toLowerCase()}. Houd de eerste versie kleiner dan je ambitie. Als het werkt, maak je de organisatie groter. Niet je agenda.`,
+  ].join("\n\n");
 }
 
 function lifePathPlain(n: number): string {
   const map: Record<number, string> = {
     1: "zelfstandig commando",
-    2: "diplomatie en de juiste dyade",
+    2: "diplomatie en de juiste tandem",
     3: "stem, merk en publiek",
     4: "orde, systemen en tastbare output",
-    5: "bewegingsvrijheid en commerciële iteratie",
+    5: "bewegingsvrijheid en commerciële herhaling",
     6: "verantwoordelijkheid voor mensen",
     7: "onderzoek, privacy en analyse achter de schermen",
     8: "kapitaal, onderhandeling en schaal",
@@ -269,13 +270,13 @@ export function pickExamples(careerType: CareerType, bazi: BaziResult): Briefing
   if (careerType === "advisor" || careerType === "evaluator") {
     return base.map((item) => ({
       ...item,
-      story: `${item.story} Jij blijft de architect; uitvoering zit bij een builder of een vast netwerk.`,
+      story: `${item.story} Jij blijft de architect. De uitvoering zit bij een uitvoerder of een vast netwerk.`,
     }));
   }
   if (careerType === "initiator") {
     return base.map((item) => ({
       ...item,
-      story: `${item.story} Jij opent de deur en verdwijnt uit de dagelijkse stand-up.`,
+      story: `${item.story} Jij opent de deur en verdwijnt uit het dagelijkse overleg.`,
     }));
   }
   return base;
@@ -291,40 +292,40 @@ export function buildSteps(
   const year = YEAR_MOVES[numerology.personalYear] ?? YEAR_MOVES[1];
   const decision = DECISION_STORY[design.authority];
   const sector = sectorNoun(bazi);
-  const firstHire =
-    design.missingSkills[0]
-      ? `Iemand die ${design.missingSkills[0].toLowerCase()} als vak meeneemt — geen tweede visionair.`
-      : "Een specialist, geen tweede generaal.";
+  const firstHire = design.missingSkills[0]
+    ? `iemand die ${design.missingSkills[0].toLowerCase()} als vak meeneemt. Geen tweede strateeg.`
+    : "een specialist. Geen tweede baas.";
 
   const steps: BriefingStep[] = [
     {
-      window: "Dag 1–7",
-      title: "Schrijf het voertuig op één blad",
+      window: "Dag 1 tot 7",
+      title: "Schrijf de formule op één blad",
       detail: `Eén zin: welk probleem, voor wie, in ${sector}. Eén zin: wat je nooit zult doen. Eén zin: hoe het geld binnenkomt. Noem het een ${company.toLowerCase()}, niet ‘een start-up’. Als je het niet in zes zinnen kunt zeggen, is het nog geen bedrijf.`,
     },
     {
-      window: "Week 2–3",
-      title: "Acht gesprekken, geen pitch",
-      detail: `Bel acht mensen die al in ${bazi.sectors[0]} werken. Vraag waar ze geld verliezen. Bied niets aan. Noteer de zin die drie keer terugkomt — dat is je eerste aanbod.`,
+      window: "Week 2 en 3",
+      title: "Acht gesprekken, geen verkoop",
+      detail: `Bel acht mensen die al in ${bazi.sectors[0]} werken. Vraag waar ze geld verliezen. Bied niets aan. Noteer de zin die drie keer terugkomt. Dat is je eerste aanbod.`,
     },
     {
-      window: "Week 4–6",
+      window: "Week 4 tot 6",
       title: "Verkoop één vast product",
-      detail: `Geen maatwerk. Een diagnose, een audit, een sprint of een retainer met een vast resultaat en een vaste prijs. Factureer 50% vooraf. Twee betalende klanten slaan een website.`,
+      detail:
+        "Geen maatwerk. Een diagnose, een audit, een korte opdracht of een maandelijkse overeenkomst met een vast resultaat en een vaste prijs. Factureer de helft vooraf. Twee betalende klanten slaan een website.",
     },
     {
       window: "Maand 2",
-      title: `Beslis volgens je protocol`,
-      detail: `${decision.example} Zet deze regel in je agenda als een afspraak met jezelf, niet als een voornemen.`,
+      title: "Beslis zoals jij moet beslissen",
+      detail: `${decision.example} Zet deze regel in je agenda als een afspraak, niet als een voornemen.`,
     },
     {
-      window: "Maand 2–3",
+      window: "Maand 2 en 3",
       title: "Vul het gat dat jij niet bent",
-      detail: `Jouw eerste aanname of freelancer is ${firstHire} Laat die persoon de kalender, de levering of de cijfers trekken. Jij blijft op de rol die het dossier je toekent.`,
+      detail: `Je eerste medewerker of zelfstandige is ${firstHire} Laat die persoon de kalender, de levering of de cijfers trekken. Jij blijft op de rol die dit dossier je toekent.`,
     },
     {
       window: "Dit jaar",
-      title: year.move.split(".")[0] ?? "Houd het jaar groots en het voertuig klein",
+      title: year.move.split(".")[0] ?? "Houd het jaar groots en het bedrijf klein",
       detail: `${year.story} ${year.move} Financiering: ${fundingStep(rae)}.`,
     },
   ];
@@ -332,9 +333,9 @@ export function buildSteps(
   if (design.careerType === "advisor" || design.careerType === "evaluator") {
     steps.splice(3, 0, {
       window: "Elke werkdag",
-      title: "Twee tot vier uur diep werk, daarna stoppen",
+      title: "Twee tot vier uur geconcentreerd werk, daarna stoppen",
       detail:
-        "Blokkeer ochtenden. Geen Slack-avond. De waarde zit in de scherpte van die uren, niet in aanwezigheid. Wat daarna nog moet, is werk voor de builder.",
+        "Blokkeer de ochtenden. Geen berichten ’s avonds. De waarde zit in de scherpte van die uren, niet in aanwezigheid. Wat daarna nog moet, is werk voor de uitvoerder.",
     });
   }
 
@@ -343,10 +344,10 @@ export function buildSteps(
 
 function fundingStep(rae: RaeResult): string {
   if (rae.fundingBias === "aggressive-debt") {
-    return "schuld mag, als de kill-switch op papier staat (cash-runway in weken, niet in hoop)";
+    return "schuld mag, als de stopregel op papier staat: kas in weken, niet in hoop";
   }
   if (rae.fundingBias === "conservative-margin") {
-    return "geen VC, geen persoonlijke lening voor groei; herinvesteren uit marge";
+    return "geen durfkapitaal, geen persoonlijke lening voor groei; herinvesteren uit de marge";
   }
   return "groei die een klant al betaalde; vreemd vermogen alleen tegen een getekende order";
 }
@@ -357,20 +358,20 @@ export function buildAvoid(
   bazi: BaziResult,
 ): string[] {
   const items = [
-    `Geen algemeen bureau ‘dat alles doet’. Blijf bij ${bazi.sectors[0]}.`,
+    `Geen algemeen bureau dat alles doet. Blijf bij ${bazi.sectors[0]}.`,
     "Geen mede-oprichter die hetzelfde profiel heeft als jij. Dat verdubbelt het ego en laat het gat open.",
   ];
   if (design.careerType === "advisor" || design.careerType === "evaluator") {
-    items.push("Geen arbeidsintensieve operatie, geen magazijn, geen 9-tot-5-dienstverlening die jij zelf draait.");
+    items.push("Geen arbeidsintensieve operatie, geen magazijn, geen kantoor van negen tot vijf dat jij zelf draait.");
   }
   if (design.careerType === "initiator") {
-    items.push("Geen rol waarin jij de dagelijkse stand-up leidt. Dat is andermans werk.");
+    items.push("Geen rol waarin jij het dagelijkse overleg leidt. Dat is andermans werk.");
   }
   if (rae.fundingBias === "conservative-margin") {
-    items.push("Geen groeiverhaal dat alleen werkt als een fonds je runtweet.");
+    items.push("Geen groeiverhaal dat alleen werkt als een fonds je op sociale media deelt.");
   }
   if (rae.fundingBias === "aggressive-debt") {
-    items.push("Geen tweede lening omdat de eerste ‘bijna’ werkte. Eerst de kill-switch, dan pas gas.");
+    items.push("Geen tweede lening omdat de eerste bijna werkte. Eerst de stopregel, dan pas gas.");
   }
   return items;
 }
@@ -383,7 +384,7 @@ export function decisionBlock(design: DesignResult): string {
 export function timingBlock(numerology: NumerologyResult): string {
   const year = YEAR_MOVES[numerology.personalYear] ?? YEAR_MOVES[1];
   const extra = numerology.companyYear
-    ? ` Het bedrijf zelf zit in jaar ${numerology.companyYear}: behandel die cyclus als de kalender van de vennootschap, niet als de jouwe.`
+    ? ` De vennootschap zelf zit in jaar ${numerology.companyYear}. Behandel die cyclus als de kalender van het bedrijf, niet als de jouwe.`
     : "";
-  return `Persoonlijk jaar ${numerology.personalYear}. ${year.story} ${year.move}${extra}`;
+  return `${year.story} ${year.move}${extra}`;
 }

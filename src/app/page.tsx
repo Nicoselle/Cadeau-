@@ -4,23 +4,23 @@ import { SITE } from "@/lib/site";
 const LAYERS = [
   {
     code: "01",
-    title: "Cohort & risico",
-    body: "Relative Age Effect: schoolpeildatum × geboortemaand → risicobereidheid, schuldcapaciteit, leiderschapsbias.",
+    title: "Klas en risico",
+    body: "Was je de oudste of de jongste in de klas? Dat zegt iets over hoe hard je durft te groeien, en of schuld bij je past.",
   },
   {
     code: "02",
     title: "Sector",
-    body: "BaZi-elementen mappen op industrieën: hout, vuur, aarde, metaal, water.",
+    body: "Welke markten dezelfde inzet vragen als jij van nature levert: mensen, zichtbaarheid, vastgoed, cijfers of distributie.",
   },
   {
     code: "03",
-    title: "Drijfveer & timing",
-    body: "Levenspad, expressie en de negenjarige jaarcyclus. Het waarom, en wanneer je opent of sluit.",
+    title: "Drijfveer en timing",
+    body: "Waarom je onderneemt, en of dit jaar eerder openen, een vennoot zoeken of afronden vraagt.",
   },
   {
     code: "04",
     title: "Organisatie",
-    body: "BG5-mechanica: rol, besluitvorming, schaal (solo / penta / grote groep) en ontbrekende skills.",
+    body: "Jouw rol, hoe je beslist, op welke schaal je scherp blijft, en wie je als eerste moet aanwerven.",
   },
 ];
 
@@ -31,32 +31,32 @@ export default function HomePage() {
         <div className="space-y-8">
           <p className="type-kicker">{SITE.name}</p>
           <h1 className="max-w-xl text-4xl font-semibold tracking-tight sm:text-6xl">
-            Geen horoscoop. Een bedrijfsblauwdruk.
+            Geen horoscoop. Een dossier voor je zaak.
           </h1>
           <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">
-            Vier datalagen. Eén besluit. Azimut vertaalt geboortedata naar sector,
-            schaal, risicoprofiel en de eerste aanname die je moet doen.
+            Vier bronnen. Eén advies. Azimut vertaalt je geboortegegevens naar
+            sector, schaal, risico en de eerste man die je binnenhaalt.
           </p>
           <dl className="grid max-w-lg grid-cols-3 gap-4 border-y border-border py-5">
             <div>
-              <dt className="type-kicker">Lagen</dt>
+              <dt className="type-kicker">Bronnen</dt>
               <dd className="mt-2 text-2xl font-semibold">4</dd>
             </div>
             <div>
-              <dt className="type-kicker">Output</dt>
+              <dt className="type-kicker">Resultaat</dt>
               <dd className="mt-2 text-2xl font-semibold">1 dossier</dd>
             </div>
             <div>
-              <dt className="type-kicker">Jargon</dt>
+              <dt className="type-kicker">Vakjargon</dt>
               <dd className="mt-2 text-2xl font-semibold">0</dd>
             </div>
           </dl>
         </div>
         <div className="rounded-lg border border-border bg-card p-6">
           <p className="type-kicker">Intake</p>
-          <h2 className="mt-2 text-xl font-semibold">Bereken het kompas</h2>
+          <h2 className="mt-2 text-xl font-semibold">Vul je gegevens in</h2>
           <p className="mb-6 mt-2 text-sm text-muted-foreground">
-            Geboortedatum, tijd en plaats. Optioneel de geboortedatum van het bedrijf.
+            Geboortedatum, tijd en plaats. Optioneel de oprichtingsdatum van de vennootschap.
           </p>
           <IntakeForm />
         </div>

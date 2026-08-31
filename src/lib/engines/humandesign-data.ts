@@ -64,15 +64,15 @@ export const BUSINESS_GATES: Record<number, string> = {
   2: "Visie en richting",
   5: "Ritme en cultuur",
   7: "Planning en sturing",
-  8: "Public relations",
+  8: "Pers en reputatie",
   13: "Administratie en geheugen",
-  14: "Allocatie van middelen",
+  14: "Verdeling van middelen",
   15: "Betrouwbaarheid",
   21: "Controle en onderhandeling",
   26: "Verkoop en overtuiging",
   31: "Invloed",
   32: "Continuïteit",
-  45: "Dominion / CEO-rol",
+  45: "Eindverantwoordelijkheid",
   54: "Ambities en opklimmen",
 };
 

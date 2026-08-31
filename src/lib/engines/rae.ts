@@ -6,14 +6,14 @@ interface Cutoff {
 }
 
 const CUTOFFS: Record<CountryCode, Cutoff> = {
-  BE: { month: 1, label: "1 januari (kalenderjaar-cohort)" },
-  NL: { month: 10, label: "1 oktober (klassieke Nederlandse peildatum)" },
-  DE: { month: 7, label: "1 juli (dominante Duitse deelstaatpeildatum)" },
-  FR: { month: 1, label: "1 januari (kalenderjaar-cohort)" },
+  BE: { month: 1, label: "1 januari (Belgisch schooljaar)" },
+  NL: { month: 10, label: "1 oktober (Nederlandse peildatum)" },
+  DE: { month: 7, label: "1 juli (Duitse peildatum)" },
+  FR: { month: 1, label: "1 januari (Frans schooljaar)" },
   UK: { month: 9, label: "1 september" },
   US: { month: 9, label: "1 september" },
   CN: { month: 9, label: "1 september" },
-  OTHER: { month: 9, label: "1 september (internationale default)" },
+  OTHER: { month: 9, label: "1 september (gangbare peildatum)" },
 };
 
 export function monthsSinceCutoff(birthMonth: number, cutoffMonth: number): number {

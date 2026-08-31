@@ -16,7 +16,7 @@ export function SiteHeader() {
             Methode
           </Link>
           <Link href="/#intake" className="hover:text-foreground">
-            Briefing
+            Dossier
           </Link>
         </nav>
       </div>

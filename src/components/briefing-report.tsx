@@ -2,32 +2,32 @@ import type { BriefingResponse } from "@/types/briefing";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const COHORT_LABEL = {
-  oldest: "relatief oudste",
-  middle: "midden-cohort",
-  youngest: "relatief jongste",
+  oldest: "oudste in de klas",
+  middle: "midden van de klas",
+  youngest: "jongste in de klas",
 } as const;
 
 const TYPE_LABEL = {
-  initiator: "Initiator",
-  "classic-builder": "Classic Builder",
-  "express-builder": "Express Builder",
-  advisor: "Advisor",
-  evaluator: "Evaluator",
+  initiator: "Aanjager",
+  "classic-builder": "Uitvoerder",
+  "express-builder": "Snelle uitvoerder",
+  advisor: "Gids",
+  evaluator: "Waarnemer",
 } as const;
 
 const ENV_LABEL = {
-  solo: "Solo",
-  partnership: "Partnerschap",
-  "small-group": "Kleine groep (3–5)",
-  "large-group": "Grote groep",
+  solo: "Alleen of met één vaste hulp",
+  partnership: "Vennoot of duo",
+  "small-group": "Kern van drie tot vijf",
+  "large-group": "Grotere organisatie",
 } as const;
 
 const ELEMENT_LABEL = {
-  wood: "Groei en menselijk kapitaal",
+  wood: "Groei en mensen",
   fire: "Zichtbaarheid en tempo",
-  earth: "Stabiliteit en activa",
-  metal: "Precisie en kapitaal",
-  water: "Distributie en netwerken",
+  earth: "Stabiliteit en vastgoed",
+  metal: "Precisie en geldstromen",
+  water: "Distributie en relaties",
 } as const;
 
 function Metric({ label, value }: { label: string; value: string }) {
@@ -71,7 +71,7 @@ export function BriefingReport({ result }: { result: BriefingResponse }) {
 
       <section className="max-w-3xl space-y-4">
         <p className="type-kicker">01 · Diagnose</p>
-        <h2 className="text-2xl font-semibold tracking-tight">Hoe dit patroon zich gedraagt</h2>
+        <h2 className="text-2xl font-semibold tracking-tight">Wat dit over jou zegt</h2>
         <Prose text={briefing.narrative} />
       </section>
 
@@ -107,8 +107,8 @@ export function BriefingReport({ result }: { result: BriefingResponse }) {
           <p className="type-kicker">02 · Voorbeelden</p>
           <h2 className="text-2xl font-semibold tracking-tight">Zo ziet dit eruit in het echt</h2>
           <p className="text-muted-foreground">
-            Geen abstracte archetypes. Drie voertuigen die in {briefing.sector.toLowerCase()} werken
-            met jouw rol en schaal.
+            Drie manieren om dit te zetten in {briefing.sector.toLowerCase()}.
+            Zelfde rol, dezelfde schaal.
           </p>
         </div>
         <div className="grid gap-4 lg:grid-cols-3">
@@ -131,7 +131,7 @@ export function BriefingReport({ result }: { result: BriefingResponse }) {
           <p className="type-kicker">03 · Eerste 90 dagen</p>
           <h2 className="text-2xl font-semibold tracking-tight">Stappen die je kunt uitvoeren</h2>
           <p className="text-muted-foreground">
-            Geen visieboard. Een volgorde. Doe ze in deze volgorde, ook als week twee saaier is dan week één.
+            Geen presentatie. Een volgorde. Doe ze zo, ook als week twee saaier is dan week één.
           </p>
         </div>
         <ol className="space-y-4">
@@ -169,7 +169,7 @@ export function BriefingReport({ result }: { result: BriefingResponse }) {
       <section className="grid gap-4 lg:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Wie je als eerste binnenhaalt</CardTitle>
+            <CardTitle>Wie je als eerste aanwerft</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-3 text-sm leading-relaxed text-muted-foreground">
@@ -212,7 +212,7 @@ export function BriefingReport({ result }: { result: BriefingResponse }) {
 
       <section className="space-y-4">
         <p className="type-kicker">04 · Bewijs</p>
-        <h2 className="text-xl font-semibold tracking-tight">Waar de vier lagen het over eens zijn</h2>
+        <h2 className="text-xl font-semibold tracking-tight">Waar de vier bronnen het over eens zijn</h2>
         <div className="grid gap-4 md:grid-cols-2">
           <Card>
             <CardHeader>
@@ -229,14 +229,14 @@ export function BriefingReport({ result }: { result: BriefingResponse }) {
               <CardTitle className="text-base">Sector</CardTitle>
             </CardHeader>
             <CardContent>
-              <Metric label="Dominant kanaal" value={ELEMENT_LABEL[layers.bazi.dominant]} />
-              <Metric label="Industrie" value={layers.bazi.sectors.slice(0, 3).join(" · ")} />
+              <Metric label="Hoofdlijn" value={ELEMENT_LABEL[layers.bazi.dominant]} />
+              <Metric label="Sector" value={layers.bazi.sectors.slice(0, 3).join(" · ")} />
               <Metric
-                label="Complement"
+                label="Wat ontbreekt"
                 value={
                   layers.bazi.missing.length
                     ? layers.bazi.missing.map((item) => ELEMENT_LABEL[item]).join(" · ")
-                    : "geen structureel gat"
+                    : "geen duidelijk gat"
                 }
               />
             </CardContent>
@@ -257,13 +257,13 @@ export function BriefingReport({ result }: { result: BriefingResponse }) {
             </CardHeader>
             <CardContent>
               <Metric
-                label="Type"
-                value={`${TYPE_LABEL[layers.design.careerType]} · ${layers.design.profile}`}
+                label="Rol"
+                value={TYPE_LABEL[layers.design.careerType]}
               />
-              <Metric label="Schaalcode" value={ENV_LABEL[layers.design.environment]} />
+              <Metric label="Schaal" value={ENV_LABEL[layers.design.environment]} />
               <Metric
-                label="Skills"
-                value={layers.design.skills.slice(0, 4).join(" · ") || "geen kernpoorten actief"}
+                label="Wat jij meebrengt"
+                value={layers.design.skills.slice(0, 4).join(" · ") || "geen duidelijke kern"}
               />
             </CardContent>
           </Card>
@@ -271,8 +271,8 @@ export function BriefingReport({ result }: { result: BriefingResponse }) {
       </section>
 
       <p className="text-xs leading-relaxed text-muted-foreground">
-        {layers.design.approximationNotes.join(" ")} De sociologische laag is empirisch.
-        De overige drie zijn gestructureerde heuristieken, geen causale wetten.
+        {layers.design.approximationNotes.join(" ")} De klaspositie rust op onderzoek.
+        De andere drie bronnen zijn werkhypotheses, geen wet.
       </p>
     </div>
   );

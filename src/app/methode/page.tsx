@@ -11,73 +11,73 @@ export default function MethodePage() {
       <header className="space-y-4">
         <p className="type-kicker">Methode</p>
         <h1 className="text-4xl font-semibold tracking-tight">
-          Hoe de vier lagen tot één advies convergeren
+          Hoe vier bronnen tot één advies komen
         </h1>
         <p className="text-lg leading-relaxed text-muted-foreground">
-          Azimut is geen orakel. Het is een weegschaal. Elke laag produceert
-          een onafhankelijke variabele. De synthese zoekt overlap, markeert
-          paradoxen, en schrijft directeurstaal. De berekening gebeurt in de
-          browser — zonder AI en zonder server.
+          Azimut is geen orakel. Het weegt vier onafhankelijke bronnen tegen
+          elkaar. Waar ze overlappen, schrijven we een dossier. Waar ze bijten,
+          markeren we de spanning. De berekening gebeurt in je browser. Geen
+          artificiële intelligentie, geen server, geen account.
         </p>
       </header>
 
       <section className="space-y-3">
-        <h2 className="text-xl font-semibold">Relative Age Effect</h2>
+        <h2 className="text-xl font-semibold">Klaspositie en risico</h2>
         <p className="leading-relaxed text-muted-foreground">
           De schoolpeildatum van het land waarin je opgroeide bepaalt of je de
-          relatief oudste of jongste in het cohort was. Empirisch werk op S&amp;P-CEO&apos;s
-          en 17 miljoen Taobao-verkopers koppelt die positie aan risicobereidheid,
+          relatief oudste of jongste in de klas was. Onderzoek op topbestuurders
+          en miljoenen verkopers koppelt die positie aan risicobereidheid,
           schuldfinanciering en de kans om te ondernemen. België gebruikt het
-          kalenderjaar; Nederland de oktober-peildatum; VS, VK en China 1 september.
+          kalenderjaar. Nederland de oktober-peildatum. De Verenigde Staten, het
+          Verenigd Koninkrijk en China 1 september.
         </p>
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-xl font-semibold">BaZi → industrie</h2>
+        <h2 className="text-xl font-semibold">Sector</h2>
         <p className="leading-relaxed text-muted-foreground">
-          De vier pilaren worden gereduceerd tot een dominant en ontbrekend
-          element. Hout wijst naar groei en menselijk kapitaal, vuur naar
-          zichtbaarheid, aarde naar activa, metaal naar financiële systemen,
-          water naar distributie. De interface noemt die elementen niet.
+          Uit geboortedatum en -uur volgt een hoofdlijn: groei en mensen,
+          zichtbaarheid, vastgoed, cijfers of distributie. De interface noemt
+          geen elementen en geen Chinese labels. Je ziet sectoren waarin
+          diezelfde inzet van pas komt.
         </p>
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-xl font-semibold">Numerologie → waarom en wanneer</h2>
+        <h2 className="text-xl font-semibold">Drijfveer en timing</h2>
         <p className="leading-relaxed text-muted-foreground">
-          Levenspad, expressie, zielewens en persoonlijkheid komen uit naam en
-          datum. De persoonlijke jaarcyclus (1–9) scandeert start, alliantie,
-          zichtbaarheid, fundament, pivot, verantwoordelijkheid, analyse,
-          kapitaal of consolidatie.
+          Naam en geboortedatum geven een drijfveer: solo-commando, tandem,
+          merk, orde, beweging, verantwoordelijkheid, onderzoek, kapitaal of
+          afronden. Het persoonlijke jaar (1 tot 9) zegt of dit jaar eerder
+          openen, een vennoot zoeken, zichtbaar worden of sluiten vraagt.
         </p>
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-xl font-semibold">Human Design / BG5 → mechanica</h2>
+        <h2 className="text-xl font-semibold">Rol, besluit en schaal</h2>
         <p className="leading-relaxed text-muted-foreground">
-          Tropische planetaire lengtes, I Tjing-poorten en kanalen bepalen type,
-          autoriteit en profiel. Initiators starten en delegeren. Builders voeren
-          uit. Advisors optimaliseren in korte vensters. Evaluators spiegelen
-          systemen. De omgevingsstijl (solo / penta / grote groep) is in deze
-          MVP een gedocumenteerde heuristiek tot een gelicentieerde Penta-engine
-          beschikbaar is.
+          Geboortetijd en plaats bepalen hoe je werkt. Aanjagers starten en
+          laten het werk los. Uitvoerders houden tempo. Gidsen zien het systeem
+          en mogen het niet zelf sleuren. Waarnemers lezen de markt en de ploeg.
+          De schaal — alleen, een duo, drie tot vijf, of een grotere
+          organisatie — is hier een werkhypothese, geen wet.
         </p>
       </section>
 
       <section className="space-y-3">
         <h2 className="text-xl font-semibold">Wat dit niet is</h2>
         <p className="leading-relaxed text-muted-foreground">
-          Geen voorspelling van omzet, geen vervanging van due diligence, geen
-          Swiss Ephemeris-productie-engine. Een fout van vijftien minuten in de
-          geboortetijd kan een poort verschuiven. Productie vereist Nominatim +
-          historische tijdzones. De sociologische laag is empirisch; de andere
-          drie zijn gestructureerde systemen die we als heuristiek wegen.
+          Geen voorspelling van omzet. Geen vervanging van een boekhouder of advocaat. Een
+          fout van een kwartier in de geboortetijd kan de rol verschuiven.
+          De klaspositie rust op empirisch werk. De andere drie bronnen zijn
+          gestructureerde systemen die we als hypothese wegen, niet als
+          oorzakelijke wet.
         </p>
       </section>
 
       <p>
         <Link href="/#intake" className="text-primary hover:underline">
-          Bereken een briefing
+          Maak een dossier
         </Link>
       </p>
     </article>

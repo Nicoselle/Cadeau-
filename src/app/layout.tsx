@@ -20,12 +20,11 @@ export const metadata: Metadata = {
   description: SITE.description,
   keywords: [
     "ondernemerschap",
-    "BG5",
-    "BaZi",
-    "numerologie",
-    "relative age effect",
-    "bedrijfsblauwdruk",
-    "founders",
+    "zaakvoerders",
+    "bedrijfsdossier",
+    "vennootschap",
+    "risicoprofiel",
+    "Vlaamse ondernemers",
   ],
   openGraph: {
     title: SITE.name,
