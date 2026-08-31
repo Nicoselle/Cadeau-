@@ -97,6 +97,10 @@ Dat is geen lijstje, geen «vijf dingen», geen SEO-kop. Het is een essay van
 - `desk: "opinie"`, kicker `De mening`, auteur `De mening`, `lead: false`.
 - Slug en gravure. Bestaande gravure hergebruiken als er geen nieuwe is.
 - Precedent: `vat-liegt-minder-dan-de-index`.
+- Augustus 2026 staat terugwerkend: weekdagen 3–28 plus het bestaande
+  stuk van 31. Peil = laatste waarneming ≤ die dag. Controle: `/nazien`
+  en `redactie/mening/2026-08-ledger.json`. Geen cijfer van later dan
+  de publicatiedatum. M2-juli pas vanaf 25 augustus (H.6).
 
 ## Peilstuk zetten (alleen bij publish: true)
 

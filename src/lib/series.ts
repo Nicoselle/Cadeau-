@@ -78,6 +78,19 @@ export function lastObservation(series: Observation[]): Observation | null {
   return series.at(-1) ?? null;
 }
 
+/** Laatste waarneming met datum ≤ peil. Maandreeksen `YYYY-MM` tellen als de eerste van die maand. */
+export function lastOnOrBefore(
+  series: Observation[],
+  date: string,
+): Observation | null {
+  let found: Observation | null = null;
+  for (const item of series) {
+    const key = item.date.length === 7 ? `${item.date}-01` : item.date;
+    if (key <= date) found = item;
+  }
+  return found;
+}
+
 export function valueOnMonth(
   series: Observation[],
   month: string,

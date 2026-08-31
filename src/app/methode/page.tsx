@@ -152,6 +152,16 @@ export default function MethodPage() {
           goed, fout of deels. Niets wordt weggewist.
         </p>
         <p className="mt-4">
+          Augustus 2026 is terugwerkend uitgewerkt: elke weekdag een mening,
+          met alleen de laatste waarneming op of vóór die dag. De H.6 van 25
+          augustus zet juli-M2 in een vintage naast de editievloer; juni in
+          de editie blijft 23.155,2. Controleer datum, bestand en getal op{" "}
+          <Link href="/nazien" className="underline hover:text-accent">
+            nazien
+          </Link>
+          .
+        </p>
+        <p className="mt-4">
           Lees ook{" "}
           <Link href="/orakelboek" className="underline hover:text-accent">
             het orakelboek

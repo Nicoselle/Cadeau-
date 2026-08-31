@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/markten",
     "/orakelboek",
     "/methode",
+    "/nazien",
     "/archief",
     "/lokaal",
     "/lokaal/verhaal",

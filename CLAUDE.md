@@ -27,16 +27,19 @@ een bewuste beslissing van Nico om **14:00 Europe/Brussels**. De Grokbot
 │   ├── stuk/[slug]/         # Stukken
 │   ├── piramide/            # Eén desk: allocatie, dossiers, SMC
 │   ├── onderzoek/[slug]/    # Dossierdiepte
-│   ├── markten/ orakelboek/ methode/ archief/ desk/
+│   ├── markten/ orakelboek/ methode/ nazien/ archief/ desk/
 │   └── api/v1/              # krant, stukken, markten, briefing, volgen, products
 ├── src/data/                # articles, edition, markets, oracles, watchlist, products
-├── src/lib/series.ts        # CSV-parser en j/j-groei (alleen opgeslagen data)
+├── src/lib/series.ts        # CSV-parser, j/j-groei, lastOnOrBefore
+├── src/lib/as-of.ts         # Peil per dag (geen vooruitkijken)
+├── src/data/opinie-augustus.ts  # Terugwerkende meningen augustus 2026
 ├── src/lib/quotes.ts        # Publieke tape (Yahoo chart) voor de volglijst
 ├── src/components/krant/    # Masthead-hulp, tape, story-card, article-body
 ├── redactie/                # Bronnenstaat, dossiers, CSV-vloer, zetter.py
 │   ├── INDEX.md             # Ene ingang tot de redactiemap
 │   ├── grokbot.md           # Dagelijkse zetter: 13 briefing, 14 beslissing, 15 stuk
 │   ├── beslissingen/        # JSON van Nico; voorbeeld.json telt niet
+│   ├── mening/              # Ledger augustus 2026 + LEESMIJ
 │   ├── data/                # FRED, Statbel, Treasury
 │   └── scripts/zetter.py    # agenda / jj / dekking
 └── tests/                   # newspaper, series, filtering, resilience
@@ -261,6 +264,9 @@ Geen database, geen geheimen in v1. Marktcijfers komen uit `redactie/data`.
    vraaggestuurd: abonnees kiezen gemeenten; alleen die plaatsen worden
    afgezocht. Ondernemersverhalen gaan door `moderateIntake`. Geen
    redacteur die een stad kiest. Vesting blijft op `/cadeau`.
+9. **Peil zonder vooruitkijken.** `lastOnOrBefore` in `src/lib/series.ts`.
+   Augustus 2026: `/nazien` + `redactie/mening/`. M2-juli pas vanaf
+   2026-08-25; de juni-editievloer blijft 23.155,2. Geen stille revisie.
 
 ---
 

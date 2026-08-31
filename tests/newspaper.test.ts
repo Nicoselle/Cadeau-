@@ -84,7 +84,9 @@ describe("editie", () => {
     expect(haystack).toContain("2,43");
     expect(haystack).toContain("3,63");
     expect(haystack).toMatch(/zelfde datum|uitgelijnd/i);
-    expect(articles.filter((article) => article.edition === 1)).toHaveLength(6);
+    expect(
+      articles.filter((article) => article.edition === 1 && article.desk !== "opinie"),
+    ).toHaveLength(6);
     expect(
       articles.filter((article) => article.edition === 2 && article.desk !== "opinie"),
     ).toHaveLength(1);

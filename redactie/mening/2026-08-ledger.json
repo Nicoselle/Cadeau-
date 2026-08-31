@@ -1,0 +1,1749 @@
+{
+  "pulled": "2026-08-31",
+  "rule": "Laatste waarneming ≤ peildatum. M2-juli alleen vanaf 2026-08-25 (H.6). Juni-revisie staat in de vintage, niet in de editievloer.",
+  "days": [
+    {
+      "date": "2026-08-03",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-06-01",
+          "value": 5.53,
+          "display": "+5,5% SA / +5,55% NSA",
+          "seriesFile": "fred_M2SL_2019-2026.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-03",
+          "value": 4.7,
+          "display": "4,70%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-07-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-03",
+          "value": 7600.5,
+          "display": "7.600,50",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-03",
+          "value": 15.86,
+          "display": "15,86",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-03",
+          "value": 88.9,
+          "display": "88,90 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-03",
+        "value": 2.43,
+        "display": "2,43%"
+      },
+      "m2Vintage": "editie"
+    },
+    {
+      "date": "2026-08-04",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-06-01",
+          "value": 5.53,
+          "display": "+5,5% SA / +5,55% NSA",
+          "seriesFile": "fred_M2SL_2019-2026.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-04",
+          "value": 4.63,
+          "display": "4,63%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-07-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-04",
+          "value": 7736.52,
+          "display": "7.736,52",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-04",
+          "value": 16.5,
+          "display": "16,50",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-04",
+          "value": 86.47,
+          "display": "86,47 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-04",
+        "value": 2.4,
+        "display": "2,40%"
+      },
+      "m2Vintage": "editie"
+    },
+    {
+      "date": "2026-08-05",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-06-01",
+          "value": 5.53,
+          "display": "+5,5% SA / +5,55% NSA",
+          "seriesFile": "fred_M2SL_2019-2026.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-05",
+          "value": 4.63,
+          "display": "4,63%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-07-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-05",
+          "value": 7723.55,
+          "display": "7.723,55",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-05",
+          "value": 15.81,
+          "display": "15,81",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-05",
+          "value": 86.65,
+          "display": "86,65 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-05",
+        "value": 2.41,
+        "display": "2,41%"
+      },
+      "m2Vintage": "editie"
+    },
+    {
+      "date": "2026-08-06",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-06-01",
+          "value": 5.53,
+          "display": "+5,5% SA / +5,55% NSA",
+          "seriesFile": "fred_M2SL_2019-2026.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-06",
+          "value": 4.69,
+          "display": "4,69%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-07-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-06",
+          "value": 7709.96,
+          "display": "7.709,96",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-06",
+          "value": 15.15,
+          "display": "15,15",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-06",
+          "value": 89.65,
+          "display": "89,65 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-06",
+        "value": 2.43,
+        "display": "2,43%"
+      },
+      "m2Vintage": "editie"
+    },
+    {
+      "date": "2026-08-07",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-06-01",
+          "value": 5.53,
+          "display": "+5,5% SA / +5,55% NSA",
+          "seriesFile": "fred_M2SL_2019-2026.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-07",
+          "value": 4.65,
+          "display": "4,65%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-07-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-07",
+          "value": 7757.64,
+          "display": "7.757,64",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-07",
+          "value": 14.9,
+          "display": "14,90",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-07",
+          "value": 87.62,
+          "display": "87,62 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-07",
+        "value": 2.4,
+        "display": "2,40%"
+      },
+      "m2Vintage": "editie"
+    },
+    {
+      "date": "2026-08-10",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-06-01",
+          "value": 5.53,
+          "display": "+5,5% SA / +5,55% NSA",
+          "seriesFile": "fred_M2SL_2019-2026.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-10",
+          "value": 4.72,
+          "display": "4,72%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-07-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-10",
+          "value": 7753.11,
+          "display": "7.753,11",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-10",
+          "value": 15.46,
+          "display": "15,46",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-10",
+          "value": 92.74,
+          "display": "92,74 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-10",
+        "value": 2.43,
+        "display": "2,43%"
+      },
+      "m2Vintage": "editie"
+    },
+    {
+      "date": "2026-08-11",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-06-01",
+          "value": 5.53,
+          "display": "+5,5% SA / +5,55% NSA",
+          "seriesFile": "fred_M2SL_2019-2026.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-11",
+          "value": 4.7,
+          "display": "4,70%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-07-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-11",
+          "value": 7728.2,
+          "display": "7.728,20",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-11",
+          "value": 15.28,
+          "display": "15,28",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-11",
+          "value": 93.26,
+          "display": "93,26 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-11",
+        "value": 2.43,
+        "display": "2,43%"
+      },
+      "m2Vintage": "editie"
+    },
+    {
+      "date": "2026-08-12",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-06-01",
+          "value": 5.53,
+          "display": "+5,5% SA / +5,55% NSA",
+          "seriesFile": "fred_M2SL_2019-2026.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-12",
+          "value": 4.68,
+          "display": "4,68%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-07-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-12",
+          "value": 7748.5,
+          "display": "7.748,50",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-12",
+          "value": 14.55,
+          "display": "14,55",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-12",
+          "value": 92.52,
+          "display": "92,52 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-12",
+        "value": 2.42,
+        "display": "2,42%"
+      },
+      "m2Vintage": "editie"
+    },
+    {
+      "date": "2026-08-13",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-06-01",
+          "value": 5.53,
+          "display": "+5,5% SA / +5,55% NSA",
+          "seriesFile": "fred_M2SL_2019-2026.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-13",
+          "value": 4.63,
+          "display": "4,63%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-07-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-13",
+          "value": 7798.99,
+          "display": "7.798,99",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-13",
+          "value": 14.63,
+          "display": "14,63",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-13",
+          "value": 92.03,
+          "display": "92,03 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-13",
+        "value": 2.39,
+        "display": "2,39%"
+      },
+      "m2Vintage": "editie"
+    },
+    {
+      "date": "2026-08-14",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-06-01",
+          "value": 5.53,
+          "display": "+5,5% SA / +5,55% NSA",
+          "seriesFile": "fred_M2SL_2019-2026.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-14",
+          "value": 4.68,
+          "display": "4,68%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-08-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-14",
+          "value": 7785.76,
+          "display": "7.785,76",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-14",
+          "value": 14.25,
+          "display": "14,25",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-14",
+          "value": 92.02,
+          "display": "92,02 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-14",
+        "value": 2.41,
+        "display": "2,41%"
+      },
+      "m2Vintage": "editie"
+    },
+    {
+      "date": "2026-08-17",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-06-01",
+          "value": 5.53,
+          "display": "+5,5% SA / +5,55% NSA",
+          "seriesFile": "fred_M2SL_2019-2026.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-17",
+          "value": 4.72,
+          "display": "4,72%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-08-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-17",
+          "value": 7745.06,
+          "display": "7.745,06",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-17",
+          "value": 15.19,
+          "display": "15,19",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-17",
+          "value": 92.43,
+          "display": "92,43 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-17",
+        "value": 2.44,
+        "display": "2,44%"
+      },
+      "m2Vintage": "editie"
+    },
+    {
+      "date": "2026-08-18",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-06-01",
+          "value": 5.53,
+          "display": "+5,5% SA / +5,55% NSA",
+          "seriesFile": "fred_M2SL_2019-2026.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-18",
+          "value": 4.71,
+          "display": "4,71%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-08-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-18",
+          "value": 7691.76,
+          "display": "7.691,76",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-18",
+          "value": 15.84,
+          "display": "15,84",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-18",
+          "value": 95.29,
+          "display": "95,29 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-18",
+        "value": 2.41,
+        "display": "2,41%"
+      },
+      "m2Vintage": "editie"
+    },
+    {
+      "date": "2026-08-19",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-06-01",
+          "value": 5.53,
+          "display": "+5,5% SA / +5,55% NSA",
+          "seriesFile": "fred_M2SL_2019-2026.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-19",
+          "value": 4.65,
+          "display": "4,65%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-08-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-19",
+          "value": 7707.98,
+          "display": "7.707,98",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-19",
+          "value": 14.89,
+          "display": "14,89",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-19",
+          "value": 92.37,
+          "display": "92,37 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-19",
+        "value": 2.35,
+        "display": "2,35%"
+      },
+      "m2Vintage": "editie"
+    },
+    {
+      "date": "2026-08-20",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-06-01",
+          "value": 5.53,
+          "display": "+5,5% SA / +5,55% NSA",
+          "seriesFile": "fred_M2SL_2019-2026.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-20",
+          "value": 4.69,
+          "display": "4,69%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-08-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-20",
+          "value": 7641.16,
+          "display": "7.641,16",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-20",
+          "value": 16.01,
+          "display": "16,01",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-20",
+          "value": 94,
+          "display": "94,00 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-20",
+        "value": 2.35,
+        "display": "2,35%"
+      },
+      "m2Vintage": "editie"
+    },
+    {
+      "date": "2026-08-21",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-06-01",
+          "value": 5.53,
+          "display": "+5,5% SA / +5,55% NSA",
+          "seriesFile": "fred_M2SL_2019-2026.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-21",
+          "value": 4.74,
+          "display": "4,74%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-08-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-21",
+          "value": 7674.37,
+          "display": "7.674,37",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-21",
+          "value": 15.13,
+          "display": "15,13",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-21",
+          "value": 96.92,
+          "display": "96,92 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-21",
+        "value": 2.4,
+        "display": "2,40%"
+      },
+      "m2Vintage": "editie"
+    },
+    {
+      "date": "2026-08-24",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-06-01",
+          "value": 5.53,
+          "display": "+5,5% SA / +5,55% NSA",
+          "seriesFile": "fred_M2SL_2019-2026.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-24",
+          "value": 4.7,
+          "display": "4,70%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-08-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-24",
+          "value": 7652.86,
+          "display": "7.652,86",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-24",
+          "value": 15.85,
+          "display": "15,85",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-24",
+          "value": 92.71,
+          "display": "92,71 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-24",
+        "value": 2.38,
+        "display": "2,38%"
+      },
+      "m2Vintage": "editie"
+    },
+    {
+      "date": "2026-08-25",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-07-01",
+          "value": 5.41,
+          "display": "+5,4% SA / +5,43% NSA",
+          "seriesFile": "fred_M2SL_vintage_2026-08-31.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-25",
+          "value": 4.64,
+          "display": "4,64%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-08-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-25",
+          "value": 7677.28,
+          "display": "7.677,28",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-25",
+          "value": 15.45,
+          "display": "15,45",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-25",
+          "value": 88.24,
+          "display": "88,24 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-25",
+        "value": 2.32,
+        "display": "2,32%"
+      },
+      "m2Vintage": "2026-08-31"
+    },
+    {
+      "date": "2026-08-26",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-07-01",
+          "value": 5.41,
+          "display": "+5,4% SA / +5,43% NSA",
+          "seriesFile": "fred_M2SL_vintage_2026-08-31.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-26",
+          "value": 4.66,
+          "display": "4,66%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-08-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-26",
+          "value": 7675.7,
+          "display": "7.675,70",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-26",
+          "value": 15.21,
+          "display": "15,21",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-25",
+          "value": 88.24,
+          "display": "88,24 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-26",
+        "value": 2.34,
+        "display": "2,34%"
+      },
+      "m2Vintage": "2026-08-31"
+    },
+    {
+      "date": "2026-08-27",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-07-01",
+          "value": 5.41,
+          "display": "+5,4% SA / +5,43% NSA",
+          "seriesFile": "fred_M2SL_vintage_2026-08-31.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-27",
+          "value": 4.67,
+          "display": "4,67%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-08-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-27",
+          "value": 7730.99,
+          "display": "7.730,99",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-27",
+          "value": 14.51,
+          "display": "14,51",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-25",
+          "value": 88.24,
+          "display": "88,24 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-27",
+        "value": 2.34,
+        "display": "2,34%"
+      },
+      "m2Vintage": "2026-08-31"
+    },
+    {
+      "date": "2026-08-28",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-07-01",
+          "value": 5.41,
+          "display": "+5,4% SA / +5,43% NSA",
+          "seriesFile": "fred_M2SL_vintage_2026-08-31.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-27",
+          "value": 4.67,
+          "display": "4,67%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-08-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-28",
+          "value": 7711.76,
+          "display": "7.711,76",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-27",
+          "value": 14.51,
+          "display": "14,51",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-25",
+          "value": 88.24,
+          "display": "88,24 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-27",
+        "value": 2.34,
+        "display": "2,34%"
+      },
+      "m2Vintage": "2026-08-31"
+    },
+    {
+      "date": "2026-08-31",
+      "prints": [
+        {
+          "id": "m2",
+          "label": "M2 VS, j/j",
+          "date": "2026-07-01",
+          "value": 5.41,
+          "display": "+5,4% SA / +5,43% NSA",
+          "seriesFile": "fred_M2SL_vintage_2026-08-31.csv"
+        },
+        {
+          "id": "dgs10",
+          "label": "VS 10-jaars",
+          "date": "2026-08-27",
+          "value": 4.67,
+          "display": "4,67%",
+          "seriesFile": "fred_DGS10_2025-06_2026-08.csv"
+        },
+        {
+          "id": "dff",
+          "label": "Fed funds",
+          "date": "2026-08-14",
+          "value": 3.63,
+          "display": "3,63%",
+          "seriesFile": "fred_DFF_breekpunten_2025-2026.csv"
+        },
+        {
+          "id": "spx",
+          "label": "S&P 500",
+          "date": "2026-08-28",
+          "value": 7711.76,
+          "display": "7.711,76",
+          "seriesFile": "fred_SP500_2026-07_2026-08.csv"
+        },
+        {
+          "id": "vix",
+          "label": "VIX",
+          "date": "2026-08-27",
+          "value": 14.51,
+          "display": "14,51",
+          "seriesFile": "fred_VIXCLS_2026-07_2026-08.csv"
+        },
+        {
+          "id": "brent",
+          "label": "Brent, vat",
+          "date": "2026-08-25",
+          "value": 88.24,
+          "display": "88,24 $",
+          "seriesFile": "fred_DCOILBRENTEU_2025-01_2026-08.csv"
+        },
+        {
+          "id": "koper",
+          "label": "Koper, ton",
+          "date": "2026-07-01",
+          "value": 13542.82,
+          "display": "13.542,82 $",
+          "seriesFile": "fred_PCOPPUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "uranium",
+          "label": "Uranium, pond",
+          "date": "2026-07-01",
+          "value": 69.23,
+          "display": "69,23 $",
+          "seriesFile": "fred_PURANUSDM_2024-01_2026-07.csv"
+        },
+        {
+          "id": "cpi-us",
+          "label": "CPI VS",
+          "date": "2026-07-01",
+          "value": 332.813,
+          "display": "332,813",
+          "seriesFile": "fred_CPIAUCSL_2019-2026.csv"
+        }
+      ],
+      "real10y": {
+        "date": "2026-08-27",
+        "value": 2.34,
+        "display": "2,34%"
+      },
+      "m2Vintage": "2026-08-31"
+    }
+  ]
+}

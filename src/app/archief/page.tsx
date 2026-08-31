@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { StoryCard } from "@/components/krant/story-card";
 import { EDITIONS } from "@/data/edition";
-import { articlesByEdition, formatNlDate } from "@/lib/newspaper";
+import { articlesByEdition, formatNlDate, isOpinion } from "@/lib/newspaper";
 
 export const metadata: Metadata = {
   title: "Archief",
@@ -39,9 +39,11 @@ export default function ArchivePage() {
               {edition.note}
             </p>
             <div className="mt-8 grid gap-8 md:grid-cols-2">
-              {pieces.map((article) => (
-                <StoryCard key={article.slug} article={article} />
-              ))}
+              {pieces
+                .filter((article) => !isOpinion(article))
+                .map((article) => (
+                  <StoryCard key={article.slug} article={article} />
+                ))}
             </div>
             {edition.number === editions[0]?.number ? (
               <p className="mt-8 text-sm">
@@ -53,6 +55,26 @@ export default function ArchivePage() {
           </section>
         );
       })}
+
+      <section className="mt-10 border-t border-foreground pt-8">
+        <p className="kicker text-muted-foreground">De mening</p>
+        <h2 className="mt-2 font-display text-3xl font-bold tracking-[-0.02em]">
+          Augustus 2026, dag voor dag
+        </h2>
+        <p className="mt-3 max-w-2xl font-serif text-muted-foreground">
+          Twintig terugwerkende weekdagen plus het bestaande stuk van 31
+          augustus. Elk cijfer is de laatste waarneming op of vóór die dag.
+        </p>
+        <p className="mt-5 text-sm">
+          <Link href="/nazien" className="underline hover:text-accent">
+            Nazien met datum en bestand
+          </Link>
+          {" · "}
+          <Link href="/desk/opinie" className="underline hover:text-accent">
+            Alle meningen
+          </Link>
+        </p>
+      </section>
     </div>
   );
 }

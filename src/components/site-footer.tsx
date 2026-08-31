@@ -37,6 +37,11 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link href="/nazien" className="hover:text-accent">
+                Nazien augustus
+              </Link>
+            </li>
+            <li>
               <Link href="/orakelboek" className="hover:text-accent">
                 Orakelboek
               </Link>

@@ -11,7 +11,13 @@ export function isOpinion(article: Article): boolean {
 }
 
 export function articlesByDesk(desk: Desk): Article[] {
-  return articles.filter((article) => article.desk === desk);
+  return articles
+    .filter((article) => article.desk === desk)
+    .slice()
+    .sort(
+      (a, b) =>
+        b.published.localeCompare(a.published) || a.slug.localeCompare(b.slug),
+    );
 }
 
 export function latestOpinion(): Article | undefined {

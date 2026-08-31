@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { StoryCard } from "@/components/krant/story-card";
 import { articlesByDesk } from "@/lib/newspaper";
@@ -46,6 +47,16 @@ export default async function DeskPage({
       <p className="mt-4 font-serif text-lg text-muted-foreground">
         {items.length} {items.length === 1 ? "stuk" : "stukken"}.
       </p>
+      {desk === "opinie" ? (
+        <p className="mt-3 max-w-2xl font-serif text-sm leading-relaxed text-muted-foreground">
+          Augustus 2026 staat weekdag voor weekdag, zonder vooruitkijken.
+          Cijfer, waarnemingsdatum en bestand:{" "}
+          <Link href="/nazien" className="underline hover:text-accent">
+            nazien
+          </Link>
+          .
+        </p>
+      ) : null}
       <div className="mt-10 grid gap-8 md:grid-cols-2">
         {items.map((article) => (
           <StoryCard key={article.slug} article={article} />

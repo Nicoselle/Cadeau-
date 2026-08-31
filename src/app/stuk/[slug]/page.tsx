@@ -42,9 +42,11 @@ export default async function ArticlePage({
   const article = getArticle(slug);
   if (!article) notFound();
 
-  const related = articles.filter(
-    (item) => item.slug !== article.slug && item.desk === article.desk,
-  );
+  const related = articles
+    .filter((item) => item.slug !== article.slug && item.desk === article.desk)
+    .slice()
+    .sort((a, b) => b.published.localeCompare(a.published))
+    .slice(0, 5);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -150,6 +152,13 @@ export default async function ArticlePage({
                     </li>
                   ))}
                 </ul>
+                {article.desk === "opinie" ? (
+                  <p className="mt-4 text-sm">
+                    <Link href="/nazien" className="underline hover:text-accent">
+                      Nazien augustus
+                    </Link>
+                  </p>
+                ) : null}
               </div>
             ) : null}
           </aside>

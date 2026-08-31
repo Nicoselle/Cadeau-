@@ -1,6 +1,7 @@
 import type { Article } from "@/types/newspaper";
+import { AUGUST_OPINIONS } from "./opinie-augustus";
 
-export const articles: Article[] = [
+const NUMBERED_ARTICLES: Article[] = [
   {
     slug: "reele-rente-houdt-de-bodem",
     kicker: "Voorpagina · Editie 2",
@@ -670,3 +671,5 @@ export const articles: Article[] = [
     ],
   },
 ];
+
+export const articles: Article[] = [...NUMBERED_ARTICLES, ...AUGUST_OPINIONS];
