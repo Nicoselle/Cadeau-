@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CITIES, COUNTRY_LABELS, citiesFor } from "@/lib/cities";
-import type { BriefingResponse, CountryCode } from "@/types/briefing";
+import type { CountryCode } from "@/types/briefing";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
@@ -31,23 +31,16 @@ export function IntakeForm() {
     setError(null);
     setPending(true);
     try {
-      const response = await fetch("/api/v1/briefing", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName,
-          birthDate,
-          birthTime,
-          cityId,
-          country,
-          companyFoundedOn: companyFoundedOn || undefined,
-        }),
+      const { generateBriefing, parseIntake } = await import("@/lib/engines");
+      const input = parseIntake({
+        fullName,
+        birthDate,
+        birthTime,
+        cityId,
+        country,
+        companyFoundedOn: companyFoundedOn || undefined,
       });
-      const payload = await response.json();
-      if (!response.ok) {
-        throw new Error(payload.error ?? "Berekening mislukt.");
-      }
-      const data = payload.data as BriefingResponse;
+      const data = generateBriefing(input);
       sessionStorage.setItem("azimut:briefing", JSON.stringify(data));
       router.push("/briefing");
     } catch (err) {
@@ -130,8 +123,8 @@ export function IntakeForm() {
         {pending ? "Berekenen…" : "Genereer mijn briefing"}
       </Button>
       <p className="text-xs leading-relaxed text-muted-foreground">
-        Geen esoterisch jargon in de output. De ruwe lagen blijven beschikbaar als bewijs,
-        niet als interface.
+        De briefing wordt in je browser berekend. Geen account, geen AI, geen server.
+        De ruwe lagen blijven beschikbaar als bewijs, niet als interface.
       </p>
     </form>
   );

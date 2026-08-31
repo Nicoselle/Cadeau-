@@ -2,7 +2,9 @@
 
 ## Beslissing: in-house engines, API-ready
 
-De MVP berekent alle vier de lagen lokaal in TypeScript. Externe astrologie-API's
+De MVP berekent alle vier de lagen lokaal in TypeScript, **in de browser**.
+Daardoor draait de UI op elke statische host (Vercel, Netlify, Cloudflare Pages,
+GitHub Pages) zonder betaalde API of AI. Externe astrologie-API's
 (Human Design Hub, AstrologyAPI, RoxyAPI) blijven een geldige productieroute
 wanneer volume, DST-edge-cases of officiële BG5-visuals dat eisen. De
 synthese-laag is daarvan ontkoppeld: zij consumeert alleen genormaliseerde

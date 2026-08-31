@@ -26,7 +26,8 @@ publiek + solitaire operatie) in plaats van die weg te middelen.
 - **Next.js 15** (App Router) + TypeScript
 - **Tailwind** dark executive UI
 - **astronomy-engine** voor tropische posities en de 88°-designboog
-- Deterministische synthese — geen LLM in de MVP, wel een API-hook voor later
+- Deterministische synthese in de **browser** — geen LLM, geen server nodig voor de intake
+- Optionele `POST /api/v1/briefing` als je de engine toch server-side wilt aanroepen
 - **Vitest** + GitHub Actions
 
 ## Ontwikkelen

@@ -16,7 +16,8 @@ export default function MethodePage() {
         <p className="text-lg leading-relaxed text-muted-foreground">
           Azimut is geen orakel. Het is een weegschaal. Elke laag produceert
           een onafhankelijke variabele. De synthese zoekt overlap, markeert
-          paradoxen, en schrijft directeurstaal.
+          paradoxen, en schrijft directeurstaal. De berekening gebeurt in de
+          browser — zonder AI en zonder server.
         </p>
       </header>
 
