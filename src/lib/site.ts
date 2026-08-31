@@ -1,10 +1,8 @@
 export const SITE = {
-  name: "Vesting Noodvoedsel-directory",
-  shortName: "Vesting",
+  name: "Azimut",
+  shortName: "Azimut",
+  tagline: "Zakelijk kompas voor ondernemers",
   description:
-    "Filterbare directory voor noodvoedsel: vergelijk emergency food kits en langhoudbare voorraden op calorieën, houdbaarheid, prijs per 100 kcal, dieet en scenario.",
-  // Public base URL used for canonical URLs, OG tags, sitemap and JSON-LD.
-  // Override with NEXT_PUBLIC_SITE_URL once a custom domain is live; defaults
-  // to the real Vercel production URL so AI crawlers reach a working page.
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://koppel-zeta.vercel.app",
+    "Azimut synthetiseert sociologische cohort-data, BaZi-sectorlogica, numerologische drijfveren en BG5-organisatiemechanica tot een operationele bedrijfsblauwdruk. Geen daghoroscoop.",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://azimut.example.com",
 } as const;

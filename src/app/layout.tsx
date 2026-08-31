@@ -14,18 +14,18 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} — vergelijk emergency food kits`,
+    default: `${SITE.name} — ${SITE.tagline}`,
     template: `%s · ${SITE.shortName}`,
   },
   description: SITE.description,
   keywords: [
-    "noodvoedsel",
-    "emergency food",
-    "food storage",
-    "prepping",
-    "72-uurs kit",
-    "resilience score",
-    "prijs per 100 kcal",
+    "ondernemerschap",
+    "BG5",
+    "BaZi",
+    "numerologie",
+    "relative age effect",
+    "bedrijfsblauwdruk",
+    "founders",
   ],
   openGraph: {
     title: SITE.name,
@@ -46,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="nl" className={inter.variable}>
+    <html lang="nl" className={`${inter.variable} dark`}>
       <body className="min-h-screen font-sans">
         <div className="flex min-h-screen flex-col">
           <SiteHeader />

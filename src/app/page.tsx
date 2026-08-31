@@ -1,92 +1,78 @@
-import { Suspense } from "react";
-import { products, DATA_LAST_UPDATED } from "@/data/products";
-import { ProductDirectory } from "@/components/product-directory";
-import { LastUpdated } from "@/components/last-updated";
+import { IntakeForm } from "@/components/intake-form";
 import { SITE } from "@/lib/site";
 
+const LAYERS = [
+  {
+    code: "01",
+    title: "Cohort & risico",
+    body: "Relative Age Effect: schoolpeildatum × geboortemaand → risicobereidheid, schuldcapaciteit, leiderschapsbias.",
+  },
+  {
+    code: "02",
+    title: "Sector",
+    body: "BaZi-elementen mappen op industrieën: hout, vuur, aarde, metaal, water.",
+  },
+  {
+    code: "03",
+    title: "Drijfveer & timing",
+    body: "Levenspad, expressie en de negenjarige jaarcyclus. Het waarom, en wanneer je opent of sluit.",
+  },
+  {
+    code: "04",
+    title: "Organisatie",
+    body: "BG5-mechanica: rol, besluitvorming, schaal (solo / penta / grote groep) en ontbrekende skills.",
+  },
+];
+
 export default function HomePage() {
-  const itemListJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: SITE.name,
-    description: SITE.description,
-    numberOfItems: products.length,
-    itemListElement: products.map((p, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      url: `${SITE.url}/product/${p.id}`,
-      name: `${p.brand} ${p.name}`,
-    })),
-  };
-
-  const websiteJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: SITE.name,
-    url: SITE.url,
-    description: SITE.description,
-    inLanguage: "nl",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${SITE.url}/?q={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
-  };
-
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-      />
-      <section className="border-b border-border bg-card">
-        <div className="container py-12">
-          <p className="text-sm font-medium text-accent">
-            Noodvoedsel-directory
-          </p>
-          <h1 className="mt-2 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
-            Vind het beste noodvoedselpakket op calorieën, houdbaarheid en prijs
+    <div>
+      <section className="container grid gap-12 py-16 lg:grid-cols-[1.15fr_0.85fr] lg:py-24">
+        <div className="space-y-8">
+          <p className="type-kicker">{SITE.name}</p>
+          <h1 className="max-w-xl text-4xl font-semibold tracking-tight sm:text-6xl">
+            Geen horoscoop. Een bedrijfsblauwdruk.
           </h1>
-          <p className="mt-3 max-w-2xl text-muted-foreground">
-            Vergelijk emergency food kits en langhoudbare voorraden met unieke
-            maatstaven: prijs per 100 kcal, een transparante Resilience Score,
-            scenario-filters en beschikbaarheid in Nederland, België en de rest
-            van de EU. Gebouwd om zowel mensen als AI-agents snel het juiste
-            pakket te laten vinden.
+          <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">
+            Vier datalagen. Eén besluit. Azimut vertaalt geboortedata naar sector,
+            schaal, risicoprofiel en de eerste aanname die je moet doen.
           </p>
-          <div className="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-sm">
+          <dl className="grid max-w-lg grid-cols-3 gap-4 border-y border-border py-5">
             <div>
-              <span className="text-2xl font-bold tabular-nums">
-                {products.length}
-              </span>{" "}
-              <span className="text-muted-foreground">producten</span>
+              <dt className="type-kicker">Lagen</dt>
+              <dd className="mt-2 text-2xl font-semibold">4</dd>
             </div>
             <div>
-              <span className="text-2xl font-bold tabular-nums">5</span>{" "}
-              <span className="text-muted-foreground">producttypes</span>
+              <dt className="type-kicker">Output</dt>
+              <dd className="mt-2 text-2xl font-semibold">1 dossier</dd>
             </div>
             <div>
-              <span className="text-2xl font-bold tabular-nums">4</span>{" "}
-              <span className="text-muted-foreground">scenario&apos;s</span>
+              <dt className="type-kicker">Jargon</dt>
+              <dd className="mt-2 text-2xl font-semibold">0</dd>
             </div>
-          </div>
-          <LastUpdated
-            date={DATA_LAST_UPDATED}
-            className="mt-6 text-sm text-muted-foreground"
-          />
+          </dl>
+        </div>
+        <div className="rounded-lg border border-border bg-card p-6">
+          <p className="type-kicker">Intake</p>
+          <h2 className="mt-2 text-xl font-semibold">Bereken het kompas</h2>
+          <p className="mb-6 mt-2 text-sm text-muted-foreground">
+            Geboortedatum, tijd en plaats. Optioneel de geboortedatum van het bedrijf.
+          </p>
+          <IntakeForm />
         </div>
       </section>
 
-      <Suspense fallback={<div className="container py-8" />}>
-        <ProductDirectory products={products} />
-      </Suspense>
-    </>
+      <section className="border-t border-border">
+        <div className="container grid gap-8 py-16 md:grid-cols-2 lg:grid-cols-4">
+          {LAYERS.map((layer) => (
+            <article key={layer.code} className="space-y-3">
+              <p className="type-kicker">{layer.code}</p>
+              <h2 className="text-lg font-semibold">{layer.title}</h2>
+              <p className="text-sm leading-relaxed text-muted-foreground">{layer.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }
