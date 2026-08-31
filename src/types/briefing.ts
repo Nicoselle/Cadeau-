@@ -106,8 +106,21 @@ export interface Paradox {
   explanation: string;
 }
 
+export interface BriefingExample {
+  title: string;
+  story: string;
+}
+
+export interface BriefingStep {
+  title: string;
+  detail: string;
+  window: string;
+}
+
 export interface Briefing {
   headline: string;
+  lede: string;
+  narrative: string;
   companyArchetype: string;
   sector: string;
   structure: string;
@@ -115,6 +128,9 @@ export interface Briefing {
   riskStrategy: string;
   decisionProtocol: string;
   timing: string;
+  examples: BriefingExample[];
+  steps: BriefingStep[];
+  avoid: string[];
   hiringMandate: string[];
   actionPlan: string[];
   paradoxes: Paradox[];

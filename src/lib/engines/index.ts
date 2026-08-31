@@ -52,7 +52,7 @@ export function generateBriefing(input: IntakeInput, now = new Date()): Briefing
   const bazi = computeBazi(utc, hour, minute);
   const numerology = computeNumerology(input.fullName, input.birthDate, now, input.companyFoundedOn);
   const design = computeHumanDesign(utc);
-  const briefing = synthesize(rae, bazi, numerology, design);
+  const briefing = synthesize(rae, bazi, numerology, design, input.fullName);
 
   return {
     input,

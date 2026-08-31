@@ -39,36 +39,49 @@ function Metric({ label, value }: { label: string; value: string }) {
   );
 }
 
+function Prose({ text }: { text: string }) {
+  return (
+    <div className="space-y-4">
+      {text.split("\n\n").map((paragraph) => (
+        <p key={paragraph.slice(0, 48)} className="text-base leading-relaxed text-muted-foreground">
+          {paragraph}
+        </p>
+      ))}
+    </div>
+  );
+}
+
 export function BriefingReport({ result }: { result: BriefingResponse }) {
   const { briefing, layers, location, input } = result;
 
   return (
-    <div className="space-y-8">
-      <section className="space-y-4">
+    <div className="space-y-12">
+      <section className="space-y-5">
         <p className="type-kicker">Dossier · {input.fullName}</p>
         <h1 className="max-w-4xl text-3xl font-semibold tracking-tight sm:text-5xl">
           {briefing.headline}
         </h1>
-        <p className="max-w-2xl text-muted-foreground">
+        <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+          {briefing.lede}
+        </p>
+        <p className="text-sm text-muted-foreground">
           {location.city} · {input.birthDate} · betrouwbaarheid {briefing.confidence}/100
         </p>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-2">
+      <section className="max-w-3xl space-y-4">
+        <p className="type-kicker">01 · Diagnose</p>
+        <h2 className="text-2xl font-semibold tracking-tight">Hoe dit patroon zich gedraagt</h2>
+        <Prose text={briefing.narrative} />
+      </section>
+
+      <section className="grid gap-4 sm:grid-cols-3">
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Rol</CardTitle>
+            <CardTitle className="text-base">Jouw rol</CardTitle>
           </CardHeader>
           <CardContent className="text-sm leading-relaxed text-muted-foreground">
             {briefing.role}
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Sector</CardTitle>
-          </CardHeader>
-          <CardContent className="text-sm leading-relaxed text-muted-foreground">
-            {briefing.sector}
           </CardContent>
         </Card>
         <Card>
@@ -81,7 +94,7 @@ export function BriefingReport({ result }: { result: BriefingResponse }) {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Risico & financiering</CardTitle>
+            <CardTitle className="text-base">Geld</CardTitle>
           </CardHeader>
           <CardContent className="text-sm leading-relaxed text-muted-foreground">
             {briefing.riskStrategy}
@@ -89,128 +102,177 @@ export function BriefingReport({ result }: { result: BriefingResponse }) {
         </Card>
       </section>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Actieplan</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ol className="space-y-3 text-sm leading-relaxed">
-            {briefing.actionPlan.map((step, index) => (
-              <li key={step} className="flex gap-3">
-                <span className="type-kicker w-6 shrink-0 pt-0.5">{String(index + 1).padStart(2, "0")}</span>
-                <span>{step}</span>
-              </li>
-            ))}
-          </ol>
-        </CardContent>
-      </Card>
+      <section className="space-y-5">
+        <div className="max-w-3xl space-y-2">
+          <p className="type-kicker">02 · Voorbeelden</p>
+          <h2 className="text-2xl font-semibold tracking-tight">Zo ziet dit eruit in het echt</h2>
+          <p className="text-muted-foreground">
+            Geen abstracte archetypes. Drie voertuigen die in {briefing.sector.toLowerCase()} werken
+            met jouw rol en schaal.
+          </p>
+        </div>
+        <div className="grid gap-4 lg:grid-cols-3">
+          {briefing.examples.map((example, index) => (
+            <Card key={example.title}>
+              <CardHeader>
+                <p className="type-kicker">{String(index + 1).padStart(2, "0")}</p>
+                <CardTitle className="text-lg">{example.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm leading-relaxed text-muted-foreground">
+                {example.story}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <section className="space-y-5">
+        <div className="max-w-3xl space-y-2">
+          <p className="type-kicker">03 · Eerste 90 dagen</p>
+          <h2 className="text-2xl font-semibold tracking-tight">Stappen die je kunt uitvoeren</h2>
+          <p className="text-muted-foreground">
+            Geen visieboard. Een volgorde. Doe ze in deze volgorde, ook als week twee saaier is dan week één.
+          </p>
+        </div>
+        <ol className="space-y-4">
+          {briefing.steps.map((step, index) => (
+            <li key={step.title} className="rounded-lg border border-border bg-card p-5">
+              <p className="type-kicker">
+                {String(index + 1).padStart(2, "0")} · {step.window}
+              </p>
+              <h3 className="mt-2 text-lg font-semibold">{step.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.detail}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="grid gap-4 lg:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Besluitvorming</CardTitle>
-          </CardHeader>
-          <CardContent className="text-sm leading-relaxed text-muted-foreground">
-            {briefing.decisionProtocol}
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Timing</CardTitle>
-          </CardHeader>
-          <CardContent className="text-sm leading-relaxed text-muted-foreground">
-            {briefing.timing}
-          </CardContent>
-        </Card>
-      </div>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Eerste aannames</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ul className="space-y-2 text-sm leading-relaxed text-muted-foreground">
-            {briefing.hiringMandate.map((item) => (
-              <li key={item}>— {item}</li>
-            ))}
-          </ul>
-        </CardContent>
-      </Card>
-
-      {briefing.paradoxes.length > 0 ? (
-        <Card>
-          <CardHeader>
-            <CardTitle>Paradoxen</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {briefing.paradoxes.map((item) => (
-              <div key={item.title}>
-                <p className="text-sm font-medium">{item.title}</p>
-                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                  {item.explanation}
-                </p>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      ) : null}
-
-      <section className="grid gap-4 md:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Bewijs · cohort</CardTitle>
+            <CardTitle>Hoe jij beslist</CardTitle>
           </CardHeader>
           <CardContent>
-            <Metric label="Positie" value={COHORT_LABEL[layers.rae.cohortPosition]} />
-            <Metric label="Peildatum" value={layers.rae.cutoffLabel} />
-            <Metric label="Risicobereidheid" value={`${layers.rae.riskAppetite}/100`} />
+            <Prose text={briefing.decisionProtocol} />
           </CardContent>
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Bewijs · sector</CardTitle>
+            <CardTitle>Wat dit jaar vraagt</CardTitle>
           </CardHeader>
           <CardContent>
-            <Metric label="Dominant kanaal" value={ELEMENT_LABEL[layers.bazi.dominant]} />
-            <Metric label="Industrie" value={layers.bazi.sectors.slice(0, 3).join(" · ")} />
-            <Metric
-              label="Complement"
-              value={
-                layers.bazi.missing.length
-                  ? layers.bazi.missing.map((item) => ELEMENT_LABEL[item]).join(" · ")
-                  : "geen structureel gat"
-              }
-            />
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Bewijs · drijfveer</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Metric label="Levenspad" value={String(layers.numerology.lifePath)} />
-            <Metric label="Expressie" value={String(layers.numerology.expression)} />
-            <Metric label="Persoonlijk jaar" value={String(layers.numerology.personalYear)} />
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Bewijs · organisatie</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Metric label="Type" value={`${TYPE_LABEL[layers.design.careerType]} · ${layers.design.profile}`} />
-            <Metric label="Schaalcode" value={ENV_LABEL[layers.design.environment]} />
-            <Metric
-              label="Skills"
-              value={layers.design.skills.slice(0, 4).join(" · ") || "geen kernpoorten actief"}
-            />
+            <Prose text={briefing.timing} />
           </CardContent>
         </Card>
       </section>
 
+      <section className="grid gap-4 lg:grid-cols-2">
+        <Card>
+          <CardHeader>
+            <CardTitle>Wie je als eerste binnenhaalt</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-3 text-sm leading-relaxed text-muted-foreground">
+              {briefing.hiringMandate.map((item) => (
+                <li key={item}>— {item}</li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Wat je laat liggen</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-3 text-sm leading-relaxed text-muted-foreground">
+              {briefing.avoid.map((item) => (
+                <li key={item}>— {item}</li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+      </section>
+
+      {briefing.paradoxes.length > 0 ? (
+        <section className="space-y-4">
+          <p className="type-kicker">Spanning in het patroon</p>
+          <h2 className="text-2xl font-semibold tracking-tight">Dit is geen fout</h2>
+          {briefing.paradoxes.map((item) => (
+            <Card key={item.title}>
+              <CardHeader>
+                <CardTitle className="text-lg">{item.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm leading-relaxed text-muted-foreground">
+                {item.explanation}
+              </CardContent>
+            </Card>
+          ))}
+        </section>
+      ) : null}
+
+      <section className="space-y-4">
+        <p className="type-kicker">04 · Bewijs</p>
+        <h2 className="text-xl font-semibold tracking-tight">Waar de vier lagen het over eens zijn</h2>
+        <div className="grid gap-4 md:grid-cols-2">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Cohort</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Metric label="Positie" value={COHORT_LABEL[layers.rae.cohortPosition]} />
+              <Metric label="Peildatum" value={layers.rae.cutoffLabel} />
+              <Metric label="Risicobereidheid" value={`${layers.rae.riskAppetite}/100`} />
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Sector</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Metric label="Dominant kanaal" value={ELEMENT_LABEL[layers.bazi.dominant]} />
+              <Metric label="Industrie" value={layers.bazi.sectors.slice(0, 3).join(" · ")} />
+              <Metric
+                label="Complement"
+                value={
+                  layers.bazi.missing.length
+                    ? layers.bazi.missing.map((item) => ELEMENT_LABEL[item]).join(" · ")
+                    : "geen structureel gat"
+                }
+              />
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Drijfveer</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Metric label="Levenspad" value={String(layers.numerology.lifePath)} />
+              <Metric label="Expressie" value={String(layers.numerology.expression)} />
+              <Metric label="Persoonlijk jaar" value={String(layers.numerology.personalYear)} />
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Organisatie</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Metric
+                label="Type"
+                value={`${TYPE_LABEL[layers.design.careerType]} · ${layers.design.profile}`}
+              />
+              <Metric label="Schaalcode" value={ENV_LABEL[layers.design.environment]} />
+              <Metric
+                label="Skills"
+                value={layers.design.skills.slice(0, 4).join(" · ") || "geen kernpoorten actief"}
+              />
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       <p className="text-xs leading-relaxed text-muted-foreground">
         {layers.design.approximationNotes.join(" ")} De sociologische laag is empirisch.
-        BaZi, numerologie en BG5 zijn gestructureerde heuristieken, geen causale wetten.
+        De overige drie zijn gestructureerde heuristieken, geen causale wetten.
       </p>
     </div>
   );

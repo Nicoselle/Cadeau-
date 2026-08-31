@@ -58,6 +58,10 @@ describe("synthesis", () => {
     expect(briefing.decisionProtocol.toLowerCase()).toContain("nacht");
     expect(briefing.structure).toMatch(/drie tot vijf/i);
     expect(briefing.confidence).toBeGreaterThanOrEqual(48);
+    expect(briefing.narrative.length).toBeGreaterThan(280);
+    expect(briefing.examples).toHaveLength(3);
+    expect(briefing.steps.length).toBeGreaterThanOrEqual(6);
+    expect(briefing.avoid.length).toBeGreaterThanOrEqual(3);
   });
 
   it("surfaces the solo-command paradox for life path 1 + oldest", () => {
@@ -83,6 +87,8 @@ describe("synthesis", () => {
       country: "BE",
     });
     expect(result.briefing.headline.length).toBeGreaterThan(10);
+    expect(result.briefing.lede).toMatch(/Pieter/);
+    expect(result.briefing.steps[0]?.detail.length).toBeGreaterThan(40);
     expect(result.layers.design.careerType).toBeTruthy();
     expect(result.layers.bazi.dominant).toBeTruthy();
     expect(result.location.city).toBe("Antwerpen");

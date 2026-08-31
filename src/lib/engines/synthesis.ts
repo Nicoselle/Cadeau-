@@ -8,6 +8,15 @@ import type {
   Paradox,
   RaeResult,
 } from "@/types/briefing";
+import {
+  buildAvoid,
+  buildLede,
+  buildNarrative,
+  buildSteps,
+  decisionBlock,
+  pickExamples,
+  timingBlock,
+} from "@/lib/engines/narrative";
 
 const CAREER_ROLE: Record<CareerType, string> = {
   initiator: "Visionair die processen in gang zet en de dagelijkse operatie delegeert",
@@ -15,23 +24,6 @@ const CAREER_ROLE: Record<CareerType, string> = {
   "express-builder": "Multi-track bouwer die floreert bij snelle pivots",
   advisor: "Systeemarchitect en gids — geen uitvoerende 9-tot-5-operator",
   evaluator: "Onafhankelijke waarnemer van cultuur, kwaliteit en marktsentiment",
-};
-
-const AUTHORITY_PROTOCOL: Record<DesignResult["authority"], string> = {
-  emotional:
-    "Geen contracten of partnerships tekenen op een golf van enthousiasme of paniek. Rij de golf uit en slaap er een nacht over.",
-  sacral:
-    "Beslis via een onmiddellijke lichamelijke ja/nee. Forceer geen kansen die dood aanvoelen.",
-  splenic:
-    "Vertrouw het bliksemsnelle instinct in het moment. Heroverwegen verzwakt de beslissing.",
-  ego:
-    "Zeg alleen ja wanneer je de wil en de middelen hardop kunt committeren.",
-  "self-projected":
-    "Praat de beslissing hardop uit met één vertrouwde sparringpartner. Luister naar je eigen formulering.",
-  mental:
-    "Je hebt geen interne autoriteit. Win advies in bij mensen die de operatie leven, en weeg hun input — niet je mentale model.",
-  lunar:
-    "Wacht 28 dagen voor structurele beslissingen. Jouw helderheid is cyclisch, niet momentaan.",
 };
 
 const LIFE_PATH_MISSION: Record<number, string> = {
@@ -47,18 +39,6 @@ const LIFE_PATH_MISSION: Record<number, string> = {
   11: "visionair leiderschap via inspiratie",
   22: "grote, bouwbare systemen op maatschappelijke schaal",
   33: "mentorschap en het tillen van andere leiders",
-};
-
-const YEAR_TIMING: Record<number, string> = {
-  1: "Jaar 1: start of herstart. Richt op, lanceer, claim territorium.",
-  2: "Jaar 2: relaties, allianties en geduld. Forceer geen solo-expansie.",
-  3: "Jaar 3: zichtbaarheid. Publiceer, pitch, bouw het merk.",
-  4: "Jaar 4: fundamenten. Processen, compliance, operationele discipline.",
-  5: "Jaar 5: beweging. Pilot, pivot, test nieuwe kanalen.",
-  6: "Jaar 6: verantwoordelijkheid. Team, klanten, verplichtingen formaliseren.",
-  7: "Jaar 7: analyse. Meet, snijd, specialiseer. Geen ijdelheidsexpansie.",
-  8: "Jaar 8: macht en kapitaal. Onderhandel hard, schaal wat bewezen is.",
-  9: "Jaar 9: consolidatie. Verkoop onderdelen, sluit cycli, maak ruimte.",
 };
 
 const ELEMENT_LABEL: Record<Element, string> = {
@@ -241,34 +221,31 @@ export function synthesize(
   bazi: BaziResult,
   numerology: NumerologyResult,
   design: DesignResult,
+  fullName = "Ondernemer",
 ): Briefing {
   const paradoxes = detectParadoxes(rae, numerology, design);
   const shape = archetype(design.careerType, bazi.dominant, numerology.lifePath);
   const mission = LIFE_PATH_MISSION[numerology.lifePath] ?? "een eigen, herkenbare lijn";
-
-  const actionPlan = [
-    `Richt het bedrijf in als ${shape.company.toLowerCase()}.`,
-    `Houd de industriële focus op ${bazi.sectors.slice(0, 2).join(" en ")}.`,
-    riskLine(rae),
-    AUTHORITY_PROTOCOL[design.authority],
-    YEAR_TIMING[numerology.personalYear] ?? YEAR_TIMING[1],
-  ];
-
-  if (design.careerType === "advisor" || design.careerType === "evaluator") {
-    actionPlan.splice(2, 0, "Beperk intensieve arbeid tot vensters van twee tot vier uur. Delegeer uitvoering.");
-  }
+  const steps = buildSteps(design, bazi, numerology, rae, shape.company);
+  const examples = pickExamples(design.careerType, bazi);
+  const avoid = buildAvoid(design, rae, bazi);
 
   return {
     headline: shape.headline,
+    lede: buildLede(fullName, shape.headline, design.careerType, bazi),
+    narrative: buildNarrative(fullName, rae, bazi, numerology, design, shape.company),
     companyArchetype: shape.company,
     sector: shape.sector,
     structure: structureLine(design.environment, design.careerType),
     role: CAREER_ROLE[design.careerType],
     riskStrategy: riskLine(rae),
-    decisionProtocol: AUTHORITY_PROTOCOL[design.authority],
-    timing: YEAR_TIMING[numerology.personalYear] ?? YEAR_TIMING[1],
+    decisionProtocol: decisionBlock(design),
+    timing: timingBlock(numerology),
+    examples,
+    steps,
+    avoid,
     hiringMandate: hiringFrom(design),
-    actionPlan,
+    actionPlan: steps.map((step) => `${step.window}: ${step.title}`),
     paradoxes,
     confidence: confidenceOf(rae, bazi, numerology, design, paradoxes),
     evidence: {
