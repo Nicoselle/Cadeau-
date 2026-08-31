@@ -54,7 +54,7 @@ export function IntakeForm() {
     <form id="intake" onSubmit={onSubmit} className="space-y-5">
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="space-y-1.5 sm:col-span-2">
-          <span className="type-kicker">Volledige naam</span>
+          <span className="type-label">Volledige naam</span>
           <Input
             required
             value={fullName}
@@ -64,7 +64,7 @@ export function IntakeForm() {
           />
         </label>
         <label className="space-y-1.5">
-          <span className="type-kicker">Geboortedatum</span>
+          <span className="type-label">Geboortedatum</span>
           <Input
             required
             type="date"
@@ -73,7 +73,7 @@ export function IntakeForm() {
           />
         </label>
         <label className="space-y-1.5">
-          <span className="type-kicker">Geboortetijd</span>
+          <span className="type-label">Geboortetijd</span>
           <Input
             required
             type="time"
@@ -82,7 +82,7 @@ export function IntakeForm() {
           />
         </label>
         <label className="space-y-1.5">
-          <span className="type-kicker">Land waar je naar school ging</span>
+          <span className="type-label">Land waar je naar school ging</span>
           <Select
             value={country}
             onChange={(event) => {
@@ -100,7 +100,7 @@ export function IntakeForm() {
           </Select>
         </label>
         <label className="space-y-1.5">
-          <span className="type-kicker">Geboorteplaats</span>
+          <span className="type-label">Geboorteplaats</span>
           <Select value={cityId} onChange={(event) => setCityId(event.target.value)}>
             {cities.map((city) => (
               <option key={city.id} value={city.id}>
@@ -110,7 +110,7 @@ export function IntakeForm() {
           </Select>
         </label>
         <label className="space-y-1.5 sm:col-span-2">
-          <span className="type-kicker">Oprichtingsdatum bedrijf (optioneel)</span>
+          <span className="type-label">Oprichtingsdatum zaak (mag leeg)</span>
           <Input
             type="date"
             value={companyFoundedOn}
@@ -120,12 +120,10 @@ export function IntakeForm() {
       </div>
       {error ? <p className="text-sm text-red-400">{error}</p> : null}
       <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={pending}>
-        {pending ? "Berekenen…" : "Maak mijn dossier"}
+        {pending ? "Even kijken…" : "Kijk wat bij me past"}
       </Button>
-      <p className="text-xs leading-relaxed text-muted-foreground">
-        Het dossier wordt in je browser berekend. Geen account, geen artificiële
-        intelligentie, geen server. De ruwe bronnen blijven zichtbaar als bewijs,
-        niet als vakjargon.
+      <p className="text-sm leading-relaxed text-muted-foreground">
+        Blijft op deze computer. Geen account, niemand anders ziet het.
       </p>
     </form>
   );

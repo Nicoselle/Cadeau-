@@ -2,82 +2,81 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Methode",
+  title: "Hoe het werkt",
 };
 
 export default function MethodePage() {
   return (
-    <article className="container max-w-3xl space-y-10 py-16">
-      <header className="space-y-4">
-        <p className="type-kicker">Methode</p>
-        <h1 className="text-4xl font-semibold tracking-tight">
-          Hoe vier bronnen tot één advies komen
+    <article className="container max-w-2xl space-y-12 py-16">
+      <header className="space-y-5">
+        <p className="type-kicker">Hoe het werkt</p>
+        <h1 className="text-4xl font-medium leading-tight tracking-tight sm:text-5xl">
+          Vier gesprekken, één beeld
         </h1>
-        <p className="text-lg leading-relaxed text-muted-foreground">
-          Azimut is geen orakel. Het weegt vier onafhankelijke bronnen tegen
-          elkaar. Waar ze overlappen, schrijven we een dossier. Waar ze bijten,
-          markeren we de spanning. De berekening gebeurt in je browser. Geen
-          artificiële intelligentie, geen server, geen account.
+        <p className="text-xl leading-relaxed text-muted-foreground">
+          Azimut is geen orakel. Het legt vier losse bronnen naast elkaar. Waar
+          ze het eens zijn, schrijven we dat op. Waar ze botsen, zeggen we dat
+          ook. Alles gebeurt in je browser. Geen account, niemand luistert mee.
         </p>
       </header>
 
       <section className="space-y-3">
-        <h2 className="text-xl font-semibold">Klaspositie en risico</h2>
-        <p className="leading-relaxed text-muted-foreground">
+        <h2 className="text-2xl font-medium">De klas</h2>
+        <p className="text-lg leading-relaxed text-muted-foreground">
           De schoolpeildatum van het land waarin je opgroeide bepaalt of je de
-          relatief oudste of jongste in de klas was. Onderzoek op topbestuurders
-          en miljoenen verkopers koppelt die positie aan risicobereidheid,
-          schuldfinanciering en de kans om te ondernemen. België gebruikt het
-          kalenderjaar. Nederland de oktober-peildatum. De Verenigde Staten, het
-          Verenigd Koninkrijk en China 1 september.
+          oudste of de jongste in de klas was. Onderzoek op bestuurders en
+          miljoenen verkopers koppelt die plek aan hoe hard je later durft, en
+          of schuld bij je past. België rekent per kalenderjaar. Nederland
+          vanaf oktober. Amerika, Groot-Brittannië en China vanaf 1 september.
         </p>
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-xl font-semibold">Sector</h2>
-        <p className="leading-relaxed text-muted-foreground">
-          Uit geboortedatum en -uur volgt een hoofdlijn: groei en mensen,
-          zichtbaarheid, vastgoed, cijfers of distributie. De interface noemt
-          geen elementen en geen Chinese labels. Je ziet sectoren waarin
-          diezelfde inzet van pas komt.
+        <h2 className="text-2xl font-medium">De markt</h2>
+        <p className="text-lg leading-relaxed text-muted-foreground">
+          Uit geboortedatum en -uur volgt een hoofdlijn: mensen, zichtbaarheid,
+          vastgoed, cijfers of distributie. Je ziet geen Chinese labels. Wel
+          sectoren waarin diezelfde inzet van pas komt.
         </p>
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-xl font-semibold">Drijfveer en timing</h2>
-        <p className="leading-relaxed text-muted-foreground">
-          Naam en geboortedatum geven een drijfveer: solo-commando, tandem,
-          merk, orde, beweging, verantwoordelijkheid, onderzoek, kapitaal of
-          afronden. Het persoonlijke jaar (1 tot 9) zegt of dit jaar eerder
-          openen, een vennoot zoeken, zichtbaar worden of sluiten vraagt.
+        <h2 className="text-2xl font-medium">Dit jaar</h2>
+        <p className="text-lg leading-relaxed text-muted-foreground">
+          Naam en geboortedatum geven een drijfveer: alleen werken, een tandem,
+          een merk, orde, beweging, verantwoordelijkheid, onderzoek, kapitaal
+          of afronden. Het jaar zelf zegt of het eerder tijd is om te openen,
+          een vennoot te zoeken, of iets te sluiten.
         </p>
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-xl font-semibold">Rol, besluit en schaal</h2>
-        <p className="leading-relaxed text-muted-foreground">
-          Geboortetijd en plaats bepalen hoe je werkt. Aanjagers starten en
-          laten het werk los. Uitvoerders houden tempo. Gidsen zien het systeem
-          en mogen het niet zelf sleuren. Waarnemers lezen de markt en de ploeg.
-          De schaal — alleen, een duo, drie tot vijf, of een grotere
-          organisatie — is hier een werkhypothese, geen wet.
+        <h2 className="text-2xl font-medium">De ploeg</h2>
+        <p className="text-lg leading-relaxed text-muted-foreground">
+          Geboortetijd en plaats zeggen hoe je werkt. Aanjagers starten en laten
+          het werk los. Uitvoerders houden tempo. Gidsen zien het systeem en
+          mogen het niet zelf sleuren. Waarnemers lezen de markt en de ploeg.
+          Alleen, met één iemand, met drie tot vijf, of in een grotere zaak:
+          dat is hier een werkhypothese, geen wet.
         </p>
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-xl font-semibold">Wat dit niet is</h2>
-        <p className="leading-relaxed text-muted-foreground">
-          Geen voorspelling van omzet. Geen vervanging van een boekhouder of advocaat. Een
-          fout van een kwartier in de geboortetijd kan de rol verschuiven.
-          De klaspositie rust op empirisch werk. De andere drie bronnen zijn
-          gestructureerde systemen die we als hypothese wegen, niet als
+        <h2 className="text-2xl font-medium">Wat dit niet belooft</h2>
+        <p className="text-lg leading-relaxed text-muted-foreground">
+          Geen omzetcijfer. Geen vervanging van een boekhouder of advocaat. Een
+          kwartier ernaast in je geboortetijd kan de rol verschuiven. De klas
+          rust op onderzoek. De rest is een gestructureerd gesprek, geen
           oorzakelijke wet.
         </p>
       </section>
 
       <p>
-        <Link href="/#intake" className="text-primary hover:underline">
-          Maak een dossier
+        <Link
+          href="/#intake"
+          className="inline-flex h-12 items-center rounded-full bg-primary px-7 text-base font-medium text-primary-foreground"
+        >
+          Kijk wat bij je past
         </Link>
       </p>
     </article>

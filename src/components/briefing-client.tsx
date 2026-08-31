@@ -18,21 +18,21 @@ export function BriefingClient() {
   }, []);
 
   if (!ready) {
-    return <p className="text-sm text-muted-foreground">Dossier laden…</p>;
+    return <p className="text-base text-muted-foreground">Even geduld…</p>;
   }
 
   if (!result) {
     return (
-      <div className="space-y-4">
-        <h1 className="text-3xl font-semibold tracking-tight">Nog geen dossier</h1>
-        <p className="text-muted-foreground">
-          De berekening blijft in deze browser. Vul je gegevens opnieuw in.
+      <div className="mx-auto max-w-lg space-y-5 py-8">
+        <h1 className="font-serif text-4xl font-medium tracking-tight">We hebben je nog niet gezien</h1>
+        <p className="text-lg leading-relaxed text-muted-foreground">
+          Vul je naam, datum en plaats in. Daarna staat hier jouw schets.
         </p>
         <Link
           href="/#intake"
-          className="inline-flex h-10 items-center rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground"
+          className="inline-flex h-12 items-center rounded-full bg-primary px-7 text-base font-medium text-primary-foreground"
         >
-          Naar de intake
+          Terug naar het begin
         </Link>
       </div>
     );

@@ -19,11 +19,11 @@ import {
 } from "@/lib/engines/narrative";
 
 const CAREER_ROLE: Record<CareerType, string> = {
-  initiator: "Jij zet dingen in gang. De dagelijkse uitvoering laat je aan iemand anders.",
-  "classic-builder": "Jij voert uit en houdt tempo. De zaak leeft van jouw werkritme.",
+  initiator: "Jij zet dingen in gang. Het dagelijkse werk laat je graag aan iemand anders.",
+  "classic-builder": "Jij voert uit en houdt tempo. De zaak leeft van jouw ritme.",
   "express-builder": "Jij houdt twee lijnen tegelijk. Eén tunnel maakt je ongeduldig.",
-  advisor: "Jij geeft richting. Jij sleept de zaak niet zelf.",
-  evaluator: "Jij leest de markt en de ploeg. Jij voert niet zelf uit.",
+  advisor: "Jij geeft richting. Sleuren is voor iemand anders.",
+  evaluator: "Jij leest de markt en de ploeg. Uitvoeren is niet jouw werk.",
 };
 
 const LIFE_PATH_MISSION: Record<number, string> = {
@@ -80,13 +80,13 @@ function riskLine(rae: RaeResult): string {
 function hiringFrom(design: DesignResult): string[] {
   const mandate: string[] = [];
   if (design.careerType === "initiator" || design.careerType === "advisor" || design.careerType === "evaluator") {
-    mandate.push("Haal minstens één uitvoerder binnen voor de implementatie.");
+    mandate.push("Zoek eerst iemand die uitvoert — voor de implementatie.");
   }
   for (const skill of design.missingSkills.slice(0, 3)) {
-    mandate.push(`De eerste aanwerving of vennoot moet ${skill.toLowerCase()} in huis hebben.`);
+    mandate.push(`De eerste die je erbij haalt, moet ${skill.toLowerCase()} in huis hebben.`);
   }
   if (mandate.length === 0) {
-    mandate.push("De kern zit bij jou. Huur specialisten, geen tweede baas.");
+    mandate.push("De kern zit bij jou. Haal specialisten erbij, geen tweede baas.");
   }
   return mandate;
 }

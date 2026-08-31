@@ -1,8 +1,8 @@
 export const SITE = {
   name: "Azimut",
   shortName: "Azimut",
-  tagline: "Zakelijk kompas voor ondernemers",
+  tagline: "Een kompas voor je zaak",
   description:
-    "Azimut weegt klaspositie, sector, drijfveer en organisatie tot één dossier voor je zaak. Geen horoscoop. Welk bedrijf bij jou past.",
+    "Azimut geeft je een eerlijk beeld van welke zaak bij je past — sector, schaal en met wie je het best werkt. Geen horoscoop.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://azimut.example.com",
 } as const;

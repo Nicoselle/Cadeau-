@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Newsreader, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SITE } from "@/lib/site";
 
-const inter = Inter({
+const sans = Source_Sans_3({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
+});
+
+const serif = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-serif",
   display: "swap",
 });
 
@@ -21,7 +27,7 @@ export const metadata: Metadata = {
   keywords: [
     "ondernemerschap",
     "zaakvoerders",
-    "bedrijfsdossier",
+    "zakelijk kompas",
     "vennootschap",
     "risicoprofiel",
     "Vlaamse ondernemers",
@@ -45,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="nl" className={`${inter.variable} dark`}>
+    <html lang="nl" className={`${sans.variable} ${serif.variable} dark`}>
       <body className="min-h-screen font-sans">
         <div className="flex min-h-screen flex-col">
           <SiteHeader />

@@ -15,15 +15,15 @@ function firstName(fullName: string): string {
 
 const ROLE_STORY: Record<CareerType, string> = {
   initiator:
-    "Jij zet dingen in gang. Een aanbod, een onderhandeling, een eerste klant: dat begint bij jou. Daarna moet het werk van je bord. Blijf je zelf uitvoeren, dan hou je een eenmanszaak over in plaats van een bedrijf.",
+    "Jij zet dingen in gang. Een aanbod, een onderhandeling, een eerste klant: dat begint bij jou. Daarna mag het werk van je bord. Blijf je alles zelf doen, dan hou je een eenmanszaak over — en daar word je moe van.",
   "classic-builder":
-    "Jij kunt tempo houden. Waar anderen opveren en weer inzaken, lever jij wekenlang dezelfde kwaliteit — als je reageert op echte vraag, niet op een plan dat je jezelf oplegt. Een zaak die van jouw uitvoering leeft, is voor jou de juiste vorm.",
+    "Jij kunt tempo houden. Waar anderen opveren en weer inzaken, lever jij wekenlang dezelfde kwaliteit. Op voorwaarde dat je reageert op echte vraag, niet op een plan dat je jezelf oplegt. Een zaak die van jouw handen leeft, past bij je.",
   "express-builder":
-    "Jij werkt zelden op één spoor. Twee lijnen tegelijk, een tweede product naast het eerste: dat is geen wanorde als de kern vaststaat. Dwing je jezelf in één tunnel, dan word je ongeduldig. Houd een kleine portefeuille, met een harde stopdatum per experiment.",
+    "Jij werkt zelden op één spoor. Twee lijnen tegelijk, een tweede product naast het eerste: dat is geen wanorde als de kern vaststaat. Dwing je jezelf in één tunnel, dan word je ongeduldig. Houd het klein, met een harde stopdatum per proef.",
   advisor:
-    "Jij ziet het systeem sneller dan de mensen die erin werken. Dat is waardevol, en gevaarlijk als je het verkeerd inzet. Een uitvoerend kantoor met lange dagen is voor jou een val. Jouw werk zit in korte, scherpe blokken: diagnose, richting, de juiste vraag. Daarna moet iemand anders uitvoeren.",
+    "Jij ziet het systeem sneller dan de mensen die erin werken. Dat is een cadeau, en een val als je het verkeerd inzet. Lange dagen in een uitvoerend kantoor putten je uit. Jouw werk zit in korte, scherpe blokken: kijken, richting geven, de juiste vraag. Daarna mag iemand anders uitvoeren.",
   evaluator:
-    "Jij leest de temperatuur van een markt, een ploeg of een deal. Dat is geen zachte eigenschap. Het is verkoopbaar als je het in een vast rapport of een vaste opdracht giet. Probeer je zelf de operatie te trekken, dan verdwijnt net dat signaal. Jouw zaak observeert, keurt en waarschuwt. Zij voert niet zelf uit.",
+    "Jij voelt hoe een markt, een ploeg of een deal erbij zit. Dat is geen zachte eigenschap. Het is verkoopbaar als je het in een vast rapport of een vaste opdracht giet. Probeer je zelf de zaak te trekken, dan verdwijnt net dat scherpe oog. Jouw zaak kijkt, keurt en waarschuwt. Zij voert niet zelf uit.",
 };
 
 const SECTOR_EXAMPLES: Record<Element, BriefingExample[]> = {
@@ -170,24 +170,24 @@ const DECISION_STORY: Record<DesignResult["authority"], { protocol: string; exam
 
 const YEAR_MOVES: Record<number, { story: string; move: string }> = {
   1: {
-    story: "Dit is een openingsjaar. Wat je nu niet start, start je dit decennium waarschijnlijk niet.",
+    story: "Dit is een jaar om te beginnen. Wat je nu laat liggen, begin je dit decennium waarschijnlijk niet meer.",
     move: "Kies één formule, schrijf ze in, en zeg nee tegen het tweede idee tot er omzet is.",
   },
   2: {
-    story: "Dit jaar beloont geduld en de juiste alliantie, niet de eenzame sprint.",
+    story: "Dit jaar beloont geduld en de juiste tandem, niet de eenzame sprint.",
     move: "Zoek één vennoot of ankerklant. Teken niets in de eerste week van het gesprek.",
   },
   3: {
-    story: "Zichtbaarheid is dit jaar goedkoop. Stilte is duur.",
+    story: "Dit jaar is het goedkoop om gezien te worden. Stilzitten kost je klanten.",
     move: "Schrijf wekelijks één scherpe observatie in jouw sector. Stel daarna pas een opdracht voor.",
   },
   4: {
-    story: "Dit jaar winnen saaie systemen van charisma.",
+    story: "Dit jaar winnen saaie systemen van charisma. Dat is goed nieuws als je van orde houdt.",
     move: "Zet facturatie, contracten en een maandelijkse afsluiting vóór je een tweede product bedenkt.",
   },
   5: {
-    story: "Beweging mag. Zwerven niet.",
-    move: "Draai één gecontroleerde proef naast de kern. Zet de stopdatum in de agenda. Geen eeuwig experiment.",
+    story: "Beweging mag. Rondzwerven niet.",
+    move: "Draai één gecontroleerde proef naast de kern. Zet de stopdatum in de agenda.",
   },
   6: {
     story: "Verantwoordelijkheid wordt zichtbaar: ploeg, klanten, verplichtingen.",
@@ -195,10 +195,10 @@ const YEAR_MOVES: Record<number, { story: string; move: string }> = {
   },
   7: {
     story: "Een jaar om te meten en te schrappen, niet om te pronken.",
-    move: "Schrap het zwakste aanbod. Publiceer geen nieuwe huisstijl. Publiceer een schonere resultatenrekening.",
+    move: "Schrap het zwakste aanbod. Geen nieuwe huisstijl. Wel een schonere resultatenrekening.",
   },
   8: {
-    story: "Kapitaal en macht liggen op tafel voor wie cijfers heeft, niet verhalen.",
+    story: "Kapitaal ligt op tafel voor wie cijfers heeft, niet voor wie een mooi verhaal vertelt.",
     move: "Heronderhandel je grootste contract. Vraag de prijs die de cijfers dragen.",
   },
   9: {
@@ -219,13 +219,13 @@ export function buildLede(
 ): string {
   const first = firstName(name);
   const opener: Record<CareerType, string> = {
-    initiator: `${first}, jij moet iets in beweging zetten dat anderen afmaken.`,
-    "classic-builder": `${first}, jij moet iets bouwen dat je wekenlang kunt volhouden.`,
-    "express-builder": `${first}, jij moet een wendbare portefeuille bouwen, geen enkele tunnel.`,
-    advisor: `${first}, jij moet richting geven. Niet zelf sleuren.`,
-    evaluator: `${first}, jij moet de markt lezen, niet de ploeg aanvoeren.`,
+    initiator: `${first}, jij komt het verst als je iets in beweging zet dat anderen afmaken.`,
+    "classic-builder": `${first}, jij komt het verst als je iets bouwt dat je wekenlang kunt volhouden.`,
+    "express-builder": `${first}, jij komt het verst met twee of drie lijnen, niet met één tunnel.`,
+    advisor: `${first}, jij komt het verst als je richting geeft — niet als je zelf sleept.`,
+    evaluator: `${first}, jij komt het verst als je de markt leest, niet als je de ploeg zelf aanvoert.`,
   };
-  return `${opener[careerType]} Het passende bedrijf is een ${headline.toLowerCase()}, in ${sectorNoun(bazi)}. Geen horoscoop. Een werkafspraak.`;
+  return `${opener[careerType]} Wat daarbij past: een ${headline.toLowerCase()}, in ${sectorNoun(bazi)}. Geen horoscoop. Gewoon een werkrichting.`;
 }
 
 export function buildNarrative(
@@ -240,10 +240,10 @@ export function buildNarrative(
   const year = YEAR_MOVES[numerology.personalYear] ?? YEAR_MOVES[1];
   const decision = DECISION_STORY[design.authority];
   return [
-    `${first}, het beeld is helder. ${ROLE_STORY[design.careerType]} In jouw geval wijst dat naar ${sectorNoun(bazi)}. Niet omdat het zweverig past, maar omdat die markten dezelfde inzet vragen als jij van nature levert.`,
+    `${first}, ik hou het eenvoudig. ${ROLE_STORY[design.careerType]} In jouw geval wijst dat naar ${sectorNoun(bazi)}. Niet omdat het zweverig past, maar omdat die markten dezelfde inzet vragen als jij van nature levert.`,
     RISK_STORY[rae.fundingBias],
     `Daaronder zit een drijfveer die draait om ${lifePathPlain(numerology.lifePath)}. ${year.story} ${decision.protocol}`,
-    `Concreet: richt de zaak in als ${company.toLowerCase()}. Houd de eerste versie kleiner dan je ambitie. Als het werkt, maak je de organisatie groter. Niet je agenda.`,
+    `Concreet: richt de zaak in als ${company.toLowerCase()}. Houd de eerste versie kleiner dan je ambitie. Als het werkt, maak je de organisatie groter — niet je agenda.`,
   ].join("\n\n");
 }
 
@@ -321,7 +321,7 @@ export function buildSteps(
     {
       window: "Maand 2 en 3",
       title: "Vul het gat dat jij niet bent",
-      detail: `Je eerste medewerker of zelfstandige is ${firstHire} Laat die persoon de kalender, de levering of de cijfers trekken. Jij blijft op de rol die dit dossier je toekent.`,
+      detail: `Je eerste medewerker of zelfstandige is ${firstHire} Laat die persoon de kalender, de levering of de cijfers trekken. Jij blijft bij wat hierboven over jou staat.`,
     },
     {
       window: "Dit jaar",
@@ -358,20 +358,20 @@ export function buildAvoid(
   bazi: BaziResult,
 ): string[] {
   const items = [
-    `Geen algemeen bureau dat alles doet. Blijf bij ${bazi.sectors[0]}.`,
-    "Geen mede-oprichter die hetzelfde profiel heeft als jij. Dat verdubbelt het ego en laat het gat open.",
+    `Laat een algemeen bureau dat alles doet liggen. Blijf bij ${bazi.sectors[0]}.`,
+    "Neem geen vennoot die hetzelfde is als jij. Dan zit je met twee ego’s en hetzelfde gat.",
   ];
   if (design.careerType === "advisor" || design.careerType === "evaluator") {
-    items.push("Geen arbeidsintensieve operatie, geen magazijn, geen kantoor van negen tot vijf dat jij zelf draait.");
+    items.push("Trek geen zaak met magazijn of lange kantoordagen die jij zelf moet draaien.");
   }
   if (design.careerType === "initiator") {
-    items.push("Geen rol waarin jij het dagelijkse overleg leidt. Dat is andermans werk.");
+    items.push("Leid het dagelijkse overleg niet zelf. Dat is andermans werk, en jij wordt er moe van.");
   }
   if (rae.fundingBias === "conservative-margin") {
-    items.push("Geen groeiverhaal dat alleen werkt als een fonds je op sociale media deelt.");
+    items.push("Ga niet mee in een groeiverhaal dat alleen werkt als een fonds je deelt.");
   }
   if (rae.fundingBias === "aggressive-debt") {
-    items.push("Geen tweede lening omdat de eerste bijna werkte. Eerst de stopregel, dan pas gas.");
+    items.push("Neem geen tweede lening omdat de eerste bijna werkte. Eerst de stopregel, dan pas gas.");
   }
   return items;
 }
