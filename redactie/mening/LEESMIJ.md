@@ -15,14 +15,16 @@ vooruitkijken. Elk cijfer is de laatste waarneming ≤ die dag.
 
 ## Regel
 
-1. Peil = `lastOnOrBefore(reeks, datum)`.
-2. Reële 10-jaars = DGS10 − T10YIE op **dezelfde** datum.
-3. M2 tot en met 24 augustus: editievloer `fred_M2SL_2019-2026.csv` (juni
+1. Peildatum publicatie: 31 augustus 2026.
+2. Per reeks: `lastOnOrBefore(reeks, peildatum)`. Datums lopen niet gelijk.
+3. Afgeleiden (reële 10-jaars, spread): `lastCommonDate` van de gebruikte
+   reeksen. Geen twee datums van elkaar aftrekken.
+4. M2 tot en met 24 augustus: editievloer `fred_M2SL_2019-2026.csv` (juni
    23.155,2 · +5,53 % j/j).
-4. M2 vanaf 25 augustus: `fred_M2SL_vintage_2026-08-31.csv` (H.6 25-08;
+5. M2 vanaf 25 augustus: `fred_M2SL_vintage_2026-08-31.csv` (H.6 25-08;
    juli 23.218,0 · +5,41 % SA). Juni in die vintage is herzien tot
    23.115,2. Die revisie overschrijft de editievloer **niet**.
-5. Weekends 1–2, 8–9, 15–16, 22–23, 29–30 augustus: geen stuk, geen
+6. Weekends 1–2, 8–9, 15–16, 22–23, 29–30 augustus: geen stuk, geen
    verzonnen rij.
 
 ## Regenereren

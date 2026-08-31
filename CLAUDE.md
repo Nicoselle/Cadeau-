@@ -264,9 +264,11 @@ Geen database, geen geheimen in v1. Marktcijfers komen uit `redactie/data`.
    vraaggestuurd: abonnees kiezen gemeenten; alleen die plaatsen worden
    afgezocht. Ondernemersverhalen gaan door `moderateIntake`. Geen
    redacteur die een stad kiest. Vesting blijft op `/cadeau`.
-9. **Peil zonder vooruitkijken.** `lastOnOrBefore` in `src/lib/series.ts`.
-   Augustus 2026: `/nazien` + `redactie/mening/`. M2-juli pas vanaf
-   2026-08-25; de juni-editievloer blijft 23.155,2. Geen stille revisie.
+9. **Peilregel publicatie (31 augustus 2026).** Per reeks de laatste
+   waarneming ≤ peildatum; datums lopen niet gelijk. Afgeleide cijfers
+   alleen op `lastCommonDate` van de gebruikte reeksen. Augustus:
+   `/nazien` + `redactie/mening/`. M2-juli pas vanaf 2026-08-25; de
+   juni-editievloer blijft 23.155,2. Geen stille revisie.
 
 ---
 

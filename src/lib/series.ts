@@ -91,6 +91,38 @@ export function lastOnOrBefore(
   return found;
 }
 
+export function observationDateKey(date: string): string {
+  return date.length === 7 ? `${date}-01` : date;
+}
+
+export function valueOnDate(series: Observation[], date: string): number | null {
+  const found = series.find((item) => item.date === date);
+  return found ? found.value : null;
+}
+
+/** Laatste datum ≤ peil die in élke reeks voorkomt. Geen twee datums van elkaar aftrekken. */
+export function lastCommonDate(
+  seriesList: Observation[][],
+  onOrBefore: string,
+): string | null {
+  if (seriesList.length === 0 || seriesList.some((series) => series.length === 0)) {
+    return null;
+  }
+  const sets = seriesList.map((series) => {
+    const dates = new Set<string>();
+    for (const item of series) {
+      if (observationDateKey(item.date) <= onOrBefore) dates.add(item.date);
+    }
+    return dates;
+  });
+  let common = [...sets[0]!];
+  for (const set of sets.slice(1)) {
+    common = common.filter((date) => set.has(date));
+  }
+  common.sort();
+  return common.at(-1) ?? null;
+}
+
 export function valueOnMonth(
   series: Observation[],
   month: string,

@@ -47,6 +47,8 @@ bekendmaking, geen CSV.
 
 - Een editie publiceren of mergen naar de productie-branch.
 - Cijfers verzinnen of twee datums van elkaar aftrekken alsof ze één peil zijn.
+  Peildatum publicatie 31 augustus 2026. Per reeks de laatste waarneming.
+  Afgeleiden alleen op de laatste gemeenschappelijke datum.
 - Beleggingsadvies, koersdoel, “nu kopen”.
 - Een stuk schrijven vóór Nico’s beslissing.
 - `voorbeeld.json` behandelen als echte beslissing.

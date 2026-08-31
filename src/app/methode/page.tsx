@@ -29,6 +29,12 @@ export default function MethodPage() {
           <ul className="mt-4 space-y-3 font-serif leading-relaxed">
             <li>Elk cijfer draagt een bon: URL, ophaaldatum, en waar mogelijk de vintage.</li>
             <li>Berekeningen zijn herleidbaar uit de CSV’s in de datavloer.</li>
+            <li>
+              Peildatum publicatie is 31 augustus 2026. Elke reeks houdt haar
+              eigen laatste waarneming. Een afgeleid cijfer — reële rente,
+              spread — gebruikt alleen de laatste datum die in alle gebruikte
+              reeksen voorkomt.
+            </li>
             <li>Feiten, duiding en ramingen blijven gescheiden — in de tekst en in de kantlijn.</li>
             <li>Elke seizoensgecorrigeerde reeks wordt naast de ongecorrigeerde gelegd.</li>
             <li>Etiketten volgen de publicerende instelling. «Kerninflatie» is wat Statbel zo noemt.</li>

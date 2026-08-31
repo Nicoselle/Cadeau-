@@ -23,10 +23,12 @@ export default function AuditPage() {
         Nazien
       </h1>
       <p className="mt-4 max-w-2xl font-serif text-lg text-muted-foreground">
-        Augustus 2026, weekdag voor weekdag. Peil = laatste waarneming op of
-        vóór die dag. Geen weekend verzonnen. Geen cijfer van na de
-        publicatiedatum. De H.6 van 25 augustus zet juli-M2 in de vintage;
-        de editievloer van juni blijft 23.155,2 en +5,53 procent.
+        Peildatum publicatie: 31 augustus 2026. Per reeks de laatste
+        waarneming op of vóór die dag — die datums lopen niet gelijk.
+        Afgeleide cijfers alleen op de laatste gemeenschappelijke datum van
+        de gebruikte reeksen. Geen weekend verzonnen. De H.6 van 25 augustus
+        zet juli-M2 in de vintage; de editievloer van juni blijft 23.155,2
+        en +5,53 procent.
       </p>
       <p className="mt-4 max-w-2xl font-serif text-sm leading-relaxed text-muted-foreground">
         Rekenblad:{" "}
@@ -55,8 +57,9 @@ export default function AuditPage() {
             maandreeksen — de laatste maand op of vóór de peildatum.
           </li>
           <li>
-            De uitgelijnde reële tienjaars is DGS10 minus T10YIE op{" "}
-            <em>dezelfde</em> datum. Geen twee dagen van elkaar aftrekken.
+            De uitgelijnde reële tienjaars is DGS10 minus T10YIE op de
+            laatste gemeenschappelijke datum. Geen twee dagen van elkaar
+            aftrekken. Hetzelfde voor elke spread.
           </li>
           <li>
             Tot en met 24 augustus geldt de M2-editievloer (juni). Vanaf 25

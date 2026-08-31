@@ -1,11 +1,13 @@
-import { EDITION } from "@/data/edition";
+import { EDITION, PEIL_RULE, PUBLICATION_AS_OF } from "@/data/edition";
 import {
   annualizedGrowth,
-  lastObservation,
+  lastCommonDate,
+  lastOnOrBefore,
   observations,
   round1,
   round2,
   sparkValues,
+  valueOnDate,
   yoyGrowth,
 } from "@/lib/series";
 import { formatPct, formatPlainNumber } from "@/lib/format";
@@ -56,25 +58,33 @@ export function getMarketBoard(): MarketBoard {
   const beNatYoy = yoyGrowth(beCpi);
   const beHealthYoy = yoyGrowth(beHealth);
 
-  const lastDff = lastObservation(dff);
-  const lastDgs10 = lastObservation(dgs10);
-  const lastDgs30 = lastObservation(dgs30);
-  const lastBe = lastObservation(breakeven);
-  const lastSpx = lastObservation(spx);
-  const lastVix = lastObservation(vix);
-  const lastDebt = lastObservation(debt);
-  const lastSmoothed = lastObservation(beSmoothed);
-  const lastBrent = lastObservation(brent);
-  const lastWti = lastObservation(wti);
-  const lastCopper = lastObservation(copper);
-  const lastUranium = lastObservation(uranium);
+  const peil = PUBLICATION_AS_OF;
+  const lastDff = lastOnOrBefore(dff, peil);
+  const lastDgs10 = lastOnOrBefore(dgs10, peil);
+  const lastDgs30 = lastOnOrBefore(dgs30, peil);
+  const lastBe = lastOnOrBefore(breakeven, peil);
+  const lastSpx = lastOnOrBefore(spx, peil);
+  const lastVix = lastOnOrBefore(vix, peil);
+  const lastDebt = lastOnOrBefore(debt, peil);
+  const lastSmoothed = lastOnOrBefore(beSmoothed, peil);
+  const lastBrent = lastOnOrBefore(brent, peil);
+  const lastWti = lastOnOrBefore(wti, peil);
+  const lastCopper = lastOnOrBefore(copper, peil);
+  const lastUranium = lastOnOrBefore(uranium, peil);
+  const lastM2 = lastOnOrBefore(m2sl, peil);
+  const lastCpi = lastOnOrBefore(cpiUs, peil);
+  const lastEz = lastOnOrBefore(hicpEz, peil);
+  const lastBeCpi = lastOnOrBefore(beCpi, peil);
   const brentYoy = yoyGrowth(brent);
   const wtiYoy = yoyGrowth(wti);
   const copperYoy = yoyGrowth(copper);
   const uraniumYoy = yoyGrowth(uranium);
 
+  const spreadDate = lastCommonDate([dgs10, dff], peil);
+  const spreadA = spreadDate == null ? null : valueOnDate(dgs10, spreadDate);
+  const spreadB = spreadDate == null ? null : valueOnDate(dff, spreadDate);
   const spread =
-    lastDff && lastDgs10 ? lastDgs10.value - lastDff.value : null;
+    spreadA == null || spreadB == null ? null : spreadA - spreadB;
 
   const tiles: MarketTile[] = [
     {
@@ -83,7 +93,7 @@ export function getMarketBoard(): MarketBoard {
       value: m2Yoy == null ? "—" : formatPct(round1(m2Yoy)),
       detail: `SA ${m2Yoy == null ? "—" : formatPct(round2(m2Yoy), 2)} · NSA ${m2nsYoy == null ? "—" : formatPct(round2(m2nsYoy), 2)}${m2Ann6 == null ? "" : ` · 6m ann. ${formatPct(round1(m2Ann6 * 100))}`}`,
       seriesFile: "fred_M2SL_2019-2026.csv",
-      asOf: lastObservation(m2sl)?.date ?? EDITION.asOf,
+      asOf: lastM2?.date ?? EDITION.asOf,
       spark: sparkValues(m2sl, 24),
     },
     {
@@ -92,7 +102,7 @@ export function getMarketBoard(): MarketBoard {
       value: cpiYoy == null ? "—" : formatPct(round1(cpiYoy)),
       detail: "FRED CPIAUCSL, seizoensgecorrigeerd. Oktober 2025 ontbreekt in de bron.",
       seriesFile: "fred_CPIAUCSL_2019-2026.csv",
-      asOf: lastObservation(cpiUs)?.date ?? EDITION.asOf,
+      asOf: lastCpi?.date ?? EDITION.asOf,
       spark: sparkValues(cpiUs, 24),
     },
     {
@@ -101,7 +111,7 @@ export function getMarketBoard(): MarketBoard {
       value: ezYoy == null ? "—" : formatPct(round1(ezYoy)),
       detail: "FRED-spiegel van Eurostat, t/m juni. ECB-homepage noemde juli 2,9% — dat is een headline, geen reeks in onze vloer.",
       seriesFile: "fred_HICP_EZ_2019-2026.csv",
-      asOf: lastObservation(hicpEz)?.date ?? EDITION.asOf,
+      asOf: lastEz?.date ?? EDITION.asOf,
       spark: sparkValues(hicpEz, 24),
     },
     {
@@ -110,7 +120,7 @@ export function getMarketBoard(): MarketBoard {
       value: beNatYoy == null ? "—" : formatPct(round1(beNatYoy)),
       detail: `Nationale CPI. Gezondheidsindex ${beHealthYoy == null ? "—" : formatPct(round1(beHealthYoy))} · HICP-spiegel juni ${beFredYoy == null ? "—" : formatPct(round1(beFredYoy))}`,
       seriesFile: "statbel_cpi_gezondheidsindex_2025-07_2026-07.csv",
-      asOf: lastObservation(beCpi)?.date ?? EDITION.asOf,
+      asOf: lastBeCpi?.date ?? EDITION.asOf,
       spark: sparkValues(beCpi, 13),
     },
     {
@@ -135,7 +145,10 @@ export function getMarketBoard(): MarketBoard {
       id: "dgs10",
       label: "VS 10-jaars",
       value: lastDgs10 ? `${formatPlainNumber(lastDgs10.value, 2)}%` : "—",
-      detail: spread == null ? "Tienjaars staatsrente." : `Spread t.o.v. Fed funds ${formatPct(round2(spread), 2)}`,
+      detail:
+        spread == null || spreadDate == null
+          ? "Tienjaars staatsrente."
+          : `Spread t.o.v. Fed funds ${formatPct(round2(spread), 2)} op ${spreadDate}, de laatste gemeenschappelijke datum.`,
       seriesFile: "fred_DGS10_2025-06_2026-08.csv",
       asOf: lastDgs10?.date ?? EDITION.asOf,
       spark: sparkValues(dgs10, 40),
@@ -218,6 +231,7 @@ export function getMarketBoard(): MarketBoard {
     asOf: EDITION.asOf,
     tiles,
     notes: [
+      PEIL_RULE,
       "Elk cijfer is herberekend uit de opgeslagen CSV in redactie/data. Geen live-feed.",
       "Seizoensgecorrigeerde reeksen worden altijd naast hun ongecorrigeerde tegenhanger gelegd.",
       "Bekendmakingen van de ECB-startpagina (M3, €STR, juli-HICP) staan in de stukken als bekendmaking, niet als reeks.",

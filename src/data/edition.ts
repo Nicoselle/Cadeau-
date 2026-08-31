@@ -31,4 +31,9 @@ export const EDITIONS: EditionMeta[] = [
 
 export const EDITION = EDITIONS[EDITIONS.length - 1]!;
 
+export const PUBLICATION_AS_OF = EDITION.asOf;
+
+export const PEIL_RULE =
+  "Peildatum publicatie: 31 augustus 2026. Marktdata: laatste beschikbare waarneming per reeks; niet alle reeksen hebben dezelfde observatiedatum. Afgeleide cijfers: uitsluitend berekend op de laatste gemeenschappelijke datum van de gebruikte reeksen.";
+
 export const DATA_LAST_UPDATED = EDITION.asOf;

@@ -1,4 +1,13 @@
-import { observations, lastOnOrBefore, yoyGrowth, monthKey, round1, round2 } from "@/lib/series";
+import {
+  observations,
+  lastOnOrBefore,
+  lastCommonDate,
+  valueOnDate,
+  yoyGrowth,
+  monthKey,
+  round1,
+  round2,
+} from "@/lib/series";
 import { formatPlainNumber, formatPct } from "@/lib/format";
 
 export type NamedPrint = {
@@ -67,13 +76,14 @@ function printOf(
 function alignedReal10y(date: string) {
   const dgs = observations("fred_DGS10_2025-06_2026-08.csv");
   const be = observations("fred_T10YIE_2025-06_2026-08.csv");
-  const lastDgs = lastOnOrBefore(dgs, date);
-  if (!lastDgs) return null;
-  const beSame = be.find((item) => item.date === lastDgs.date);
-  if (!beSame) return null;
-  const value = round2(lastDgs.value - beSame.value);
+  const common = lastCommonDate([dgs, be], date);
+  if (!common) return null;
+  const lastDgs = valueOnDate(dgs, common);
+  const lastBe = valueOnDate(be, common);
+  if (lastDgs == null || lastBe == null) return null;
+  const value = round2(lastDgs - lastBe);
   return {
-    date: lastDgs.date,
+    date: common,
     value,
     display: `${formatPlainNumber(value, 2)}%`,
   };
