@@ -59,11 +59,13 @@ Optioneel: `NEXT_PUBLIC_SITE_URL` voor canonieke URL’s.
 | `/onderzoek` `/smc` | Doorverwijzing naar `/piramide` |
 | `/orakelboek` | Toetsbare uitspraken |
 | `/methode` | Huisregels |
+| `/briefing` | Dagelijkse redactiebriefing (niet in de kop) |
 | `/archief` | Edities |
 | `/desk/vs` `/desk/eurozone` `/desk/belgie` | Geografie in de stukken |
 | `/lokaal` | Andere desk — vraaggestuurd lokaal |
 | `/cadeau` | Andere desk — Vesting |
 | `/api/v1/krant` | Volledige editie als JSON |
+| `/api/v1/briefing` | Briefing voor de 14:00-beslissing |
 | `/api/v1/stukken` `/api/v1/markten` `/api/v1/volgen` | Deel-API’s |
 
 ## Redactieregels (kort)
@@ -73,7 +75,8 @@ Optioneel: `NEXT_PUBLIC_SITE_URL` voor canonieke URL’s.
 3. «Kerninflatie» volgt de publicerende instelling. In België is dat **3,13%**
    (excl. energie en onbewerkte voeding), niet de eurozone-stijl 3,67%.
 4. Feiten, duiding en ramingen blijven gescheiden.
-5. Alleen een mens duwt een nieuwe editie door.
+5. Alleen Nico beslist om 14:00 (Brussel) of er een editie komt. Een bot
+   mag daarna zetten; live pas na uitdrukkelijk ja. Zie `redactie/grokbot.md`.
 6. Standen hebben een datum en een ongeldigverklaring. Geen koersdoel.
 
 Zie `redactie/INDEX.md` voor de bronnenstaat en openstaande punten.

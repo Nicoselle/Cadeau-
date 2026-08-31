@@ -136,6 +136,16 @@ export default function MethodPage() {
           dezelfde als die van editie 1.
         </p>
         <p className="mt-4">
+          De dagelijkse klok, Brussels tijd: om 13 uur ligt de briefing, om
+          14 uur neemt de uitgever de vijf beslissingen, om 15 uur staat het
+          stuk klaar — of er komt die dag geen editie. Een bot mag zetten,
+          niet uitgeven.{" "}
+          <Link href="/briefing" className="underline hover:text-accent">
+            Naar de briefing
+          </Link>
+          .
+        </p>
+        <p className="mt-4">
           Het orakelboek is de geloofwaardigheidsstaat. Op de toetsdatum wordt
           de betrokken reeks opnieuw opgehaald en de uitkomst bijgeschreven:
           goed, fout of deels. Niets wordt weggewist.

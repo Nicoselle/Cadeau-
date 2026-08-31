@@ -33,6 +33,7 @@ elkaar nooit. Zelfde geldt voor `registers/overdrachten.jsonl` (10 regels, appen
 | Lange rente, spread, breakevens | `meetnotitie-2026-08-17-lange-rente.md` + 30-jaars/S&P/VIX-aanvulling in `bronnenstaat-2026-08-18-yahoo.md` §bijvangst |
 | Amerikaanse staatsschuld & rentelast | `bronnenstaat-2026-08-18b-nieuwe-kanalen.md` (Treasury FiscalData) |
 | Toetsbare uitspraken + vervaldagen | `registers/orakelboek.md` (7 regels + logboek) |
+| Dagelijkse editieklok (13/14/15 Brussel) | `grokbot.md` + `/api/v1/briefing` + `beslissingen/` |
 | Wat is er per ronde gebeurd? | `registers/overdrachten.jsonl` (kort) of de verslagen (volledig) |
 | Rolprompt-verbeteringen | `voorstel-rolpromptreparatie-zetter.md` (7 punten) + Yahoo-aanscherping in `verslag-2026-08-18.md` §aanbeveling |
 | Waarom geen accounts? | `notitie-2026-08-18-geen-account.md` |
@@ -63,6 +64,8 @@ uranium liggen sinds 31 augustus 2026 in de vloer.
 - `registers/orakelboek.md` — 7 toetsbare uitspraken; eerstvolgende toets **05-10-2026** (regel 1).
 - `registers/overdrachten.jsonl` — append-only logboek van alle rondes.
 - `scripts/zetter.py` — `agenda` / `jj` / `dekking`; rekent alleen met opgeslagen data, haalt niets op.
+- `grokbot.md` — dagelijkse zetter. Briefing 13:00, beslissing Nico 14:00, stuk 15:00. Publiceert niet.
+- `beslissingen/` — JSON per dag. `voorbeeld.json` telt niet als beslissing.
 
 ## 5. Openstaande punten (dé lijst — nergens anders zoeken)
 1. **Eurostat-opvolgerdataset** vinden (COICOP-2018; oude codes stopgezet, lopen t/m 2025-12).
