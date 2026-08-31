@@ -104,9 +104,9 @@ export default function HomePage() {
             ))}
             {rest.length === 0 ? (
               <p className="font-serif text-sm leading-relaxed text-muted-foreground">
-                Eén folio.{" "}
+                Deze editie telt één voorpaginastuk.{" "}
                 <Link href="/archief#editie-1" className="underline hover:text-accent">
-                  Nr. 1 in het archief
+                  Nummer 1 in het archief
                 </Link>
                 .
               </p>
@@ -147,17 +147,18 @@ export default function HomePage() {
               De piramide van SafeCapital
             </h2>
             <p className="mt-3 max-w-2xl font-serif text-lg leading-relaxed text-muted-foreground">
-              Methode om kapitaal veilig te stellen: 40 % edelmetalen, 30 %
-              liquide cash, 20 % publieke aandelen, 10 % crypto. Daaronder{" "}
+              Methode om kapitaal veilig te stellen: 40 procent edelmetalen,
+              30 procent liquide middelen, 20 procent beursgenoteerde
+              aandelen, 10 procent crypto. Daaronder{" "}
               {WATCHLIST.filter((item) => item.kind === "aandeel").length}{" "}
-              namen die we volgen. Educatief, geen adviesrelatie.
+              namen die wij volgen. Ter lering, geen advies.
             </p>
             <div className="mt-5">
               <Link
                 href="/piramide"
                 className="inline-block border-b border-foreground pb-0.5 text-sm font-medium uppercase tracking-[0.12em] hover:border-accent hover:text-accent"
               >
-                Naar de desk
+                Naar de piramide
               </Link>
             </div>
           </div>
@@ -167,9 +168,9 @@ export default function HomePage() {
             </p>
             <ol className="mt-3 space-y-2 font-serif text-sm leading-relaxed">
               <li>40 % — edelmetalen (goud, zilver)</li>
-              <li>30 % — cash (EUR 50, USD 40, CHF 5, NOK 5)</li>
-              <li>20 % — publieke aandelen</li>
-              <li>10 % — crypto (BTC, XMR, GRAM)</li>
+              <li>30 % — liquide middelen (euro 50, dollar 40, frank 5, kroon 5)</li>
+              <li>20 % — beursgenoteerde aandelen</li>
+              <li>10 % — crypto (Bitcoin, Monero, Gram)</li>
             </ol>
           </aside>
         </section>

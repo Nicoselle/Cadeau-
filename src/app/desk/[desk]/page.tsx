@@ -21,7 +21,7 @@ export async function generateMetadata({
   if (!label) return { title: "Desk niet gevonden" };
   return {
     title: label,
-    description: `Stukken van de desk ${label} in de Kapitaalkrant.`,
+    description: `Stukken over ${label} in de Kapitaalkrant.`,
   };
 }
 
@@ -37,12 +37,14 @@ export default async function DeskPage({
 
   return (
     <div className="container py-10">
-      <p className="text-[11px] uppercase tracking-[0.18em] text-accent">Desk</p>
+      <p className="text-[11px] uppercase tracking-[0.18em] text-accent">
+        Rubriek
+      </p>
       <h1 className="mt-2 font-display text-4xl font-semibold tracking-[-0.02em] sm:text-5xl">
         {label}
       </h1>
       <p className="mt-4 font-serif text-lg text-muted-foreground">
-        {items.length} {items.length === 1 ? "stuk" : "stukken"} in editie 1.
+        {items.length} {items.length === 1 ? "stuk" : "stukken"}.
       </p>
       <div className="mt-10 grid gap-8 md:grid-cols-2">
         {items.map((article) => (

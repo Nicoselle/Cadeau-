@@ -10,9 +10,9 @@ export function SiteFooter() {
         <div>
           <p className="font-display text-2xl font-semibold">{SITE.name}</p>
           <p className="mt-2 max-w-sm font-serif text-sm leading-relaxed text-muted-foreground">
-            Zelfstandige investeerderskrant. Geen beleggingsadvies, geen
+            Zelfstandige beleggingskrant. Geen advies, geen
             modelportefeuille. Wel cijfers met bon, duiding met tegenwerping,
-            één desk met volglijst, dossiers en SMC, en een orakelboek dat wij
+            een piramide met volglijst en dossiers, en een orakelboek dat wij
             later zelf toetsen.
           </p>
         </div>
@@ -48,7 +48,7 @@ export function SiteFooter() {
             </li>
           </ul>
           <p className="mt-5 text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-            Andere desks
+            Andere uitgaven
           </p>
           <ul className="mt-2 space-y-1 font-serif text-muted-foreground">
             <li>

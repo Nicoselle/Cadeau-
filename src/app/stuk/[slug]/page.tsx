@@ -140,7 +140,7 @@ export default async function ArticlePage({
             {related.length > 0 ? (
               <div className="mt-8">
                 <p className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-                  Zelfde desk
+                  Zelfde rubriek
                 </p>
                 <ul className="mt-3 space-y-3">
                   {related.map((item) => (

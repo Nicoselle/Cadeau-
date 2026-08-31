@@ -171,7 +171,7 @@ export default async function DossierPage({ params }: Props) {
       {smc.length > 0 ? (
         <section className="mt-12">
           <h2 className="font-display text-2xl font-semibold">
-            SMC op deze tapes
+            Koerslezing van deze titels
           </h2>
           <p className="mt-2 max-w-3xl font-serif text-muted-foreground">
             Raming.{" "}

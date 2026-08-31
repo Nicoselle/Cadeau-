@@ -13,7 +13,7 @@ export async function GET() {
         endpoint_version: "v1",
         endpoint: "/api/v1/volgen",
         disclaimer:
-          "Laatste print van de publieke tape. Educatief. SafeCapital is geen erkende beleggingsadviseur.",
+          "Laatste openbare notering. Ter lering. SafeCapital is geen erkende beleggingsadviseur.",
       },
       data: serializeWatchBoard(board),
     },

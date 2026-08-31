@@ -30,7 +30,7 @@ export default function MarketsPage() {
         <Link href="/piramide" className="underline hover:text-accent">
           piramide
         </Link>
-        ; dat is een laatste print, geen reeks.
+        ; dat is een laatste notering, geen reeks.
       </p>
       <EditionFigure image={MARKTEN_IMAGE} className="mt-8 max-w-3xl" />
 

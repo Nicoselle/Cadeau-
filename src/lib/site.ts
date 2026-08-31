@@ -2,7 +2,7 @@ export const SITE = {
   name: "Kapitaalkrant",
   shortName: "Kapitaalkrant",
   description:
-    "Krant van de SafeCapital-onderzoeksgroep. Cijfers met bon, duiding met tegenwerping. Detail over gevolgde assets en macro die die namen raakt.",
+    "Krant van de onderzoeksgroep SafeCapital. Cijfers met bon, duiding met tegenwerping. Uitleg bij de gevolgde titels, en conjunctuur alleen waar die die titels raakt.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://koppel-zeta.vercel.app",
   tagline: "Cijfers met bon. Duiding met tegenwerping.",
   audience: "Onderzoeksgroep SafeCapital",

@@ -5,7 +5,7 @@ export const articles: Article[] = [
     slug: "reele-rente-houdt-de-bodem",
     kicker: "Voorpagina · Editie 2",
     title: "De reële rente houdt de bodem",
-    dek: "Drie cijfers uit dezelfde vloer, nu tegen de piramide gelegd: M2 +5,53%, reële tienjaars 2,43%, Fed funds 3,63%. Geen nieuwe prints. Wel een stand.",
+    dek: "Drie cijfers uit dezelfde vloer, nu tegen de piramide gelegd: M2 +5,53 procent, reële tienjaars 2,43 procent, Fed funds 3,63 procent. Geen nieuwe waarneming. Wel een stand.",
     desk: "vs",
     edition: 2,
     published: "2026-08-31",
@@ -16,20 +16,20 @@ export const articles: Article[] = [
       src: "/images/reele-rente-houdt-de-bodem.webp",
       alt: "Een messing weegschaal houdt een goudbaar tegen een oprolde staatsobligatie, voor een stenen piramide van baren en munten.",
       caption:
-        "De lange rente weegt tegen de basis. De vloer zegt: de bodem blijft staan.",
+        "De lange rente weegt tegen de basis. Volgens de vloer blijft de bodem staan.",
     },
     body: [
       {
         type: "p",
-        text: "Deze folio haalt geen nieuwe reeks binnen. Juni blijft de laatste M2-print. De tienjaars stopt in onze vloer op 6 augustus. De Fed funds op 14 augustus. De breakeven loopt tot 17 augustus, maar die laatste print heeft geen tienjaars naast zich. Wat wél nieuw is: we leggen drie bestaande cijfers tegen de piramide, omdat zij goud, cash en crypto raken — en schrijven de stand van 31 augustus op, met datum en ongeldigverklaring.",
+        text: "Deze editie haalt geen nieuwe reeks binnen. Juni blijft de laatste M2-waarneming. De tienjaars stopt in onze vloer op 6 augustus. De Fed funds op 14 augustus. De breakeven loopt tot 17 augustus, maar die laatste waarneming heeft geen tienjaars naast zich. Wat wél nieuw is: wij leggen drie bestaande cijfers tegen de piramide, omdat zij goud, kasgeld en crypto raken — en schrijven de stand van 31 augustus op, met datum en herzieningsregel.",
       },
       {
         type: "p",
-        text: "Drie waarnemingen. De Amerikaanse geldhoeveelheid groeit nog altijd met 5,53 procent jaar-op-jaar. De uitgelijnde reële tienjaars — DGS10 minus T10YIE op dezelfde datum — staat op 2,43 procent. De effectieve beleidsrente is 3,63 procent, tegen een CPI van 3,3 procent. Dat is geen reden om de basis te slopen, en geen reden om de 10 procent crypto tot de bodem te promoveren.",
+        text: "Drie vaststellingen. De Amerikaanse geldhoeveelheid groeit nog altijd met 5,53 procent jaar-op-jaar. De uitgelijnde reële tienjaars — DGS10 minus T10YIE op dezelfde datum — staat op 2,43 procent. De effectieve beleidsrente is 3,63 procent, tegen een prijsindex van 3,3 procent. Dat is geen reden om de basis af te breken, en geen reden om de 10 procent crypto tot de bodem te verheffen.",
       },
       {
         type: "p",
-        text: "De piramide blijft de weging. Dit folio is de peil, geen herziening.",
+        text: "De piramide blijft de weging. Deze editie is de peiling, geen herziening.",
         kind: "duiding",
       },
       { type: "h2", text: "M2 — de kraan die de 40 % en de 10 % raakt" },
@@ -39,30 +39,30 @@ export const articles: Article[] = [
         headers: ["Grootheid", "Waarde", "Bon"],
         rows: [
           ["M2-groei j/j (juni 2026)", "+5,53% SA / +5,55% NSA", "FRED M2SL + M2NS"],
-          ["M2-groei 6 maanden geannualiseerd", "+7,3%", "FRED M2SL"],
-          ["Laatste print", "23.155,2 — 2026-06-01", "FRED M2SL"],
+          ["M2-groei 6 maanden, op jaarbasis", "+7,3%", "FRED M2SL"],
+          ["Laatste waarneming", "23.155,2 — 2026-06-01", "FRED M2SL"],
         ],
       },
       {
         type: "p",
-        text: "Editie 1 sloot op 18 augustus en noteerde dat de volgende H.6 in de kalender op 25 augustus stond. Die release staat niet in deze vloer. Wie juni +5,53 procent voor juli verkoopt, verzint een print. Wij doen dat niet. Het signaal van juni blijft: de kraan is open, SA en NSA binnen 0,1 punt van elkaar.",
+        text: "Editie 1 sloot op 18 augustus en tekende aan dat de volgende H.6 in de kalender op 25 augustus stond. Die bekendmaking staat niet in deze vloer. Wie juni +5,53 procent voor juli verkoopt, verzint een waarneming. Wij doen dat niet. Het teken van juni blijft: de kraan is open; seizoensgecorrigeerd en ongecorrigeerd liggen binnen 0,1 punt van elkaar.",
       },
       {
         type: "p",
-        text: "Dat cijfer raakt goud en de cryptolaag, niet de lokale desk en niet een willekeurig aandeel. Liquiditeit die versnelt terwijl de basis 40 procent edelmetaal is, bevestigt waarom die laag eerst komt. Het maakt van Bitcoin geen fundament.",
+        text: "Dat cijfer raakt goud en de cryptolaag, niet het lokale nieuws en niet een willekeurig aandeel. Geldgroei die versnelt terwijl de basis 40 procent edelmetaal is, bevestigt waarom die laag eerst komt. Het maakt van Bitcoin geen fundament.",
         kind: "duiding",
       },
       { type: "h2", text: "Reële tienjaars — 2,43 procent, zelfde datum" },
       {
         type: "table",
-        caption: "Uitgelijnd op 6 augustus 2026. Latere T10YIE-prints zonder DGS10 tellen niet als reële rente.",
+        caption: "Uitgelijnd op 6 augustus 2026. Latere T10YIE-waarnemingen zonder DGS10 tellen niet als reële rente.",
         headers: ["Grootheid", "Waarde", "Bon"],
         rows: [
           ["DGS10 (6 augustus)", "4,69%", "FRED DGS10"],
           ["T10YIE (6 augustus)", "2,26%", "FRED T10YIE"],
           ["Reële 10j, uitgelijnd", "2,43%", "berekend: 4,69 − 2,26"],
           ["Hoogste uitgelijnde reële 10j in de vloer", "2,47% — 31 juli", "DGS10 4,75 − T10YIE 2,28"],
-          ["T10YIE laatste print", "2,28% — 17 augustus", "FRED T10YIE, geen DGS10 ernaast"],
+          ["T10YIE laatste waarneming", "2,28% — 17 augustus", "FRED T10YIE, geen DGS10 ernaast"],
         ],
       },
       {
@@ -71,7 +71,7 @@ export const articles: Article[] = [
       },
       {
         type: "p",
-        text: "2,43 procent reëel over tien jaar is geen straf die de goudlaag ongeldig maakt, en geen vrijbrief om cash te dumpen. Het is de opportunity cost van de basis. Zolang die onder de drie procent blijft, houdt deze folio de 40 procent. De ongeldigverklaring staat bij de standen: twee folio’s boven 3,00 procent, of M2 onder 2 procent terwijl de reële beleidsrente boven +1,5 punt blijft.",
+        text: "2,43 procent reëel over tien jaar is geen straf die de goudlaag ongeldig maakt, en geen vrijbrief om kasgeld te laten vallen. Het is de opportuniteitskost van de basis. Zolang die onder de drie procent blijft, houdt deze editie de 40 procent. De herzieningsregel staat bij de standen: twee edities boven 3,00 procent, of M2 onder 2 procent terwijl de reële beleidsrente boven +1,5 punt blijft.",
         kind: "duiding",
       },
       { type: "h2", text: "Fed funds — 3,63 procent, de cashlaag" },
@@ -87,11 +87,11 @@ export const articles: Article[] = [
       },
       {
         type: "p",
-        text: "De cashlaag is 30 procent, verdeeld 50 euro, 40 dollar, 5 frank, 5 kroon. Een ruwe reële korte rente van drie tienden is geen yield-jacht en geen reden om die mix in te wisselen voor duration. De dollarprint op de tape is de index, geen saldo.",
+        text: "De laag liquide middelen is 30 procent, verdeeld in 50 procent euro, 40 procent dollar, 5 procent frank en 5 procent kroon. Een ruwe reële korte rente van drie tienden is geen jacht op rendement en geen reden om die menging in te wisselen voor looptijd. De dollarkoers op de lijst is de index, geen saldo.",
       },
       {
         type: "p",
-        text: "Wat de drie cijfers samen zeggen: de kraan van editie 1 is niet dichtgedraaid, de lange reële rente is niet naar een niveau dat de basis breekt, en de beleidsrente blijft net boven de gemeten inflatie. De bodem houdt. De 20 procent aandelen blijft volgen. De 10 procent crypto blijft de smalste laag.",
+        text: "Wat de drie cijfers samen zeggen: de kraan van editie 1 is niet dichtgedraaid, de lange reële rente is niet tot een peil gestegen dat de basis breekt, en de beleidsrente blijft net boven de gemeten inflatie. De bodem houdt. De 20 procent aandelen blijft volgen. De 10 procent crypto blijft de smalste laag.",
         kind: "duiding",
       },
       {
@@ -101,9 +101,9 @@ export const articles: Article[] = [
     ],
     steenman: {
       objection:
-        "Zonder nieuwe M2-print is dit geen editie, het is een herlezing. 2,43 procent reëel is historisch geen hoge lat voor goud, en +0,3 punt reëel kort is ruis. Wie de piramide al kende, leert hier niets dat 18 augustus niet zei.",
+        "Zonder nieuwe M2-waarneming is dit geen editie, het is een herlezing. 2,43 procent reëel is historisch geen hoge lat voor goud, en +0,3 punt reëel kort is ruis. Wie de piramide al kende, leert hier niets dat 18 augustus niet zei.",
       antwoord:
-        "Daarom is het één folio, geen zes stukken. De winst zit in de stand: gedateerd, met toets, gekoppeld aan drie cijfers die de lagen raken. Wie later zegt dat wij «altijd goud» riepen, kan de ongeldigverklaring nazien. Dat kon editie 1 nog niet.",
+        "Daarom is het één stuk, geen zes. De winst zit in de stand: gedateerd, met toets, gekoppeld aan drie cijfers die de lagen raken. Wie later zegt dat wij «altijd goud» riepen, kan de herzieningsregel nazien. Dat kon editie 1 nog niet.",
     },
     sources: [
       { label: "FRED M2SL / M2NS", url: "https://fred.stlouisfed.org/series/M2SL", retrieved: "2026-08-31" },

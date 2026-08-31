@@ -11,16 +11,16 @@ export async function SmcSections() {
         Smart Money Concept
       </h2>
       <p className="mt-2 max-w-3xl font-serif leading-relaxed text-muted-foreground">
-        Dezelfde publieke tape, gelezen als structuur: swing, breuk (BOS),
-        karakterwissel (CHOCH), onevenwicht (FVG), orderblok, liquiditeitsveeg.
-        Herleidbaar, getest, geen TradingView-import. Geen order.
+        Dezelfde openbare notering, gelezen als structuur: zwaai, breuk,
+        karakterwissel, onevenwicht, orderblok, veeg van liquiditeit.
+        Herleidbaar, beproefd, geen ingevoerde grafiek. Geen order.
       </p>
 
       <div className="mt-6 max-w-3xl space-y-4 font-serif text-[1.05rem] leading-[1.7]">
         <p className="duiding border-l-2 border-[hsl(var(--gold))] pl-4">
-          Duiding / raming. Een open FVG is geen koop. Een CHOCH is geen
-          verkoop. De piramide blijft de weging; SMC zegt alleen hoe de tape
-          nu staat.
+          Duiding en raming. Een open onevenwicht is geen koop. Een
+          karakterwissel is geen verkoop. De piramide blijft de weging; deze
+          lezing zegt alleen hoe de koers nu staat.
         </p>
       </div>
 
@@ -29,9 +29,8 @@ export async function SmcSections() {
           Steenman
         </p>
         <p className="mt-2 font-serif leading-relaxed">
-          SMC is een school, geen meetlat. Twee analisten tekenen andere
-          swings. Deze code kiest strength 2 en sluiting voorbij het swing —
-          dat is één conventie.
+          Dit is een school, geen meetlat. Twee analisten tekenen andere
+          zwaaien. Deze conventie kiest sterkte 2 en sluiting voorbij de zwaai.
         </p>
         <p className="mt-3 font-serif leading-relaxed text-muted-foreground">
           Daarom blijft de datavloer de CSV, en blijft elke lezing een raming

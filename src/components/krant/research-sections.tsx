@@ -14,11 +14,11 @@ export async function ResearchSections() {
     <div id="dossiers" className="scroll-mt-8">
       <section>
         <h2 className="font-display text-2xl font-semibold">
-          Macro die de piramide raakt
+          Cijfers die de piramide raken
         </h2>
         <p className="mt-2 max-w-3xl font-serif text-muted-foreground">
           Cijfers uit de datavloer, gekoppeld aan dossiers. Geen algemene
-          nieuwssite. Peil {formatNlDate(board.asOf)}.
+          nieuwskrant. Peil {formatNlDate(board.asOf)}.
         </p>
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {impact.map((row) => (
@@ -82,8 +82,8 @@ export async function ResearchSections() {
           Koppen die de namen raken
         </h2>
         <p className="mt-2 max-w-3xl font-serif text-muted-foreground">
-          Titel, bron, link. Geen nabewerkte reportage. Leeg als de bron zwijgt
-          of de kop de keywords mist.
+          Titel, bron, verwijzing. Geen nabewerkte reportage. Leeg als de bron
+          zwijgt of de kop de trefwoorden mist.
         </p>
         {Object.keys(news.errors).length > 0 ? (
           <p className="mt-3 font-serif text-sm text-accent">

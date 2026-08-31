@@ -51,29 +51,29 @@ export const PYRAMID_COPY: Record<
     text: "De bodem van de piramide. Goud en zilver zijn wat SafeCapital aanhoudt om kapitaal te bewaren. Pas als deze laag stevig staat, mag er iets in de lagen daarboven.",
   },
   cash: {
-    label: "Liquide cash — 30 %",
+    label: "Liquide middelen — 30 %",
     kicker: "EUR · USD · CHF · NOK",
-    text: "Puur liquide. Van deze laag is 50 % euro, 40 % dollar, 5 % Zwitserse frank en 5 % Noorse kroon. De kruisen op de tape zijn thermometers, geen vervanging van het saldo.",
+    text: "Zuiver liquide. Van deze laag is 50 procent euro, 40 procent dollar, 5 procent Zwitserse frank en 5 procent Noorse kroon. De wisselkoersen zijn thermometers, geen vervanging van het saldo.",
   },
   aandelen: {
-    label: "Publieke aandelen — 20 %",
-    kicker: "Namen die we volgen",
-    text: "Pas wanneer edelmetaal en cash staan, komt deze laag. Hieronder de namen die we de moeite waard vinden. Dat is geen kooporder en geen weging per titel.",
+    label: "Beursgenoteerde aandelen — 20 %",
+    kicker: "Namen die wij volgen",
+    text: "Pas wanneer edelmetaal en kasgeld staan, komt deze laag. Hieronder de namen die wij de moeite waard vinden. Dat is geen kooporder en geen weging per titel.",
   },
   crypto: {
     label: "Crypto — 10 %",
     kicker: "BTC · XMR · GRAM",
-    text: "De smalste laag. Alleen Bitcoin, Monero en Gram zitten in de 10 %. Gram is Toncoin; één tape, geen twee tokens. Sky blijft op de volglijst, maar telt niet mee in de allocatie. xrm is Monero.",
+    text: "De smalste laag. Alleen Bitcoin, Monero en Gram zitten in de 10 procent. Gram is Toncoin; één notering, geen twee munten. Sky blijft op de volglijst, maar telt niet mee in de weging. xrm is Monero.",
   },
 };
 
 export const PYRAMID_MANIFEST = {
   lead: "De investeringspiramide is onze methode om kapitaal veilig te stellen.",
   houseRules: [
-    "Als u winst neemt, verstevig dan eerst uw basis alvorens u in de hogere lagen iets onderneemt.",
-    "Stap nooit in één keer in of uit een aandeel.",
-    "Investeer nooit met uw laatste geld, en enkel met geld dat u bereid bent volledig te verliezen.",
-    "Schakel zowel hebzucht en blind optimisme als angst en blind pessimisme uit, en blijf nuchter kijken naar de feiten.",
+    "Wie winst neemt, verstevigt eerst de basis, en onderneemt pas daarna iets in de hogere lagen.",
+    "Nooit in één keer in of uit een aandeel.",
+    "Nooit met het laatste geld, en alleen met geld dat u bereid bent volledig te verliezen.",
+    "Noch hebzucht, noch angst mag de feiten vertroebelen.",
   ],
   disclaimer:
     "De inhoud die door SafeCapital wordt gedeeld (in edities, blogposts, lezingen, opnames, mails, of andere documenten en platforms), is uitsluitend bedoeld voor educatieve en informatieve doeleinden. Niets in de inhoud mag worden beschouwd als financieel, juridisch, of fiscaal advies, noch als een aanbeveling om bepaalde financiële instrumenten te kopen of te verkopen. SafeCapital is geen erkende beleggingsadviseur, analist, of tussenpersoon. Elk individu blijft volledig verantwoordelijk voor zijn of haar eigen investeringsbeslissingen. Beleggen brengt steeds risico’s met zich mee, waaronder mogelijk verlies van (een deel van) het kapitaal. Doe altijd uw eigen onderzoek en raadpleeg een erkend financieel adviseur voordat u handelt.",
@@ -98,11 +98,11 @@ export const ASSET_STANDS: AssetStand[] = [
     layer: "edelmetaal",
     status: "Aanhouden in de basis",
     since: "2026-08-31",
-    text: "Deel van de 40 %. Geen koersdoel.",
+    text: "Deel van de 40 procent. Geen koersdoel.",
     thesis:
-      "M2 groeit +5,53% j/j terwijl de uitgelijnde reële tienjaars 2,43% is (DGS10 4,69 − T10YIE 2,26, 6 augustus). Dat is geen reden om de basis te slopen.",
+      "M2 groeit +5,53 procent jaar-op-jaar terwijl de uitgelijnde reële tienjaars 2,43 procent is (DGS10 4,69 − T10YIE 2,26, 6 augustus). Dat is geen reden om de basis af te breken.",
     invalidation:
-      "We herzien deze stand als de uitgelijnde reële tienjaars (DGS10 − T10YIE, zelfde datum) twee opeenvolgende folio’s boven 3,00% blijft, of als M2SL j/j onder 2% zakt terwijl DFF − CPIAUCSL boven +1,5 pp blijft.",
+      "Wij herzien deze stand als de uitgelijnde reële tienjaars (DGS10 − T10YIE, zelfde datum) twee opeenvolgende edities boven 3,00 procent blijft, of als M2SL jaar-op-jaar onder 2 procent zakt terwijl DFF − CPIAUCSL boven +1,5 punt blijft.",
   },
   {
     id: "zilver",
@@ -110,23 +110,23 @@ export const ASSET_STANDS: AssetStand[] = [
     layer: "edelmetaal",
     status: "Aanhouden in de basis",
     since: "2026-08-31",
-    text: "Naast goud in de 40 %. Geen apart koersdoel.",
+    text: "Naast goud in de 40 procent. Geen apart koersdoel.",
     thesis:
-      "Industrieel én monetair; de tape maakt dat onderscheid niet. Dezelfde drie cijfers houden de laag: liquiditeit, reële lange rente, beleidsrente.",
+      "Industrieel én monetair; de notering maakt dat onderscheid niet. Dezelfde drie cijfers houden de laag: geldgroei, reële lange rente, beleidsrente.",
     invalidation:
-      "Zelfde toets als goud. We splitsen de 40 % niet op één print.",
+      "Zelfde toets als goud. Wij splitsen de 40 procent niet op één waarneming.",
   },
   {
     id: "cash",
-    title: "Liquide cash",
+    title: "Liquide middelen",
     layer: "cash",
-    status: "30 %, verdeeld",
+    status: "30 procent, verdeeld",
     since: "2026-08-31",
-    text: "50 % EUR, 40 % USD, 5 % CHF, 5 % NOK. Geen yield-jacht.",
+    text: "50 procent euro, 40 procent dollar, 5 procent frank, 5 procent kroon. Geen jacht op rendement.",
     thesis:
-      "Fed funds 3,63% (14 augustus) tegen CPI +3,3% — ruwe reële korte rente ≈ +0,3 pp. De mix blijft de tweede fundering.",
+      "Fed funds 3,63 procent (14 augustus) tegen een prijsindex van +3,3 procent — ruwe reële korte rente ongeveer +0,3 punt. De menging blijft de tweede fundering.",
     invalidation:
-      "We herzien de mix als de ruwe reële korte rente in de VS (DFF − CPIAUCSL j/j) twee folio’s onder −1,0 pp blijft, of als de groep de 30 % zelf wijzigt.",
+      "Wij herzien de menging als de ruwe reële korte rente in de Verenigde Staten (DFF − CPIAUCSL jaar-op-jaar) twee edities onder −1,0 punt blijft, of als de groep de 30 procent zelf wijzigt.",
   },
   {
     id: "aandelen",
@@ -134,11 +134,11 @@ export const ASSET_STANDS: AssetStand[] = [
     layer: "aandelen",
     status: "Volgen, geen weging per titel",
     since: "2026-08-31",
-    text: "De 20 % komt pas als de 70 % eronder staat.",
+    text: "De 20 procent komt pas als de 70 procent eronder staat.",
     thesis:
-      "De namen op de tape zijn volgen, geen kooporder en geen weging per titel.",
+      "De namen op de lijst zijn volgen, geen kooporder en geen weging per titel.",
     invalidation:
-      "We herzien de 20 % als de groep de piramide zelf wijzigt. Een ticker valt af als de notering verdwijnt, niet op een dagprint.",
+      "Wij herzien de 20 procent als de groep de piramide zelf wijzigt. Een titel valt af als de beursnotering verdwijnt, niet op één dagkoers.",
   },
   {
     id: "btc",
@@ -148,9 +148,9 @@ export const ASSET_STANDS: AssetStand[] = [
     since: "2026-08-31",
     text: "Deel van de cryptolaag, niet van de basis.",
     thesis:
-      "Liquiditeit (M2 +5,53%) is de macro die deze laag raakt. Winst hier verstevigt eerst edelmetaal en cash.",
+      "Geldgroei (M2 +5,53 procent) is het cijfer dat deze laag raakt. Winst hier verstevigt eerst edelmetaal en kasgeld.",
     invalidation:
-      "We herzien de plaats in de 10 % als M2SL j/j twee folio’s negatief is én de uitgelijnde reële tienjaars boven 3,50% blijft. Geen koersdoel.",
+      "Wij herzien de plaats in de 10 procent als M2SL jaar-op-jaar twee edities negatief is én de uitgelijnde reële tienjaars boven 3,50 procent blijft. Geen koersdoel.",
   },
   {
     id: "xmr",
@@ -158,11 +158,11 @@ export const ASSET_STANDS: AssetStand[] = [
     layer: "crypto",
     status: "In de 10 %",
     since: "2026-08-31",
-    text: "Aangevraagd als xrm. De tape kent XMR.",
+    text: "Aangevraagd als xrm. De notering kent XMR.",
     thesis:
-      "Zelfde laag als Bitcoin. De punt blijft de punt; XRM bestaat niet op de tape.",
+      "Zelfde laag als Bitcoin. De punt blijft de punt; XRM bestaat niet op de koerslijst.",
     invalidation:
-      "Zelfde toets als Bitcoin. We halen XMR niet uit de 10 % op één dagprint.",
+      "Zelfde toets als Bitcoin. Wij halen XMR niet uit de 10 procent op één dagkoers.",
   },
   {
     id: "gram",
@@ -170,11 +170,11 @@ export const ASSET_STANDS: AssetStand[] = [
     layer: "crypto",
     status: "In de 10 %",
     since: "2026-08-31",
-    text: "Ton is Gram. Eén tape: GRAM-USD.",
+    text: "Ton is Gram. Eén notering: GRAM-USD.",
     thesis:
-      "Eén allocatie, ticker GRAM-USD. Niet het microtoken TON-USD. Zelfde liquiditeitsmacro als de rest van de 10 %.",
+      "Eén weging, ticker GRAM-USD. Niet het microtoken TON-USD. Zelfde geldgroei als de rest van de 10 procent.",
     invalidation:
-      "Zelfde toets als Bitcoin. Daarnaast: als GRAM-USD de Toncoin-tape niet meer is, herschrijven we de ticker — niet de weging.",
+      "Zelfde toets als Bitcoin. Daarnaast: als GRAM-USD de Toncoin-notering niet meer is, herschrijven wij de ticker — niet de weging.",
   },
 ];
 

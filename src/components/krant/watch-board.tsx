@@ -148,11 +148,11 @@ function StandsBlock() {
   return (
     <section>
       <h2 className="font-display text-2xl font-semibold">
-        Stand van deze folio
+        Stand van deze editie
       </h2>
       <p className="mt-2 max-w-3xl font-serif leading-relaxed text-muted-foreground">
-        Educatieve stand met datum en ongeldigverklaring. Geen koop- of
-        verkooporder, geen koersdoel. De namen staan in de tabel daaronder.
+        Stand met datum en herzieningsregel. Geen koop- of verkooporder, geen
+        koersdoel. De namen staan in de tabel daaronder.
       </p>
       <div className="mt-5 grid gap-4 md:grid-cols-2">
         {ASSET_STANDS.map((stand) => (
@@ -168,7 +168,7 @@ function StandsBlock() {
             </p>
             <p className="mt-3 font-serif text-sm leading-relaxed text-muted-foreground">
               <span className="uppercase tracking-[0.08em] text-[11px]">
-                Ongeldig als
+                Herziening wanneer
               </span>
               {" — "}
               {stand.invalidation}
@@ -201,8 +201,8 @@ function LayerTable({
             <tr>
               <th className="px-3 py-2 font-medium">Naam</th>
               <th className="px-3 py-2 font-medium">Zo geschreven</th>
-              <th className="px-3 py-2 font-medium">Tape</th>
-              <th className="px-3 py-2 font-medium">Print</th>
+              <th className="px-3 py-2 font-medium">Notering</th>
+              <th className="px-3 py-2 font-medium">Koers</th>
               <th className="px-3 py-2 font-medium">Dag</th>
               <th className="px-3 py-2 font-medium">Rol</th>
               <th className="px-3 py-2 font-medium">Noot</th>

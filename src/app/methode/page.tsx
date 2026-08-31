@@ -17,10 +17,10 @@ export default function MethodPage() {
         Methode
       </h1>
       <p className="mt-4 max-w-2xl font-serif text-lg text-muted-foreground">
-        Deze krant is zelfstandig: geen socialefeed, geen paywall-aggregator,
-        geen broker met een koopknop. Wat u leest, staat hier, met de reeks
-        ernaast. De volglijst toont een laatste print van de publieke tape —
-        dat is geen datavloer.
+        Deze krant is zelfstandig: geen stroom berichten van elders, geen
+        verzamelplaats achter een betaalmuur, geen loket met een koopknop. Wat
+        u leest, staat hier, met de reeks ernaast. De volglijst toont de
+        laatste openbare notering — dat is geen datavloer.
       </p>
 
       <div className="mt-12 grid gap-10 lg:grid-cols-2">
@@ -39,11 +39,11 @@ export default function MethodPage() {
           <h2 className="font-display text-2xl font-semibold">Wat wij niet doen</h2>
           <ul className="mt-4 space-y-3 font-serif leading-relaxed">
             <li>
-              Geen erkende adviesrelatie, geen koopknop. De piramide is
-              educatief; ieder blijft verantwoordelijk voor eigen beslissingen.
+              Geen erkende adviesrelatie, geen koopknop. De piramide dient ter
+              lering; ieder blijft verantwoordelijk voor eigen beslissingen.
             </li>
-            <li>Geen accounts bij databronnen. Publieke routes of het staat er niet.</li>
-            <li>Geen headlines als reeks verkopen. Een ECB-homepagecijfer blijft een headline.</li>
+            <li>Geen accounts bij databronnen. Een openbare weg, of het staat er niet.</li>
+            <li>Geen kopcijfer als reeks verkopen. Een cijfer van de ECB-startpagina blijft een bekendmaking.</li>
             <li>Geen stille revisies. Correcties — zoals het etiket kerninflatie — blijven zichtbaar.</li>
           </ul>
         </section>
@@ -53,7 +53,7 @@ export default function MethodPage() {
         <h2 className="font-display text-2xl font-semibold">Bronnenladder</h2>
         <ol className="mt-4 max-w-3xl list-decimal space-y-3 pl-5 font-serif leading-relaxed">
           <li>
-            <strong>FRED</strong> — hoofdbron voor macroreeksen, inclusief
+            <strong>FRED</strong> — hoofdbron voor conjunctuurreeksen, inclusief
             Eurostat-spiegelreeksen. Route: fredgraph.csv.
           </li>
           <li>
@@ -70,32 +70,33 @@ export default function MethodPage() {
             rentelast.
           </li>
           <li>
-            <strong>ECB Data Portal</strong> — alleen homepage-headlines tot de
-            API bereikbaar is.
+            <strong>ECB Data Portal</strong> — alleen bekendmakingen op de
+            startpagina, tot de programmatuur bereikbaar is.
           </li>
         </ol>
       </section>
 
       <section className="mt-12 max-w-3xl font-serif leading-relaxed">
         <h2 className="font-display text-2xl font-semibold">
-          Piramide — één desk
+          Piramide
         </h2>
         <p className="mt-4">
           De investeringspiramide is de methode van SafeCapital om kapitaal
-          veilig te stellen: 40 % edelmetalen, 30 % liquide cash (50 % EUR,
-          40 % USD, 5 % CHF, 5 % NOK), 20 % publieke aandelen, 10 % crypto
-          (BTC, XMR, GRAM — Ton is Gram). Winst nemen verstevigt eerst de basis. Nooit in één
-          keer in of uit een aandeel. Nooit met het laatste geld. De inhoud is
-          educatief; SafeCapital is geen erkende beleggingsadviseur. Koersen
-          komen van de publieke Yahoo-chart. De datavloer blijft de CSV.
+          veilig te stellen: 40 procent edelmetalen, 30 procent liquide
+          middelen (50 procent euro, 40 procent dollar, 5 procent frank,
+          5 procent kroon), 20 procent beursgenoteerde aandelen, 10 procent
+          crypto (Bitcoin, Monero, Gram — Ton is Gram). Winst nemen verstevigt
+          eerst de basis. Nooit in één keer in of uit een aandeel. Nooit met
+          het laatste geld. De inhoud dient ter lering; SafeCapital is geen
+          erkende beleggingsadviseur. Koersen komen van de openbare notering.
+          De datavloer blijft het rekenblad.
         </p>
         <p className="mt-4">
-          Op dezelfde desk staan de dossiers per gevolgde naam, macro alleen
-          waar die die namen raakt (titel, bron, link), en de SMC-lezing van
-          de zwaardere tapes: swings (strength 2), BOS/CHOCH bij sluiting
-          voorbij het swing, FVG als driekaars-onevenwicht. Dat is raming, geen
-          order. Standen hebben een datum en een ongeldigverklaring — geen
-          koersdoel.
+          Op dezelfde pagina staan de dossiers per gevolgde naam, conjunctuur
+          alleen waar die die namen raakt (titel, bron, verwijzing), en de
+          koerslezing van de zwaardere titels: zwaai, breuk, karakterwissel,
+          onevenwicht. Dat is raming, geen order. Standen hebben een datum en
+          een herzieningsregel — geen koersdoel.
         </p>
         <p className="mt-4">
           <Link href="/piramide" className="underline hover:text-accent">
@@ -106,12 +107,12 @@ export default function MethodPage() {
       </section>
 
       <section className="mt-12 max-w-3xl font-serif leading-relaxed">
-        <h2 className="font-display text-2xl font-semibold">Andere desks</h2>
+        <h2 className="font-display text-2xl font-semibold">Andere uitgaven</h2>
         <p className="mt-4">
-          Lokaal en Vesting horen niet bij de masthead van deze krant. De
-          routes blijven: abonnees kiezen gemeenten; alleen die plaatsen
-          worden afgezocht. Vesting is de noodvoedsel-directory. Geen
-          redacteur die een stad «belangrijk» verklaart.
+          Lokaal en Vesting horen niet bij de kop van deze krant. De adressen
+          blijven: abonnees kiezen gemeenten; alleen die plaatsen worden
+          afgezocht. Vesting is de lijst noodvoedsel. Geen redacteur die een
+          stad «belangrijk» verklaart.
         </p>
         <p className="mt-4">
           <Link href="/lokaal" className="underline hover:text-accent">
@@ -128,10 +129,10 @@ export default function MethodPage() {
       <section className="mt-12 max-w-3xl font-serif leading-relaxed">
         <h2 className="font-display text-2xl font-semibold">Statuut</h2>
         <p className="mt-4">
-          De Kapitaalkrant is een zelfstandige publicatie. De redactie schrijft
-          en rekent; publicatie van een nieuwe editie is een bewuste
-          beslissing, geen automatische feed. Editie 2 sluit op 31 augustus
-          2026; de vloer is dezelfde als editie 1.
+          De Kapitaalkrant is een zelfstandige uitgave. De redactie schrijft
+          en rekent; een nieuwe editie is een bewuste beslissing, geen
+          automatische stroom. Editie 2 sluit op 31 augustus 2026; de vloer is
+          dezelfde als die van editie 1.
         </p>
         <p className="mt-4">
           Het orakelboek is de geloofwaardigheidsstaat. Op de toetsdatum wordt
