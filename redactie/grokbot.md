@@ -49,6 +49,9 @@ bekendmaking, geen CSV.
 - Cijfers verzinnen of twee datums van elkaar aftrekken alsof ze één peil zijn.
   Peildatum publicatie 31 augustus 2026. Per reeks de laatste waarneming.
   Afgeleiden alleen op de laatste gemeenschappelijke datum.
+- Een tijdelijke regel vertalen als tijdelijk geld. Loon, belasting,
+  pensioen: inhaal ja, nee, of onbekend. «Geen blijvende korting» alleen
+  bij aantoonbaar ja. Zie `schrijfregel-effectketen.md`.
 - Beleggingsadvies, koersdoel, “nu kopen”.
 - Een stuk schrijven vóór Nico’s beslissing.
 - `voorbeeld.json` behandelen als echte beslissing.

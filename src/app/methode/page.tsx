@@ -39,6 +39,13 @@ export default function MethodPage() {
             <li>Elke seizoensgecorrigeerde reeks wordt naast de ongecorrigeerde gelegd.</li>
             <li>Etiketten volgen de publicerende instelling. «Kerninflatie» is wat Statbel zo noemt.</li>
             <li>Elk stuk krijgt een steenman: de sterkste tegenwerping, eerlijk weergegeven.</li>
+            <li>
+              Loon-, belasting- en pensioenmaatregelen: tijdelijk in de
+              regel is niet tijdelijk in de portemonnee. Vraag of het
+              gemiste bedrag later nominaal wordt ingehaald — ja, nee, of
+              onbekend — en reken één voorbeeld. De centenindex stopt na
+              2 procent; het niveauverschil blijft.
+            </li>
           </ul>
         </section>
         <section>

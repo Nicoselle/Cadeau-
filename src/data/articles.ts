@@ -293,7 +293,7 @@ const NUMBERED_ARTICLES: Article[] = [
       },
       {
         type: "p",
-        text: "België maakt zichtbaar wat elders verborgen blijft, omdat het de gevolgen van geldontwaarding wettelijk heeft geïnstitutionaliseerd. Een gezondheidsindex, een afvlakking daarvan, een spilindex als tripwire, en een automatische verhoging drie maanden later. Sinds 2025 is de wachttijd verlengd naar drie maanden, en de centenindex knipt de compensatie af boven 2.000 euro (uitkeringen en pensioenen) respectievelijk 4.000 euro (lonen). De begrenzing is cumulatief: één schijf van 2 procent binnen de matigingsperiode, geen blijvende korting.",
+        text: "België maakt zichtbaar wat elders verborgen blijft, omdat het de gevolgen van geldontwaarding wettelijk heeft geïnstitutionaliseerd. Een gezondheidsindex, een afvlakking daarvan, een spilindex als tripwire, en een automatische verhoging drie maanden later. Sinds 2025 is de wachttijd verlengd naar drie maanden, en de centenindex knipt de compensatie af boven 2.000 euro (uitkeringen en pensioenen) respectievelijk 4.000 euro (lonen). De begrenzing is cumulatief: één schijf van 2 procent binnen de matigingsperiode. Daarna hervat de volle indexering, maar vanaf het lagere loon. De wet bevat geen inhaalbepaling: het gemiste bedrag komt later niet automatisch terug.",
         kind: "duiding",
       },
       {
@@ -486,7 +486,7 @@ const NUMBERED_ARTICLES: Article[] = [
     slug: "centenindex-is-wet",
     kicker: "België · Wetgeving",
     title: "De centenindex is wet — en knipt één schijf van twee procent",
-    dek: "Sinds 1 juni 2026 geldt de Programmawet. Het plafond van 2.000 euro geldt ook voor pensioenen. De twee procent is cumulatief, geen blijvende korting.",
+    dek: "Sinds 1 juni 2026 geldt de Programmawet. Het plafond van 2.000 euro geldt ook voor pensioenen. De twee procent is cumulatief. De toepassing stopt; het niveauverschil blijft, zolang er geen inhaal is.",
     desk: "belgie",
     edition: 1,
     published: "2026-08-18",
@@ -497,7 +497,7 @@ const NUMBERED_ARTICLES: Article[] = [
       src: "/images/centenindex.webp",
       alt: "Een zware schaar knipt één strook uit een lang loonregister, de rest van de rol blijft heel.",
       caption:
-        "Eén schijf van twee procent, cumulatief. Daarna loopt de index weer door — tot de volgende periode.",
+        "Eén schijf van twee procent, cumulatief. Daarna loopt de index weer door — vanaf het lagere loon.",
     },
     body: [
       {
@@ -531,7 +531,28 @@ const NUMBERED_ARTICLES: Article[] = [
       },
       {
         type: "p",
-        text: "De begrenzing is cumulatief, niet permanent. De matiging loopt tot de indexering binnen de periode in totaal 2 procent heeft bereikt. Daarna wordt het volledige referteloon weer onbeperkt geïndexeerd, tot de start van periode 2. De centenindex knipt dus één schijf van 2 procent af, geen blijvende korting.",
+        text: "De begrenzing is cumulatief, niet permanent in de uitvoering. De matiging loopt tot de indexering binnen de periode in totaal 2 procent heeft bereikt. Daarna wordt het volledige referteloon weer onbeperkt geïndexeerd, tot de start van periode 2. Dat is de juridische einddatum van de handeling, niet van het effect.",
+        kind: "feit",
+      },
+      {
+        type: "p",
+        text: "De Programmawet bevat geen inhaal-, compensatie- of retroactiviteitsbepaling voor het gemiste bedrag. De volgende indexering vertrekt van de lagere basis. Tijdelijk in de regel betekent hier niet tijdelijk in de portemonnee.",
+        kind: "feit",
+      },
+      {
+        type: "table",
+        caption:
+          "Werknemer met 5.000 euro bruto, één indexering van 2 procent. Rekenvoorbeeld, geen raming van iemands loonstrook.",
+        headers: ["Scenario", "Nieuw loon", "Verschil"],
+        rows: [
+          ["Volledige indexering", "5.100 euro", "—"],
+          ["Centenindex (eerste 2 % tot 4.000 euro)", "5.080 euro", "20 euro per maand"],
+          ["Latere volle indexering", "Beide stijgen vanaf hun eigen basis", "Verschil blijft bestaan"],
+        ],
+      },
+      {
+        type: "note",
+        text: "Eerdere formulering in dit stuk — «geen blijvende korting» — was te kort. De toepassing van de begrenzing stopt na 2 procent; het niveauverschil tegenover volledige indexering blijft. Correctie 31 augustus 2026.",
       },
       {
         type: "p",
@@ -546,12 +567,28 @@ const NUMBERED_ARTICLES: Article[] = [
         text: "Orakelboekregel 1 blijft open tot 5 oktober 2026. De wetgevende onzekerheid is weg; wat resteert is of september inderdaad 2 procent toepast volgens deze modaliteit.",
       },
     ],
+    steenman: {
+      objection:
+        "Na 2 procent hervat de normale indexering. Dat is geen permanente indexstop.",
+      antwoord:
+        "Juist: geen permanente indexstop. De niet toegekende eerste verhoging wordt niet ingehaald. Wel een structureel lager loonpad dan zonder maatregel.",
+    },
     sources: [
       { label: "Programmawet van 30 mei 2026", retrieved: "2026-08-17" },
       { label: "RSZ, administratieve instructies 2026/2, bijzondere loonmatigingsbijdrage", retrieved: "2026-08-17" },
       { label: "Nationale Arbeidsraad, advies 2484", url: "https://cnt-nar.be/", retrieved: "2026-08-17" },
       { label: "VVSG, 24 juli 2026", retrieved: "2026-08-17" },
       { label: "VRT NWS 29 mei 2026; Deloitte Legal via Lexgo 9 juni 2026", retrieved: "2026-08-17" },
+      {
+        label: "Deloitte Legal, The new cents index and wage moderation",
+        url: "https://www.deloittelegal.be/lg/en/blogs/the-new-cents-index-and-wage-moderation.html",
+        retrieved: "2026-08-31",
+      },
+      {
+        label: "SD Worx, centenindex vanaf juni voelbaar in meerdere sectoren",
+        url: "https://www.sdworx.be/nl-be/pers/2026-05-28-centenindex-vanaf-juni-voelbaar-meerdere-sectoren-met-prognose-voor-pc-200-januari",
+        retrieved: "2026-08-31",
+      },
     ],
     figures: [
       { label: "Inwerkingtreding", value: "1 juni 2026", source: "Programmawet", kind: "feit" },

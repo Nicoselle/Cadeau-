@@ -4,6 +4,14 @@ Het scherpste openstaande punt uit mijn vorige verslag: is de centenindex in wer
 de modaliteit waarop orakelboek-regel 1 steunt? Antwoord: **ja, de maatregel is wet en van
 kracht.** Hieronder de keten, met bonnen (alle ophalingen 2026-08-17 ±22:45Z).
 
+## Correctie 31 augustus 2026 — niveau, niet alleen de regel
+
+De formulering hieronder — «geen blijvende korting» — gold de **toepassing**
+van de begrenzing, niet het **loonpad**. De Programmawet noemt geen inhaal.
+Na 2 procent hervat de volle indexering vanaf het lagere loon. Rekenvoorbeeld:
+5.000 euro bruto, 2 procent → 5.080 in plaats van 5.100; 20 euro per maand
+blijft. Geldende schrijfregel: `schrijfregel-effectketen.md`.
+
 ## De wetgevende keten (feiten)
 
 | Datum | Wat |
@@ -35,10 +43,11 @@ is achterhaald**; het is er in mei alsnog doorgekomen, net op tijd voor 1 juni.
 - **Grensbedragen**: €4.000 bruto/maand voor lonen (privé én publiek), €2.000 voor uitkeringen
   en pensioenen. Het grensbedrag van €4.000 wordt op 01-01-2028 eenmalig geïndexeerd volgens de
   indexoverschrijdingen vanaf 01-06-2026.
-- **De begrenzing is cumulatief, niet permanent**: de matiging loopt tot de indexering binnen de
-  periode in totaal 2% heeft bereikt. Daarna wordt het volledige referteloon weer onbeperkt
-  geïndexeerd, tot de start van periode 2. De centenindex knipt dus één schijf van 2% af, geen
-  blijvende korting.
+- **De begrenzing is cumulatief, niet permanent in de uitvoering**: de matiging loopt tot de
+  indexering binnen de periode in totaal 2% heeft bereikt. Daarna wordt het volledige
+  referteloon weer onbeperkt geïndexeerd, tot de start van periode 2. **Vervangen 31-08-2026:**
+  dat is de einddatum van de handeling, niet van het niveau. Geen inhaalbepaling → blijvend
+  verschil tegenover volledige indexering. Zie de correctie bovenaan.
 - **Bijzondere loonmatigingsbijdrage**: werkgevers in de privésector en autonome
   overheidsbedrijven storten **de helft** van het voordeel van de loonmatiging door aan de RSZ —
   expliciet bedoeld om het loonkostenvoordeel gelijk te verdelen tussen overheid en werkgever.
