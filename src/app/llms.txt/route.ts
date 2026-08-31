@@ -1,4 +1,5 @@
-import { products, DATA_LAST_UPDATED } from "@/data/products";
+import { articles } from "@/data/articles";
+import { EDITION } from "@/data/edition";
 import { SITE } from "@/lib/site";
 
 export const dynamic = "force-static";
@@ -9,22 +10,27 @@ export function GET() {
     "",
     `> ${SITE.description}`,
     "",
-    `Laatst bijgewerkt: ${DATA_LAST_UPDATED}. Prijzen in EUR (Benelux/EU-markt).`,
-    "Let op: voorbeelddata voor demonstratie — verifieer bij de leverancier.",
+    `${EDITION.folio} — ${EDITION.name}. Peil ${EDITION.asOf}.`,
+    "Geen beleggingsadvies. Cijfers met bon; duiding is gemarkeerd.",
     "",
-    "## Data & API",
-    `- Alle producten (JSON): ${SITE.url}/api/v1/products`,
-    `- Eén product (JSON): ${SITE.url}/api/v1/products/{id}`,
-    `- Sitemap: ${SITE.url}/sitemap.xml`,
+    "## API",
+    `- Huidige editie: ${SITE.url}/api/v1/krant`,
+    `- Stukken: ${SITE.url}/api/v1/stukken`,
+    `- Markten: ${SITE.url}/api/v1/markten`,
+    `- Noodvoedsel-directory (zuster): ${SITE.url}/api/v1/products`,
     "",
-    "De API geeft per product: pricing (EUR, prijs per 100 kcal, kosten per 2000 kcal),",
-    "specifications (houdbaarheid, Resilience Score + breakdown, beschikbaarheid NL/BE/EU/Zweden),",
-    "nutritional_data (kcal, kcal/dag, eiwit), preparation_requirements en suitability_scenarios.",
-    "",
-    "## Producten",
-    ...products.map(
-      (p) => `- [${p.brand} ${p.name}](${SITE.url}/product/${p.id})`,
+    "## Stukken",
+    ...articles.map(
+      (article) =>
+        `- [${article.title}](${SITE.url}/stuk/${article.slug}) — ${article.desk}, ${article.published}`,
     ),
+    "",
+    "## Rubrieken",
+    `- Voorpagina: ${SITE.url}/`,
+    `- Markten: ${SITE.url}/markten`,
+    `- Orakelboek: ${SITE.url}/orakelboek`,
+    `- Methode: ${SITE.url}/methode`,
+    `- Archief: ${SITE.url}/archief`,
     "",
   ];
 

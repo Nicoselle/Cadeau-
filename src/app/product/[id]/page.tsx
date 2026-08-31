@@ -17,7 +17,7 @@ import { AddToCompare } from "@/components/add-to-compare";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { formatShelfLife, formatEUR, formatNumber } from "@/lib/utils";
-import { SITE } from "@/lib/site";
+import { CADEAU, SITE } from "@/lib/site";
 
 export function generateStaticParams() {
   return products.map((p) => ({ id: p.id }));
@@ -45,7 +45,7 @@ export async function generateMetadata({
     description,
     alternates: { canonical: `/product/${product.id}` },
     openGraph: {
-      title: `${title} · ${SITE.shortName}`,
+      title: `${title} · ${CADEAU.shortName}`,
       description,
       url: `${SITE.url}/product/${product.id}`,
       type: "website",

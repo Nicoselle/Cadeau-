@@ -8,34 +8,33 @@ This file provides guidance for AI assistants (Claude and others) working in thi
 
 **Repository:** Cadeau-
 **Owner:** Nicoselle
-**Branch model:** Feature branches prefixed with `claude/` for AI-driven work
+**Public product:** **Kapitaalkrant** — zelfstandige Nederlandstalige investeerderskrant
+**Zusterproject:** Vesting noodvoedsel-directory op `/cadeau`
+**Branch model:** Feature branches prefixed with `claude/` or `cursor/` for AI-driven work
 
-> This repository is currently in its initial state (no source code committed yet). This document will evolve as the project grows. Update this file whenever significant architectural or workflow decisions are made.
+De krant publiceert edities met stukken, een datavloer (CSV’s in `redactie/data`)
+en een orakelboek. Geen beleggingsadvies. Publicatie van een nieuwe editie is
+een bewuste beslissing, geen automatische feed.
 
 ---
 
 ## Repository Structure
 
-As the project is initialized, the expected structure should be documented here. Update this section when the first code is committed. A typical layout to aim for:
-
 ```
-Cadeau-/
-├── CLAUDE.md              # This file — AI assistant guide
-├── README.md              # Human-facing project overview
-├── .gitignore             # Files excluded from version control
-├── .env.example           # Template for environment variables (never commit .env)
-├── src/                   # Main source code
-│   ├── components/        # UI components (if frontend)
-│   ├── pages/ or routes/  # Routing layer
-│   ├── services/          # Business logic / external integrations
-│   ├── utils/             # Pure utility functions
-│   └── types/             # Shared type definitions (TypeScript)
-├── tests/                 # Test files mirroring src/ structure
-├── docs/                  # Additional documentation
-└── scripts/               # Dev/ops helper scripts
+├── src/app/                 # Next.js App Router — krant + /cadeau
+│   ├── page.tsx             # Voorpagina
+│   ├── stuk/[slug]/         # Stukken
+│   ├── markten/ orakelboek/ methode/ archief/ desk/
+│   └── api/v1/              # krant, stukken, markten, products
+├── src/data/                # articles.ts, edition.ts, markets.ts, oracles.ts, products.ts
+├── src/lib/series.ts        # CSV-parser en j/j-groei (alleen opgeslagen data)
+├── src/components/krant/    # Masthead-hulp, tape, story-card, article-body
+├── redactie/                # Bronnenstaat, dossiers, CSV-vloer, zetter.py
+│   ├── INDEX.md             # Ene ingang tot de redactiemap
+│   ├── data/                # FRED, Statbel, Treasury
+│   └── scripts/zetter.py    # agenda / jj / dekking
+└── tests/                   # newspaper, series, filtering, resilience
 ```
-
-> Update this section with the actual structure once the project is scaffolded.
 
 ---
 
@@ -43,15 +42,10 @@ Cadeau-/
 
 ### Prerequisites
 
-> List all tools, runtimes, and versions required here when determined. Example:
-
 ```
-Node.js >= 18.x
+Node.js >= 20.x
 npm >= 9.x
-# or
-Python >= 3.11
-# or
-Go >= 1.21
+Python >= 3.11   # alleen voor redactie/scripts/zetter.py
 ```
 
 ### Initial Setup
@@ -238,19 +232,20 @@ Before performing any of the following, ask the user to confirm:
 > Document all required and optional environment variables here as they are added.
 
 ```bash
-# .env.example — copy to .env and fill in values
-
-# Application
-# APP_ENV=development
-# APP_PORT=3000
-# APP_SECRET=change-me
-
-# Database
-# DB_URL=postgresql://user:password@localhost:5432/cadeau
-
-# External Services
-# API_KEY=your-api-key
+# NEXT_PUBLIC_SITE_URL=https://kapitaalkrant.example
 ```
+
+Geen database, geen geheimen in v1. Marktcijfers komen uit `redactie/data`.
+
+### Redactieregels
+
+1. Begin in `redactie/INDEX.md`. Twee versies: de index wijst de geldende aan.
+2. Kerninflatie België = **3,13%** (Statbel: excl. energie en onbewerkte voeding).
+   3,67% is de eurozone-stijl maat — etiket erbij.
+3. Centenindex is **wet sinds 01-06-2026**; 2% is cumulatief; €2.000 geldt ook pensioenen.
+4. Seizoensgecorrigeerde reeks nooit alleen duiden (M2SL naast M2NS).
+5. Headlines (ECB-homepage) zijn geen reeks.
+6. Alleen Nico duwt een nieuwe editie door.
 
 ---
 
