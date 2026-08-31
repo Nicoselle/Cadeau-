@@ -206,7 +206,7 @@ export function formatTapePrice(
     return `${formatPlainNumber(price / 100, 2)} £`;
   }
 
-  const digits = price >= 100 ? 2 : price >= 1 ? 3 : 6;
+  const digits = price >= 10 ? 2 : price >= 0.1 ? 3 : 6;
   const number = formatPlainNumber(price, digits);
   if (!currency || currency === "USD") return `${number} $`;
   return `${number} ${currency}`;

@@ -133,6 +133,7 @@ describe("publieke tape", () => {
   it("zet GBp om naar pond en toont een Nederlandse dagsprong", () => {
     expect(formatTapePrice(585, "GBp")).toBe("5,85 £");
     expect(formatTapePrice(4514.7, "USD")).toBe("4.514,70 $");
+    expect(formatTapePrice(0.46, "CAD")).toBe("0,460 CAD");
     expect(formatTapeChange(3.529)).toBe("+3,53%");
     expect(formatTapeChange(-1.2)).toBe("-1,20%");
     expect(formatTapePrice(null, "USD")).toBe("—");
