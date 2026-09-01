@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { MonthGrid } from "@/components/rooster/month-grid";
 import { TeamPanel } from "@/components/rooster/team-panel";
 import { TimesheetView } from "@/components/rooster/timesheet-view";
@@ -17,6 +17,7 @@ import {
   fillPeriod,
   formatHours,
   formatWeekTitle,
+  isValidTime,
   mondayOf,
   monthDates,
   removeColleague,
@@ -62,10 +63,11 @@ function fillModeLabel(mode: FillMode): string {
 export function RoosterApp() {
   const { state, commit, undo, reset, canUndo, ready } = usePersistedRoster();
   const [view, setView] = useState<View>("week");
-  const [anchor, setAnchor] = useState(() => mondayOf(new Date()));
+  const [anchor, setAnchor] = useState(() => new Date());
   const activeNight = currentNightDate();
+  const weekStart = useMemo(() => mondayOf(anchor), [anchor]);
 
-  const week = useMemo(() => weekDates(anchor), [anchor]);
+  const week = useMemo(() => weekDates(weekStart), [weekStart]);
   const month = useMemo(
     () => monthDates(anchor.getFullYear(), anchor.getMonth()),
     [anchor],
@@ -164,7 +166,11 @@ export function RoosterApp() {
                 setAnchor((current) =>
                   view === "maand"
                     ? new Date(current.getFullYear(), current.getMonth() - 1, 1)
-                    : mondayOf(new Date(current.getFullYear(), current.getMonth(), current.getDate() - 7)),
+                    : new Date(
+                        current.getFullYear(),
+                        current.getMonth(),
+                        current.getDate() - 7,
+                      ),
                 )
               }
             >
@@ -176,7 +182,7 @@ export function RoosterApp() {
                     month: "long",
                     year: "numeric",
                   }).format(anchor)
-                : formatWeekTitle(anchor)}
+                : formatWeekTitle(weekStart)}
             </p>
             <Button
               variant="secondary"
@@ -184,7 +190,11 @@ export function RoosterApp() {
                 setAnchor((current) =>
                   view === "maand"
                     ? new Date(current.getFullYear(), current.getMonth() + 1, 1)
-                    : mondayOf(new Date(current.getFullYear(), current.getMonth(), current.getDate() + 7)),
+                    : new Date(
+                        current.getFullYear(),
+                        current.getMonth(),
+                        current.getDate() + 7,
+                      ),
                 )
               }
             >
@@ -192,7 +202,7 @@ export function RoosterApp() {
             </Button>
             <Button
               variant="ghost"
-              onClick={() => setAnchor(mondayOf(new Date()))}
+              onClick={() => setAnchor(new Date())}
             >
               Vandaag
             </Button>
@@ -225,28 +235,20 @@ export function RoosterApp() {
             <section className="rounded-xl border border-white/10 bg-slate-900/70 p-4">
               <h2 className="text-sm font-semibold text-slate-100">Instellingen</h2>
               <div className="mt-3 space-y-3">
-                <label className="block text-xs text-slate-400">
-                  Start
-                  <Input
-                    type="time"
-                    value={state.settings.startTime}
-                    onChange={(event) =>
-                      commit(updateSettings(state, { startTime: event.target.value }))
-                    }
-                    className="mt-1 border-white/10 bg-slate-950 text-slate-100"
-                  />
-                </label>
-                <label className="block text-xs text-slate-400">
-                  Einde (volgende ochtend)
-                  <Input
-                    type="time"
-                    value={state.settings.endTime}
-                    onChange={(event) =>
-                      commit(updateSettings(state, { endTime: event.target.value }))
-                    }
-                    className="mt-1 border-white/10 bg-slate-950 text-slate-100"
-                  />
-                </label>
+                <TimeField
+                  label="Start (24u)"
+                  value={state.settings.startTime}
+                  onCommit={(startTime) =>
+                    commit(updateSettings(state, { startTime }))
+                  }
+                />
+                <TimeField
+                  label="Einde volgende ochtend (24u)"
+                  value={state.settings.endTime}
+                  onCommit={(endTime) =>
+                    commit(updateSettings(state, { endTime }))
+                  }
+                />
                 <label className="block text-xs text-slate-400">
                   Mensen nodig per nacht
                   <Input
@@ -317,6 +319,40 @@ export function RoosterApp() {
         </div>
       </div>
     </div>
+  );
+}
+
+function TimeField({
+  label,
+  value,
+  onCommit,
+}: {
+  label: string;
+  value: string;
+  onCommit: (value: string) => void;
+}) {
+  const [draft, setDraft] = useState(value);
+
+  useEffect(() => {
+    setDraft(value);
+  }, [value]);
+
+  return (
+    <label className="block text-xs text-slate-400">
+      {label}
+      <Input
+        type="text"
+        inputMode="numeric"
+        placeholder="21:00"
+        value={draft}
+        onChange={(event) => setDraft(event.target.value)}
+        onBlur={() => {
+          if (isValidTime(draft)) onCommit(draft);
+          else setDraft(value);
+        }}
+        className="mt-1 border-white/10 bg-slate-950 text-slate-100"
+      />
+    </label>
   );
 }
 

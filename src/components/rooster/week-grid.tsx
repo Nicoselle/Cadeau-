@@ -48,7 +48,9 @@ export function WeekGrid({ state, dates, activeNight, onChange }: WeekGridProps)
                       coverage.covered ? "text-emerald-300" : "text-rose-300",
                     )}
                   >
-                    {coverage.assigned.length}/{coverage.required} gedekt
+                    {state.settings.fillMode === "iedereen"
+                      ? `${coverage.assigned.length} op dienst`
+                      : `${coverage.assigned.length}/${coverage.required} gedekt`}
                   </div>
                 </th>
               );
