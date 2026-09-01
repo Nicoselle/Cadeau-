@@ -110,7 +110,7 @@ export function RoosterApp() {
   }
 
   return (
-    <div className="dark rooster-app min-h-screen bg-slate-950 text-slate-100">
+    <div className="rooster-app bg-slate-950 text-slate-100">
       <div className="mx-auto max-w-[88rem] px-4 py-6 sm:px-6">
         <header className="flex flex-col gap-4 border-b border-white/10 pb-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
