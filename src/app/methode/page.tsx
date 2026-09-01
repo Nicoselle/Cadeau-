@@ -91,6 +91,17 @@ export default function MethodPage() {
       </section>
 
       <section className="mt-12 max-w-3xl font-serif leading-relaxed">
+        <h2 className="font-display text-2xl font-semibold">Twee brieven per dag</h2>
+        <p className="mt-4">
+          De open nieuwsbrief verschijnt twee keer, Europe/Brussels: om{" "}
+          <strong>8:00</strong> de ochtendbrief, om <strong>15:00</strong> de
+          namiddagbrief. Een genummerde editie blijft een aparte beslissing.
+          Geen cijfer van na het slot. Geen CMT van een dag die No Results
+          Found zegt.
+        </p>
+      </section>
+
+      <section className="mt-12 max-w-3xl font-serif leading-relaxed">
         <h2 className="font-display text-2xl font-semibold">Statuut</h2>
         <p className="mt-4">
           De Kapitaalkrant is een zelfstandige publicatie. De redactie schrijft

@@ -1,8 +1,10 @@
 import type { Article } from "@/types/newspaper";
 import { CONJUNCTUUR_1_SEPTEMBER } from "./conjunctuur-1-september";
+import { CONJUNCTUUR_1_SEPTEMBER_OCHTEND } from "./conjunctuur-1-september-ochtend";
 
 export const articles: Article[] = [
   CONJUNCTUUR_1_SEPTEMBER,
+  CONJUNCTUUR_1_SEPTEMBER_OCHTEND,
   {
     slug: "kraan-weer-open",
     kicker: "Voorpagina · Editie 1",

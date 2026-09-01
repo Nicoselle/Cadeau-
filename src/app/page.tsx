@@ -8,7 +8,7 @@ import { oracles } from "@/data/oracles";
 import { getMarketBoard } from "@/data/markets";
 import {
   firstParagraph,
-  formatNlDate,
+  formatBriefWhen,
   leadArticle,
   secondaryArticles,
 } from "@/lib/newspaper";
@@ -69,7 +69,7 @@ export default function HomePage() {
               {lead.dek}
             </p>
             <p className="mt-4 text-sm text-muted-foreground">
-              {DESK_LABELS[lead.desk]} · {formatNlDate(lead.published)} ·{" "}
+              {DESK_LABELS[lead.desk]} · {formatBriefWhen(lead)} ·{" "}
               {lead.readingMinutes} minuten
             </p>
             <EditionFigure

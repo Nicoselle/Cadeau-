@@ -1,13 +1,17 @@
 import type { Article } from "@/types/newspaper";
+import { briefSlot } from "@/lib/desk-clock";
 
-/** Open nieuwsbrief, 1 september 2026. Alleen wat gezien is. Geen volglijst, geen allocatie. */
+const slot = briefSlot("namiddag");
+
+/** Namiddagbrief 1 september 2026, 15:00 Europe/Brussels. Alleen wat gezien is. */
 export const CONJUNCTUUR_1_SEPTEMBER: Article = {
   slug: "conjunctuur-1-september",
-  kicker: "Conjunctuur-brief · 1 september",
+  kicker: slot.kicker,
   title: "De tweejaars houdt vrijdag, de lange kant schuift drie punten",
   dek: "CMT van 31 augustus: 2 jaar 4,34 procent, gelijk aan vrijdag. Tien, twintig en dertig jaar +2 tot +3 basispunten. CMT van 1 september bestaat nog niet. Geen nieuwe buybackkalender.",
   desk: "conjunctuur",
   published: "2026-09-01",
+  slot: "namiddag",
   author: "Redactie Kapitaalkrant",
   lead: true,
   readingMinutes: 8,
@@ -20,7 +24,7 @@ export const CONJUNCTUUR_1_SEPTEMBER: Article = {
   body: [
     {
       type: "p",
-      text: "Op 1 september 2026, Europe/Brussels, is de laatste Daily Treasury Par Yield Curve die van 31 augustus. De septembertabel van het Treasury geeft No Results Found. Er is geen rij voor 29 of 30 augustus: weekend. Wie een CMT van vandaag verkoopt, verzint een waarneming.",
+      text: "Dit is de namiddagbrief van 1 september 2026, 15:00 Europe/Brussels. De ochtendbrief van 8:00 sloot op Kitco 07:13 en dezelfde CMT van 31 augustus. Om 15:00 is er nog altijd geen CMT van 1 september. De septembertabel blijft No Results Found. Er is geen rij voor 29 of 30 augustus: weekend. Wie een CMT van vandaag verkoopt, verzint een waarneming.",
     },
     {
       type: "p",

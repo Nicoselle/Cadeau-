@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ArticleBody, SteenmanBox } from "@/components/krant/article-body";
 import { EditionFigure } from "@/components/krant/edition-figure";
 import { articles } from "@/data/articles";
-import { formatNlDate, getArticle } from "@/lib/newspaper";
+import { formatBriefWhen, getArticle } from "@/lib/newspaper";
 import { DESK_LABELS, SITE } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -76,7 +76,7 @@ export default async function ArticlePage({
         </p>
         <p className="mt-5 text-sm text-muted-foreground">
           {article.author} · {DESK_LABELS[article.desk]} ·{" "}
-          {formatNlDate(article.published)} · {article.readingMinutes} minuten
+          {formatBriefWhen(article)} · {article.readingMinutes} minuten
         </p>
         <EditionFigure image={article.image} priority className="mt-8 max-w-4xl" />
 

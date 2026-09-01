@@ -1,8 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { articles } from "@/data/articles";
 import { CONJUNCTUUR_1_SEPTEMBER } from "@/data/conjunctuur-1-september";
+import { CONJUNCTUUR_1_SEPTEMBER_OCHTEND } from "@/data/conjunctuur-1-september-ochtend";
+import { DESK_CLOCK } from "@/lib/desk-clock";
 import { serializeEdition } from "@/lib/krant-api";
-import { getArticle, leadArticle } from "@/lib/newspaper";
+import { conjunctuurBriefs, getArticle, leadArticle } from "@/lib/newspaper";
 
 const CLIENT_LEAKS = [
   "SEALSQ",
@@ -15,13 +17,17 @@ const CLIENT_LEAKS = [
 ];
 
 describe("conjunctuur-brief 1 september 2026", () => {
-  it("is the public lead and stays off the Safe Capital tape", () => {
-    const brief = getArticle("conjunctuur-1-september");
-    expect(brief).toBeDefined();
+  it("runs two daily slots at 8:00 and 15:00 Brussels", () => {
+    expect(DESK_CLOCK.timezone).toBe("Europe/Brussels");
+    expect(DESK_CLOCK.slots.map((slot) => slot.hour)).toEqual([8, 15]);
+    const briefs = conjunctuurBriefs();
+    expect(briefs.map((item) => item.slot)).toEqual(["namiddag", "ochtend"]);
+    expect(getArticle("conjunctuur-1-september-ochtend")?.slot).toBe("ochtend");
+    expect(getArticle("conjunctuur-1-september")?.slot).toBe("namiddag");
     expect(leadArticle().slug).toBe("conjunctuur-1-september");
-    expect(brief?.desk).toBe("conjunctuur");
-    expect(brief?.published).toBe("2026-09-01");
-    expect(brief?.lead).toBe(true);
+    expect(CONJUNCTUUR_1_SEPTEMBER_OCHTEND.lead).toBe(false);
+    expect(CONJUNCTUUR_1_SEPTEMBER_OCHTEND.kicker).toMatch(/8 uur/);
+    expect(CONJUNCTUUR_1_SEPTEMBER.kicker).toMatch(/15 uur/);
   });
 
   it("prints the CMT prints that were seen, not 1 September", () => {
@@ -62,6 +68,7 @@ describe("conjunctuur-brief 1 september 2026", () => {
   it("does not invent unseen series or leak the client layer", () => {
     const publicText = JSON.stringify({
       brief: CONJUNCTUUR_1_SEPTEMBER,
+      ochtend: CONJUNCTUUR_1_SEPTEMBER_OCHTEND,
       edition: serializeEdition(),
       articles,
     });

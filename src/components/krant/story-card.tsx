@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { EditionFigure } from "@/components/krant/edition-figure";
 import type { Article } from "@/types/newspaper";
-import { formatNlDate } from "@/lib/newspaper";
+import { formatBriefWhen } from "@/lib/newspaper";
 import { DESK_LABELS } from "@/lib/site";
 
 export function StoryCard({
@@ -36,7 +36,7 @@ export function StoryCard({
         {article.dek}
       </p>
       <p className="mt-3 text-[12px] text-muted-foreground">
-        {DESK_LABELS[article.desk]} · {formatNlDate(article.published, "short")} ·{" "}
+        {DESK_LABELS[article.desk]} · {formatBriefWhen(article)} ·{" "}
         {article.readingMinutes} min
       </p>
     </article>

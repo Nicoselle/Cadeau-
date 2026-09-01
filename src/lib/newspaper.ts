@@ -1,5 +1,6 @@
 import { articles } from "@/data/articles";
 import { EDITION } from "@/data/edition";
+import { slotHourLabel, type BriefSlotId } from "@/lib/desk-clock";
 import type { Article, BodyBlock, Desk } from "@/types/newspaper";
 
 export function getArticle(slug: string): Article | undefined {
@@ -8,6 +9,24 @@ export function getArticle(slug: string): Article | undefined {
 
 export function articlesByDesk(desk: Desk): Article[] {
   return articles.filter((article) => article.desk === desk);
+}
+
+export function conjunctuurBriefs(): Article[] {
+  const order: Record<BriefSlotId, number> = { namiddag: 0, ochtend: 1 };
+  return articles
+    .filter((article) => article.desk === "conjunctuur")
+    .slice()
+    .sort((left, right) => {
+      const byDate = right.published.localeCompare(left.published);
+      if (byDate !== 0) return byDate;
+      return (order[left.slot ?? "ochtend"] ?? 2) - (order[right.slot ?? "ochtend"] ?? 2);
+    });
+}
+
+export function formatBriefWhen(article: Article): string {
+  const date = formatNlDate(article.published);
+  if (!article.slot) return date;
+  return `${date} · ${slotHourLabel(article.slot)}`;
 }
 
 export function leadArticle(): Article {

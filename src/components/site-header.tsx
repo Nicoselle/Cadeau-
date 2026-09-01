@@ -5,7 +5,7 @@ import { SITE } from "@/lib/site";
 
 const NAV = [
   { href: "/", label: "Voorpagina" },
-  { href: "/stuk/conjunctuur-1-september", label: "Brief" },
+  { href: "/desk/conjunctuur", label: "Brief" },
   { href: "/markten", label: "Markten" },
   { href: "/desk/belgie", label: "België" },
   { href: "/lokaal", label: "Lokaal" },

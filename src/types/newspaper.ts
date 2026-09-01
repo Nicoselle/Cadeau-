@@ -1,3 +1,5 @@
+import type { BriefSlotId } from "@/lib/desk-clock";
+
 export type Desk = "vs" | "eurozone" | "belgie" | "methode" | "conjunctuur";
 
 export type ClaimKind = "feit" | "duiding" | "raming";
@@ -36,6 +38,8 @@ export type Article = {
   dek: string;
   desk: Desk;
   published: string;
+  /** Alleen conjunctuur-brieven: 8:00 of 15:00 Europe/Brussels. */
+  slot?: BriefSlotId;
   author: string;
   lead: boolean;
   readingMinutes: number;
