@@ -29,13 +29,13 @@ describe("grokbot-briefing", () => {
     expect(briefing.recommendation).toBe("zelfde_vloer");
     expect(briefing.questions).toHaveLength(7);
     expect(briefing.questions[0]).toMatch(/Knack/i);
-    expect(briefing.decision?.opinion).toBe(true);
-    expect(briefing.decision?.publish).toBe(false);
+    expect(briefing.decision?.opinion).toBe(false);
+    expect(briefing.decision?.publish).toBe(true);
   });
 
   it("skips the example file as a real decision", () => {
-    expect(latestDecision()?.date).toBe("2026-08-31");
-    expect(latestDecision()?.opinionThesis).toMatch(/vat/i);
+    expect(latestDecision()?.date).toBe("2026-09-01");
+    expect(latestDecision()?.leadThesis).toMatch(/2-jaars/i);
     const voorbeeld = JSON.parse(
       readFileSync(
         path.join(process.cwd(), "redactie", "beslissingen", "voorbeeld.json"),

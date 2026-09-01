@@ -65,8 +65,8 @@ describe("editie", () => {
 
   it("has exactly one lead story", () => {
     expect(articles.filter((article) => article.lead)).toHaveLength(1);
-    expect(leadArticle().slug).toBe("reele-rente-houdt-de-bodem");
-    expect(leadArticle().edition).toBe(2);
+    expect(leadArticle().slug).toBe("conjunctuur-brief-1-september");
+    expect(leadArticle().edition).toBe(3);
   });
 
   it("keeps the Statbel core-inflation label 3,13% in editie 1", () => {
@@ -78,7 +78,8 @@ describe("editie", () => {
   });
 
   it("peilt editie 2 against the same floor, not a new print", () => {
-    const lead = leadArticle();
+    const lead = getArticle("reele-rente-houdt-de-bodem");
+    expect(lead).toBeDefined();
     const haystack = JSON.stringify(lead);
     expect(haystack).toContain("5,53");
     expect(haystack).toContain("2,43");

@@ -66,7 +66,7 @@ export async function ResearchSections() {
               </p>
               <p className="mt-3 text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
                 {dossier.assetIds.length} namen ·{" "}
-                <Link href="/piramide#smc" className="underline hover:text-accent">
+                <Link href="/safe" className="underline hover:text-accent">
                   SMC
                 </Link>
               </p>

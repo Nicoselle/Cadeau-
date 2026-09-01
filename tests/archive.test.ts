@@ -15,7 +15,7 @@ import {
 
 describe("archief van alle edities", () => {
   it("registers every numbered edition with a lead slug that exists", () => {
-    expect(EDITIONS.map((edition) => edition.number)).toEqual([1, 2]);
+    expect(EDITIONS.map((edition) => edition.number)).toEqual([1, 2, 3]);
     for (const edition of EDITIONS) {
       const lead = leadOfEdition(edition.number);
       expect(lead.slug).toBe(edition.leadSlug);
@@ -48,16 +48,23 @@ describe("archief van alle edities", () => {
     expect(opinionsOfEdition(2).length).toBeGreaterThanOrEqual(1);
   });
 
+  it("adds edition 3 as the 1 September conjunctuur-brief", () => {
+    expect(newsOfEdition(3)).toHaveLength(1);
+    expect(leadOfEdition(3).slug).toBe("conjunctuur-brief-1-september");
+    expect(opinionOnEditionDate(3)).toBeUndefined();
+  });
+
   it("points the live edition path at the archive issue", () => {
-    expect(editionPath()).toBe("/archief/2");
+    expect(editionPath()).toBe("/archief/3");
     expect(editionPath(1)).toBe("/archief/1");
+    expect(editionPath(2)).toBe("/archief/2");
     expect(getEdition(99)).toBeUndefined();
   });
 
   it("serializes the archive index and each issue", () => {
     const index = serializeArchiveIndex();
-    expect(index.editions).toHaveLength(2);
-    expect(index.editions.map((item) => item.number)).toEqual([1, 2]);
+    expect(index.editions).toHaveLength(3);
+    expect(index.editions.map((item) => item.number)).toEqual([1, 2, 3]);
     expect(index.editions[0]?.url).toContain("/archief/1");
 
     const first = serializeArchivedEdition(1);
@@ -71,6 +78,9 @@ describe("archief van alle edities", () => {
     const second = serializeArchivedEdition(2);
     expect(second?.lead.slug).toBe("reele-rente-houdt-de-bodem");
     expect(second?.articles).toHaveLength(1);
+    const third = serializeArchivedEdition(3);
+    expect(third?.lead.slug).toBe("conjunctuur-brief-1-september");
+    expect(third?.articles).toHaveLength(1);
     expect(serializeArchivedEdition(99)).toBeNull();
   });
 });

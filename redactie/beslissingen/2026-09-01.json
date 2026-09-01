@@ -1,0 +1,12 @@
+{
+  "date": "2026-09-01",
+  "timezone": "Europe/Brussels",
+  "publish": true,
+  "leadThesis": "De 2-jaars hield de vrijdagprint; langere looptijden prijzen tijd, geen FOMC.",
+  "tiles": ["dgs10", "ust-debt", "brent"],
+  "standen": "houden",
+  "orakel": "ongewijzigd",
+  "notes": "Algemene conjunctuur-brief. Geen CMT 1 september. Safe Capital niet in de open krant.",
+  "opinion": false,
+  "opinionThesis": ""
+}

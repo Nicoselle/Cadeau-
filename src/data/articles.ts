@@ -3,6 +3,207 @@ import { AUGUST_OPINIONS } from "./opinie-augustus";
 
 const NUMBERED_ARTICLES: Article[] = [
   {
+    slug: "conjunctuur-brief-1-september",
+    kicker: "Conjunctuur-brief · 1 september 2026",
+    title: "De 2-jaars hield de vrijdagprint",
+    dek: "De laatste CMT-rij is 31 augustus. De 2-jaars bleef 4,34 procent. Langere looptijden stegen twee tot drie basispunten. Dat is geen FOMC, en geen bewijs dat een buyback faalt.",
+    desk: "vs",
+    edition: 3,
+    published: "2026-09-01",
+    author: "Redactie Kapitaalkrant",
+    lead: true,
+    readingMinutes: 8,
+    image: {
+      src: "/images/conjunctuur-brief-1-september.webp",
+      alt: "Een open register met rentetabellen naast een oliekannetje en een goudbaar, op een eiken redactietafel.",
+      caption:
+        "Rente, olie en metaal op dezelfde tafel. Elke reeks houdt haar eigen datum.",
+    },
+    body: [
+      {
+        type: "p",
+        text: "Dinsdag 1 september, Brussels tijd. De Amerikaanse CMT-tabel van deze maand heeft nog geen rij voor vandaag. De laatste print is maandag 31 augustus. Tegen vrijdag 28 augustus bleef de 2-jaars staan; de 10-jaars steeg 2 basispunten, de 20- en 30-jaars 3. Er is geen rij voor 29 of 30 augustus.",
+      },
+      {
+        type: "p",
+        text: "Dat de 2-jaars de vrijdagprint hield, en dat de langere kant twee tot drie punten opliep, is de prijs van tijd na de speech van de voorzitter. Het is geen FOMC. De fed-funds-range blijft 3,50–3,75 tot 15–16 september.",
+        kind: "duiding",
+      },
+      { type: "h2", text: "CMT — laatste rij 31 augustus" },
+      {
+        type: "table",
+        caption:
+          "Daily Treasury Par Yield Curve. Geen CMT van 1 september. Geen rij 29 of 30 augustus.",
+        headers: ["Looptijd", "vr 28 aug", "ma 31 aug", "Verschil"],
+        rows: [
+          ["2-jaars", "4,34%", "4,34%", "0 bp"],
+          ["10-jaars", "4,73%", "4,75%", "+2 bp"],
+          ["20-jaars", "5,21%", "5,24%", "+3 bp"],
+          ["30-jaars", "5,22%", "5,25%", "+3 bp"],
+        ],
+      },
+      {
+        type: "p",
+        text: "Drie basispunten op de 30-jaars is geen bewijs dat een buyback faalt. De buybackkalender die wij zagen is nog de pdf van 5 augustus. Liquiditeit 10–20 jaar: 9–10 september, maximum 2 miljard. Liquiditeit 20–30 jaar: 23–24 september, maximum 2 miljard. Cash-management 1 maand–2 jaar, aankondiging 3 en 9 september, maximum 12,5 miljard — een ander loket. De laatste buyback-PR is 19 augustus, sb0607. De nieuwste persmededeling is sb0618 van 31 augustus: TIC ongeveer 19,3 biljoen (aandelen 15,3; lang 3,6; kort 0,4) tegen 15,8 eind 2024. Final 30 oktober 2026. Geen buyback. Geen nieuw schema.",
+      },
+      {
+        type: "p",
+        text: "TIC 19,3 is een vordering op buitenlands papier, geen Treasury-inkoop.",
+        kind: "duiding",
+      },
+      { type: "h2", text: "Schuld — laatste penny 28 augustus" },
+      {
+        type: "table",
+        caption:
+          "Debt to the Penny. Geen stand 31 augustus. Nog boven 40 biljoen.",
+        headers: ["Datum", "Totaal", "Publiek", "Intra"],
+        rows: [
+          [
+            "28 augustus",
+            "40.104.097.482.666,58",
+            "32.340.688.588.401,83",
+            "7.763.408.894.264,75",
+          ],
+          ["27 augustus", "40.077.529.831.942,94", "—", "—"],
+        ],
+      },
+      { type: "h2", text: "België — federale schuld juli, 10-jaars 31 augustus" },
+      {
+        type: "p",
+        text: "Belgian Debt Agency: federale schuld 31 juli 574.989.793.704 euro. De 10-jaars stond 3,83 procent met datum 31.08.2026; maandag 28.08.2026 was dat 3,81 procent. Geen nieuwe veiling op 1 september op de homepage.",
+      },
+      {
+        type: "p",
+        text: "De Belgische 10-jaars is een andere emittent dan de Amerikaanse CMT. Die twee prints naast elkaar leggen is geen spread van één staat.",
+        kind: "duiding",
+      },
+      { type: "h2", text: "Olie — Larak 31 augustus, delayed quote 1 september" },
+      {
+        type: "table",
+        caption:
+          "CNBC 31 augustus: Larak. Geen CNBC-artikel 1 september over Hormuz. Quotes 1 september zijn delayed.",
+        headers: ["Contract", "Print", "Bon"],
+        rows: [
+          ["WTI, artikel-settle 31 aug", "85,76 $", "CNBC Larak-stuk"],
+          ["Brent, artikel-settle 31 aug", "90,49 $", "CNBC Larak-stuk"],
+          [
+            "WTI Oct’26, delayed 1 sep",
+            "86,97 $ (prev 85,76; exp 2026-09-22)",
+            "CNBC @CL.1",
+          ],
+          [
+            "ICE Brent Nov’26, delayed 1 sep",
+            "91,48 $ (prev 90,49; exp 2026-09-30)",
+            "CNBC @LCO.1",
+          ],
+        ],
+      },
+      {
+        type: "p",
+        text: "Olie prijst een storing. Dat is geen bewijs dat Hormuz dicht is.",
+        kind: "duiding",
+      },
+      { type: "h2", text: "Goud en zilver — Kitco, geen officieel slot" },
+      {
+        type: "table",
+        caption:
+          "Kitco 1 september, ongeveer 07:13 CEST. Kitco AM 1 september niet gezien. Geen officiële slotkoersen.",
+        headers: ["Metaal", "Bid", "Ask", "Dag", "Range"],
+        rows: [
+          [
+            "Goud",
+            "4.429,70",
+            "4.431,70",
+            "−17,40 / −0,39%",
+            "4.424,80–4.462,40",
+          ],
+          ["Zilver", "66,35", "66,60", "−0,07 / −0,11%", "65,97–67,06"],
+        ],
+      },
+      {
+        type: "p",
+        text: "Maandagochtend Kitco: goud 4.424,00, zilver 66,26. Het goud van vanochtend ligt iets boven die maandagochtend, en ver onder vrijdagochtend 4.582,60.",
+        kind: "duiding",
+      },
+      {
+        type: "quote",
+        text: "Een speech is geen FOMC. Een plus drie op dertig jaar is geen gefaalde inkoop.",
+      },
+    ],
+    steenman: {
+      objection:
+        "Drie basispunten op de lange kant na een speech is ruis, en een delayed oliequote is geen slot. Wie Hormuz en buybacks in één adem noemt, zoekt een plot dat de tabel niet draagt.",
+      antwoord:
+        "Daarom staat de lezing apart. De tabel houdt de CMT-rij, de penny, de Belgische 10-jaars, de delayed olieprint en de Kitco-bid. Een print die wij niet hebben, komt er niet in.",
+    },
+    sources: [
+      {
+        label: "Daily Treasury Par Yield Curve Rates, augustus 2026",
+        url: "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value_month=202608&type=daily_treasury_yield_curve",
+        retrieved: "2026-09-01",
+      },
+      {
+        label: "Tentative Buyback Schedule Q3 2026",
+        url: "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ32026.pdf",
+        retrieved: "2026-09-01",
+      },
+      {
+        label: "Treasury press releases",
+        url: "https://home.treasury.gov/news/press-releases",
+        retrieved: "2026-09-01",
+      },
+      {
+        label: "Treasury sb0618 — TIC",
+        url: "https://home.treasury.gov/news/press-releases/sb0618",
+        retrieved: "2026-09-01",
+      },
+      {
+        label: "FiscalData Debt to the Penny",
+        url: "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny?sort=-record_date&page[size]=10",
+        retrieved: "2026-09-01",
+      },
+      {
+        label: "Belgian Debt Agency",
+        url: "https://www.debtagency.be/en",
+        retrieved: "2026-09-01",
+      },
+      {
+        label: "CNBC — oil, Hormuz, Larak, 31 augustus 2026",
+        url: "https://www.cnbc.com/2026/08/31/oil-prices-hormuz-iran-larak-island-centcom.html",
+        retrieved: "2026-09-01",
+      },
+      {
+        label: "CNBC WTI @CL.1",
+        url: "https://www.cnbc.com/quotes/@CL.1",
+        retrieved: "2026-09-01",
+      },
+      {
+        label: "CNBC ICE Brent @LCO.1",
+        url: "https://www.cnbc.com/quotes/@LCO.1",
+        retrieved: "2026-09-01",
+      },
+      {
+        label: "Kitco gold",
+        url: "https://www.kitco.com/charts/gold",
+        retrieved: "2026-09-01",
+      },
+      {
+        label: "Kitco silver",
+        url: "https://www.kitco.com/charts/silver",
+        retrieved: "2026-09-01",
+      },
+    ],
+    figures: [
+      { label: "CMT 2-jaars", value: "4,34%", source: "Treasury CMT, 31 augustus 2026", kind: "feit" },
+      { label: "CMT 10-jaars", value: "4,75%", source: "Treasury CMT, 31 augustus 2026", kind: "feit" },
+      { label: "CMT 30-jaars", value: "5,25%", source: "Treasury CMT, 31 augustus 2026", kind: "feit" },
+      { label: "VS-schuld, totaal", value: "40.104.097.482.666,58 $", source: "Debt to the Penny, 28 augustus 2026", kind: "feit" },
+      { label: "Belgische 10-jaars", value: "3,83%", source: "Belgian Debt Agency, 31.08.2026", kind: "feit" },
+      { label: "WTI Oct’26, delayed", value: "86,97 $", source: "CNBC @CL.1, 1 september 2026", kind: "feit" },
+      { label: "Goud, Kitco bid", value: "4.429,70 $", source: "Kitco, 1 september 2026 ~07:13 CEST", kind: "feit" },
+    ],
+  },
+  {
     slug: "reele-rente-houdt-de-bodem",
     kicker: "Voorpagina · Editie 2",
     title: "De reële rente houdt de bodem",
@@ -11,7 +212,7 @@ const NUMBERED_ARTICLES: Article[] = [
     edition: 2,
     published: "2026-08-31",
     author: "Redactie Kapitaalkrant",
-    lead: true,
+    lead: false,
     readingMinutes: 7,
     image: {
       src: "/images/reele-rente-houdt-de-bodem.webp",

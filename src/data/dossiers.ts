@@ -155,8 +155,8 @@ export const DOSSIERS: Dossier[] = [
     slug: "technologie",
     title: "Technologie in de 20 %",
     kicker: "Software, quantum, fotonica, NMR",
-    dek: "PLTR, QBTS, LWLG, NSCI.V. Verhaal plus liquiditeit. Macro: rente, Nasdaq-proxy (S&P/VIX), M2.",
-    assetIds: ["pltr", "qbts", "lwlg", "nsci"],
+    dek: "PLTR, QBTS, LWLG, NSCI.V, TSLA, SPCX, LAES. Verhaal plus liquiditeit. Macro: rente, Nasdaq-proxy (S&P/VIX), M2.",
+    assetIds: ["pltr", "qbts", "lwlg", "nsci", "tsla", "spcx", "laes"],
     drivers: [
       { tileId: "dgs10", relation: "Duration: langlopende groeiverhalen dalen als de 10-jaars stijgt." },
       { tileId: "spx", relation: "Risicobereidheid. Geen Nasdaq-reeks in de vloer; S&P is de beschikbare proxy." },
@@ -165,7 +165,7 @@ export const DOSSIERS: Dossier[] = [
     ],
     channelId: "technologie",
     body: [
-      "Feit: geen van deze vier zit in de bodem of in de 10 % crypto. Ze delen de 20 % met miners en kasstroom.",
+      "Feit: deze namen zitten niet in de bodem en niet in de cryptolaag. Ze delen de aandelenband met miners en kasstroom.",
       "Duiding: een contract, een chip of een polymere modulator is geen macroreeks. We volgen Fed, curve en risk-off omdat die de multiple zetten.",
     ],
     steenman: {
@@ -364,6 +364,24 @@ export const ASSET_NOTES: AssetNote[] = [
     duiding: "Laboratoriumapparatuur, geen metaal. Volgen op orderboek, niet op goud.",
   },
   {
+    id: "tsla",
+    what: "Tesla, Nasdaq. Robotica en auto. Geen IR-body gezien op 31 augustus of 1 september.",
+    watch: "Eigen IR, leveringen, 10-jaars, risk-on.",
+    duiding: "Volgen is geen weging. Geen verzonnen koers van vanochtend.",
+  },
+  {
+    id: "spcx",
+    what: "SPCX, Nasdaq. CNBC-slot 143,69 op 31 augustus. Geen SpaceX-IR 31 augustus of 1 september.",
+    watch: "Eigen IR, CNBC-slot, geen live ochtendprint als die ontbreekt.",
+    duiding: "Een slot van 31 augustus is geen koers van 1 september-ochtend.",
+  },
+  {
+    id: "laes",
+    what: "SEALSQ, Nasdaq:LAES. 31 augustus: 24,5 miljoen dollar quantum (Quobly ~17,5 + EeroQ 7,0).",
+    watch: "IR over het 200-miljoen-kader, orderboek (ontbreekt), VIX, 10-jaars.",
+    duiding: "Een kader van 200 miljoen is geen orderboek.",
+  },
+  {
     id: "elc",
     what: "Elysee Development, TSXV. Kleine resource-holding.",
     watch: "Portefeuillenieuws, CAD, junior-liquiditeit.",
@@ -445,9 +463,9 @@ export const NEWS_CHANNELS: NewsChannel[] = [
   {
     id: "technologie",
     label: "Tech in de 20 %",
-    query: "Palantir OR \"D-Wave\" QBTS OR \"Lightwave Logic\" OR Nanalysis",
+    query: "Palantir OR \"D-Wave\" QBTS OR \"Lightwave Logic\" OR Nanalysis OR Tesla OR SEALSQ OR SPCX",
     locale: { hl: "en", gl: "US", ceid: "US:en" },
-    keywords: ["palantir", "d-wave", "qbts", "lightwave", "nanalysis"],
+    keywords: ["palantir", "d-wave", "qbts", "lightwave", "nanalysis", "tesla", "sealsq", "spcx"],
     dossier: "technologie",
   },
   {

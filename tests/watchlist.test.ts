@@ -44,6 +44,9 @@ const followedTickers = [
   "MPCC.OL",
   "ACM",
   "BTG",
+  "TSLA",
+  "SPCX",
+  "LAES",
 ];
 
 describe("safecapital-piramide", () => {
@@ -89,7 +92,7 @@ describe("safecapital-piramide", () => {
   it("zet alle gevolgde aandelen in de laag van 20 %", () => {
     const stocks = watchByLayer("aandelen");
     expect(stocks.every((item) => item.kind === "aandeel")).toBe(true);
-    expect(stocks.length).toBe(20);
+    expect(stocks.length).toBe(23);
     expect(watchByLayer("edelmetaal").map((item) => item.id)).toEqual([
       "goud",
       "zilver",

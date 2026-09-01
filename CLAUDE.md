@@ -25,15 +25,16 @@ een bewuste beslissing van Nico om **14:00 Europe/Brussels**. De Grokbot
 ├── src/app/                 # Next.js App Router — krant + /cadeau
 │   ├── page.tsx             # Voorpagina
 │   ├── stuk/[slug]/         # Stukken
-│   ├── piramide/            # Eén desk: allocatie, dossiers, SMC
-│   ├── onderzoek/[slug]/    # Dossierdiepte
+│   ├── safe/                # Safe Capital achter wachtwoord (allocatie A–G, volglijst)
+│   ├── onderzoek/[slug]/    # Dossierdiepte (zelfde poort)
 │   ├── markten/ orakelboek/ methode/ nazien/ archief/[nummer]/ desk/
 │   └── api/v1/              # krant, stukken, markten, briefing, volgen, products
 ├── src/data/                # articles, edition, markets, oracles, watchlist, products
 ├── src/lib/series.ts        # CSV-parser, j/j-groei, lastOnOrBefore
 ├── src/lib/as-of.ts         # Peil per dag (geen vooruitkijken)
 ├── src/data/opinie-augustus.ts  # Terugwerkende meningen augustus 2026
-├── src/lib/quotes.ts        # Publieke tape (Yahoo chart) voor de volglijst
+├── src/lib/quotes.ts        # Tape (Yahoo chart) voor /safe
+├── src/lib/safe-gate.ts     # HTTP-basic, fail-closed op SAFE_PASSWORD
 ├── src/components/krant/    # Masthead-hulp, tape, story-card, article-body
 ├── redactie/                # Bronnenstaat, dossiers, CSV-vloer, zetter.py
 │   ├── INDEX.md             # Ene ingang tot de redactiemap
@@ -242,9 +243,14 @@ Before performing any of the following, ask the user to confirm:
 
 ```bash
 # NEXT_PUBLIC_SITE_URL=https://kapitaalkrant.example
+# SAFE_PASSWORD=
 ```
 
-Geen database, geen geheimen in v1. Marktcijfers komen uit `redactie/data`.
+`SAFE_PASSWORD` is leeg in `.env.example`. Nico zet hem later. Ontbreekt of
+leeg → `/safe` en de client-API’s geven 401, nooit open. Geen default.
+
+Marktcijfers komen uit `redactie/data`. De open krant toont geen volglijst
+en geen 40/30/20/10.
 
 ### Redactieregels
 
@@ -258,17 +264,20 @@ Geen database, geen geheimen in v1. Marktcijfers komen uit `redactie/data`.
    *De mening* (vroegere Knack: één stelling, geen lijstje). Een nieuwe
    genummerde editie is extra. Grokbot zet ná de beslissing
    (`redactie/grokbot.md`). Geen merge naar productie zonder uitdrukkelijk ja.
-7. **Eén desk** op `/piramide`. `/onderzoek` en `/smc` verwijzen door.
-   Standen hebben datum + ongeldigverklaring; geen koersdoel.
+7. **Twee lagen.** Open: de krant. Dicht: één clientlaag Safe Capital op
+   `/safe` (HTTP-basic, `SAFE_PASSWORD`, fail-closed). Allocatie is A–G
+   (Otium-doctrine), niet 40/30/20/10. `/piramide`, `/volgen`, `/onderzoek`
+   en `/smc` vallen onder dezelfde poort en verwijzen naar `/safe`.
 8. **Lokaal en Vesting** blijven routes, niet de masthead. Lokaal is
    vraaggestuurd: abonnees kiezen gemeenten; alleen die plaatsen worden
    afgezocht. Ondernemersverhalen gaan door `moderateIntake`. Geen
    redacteur die een stad kiest. Vesting blijft op `/cadeau`.
-9. **Peilregel publicatie (31 augustus 2026).** Per reeks de laatste
-   waarneming ≤ peildatum; datums lopen niet gelijk. Afgeleide cijfers
-   alleen op `lastCommonDate` van de gebruikte reeksen. Augustus:
-   `/nazien` + `redactie/mening/`. M2-juli pas vanaf 2026-08-25; de
-   juni-editievloer blijft 23.155,2. Geen stille revisie.
+9. **Peilregel publicatie (1 september 2026).** Per reeks de laatste
+   waarneming ≤ peildatum (`lastOnOrBefore`); datums lopen niet gelijk.
+   Afgeleide cijfers alleen op `lastCommonDate` van de gebruikte reeksen.
+   Augustus: `/nazien` + `redactie/mening/`. M2-juli pas vanaf 2026-08-25;
+   de juni-editievloer blijft 23.155,2. Geen stille revisie. CMT 1
+   september bestaat nog niet.
 
 ---
 

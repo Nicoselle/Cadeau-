@@ -1,11 +1,10 @@
 # Kapitaalkrant
 
-Zelfstandige Nederlandstalige investeerderskrant van de SafeCapital-onderzoeksgroep.
+Zelfstandige Nederlandstalige investeerderskrant.
 Cijfers met bon. Duiding met tegenwerping.
 
-Editie 2 — *De bodem houdt* — peilt tot **31 augustus 2026**. De vloer is
-dezelfde als editie 1; er is geen nieuwe M2-print. Dit is geen
-beleggingsadvies.
+Editie 3 — *De 2-jaars hield de vrijdagprint* — peilt tot **1 september 2026**.
+Nummer 1 en 2 blijven in het archief. Dit is geen beleggingsadvies.
 
 ---
 
@@ -18,10 +17,9 @@ broker. Een krant die op zichzelf staat:
 - folio’s met bonnen en waar nodig een steenman
 - marktenpagina uit CSV’s (M2, CPI, HICP, rente, S&P, VIX, spilindex, VS-schuld)
 - orakelboek met zeven toetsbare uitspraken
-- één desk op `/piramide`: weging 40/30/20/10, standen met datum en
-  ongeldigverklaring, dossiers, macro die die namen raakt, SMC-lezingen
 - methodepagina (bronnenladder, etiketten, wat we niet doen)
 - publieke JSON-API
+- gesloten clientlaag op `/safe` (HTTP-basic, `SAFE_PASSWORD`)
 
 Lokaal en Vesting blijven bereikbaar, maar staan niet in de masthead.
 Vesting: `/cadeau`.
@@ -46,6 +44,7 @@ npm run build
 ```
 
 Optioneel: `NEXT_PUBLIC_SITE_URL` voor canonieke URL’s.
+`SAFE_PASSWORD` voor `/safe` — leeg of ontbrekend geeft 401, nooit open.
 
 ## Rubrieken
 
@@ -54,9 +53,8 @@ Optioneel: `NEXT_PUBLIC_SITE_URL` voor canonieke URL’s.
 | `/` | Voorpagina, huidige editie |
 | `/stuk/[slug]` | Stuk met cijfers, bonnen, steenman |
 | `/markten` | Datavloer |
-| `/piramide` | Desk: allocatie, standen, dossiers, SMC |
-| `/onderzoek/[slug]` | Dossierdiepte |
-| `/onderzoek` `/smc` | Doorverwijzing naar `/piramide` |
+| `/safe` | Safe Capital (wachtwoord). Allocatie A–G en volglijst |
+| `/piramide` `/volgen` `/onderzoek` `/smc` | Zelfde poort; doorverwijzing naar `/safe` |
 | `/orakelboek` | Toetsbare uitspraken |
 | `/desk/opinie` | De mening — dagelijks opiniestuk |
 | `/nazien` | Augustus 2026: peil per weekdag, met bestand |

@@ -10,13 +10,15 @@ import {
   valueOnDate,
 } from "@/lib/series";
 
-describe("peilregel publicatie 31 augustus 2026", () => {
-  it("fixes the publication as-of at 31 August 2026", () => {
-    expect(PUBLICATION_AS_OF).toBe("2026-08-31");
-    expect(EDITION.asOf).toBe("2026-08-31");
-    expect(PEIL_RULE).toMatch(/31 augustus 2026/);
+describe("peilregel publicatie 1 september 2026", () => {
+  it("fixes the publication as-of at 1 September 2026", () => {
+    expect(PUBLICATION_AS_OF).toBe("2026-09-01");
+    expect(EDITION.asOf).toBe("2026-09-01");
+    expect(PEIL_RULE).toMatch(/1 september 2026/);
+    expect(PEIL_RULE).toMatch(/lastOnOrBefore/);
+    expect(PEIL_RULE).toMatch(/lastCommonDate/);
     expect(PEIL_RULE).toMatch(/gemeenschappelijke datum/);
-    expect(getMarketBoard().asOf).toBe("2026-08-31");
+    expect(getMarketBoard().asOf).toBe("2026-09-01");
   });
 
   it("takes the last common date, not the last date of one series", () => {

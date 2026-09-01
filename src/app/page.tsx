@@ -1,10 +1,8 @@
 import Link from "next/link";
 import { EditionFigure } from "@/components/krant/edition-figure";
 import { StoryCard } from "@/components/krant/story-card";
-import { WatchTape } from "@/components/krant/watch-tape";
 import { EDITION } from "@/data/edition";
 import { oracles } from "@/data/oracles";
-import { WATCHLIST } from "@/data/watchlist";
 import {
   firstParagraph,
   formatNlDate,
@@ -53,8 +51,6 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
-      <WatchTape />
-
       <div className="container py-8 sm:py-10">
         <section className="grid gap-10 lg:grid-cols-12">
           <article className="rule-story lg:col-span-8">
@@ -160,38 +156,6 @@ export default function HomePage() {
           </section>
         ) : null}
 
-        <section className="mt-14 grid gap-8 border-t border-foreground pt-8 lg:grid-cols-12">
-          <div className="lg:col-span-7">
-            <p className="kicker">Extra aandacht</p>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-[-0.02em]">
-              De piramide van SafeCapital
-            </h2>
-            <p className="mt-3 max-w-2xl font-serif text-lg leading-relaxed text-muted-foreground">
-              Methode om kapitaal veilig te stellen: 40 procent edelmetalen,
-              30 procent liquide middelen, 20 procent beursgenoteerde
-              aandelen, 10 procent crypto. Daaronder{" "}
-              {WATCHLIST.filter((item) => item.kind === "aandeel").length}{" "}
-              namen die wij volgen. Ter lering, geen advies.
-            </p>
-            <div className="mt-5">
-              <Link
-                href="/piramide"
-                className="inline-block border-b border-foreground pb-0.5 text-sm font-medium uppercase tracking-[0.12em] hover:border-accent hover:text-accent"
-              >
-                Naar de piramide
-              </Link>
-            </div>
-          </div>
-          <aside className="rule-story lg:col-span-5">
-            <p className="kicker">Lagen</p>
-            <ol className="mt-3 space-y-2 font-serif text-sm leading-relaxed">
-              <li>40 % — edelmetalen (goud, zilver)</li>
-              <li>30 % — liquide middelen (euro 50, dollar 40, frank 5, kroon 5)</li>
-              <li>20 % — beursgenoteerde aandelen</li>
-              <li>10 % — crypto (Bitcoin, Monero, Gram)</li>
-            </ol>
-          </aside>
-        </section>
       </div>
     </>
   );

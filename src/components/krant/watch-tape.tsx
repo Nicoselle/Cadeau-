@@ -73,7 +73,7 @@ export function WatchTape() {
   return (
     <div className="no-print border-b border-hairline bg-background">
       <div className="container flex flex-wrap items-baseline gap-x-5 gap-y-1 py-2 text-[12px]">
-        <Link href="/piramide" className="kicker shrink-0 hover:text-foreground">
+        <Link href="/safe" className="kicker shrink-0 hover:text-foreground">
           Extra aandacht
         </Link>
         {prints.map((print) => (
@@ -98,7 +98,7 @@ export function WatchTape() {
           </div>
         ))}
         <Link
-          href="/piramide"
+          href="/safe"
           className="ml-auto font-sans text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground hover:text-accent"
         >
           {WATCHLIST.length} namen

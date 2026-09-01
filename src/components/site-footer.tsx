@@ -14,8 +14,7 @@ export function SiteFooter() {
           <p className="mt-2 max-w-sm font-serif text-sm leading-relaxed text-muted-foreground">
             Zelfstandige beleggingskrant. Geen advies, geen
             modelportefeuille. Wel cijfers met bon, duiding met tegenwerping,
-            een piramide met volglijst en dossiers, en een orakelboek dat wij
-            later zelf toetsen.
+            en een orakelboek dat wij later zelf toetsen.
           </p>
         </div>
         <div className="text-sm">
@@ -29,11 +28,6 @@ export function SiteFooter() {
             <li>
               <Link href="/methode" className="hover:text-accent">
                 Methode en statuut
-              </Link>
-            </li>
-            <li>
-              <Link href="/piramide" className="hover:text-accent">
-                Piramide
               </Link>
             </li>
             <li>

@@ -19,8 +19,7 @@ export default function MethodPage() {
       <p className="mt-4 max-w-2xl font-serif text-lg text-muted-foreground">
         Deze krant is zelfstandig: geen stroom berichten van elders, geen
         verzamelplaats achter een betaalmuur, geen loket met een koopknop. Wat
-        u leest, staat hier, met de reeks ernaast. De volglijst toont de
-        laatste openbare notering — dat is geen datavloer.
+        u leest, staat hier, met de reeks ernaast.
       </p>
 
       <div className="mt-12 grid gap-10 lg:grid-cols-2">
@@ -30,10 +29,10 @@ export default function MethodPage() {
             <li>Elk cijfer draagt een bon: URL, ophaaldatum, en waar mogelijk de vintage.</li>
             <li>Berekeningen zijn herleidbaar uit de CSV’s in de datavloer.</li>
             <li>
-              Peildatum publicatie is 31 augustus 2026. Elke reeks houdt haar
-              eigen laatste waarneming. Een afgeleid cijfer — reële rente,
-              spread — gebruikt alleen de laatste datum die in alle gebruikte
-              reeksen voorkomt.
+              Peildatum publicatie is 1 september 2026. Elke reeks houdt haar
+              eigen laatste waarneming (lastOnOrBefore). Een afgeleid cijfer —
+              reële rente, spread — gebruikt alleen de laatste datum die in
+              alle gebruikte reeksen voorkomt (lastCommonDate).
             </li>
             <li>Feiten, duiding en ramingen blijven gescheiden — in de tekst en in de kantlijn.</li>
             <li>Elke seizoensgecorrigeerde reeks wordt naast de ongecorrigeerde gelegd.</li>
@@ -45,8 +44,8 @@ export default function MethodPage() {
           <h2 className="font-display text-2xl font-semibold">Wat wij niet doen</h2>
           <ul className="mt-4 space-y-3 font-serif leading-relaxed">
             <li>
-              Geen erkende adviesrelatie, geen koopknop. De piramide dient ter
-              lering; ieder blijft verantwoordelijk voor eigen beslissingen.
+              Geen erkende adviesrelatie, geen koopknop. Ieder blijft
+              verantwoordelijk voor eigen beslissingen.
             </li>
             <li>Geen accounts bij databronnen. Een openbare weg, of het staat er niet.</li>
             <li>Geen kopcijfer als reeks verkopen. Een cijfer van de ECB-startpagina blijft een bekendmaking.</li>
@@ -84,36 +83,6 @@ export default function MethodPage() {
       </section>
 
       <section className="mt-12 max-w-3xl font-serif leading-relaxed">
-        <h2 className="font-display text-2xl font-semibold">
-          Piramide
-        </h2>
-        <p className="mt-4">
-          De investeringspiramide is de methode van SafeCapital om kapitaal
-          veilig te stellen: 40 procent edelmetalen, 30 procent liquide
-          middelen (50 procent euro, 40 procent dollar, 5 procent frank,
-          5 procent kroon), 20 procent beursgenoteerde aandelen, 10 procent
-          crypto (Bitcoin, Monero, Gram — Ton is Gram). Winst nemen verstevigt
-          eerst de basis. Nooit in één keer in of uit een aandeel. Nooit met
-          het laatste geld. De inhoud dient ter lering; SafeCapital is geen
-          erkende beleggingsadviseur. Koersen komen van de openbare notering.
-          De datavloer blijft het rekenblad.
-        </p>
-        <p className="mt-4">
-          Op dezelfde pagina staan de dossiers per gevolgde naam, conjunctuur
-          alleen waar die die namen raakt (titel, bron, verwijzing), en de
-          koerslezing van de zwaardere titels: zwaai, breuk, karakterwissel,
-          onevenwicht. Dat is raming, geen order. Standen hebben een datum en
-          een herzieningsregel — geen koersdoel.
-        </p>
-        <p className="mt-4">
-          <Link href="/piramide" className="underline hover:text-accent">
-            Naar de piramide
-          </Link>
-          .
-        </p>
-      </section>
-
-      <section className="mt-12 max-w-3xl font-serif leading-relaxed">
         <h2 className="font-display text-2xl font-semibold">Andere uitgaven</h2>
         <p className="mt-4">
           Lokaal en Vesting horen niet bij de kop van deze krant. De adressen
@@ -138,8 +107,8 @@ export default function MethodPage() {
         <p className="mt-4">
           De Kapitaalkrant is een zelfstandige uitgave. De redactie schrijft
           en rekent; een nieuwe editie is een bewuste beslissing, geen
-          automatische stroom. Editie 2 sluit op 31 augustus 2026; de vloer is
-          dezelfde als die van editie 1. Alle nummers blijven leesbaar in het{" "}
+          automatische stroom. Editie 3 is de conjunctuur-brief van 1
+          september 2026. Nummer 1 en 2 blijven in het{" "}
           <Link href="/archief" className="underline hover:text-accent">
             archief
           </Link>

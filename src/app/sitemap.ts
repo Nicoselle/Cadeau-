@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import { articles } from "@/data/articles";
-import { DOSSIERS } from "@/data/dossiers";
 import { EDITION, EDITIONS } from "@/data/edition";
 import { products } from "@/data/products";
 import { SITE } from "@/lib/site";
@@ -17,10 +16,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/archief",
     "/lokaal",
     "/lokaal/verhaal",
-    "/piramide",
-    "/volgen",
-    "/onderzoek",
-    "/smc",
     "/cadeau",
     "/compare",
     "/desk/vs",
@@ -49,13 +44,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: article.lead ? 0.9 : 0.8,
   }));
 
-  const dossierRoutes: MetadataRoute.Sitemap = DOSSIERS.map((dossier) => ({
-    url: `${SITE.url}/onderzoek/${dossier.slug}`,
-    lastModified,
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }));
-
   const productRoutes: MetadataRoute.Sitemap = products.map((product) => ({
     url: `${SITE.url}/product/${product.id}`,
     lastModified: new Date(product.lastUpdated),
@@ -67,7 +55,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticRoutes,
     ...editionRoutes,
     ...articleRoutes,
-    ...dossierRoutes,
     ...productRoutes,
   ];
 }

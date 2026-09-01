@@ -19,7 +19,7 @@ bestand toevoegt of een versie vervangt, werkt deze index bij in dezelfde commit
 | M2-editievloer | `data/fred_M2SL_2019-2026.csv` juni **23.155,2 · +5,53%** — geldt in editie 1 en 2 | vintage 31-08 herziet juni tot 23.115,2; die revisie overschrijft de editie **niet** |
 | M2-vintage 31-08 | `data/fred_M2SL_vintage_2026-08-31.csv` + `fred_M2NS_vintage_2026-08-31.csv` — juli 23.218,0 · +5,41% SA / +5,43% NSA (H.6 25-08) | alleen in de dagelijkse mening vanaf 2026-08-25 |
 | Augustus-nazien | `/nazien` + `mening/2026-08-ledger.json` — peil = laatste waarneming ≤ die dag | geen weekend verzonnen; 31 augustus blijft `vat-liegt-minder-dan-de-index` |
-| Peilregel publicatie | 31 augustus 2026. Per reeks laatste waarneming; afgeleiden alleen op laatste gemeenschappelijke datum (`lastCommonDate`) | twee datums van elkaar aftrekken |
+| Peilregel publicatie | 1 september 2026. Per reeks laatste waarneming (`lastOnOrBefore`); afgeleiden alleen op laatste gemeenschappelijke datum (`lastCommonDate`) | twee datums van elkaar aftrekken |
 
 De verslagen (`verslag*.md`, a t/m 18b) zijn een **chronologisch logboek** — die vervangen
 elkaar nooit. Zelfde geldt voor `registers/overdrachten.jsonl` (10 regels, append-only).

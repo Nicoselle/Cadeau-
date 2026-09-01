@@ -21,9 +21,6 @@ export function GET() {
     `- Redactiebriefing (14:00-beslissing): ${SITE.url}/api/v1/briefing`,
     `- Stukken: ${SITE.url}/api/v1/stukken`,
     `- Markten: ${SITE.url}/api/v1/markten`,
-    `- Volglijst (openbare notering): ${SITE.url}/api/v1/volgen`,
-    `- Onderzoek (cijfers die titels raken): ${SITE.url}/api/v1/onderzoek`,
-    `- Koerslezingen: ${SITE.url}/api/v1/smc`,
     `- Lokaal (vraaggestuurd, andere uitgave): ${SITE.url}/api/v1/lokaal?plaatsen=gent`,
     `- Noodvoedsel-directory (zuster): ${SITE.url}/api/v1/products`,
     "",
@@ -43,8 +40,7 @@ export function GET() {
     `- Archief: ${SITE.url}/archief`,
     `- Nummer 1: ${SITE.url}/archief/1`,
     `- Nummer 2: ${SITE.url}/archief/2`,
-    `- Piramide (allocatie, dossiers, SMC): ${SITE.url}/piramide`,
-    `- Dossierdiepte: ${SITE.url}/onderzoek/[slug]`,
+    `- Nummer 3: ${SITE.url}/archief/3`,
     "",
   ];
 

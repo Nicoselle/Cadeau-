@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { EditionFigure } from "@/components/krant/edition-figure";
 import { Sparkline } from "@/components/krant/sparkline";
 import { MARKTEN_IMAGE } from "@/data/page-images";
@@ -25,12 +24,7 @@ export default function MarketsPage() {
         Geen live-ticker. Elk cijfer komt uit een CSV die de redactie heeft
         opgehaald en bewaard. Peildatum publicatie: {formatNlDate(board.asOf)}.
         Per reeks de laatste waarneming; die datums lopen niet gelijk.
-        Afgeleide cijfers alleen op de laatste gemeenschappelijke datum. De
-        volglijst met extra aandacht — de piramide van SafeCapital — staat op de{" "}
-        <Link href="/piramide" className="underline hover:text-accent">
-          piramide
-        </Link>
-        ; dat is een laatste notering, geen reeks.
+        Afgeleide cijfers alleen op de laatste gemeenschappelijke datum.
       </p>
       <EditionFigure image={MARKTEN_IMAGE} className="mt-8 max-w-3xl" />
 
