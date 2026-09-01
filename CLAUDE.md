@@ -10,7 +10,9 @@ This file provides guidance for AI assistants (Claude and others) working in thi
 **Owner:** Nicoselle
 **Branch model:** Feature branches prefixed with `claude/` for AI-driven work
 
-> This repository is currently in its initial state (no source code committed yet). This document will evolve as the project grows. Update this file whenever significant architectural or workflow decisions are made.
+> This repository holds several Nico-sites. `leefotium/` is the static
+> wandeling for [leefotium.eu](https://leefotium.eu) (Otium). PHP APIs on
+> Hostinger are not in this tree.
 
 ---
 

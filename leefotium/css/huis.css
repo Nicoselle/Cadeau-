@@ -1,0 +1,149 @@
+/* Otium-huis: intern Cursor-huis, op leefotium. Fonts uit otium.css. */
+.huis-body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--sc-surface, #F4F2EA);
+  color: var(--sc-ink, #1D1A13);
+  font-family: var(--sc-font-text);
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+.huis-kop {
+  border-bottom: 1px solid color-mix(in srgb, var(--sc-ink) 14%, transparent);
+}
+.huis-kop__in,
+.huis-main,
+.huis-voet__in {
+  width: min(42rem, calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+.huis-kop__in {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 1.25rem;
+  padding: 1.25rem 0;
+}
+.huis-merk {
+  text-decoration: none;
+  color: inherit;
+}
+.huis-merk__naam {
+  font-family: var(--sc-font-display);
+  font-size: 1.65rem;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.huis-merk__sub {
+  margin: 0.35rem 0 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sc-ink-soft);
+}
+.huis-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.1rem;
+  font-size: 0.95rem;
+}
+.huis-nav a { color: inherit; text-decoration: none; }
+.huis-nav a:hover, .huis-nav a[aria-current="page"] { color: var(--sc-accent); }
+.huis-main { flex: 1; padding: 2.4rem 0 3.5rem; }
+.huis-kicker {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sc-ink-soft);
+}
+.huis-h1 {
+  font-family: var(--sc-font-display);
+  font-weight: 500;
+  font-size: clamp(2.4rem, 6vw, 3.4rem);
+  line-height: 1.08;
+  margin: 0.7rem 0 0;
+  letter-spacing: -0.015em;
+}
+.huis-lead {
+  margin: 0.85rem 0 0;
+  max-width: 36rem;
+  color: var(--sc-ink-soft);
+  font-size: 1.15rem;
+}
+.huis-proza { margin: 1.4rem 0 0; max-width: 36rem; }
+.huis-deuren {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1.5rem;
+  margin: 2.2rem 0 0;
+  font-size: 1rem;
+}
+.huis-deuren a { color: var(--sc-accent); }
+.huis-form { display: grid; gap: 0.65rem; margin-top: 2rem; max-width: 36rem; }
+.huis-form label { font-size: 0.95rem; }
+.huis-form input[type="text"],
+.huis-form textarea {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--sc-ink) 22%, transparent);
+  padding: 0.55rem 0.7rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.huis-form textarea { min-height: 8rem; }
+.huis-form button {
+  font: inherit;
+  justify-self: start;
+  padding: 0.55rem 1.1rem;
+  border: 0;
+  background: var(--sc-ink);
+  color: var(--sc-surface);
+  cursor: pointer;
+}
+.huis-form button:disabled { opacity: 0.55; cursor: wait; }
+.huis-status { margin: 0.8rem 0 0; min-height: 1.4em; }
+.huis-oordel {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--sc-ink) 14%, transparent);
+  max-width: 36rem;
+}
+.huis-oordel[hidden] { display: none !important; }
+.huis-oordel h2 {
+  font-family: var(--sc-font-display);
+  font-weight: 500;
+  font-size: 1.8rem;
+  margin: 0 0 0.6rem;
+}
+.huis-post {
+  margin-top: 1.8rem;
+  padding-top: 1.3rem;
+  border-top: 1px solid color-mix(in srgb, var(--sc-ink) 14%, transparent);
+}
+.huis-post__meta { margin: 0; font-size: 0.9rem; color: var(--sc-ink-soft); }
+.huis-post__zin { margin: 0.7rem 0 0; white-space: pre-wrap; }
+.huis-leeg { margin-top: 2.5rem; max-width: 36rem; color: var(--sc-ink-soft); }
+.huis-leeg h2 {
+  font-family: var(--sc-font-display);
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: var(--sc-ink);
+  margin: 0 0 0.5rem;
+}
+.huis-voet {
+  border-top: 1px solid color-mix(in srgb, var(--sc-ink) 14%, transparent);
+  padding: 1.1rem 0 1.6rem;
+  font-size: 0.85rem;
+  color: var(--sc-ink-soft);
+}
+.huis-voet a { color: inherit; }
+.honeypot { position: absolute; left: -9999px; }
+@media print {
+  .huis-kop, .huis-voet, .huis-form button { display: none !important; }
+}

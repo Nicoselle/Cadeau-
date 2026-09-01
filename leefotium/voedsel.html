@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Voedselveerkracht · Otium</title>
+  <meta name="description" content="Extra dienst van Otium. Een blad voor het huis. Afdrukken als PDF.">
+  <link rel="stylesheet" href="css/otium.css">
+  <link rel="stylesheet" href="css/huis.css">
+  <style>
+    .huis-h2 { font-family: var(--sc-font-display); font-weight: 500; font-size: 1.6rem; margin: 1.8rem 0 0.4rem; }
+    .vv-acties { display:flex; gap:1rem; flex-wrap:wrap; margin:1.4rem 0 0.4rem; }
+    .vv-acties a, .vv-acties button {
+      font: inherit; background: transparent; border: 1px solid currentColor;
+      padding: .45rem .9rem; cursor: pointer; color: inherit; text-decoration: none;
+    }
+    .vv-lijst { list-style: none; padding: 0; max-width: 36rem; }
+    .vv-lijst li { margin: .5rem 0; }
+    .vv-lijst input[type="checkbox"] { margin-right: .5rem; }
+    .vv-lijn { border: 0; border-bottom: 1px solid currentColor; width: min(36rem, 100%); background: transparent; font: inherit; padding: .3rem 0; margin: .35rem 0 1rem; display:block; }
+    @media print { .huis-kop, .huis-voet, .vv-acties { display: none !important; } }
+  </style>
+  
+</head>
+<body class="huis-body">
+<a class="skip" href="#inhoud">Naar de inhoud</a>
+<header class="huis-kop">
+  <div class="huis-kop__in">
+    <a class="huis-merk" href="apps.html">
+      <p class="huis-merk__naam">Otium</p>
+      <p class="huis-merk__sub">schild · doel · grond</p>
+    </a>
+    <nav class="huis-nav">
+          <a href="index.html">Het boek</a>
+          <a href="apps.html">Het huis</a>
+          <a href="vraag.html" >De vraag</a>
+          <a href="recht-op-nietsdoen.html">Het recht op nietsdoen</a>
+          <a href="grond.html">De grond</a>
+          <a href="voedsel.html" aria-current="page">Voedsel</a>
+    </nav>
+  </div>
+</header>
+<main id="inhoud" class="huis-main">
+  <p class="huis-kicker">Extra dienst</p>
+  <h1 class="huis-h1">Voedselveerkracht</h1>
+  <p class="huis-lead">Wie beslist wat jij eet als de keten stokt. Dat is otium in de kast, niet in de winkel.</p>
+  <p class="huis-proza">Geen levering. Geen dieet. Geen tweede merk. Een blad voor het huis, van Otium.</p>
+  <div class="vv-acties">
+    <button type="button" id="vv-print">Afdrukken als PDF</button>
+    <a href="voedsel-veerkracht.pdf" download>Download PDF</a>
+  </div>
+  <h2 class="huis-h2">Wat je in huis houdt</h2>
+  <p class="huis-proza">Niet hamsteren. Twee weken dat jij eet zonder de winkel. Water eerst. Dan droog en blik dat je al eet.</p>
+  <ul class="vv-lijst">
+    <li><label><input type="checkbox"> Water: twee liter per persoon per dag, veertien dagen</label></li>
+    <li><label><input type="checkbox"> Droog: rijst, haver, peulvruchten die je kent</label></li>
+    <li><label><input type="checkbox"> Blik of glas: groente, vis, saus die je al opent</label></li>
+    <li><label><input type="checkbox"> Vet, zout, iets zoets — geen nieuw dieet</label></li>
+    <li><label><input type="checkbox"> Iets om te koken als het net uitvalt (gas, hout, of koud dat mag)</label></li>
+    <li><label><input type="checkbox"> Eén lokale kring: boer, bakker, buur — naam hieronder</label></li>
+  </ul>
+  <h2 class="huis-h2">De kring</h2>
+  <p class="huis-proza">Naam of plek die niet de supermarkt is:</p>
+  <input class="vv-lijn" type="text" aria-label="Lokale kring">
+  <p class="huis-proza">Wat jij hen kunt bieden als de keten stokt:</p>
+  <input class="vv-lijn" type="text" aria-label="Wat jij biedt">
+  <h2 class="huis-h2">De otium-vraag hier</h2>
+  <p class="huis-proza">Niet: heb ik meer voorraad. Wel: als de winkel dicht is, beslist nog iemand anders wat er op tafel komt.</p>
+  <p class="huis-proza">Huis / stad:</p>
+  <input class="vv-lijn" type="text" aria-label="Huis of stad">
+  <p class="huis-proza">Datum van deze ronde:</p>
+  <input class="vv-lijn" type="text" aria-label="Datum">
+</main>
+<footer class="huis-voet">
+  <div class="huis-voet__in">Otium · Nico Selleslags · <a href="index.html">leefotium.eu</a></div>
+</footer>
+<script>
+document.getElementById("vv-print").addEventListener("click", function () { window.print(); });
+</script>
+</body>
+</html>

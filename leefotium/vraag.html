@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>De otium-vraag · Otium</title>
+  <meta name="description" content="Niet: bespaart dit tijd. Wel: waar gaat het bespaarde uur naartoe.">
+  <link rel="stylesheet" href="css/otium.css">
+  <link rel="stylesheet" href="css/huis.css">
+  
+</head>
+<body class="huis-body">
+<a class="skip" href="#inhoud">Naar de inhoud</a>
+<header class="huis-kop">
+  <div class="huis-kop__in">
+    <a class="huis-merk" href="apps.html">
+      <p class="huis-merk__naam">Otium</p>
+      <p class="huis-merk__sub">schild · doel · grond</p>
+    </a>
+    <nav class="huis-nav">
+          <a href="index.html">Het boek</a>
+          <a href="apps.html">Het huis</a>
+          <a href="vraag.html" aria-current="page">De vraag</a>
+          <a href="recht-op-nietsdoen.html">Het recht op nietsdoen</a>
+          <a href="grond.html">De grond</a>
+          <a href="voedsel.html">Voedsel</a>
+    </nav>
+  </div>
+</header>
+<main id="inhoud" class="huis-main">
+  <p class="huis-kicker">Toets</p>
+  <h1 class="huis-h1">De otium-vraag</h1>
+  <p class="huis-lead">Niet: bespaart dit tijd. Wel: waar gaat het bespaarde uur naartoe.</p>
+  <p class="huis-proza">Als het uur terug naar de fabriek gaat, is het geen otium. Als niemand anders erover beslist, wel.</p>
+  <form id="vraag-form" class="huis-form">
+    <label for="taak">Wat wil je uitbesteden of automatiseren?</label>
+    <input id="taak" type="text" required placeholder="de taak">
+    <label for="heen">Waar gaat het uur naartoe?</label>
+    <input id="heen" type="text" required placeholder="het uur gaat naar…">
+    <button type="submit">Toets</button>
+  </form>
+  <section class="huis-oordel" id="vraag-oordel" hidden tabindex="-1">
+    <h2 id="vraag-titel"></h2>
+    <p id="vraag-tekst"></p>
+  </section>
+</main>
+<footer class="huis-voet">
+  <div class="huis-voet__in">Otium · Nico Selleslags · <a href="index.html">leefotium.eu</a></div>
+</footer>
+<script>
+(function () {
+  var f = document.getElementById("vraag-form");
+  var box = document.getElementById("vraag-oordel");
+  var titel = document.getElementById("vraag-titel");
+  var tekst = document.getElementById("vraag-tekst");
+  if (!f) return;
+  f.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var taak = document.getElementById("taak").value.trim();
+    var heen = document.getElementById("heen").value.trim();
+    var fabriek = /werk|baas|fabriek|klant|mail|slack|agenda|productie|deadline|kantoor|baas|baasje|overuren/.test(heen.toLowerCase());
+    box.hidden = false;
+    if (fabriek) {
+      titel.textContent = "Terug de molen in";
+      tekst.textContent = "Je wilde «" + taak + "» kwijt, maar het uur gaat naar «" + heen + "». Dat is geen otium. De vraag is niet of het tijd spaart. De vraag is of iemand anders over dat uur beslist.";
+    } else {
+      titel.textContent = "Niemand anders beslist";
+      tekst.textContent = "«" + taak + "» maakt ruimte voor «" + heen + "». Dat uur is van jou. Dat is de richting van het boek.";
+    }
+    box.focus();
+  });
+})();
+</script>
+</body>
+</html>
