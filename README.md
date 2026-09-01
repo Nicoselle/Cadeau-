@@ -63,6 +63,20 @@ robots te overschrijven (standaard `https://cadeau.example.com`).
 NEXT_PUBLIC_SITE_URL=https://mijn-domein.nl npm run build
 ```
 
+## Nachtrooster (`/rooster`)
+
+Intern uurrooster voor de nachtdienst. Standaardshift is **21:00–08:00** (11 uur), **7/7**.
+
+- **Klaar deze week / maand** — vult het rooster in één klik
+- **Iedereen 7/7** of **beurtelings** (eerlijke verdeling, X mensen per nacht)
+- Vrij, ziek of verlof blijft staan bij opnieuw vullen
+- Urenlijst + CSV (Excel in BE/NL, puntkomma) + print
+- Ploeg en rooster blijven lokaal in de browser (`localStorage`) — geen login
+
+Open `/rooster` op het werk, zet de namen van de ploeg, klik **Klaar deze week**.
+
+---
+
 ## Functionaliteit (MVP)
 
 1. **Overzichtspagina** (`/`) met alle producten in **card-** én **tabelweergave**

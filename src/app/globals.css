@@ -63,3 +63,27 @@
     -webkit-font-smoothing: antialiased;
   }
 }
+
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .rooster-app {
+    background: white !important;
+    color: black !important;
+  }
+
+  .print-sheet {
+    border: 0 !important;
+    background: white !important;
+    box-shadow: none !important;
+  }
+}

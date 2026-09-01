@@ -45,6 +45,12 @@ export function SiteHeader() {
             Vergelijken
           </Link>
           <Link
+            href="/rooster"
+            className="rounded-md px-3 py-1.5 font-medium text-foreground hover:bg-muted"
+          >
+            Nachtrooster
+          </Link>
+          <Link
             href="/api/v1/products"
             className="rounded-md px-3 py-1.5 font-medium text-muted-foreground hover:bg-muted"
           >

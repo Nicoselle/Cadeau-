@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-type ButtonVariant = "default" | "outline" | "ghost" | "secondary";
+type ButtonVariant = "default" | "outline" | "ghost" | "secondary" | "destructive";
 type ButtonSize = "default" | "sm" | "lg" | "icon";
 
 const variantClasses: Record<ButtonVariant, string> = {
@@ -10,6 +10,7 @@ const variantClasses: Record<ButtonVariant, string> = {
   outline:
     "border border-input bg-background hover:bg-muted hover:text-foreground",
   ghost: "hover:bg-muted hover:text-foreground",
+  destructive: "bg-red-700 text-white hover:bg-red-800",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
