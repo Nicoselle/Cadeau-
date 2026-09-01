@@ -16,6 +16,14 @@ De krant publiceert edities met stukken, een datavloer (CSV’s in `redactie/dat
 en een orakelboek. Geen beleggingsadvies. Publicatie van een nieuwe editie is
 een bewuste beslissing, geen automatische feed.
 
+Twee lagen:
+
+- **Algemeen (open):** de krant en de nieuwsbrief. Geen client-allocatie.
+- **Gespecialiseerd (dicht):** één clientlaag Safe Capital op `/safe`,
+  HTTP Basic, `SAFE_PASSWORD`. Fail closed: ontbreekt of leeg het
+  wachtwoord, dan 401. Geen standaardwachtwoord. Later kunnen er meer
+  clients bij; nu alleen deze. Niet mergen naar productie (`koppel-zeta`).
+
 ---
 
 ## Repository Structure
@@ -24,9 +32,12 @@ een bewuste beslissing, geen automatische feed.
 ├── src/app/                 # Next.js App Router — krant + /cadeau
 │   ├── page.tsx             # Voorpagina
 │   ├── stuk/[slug]/         # Stukken
+│   ├── safe/                # Safe Capital, alleen ná HTTP Basic
 │   ├── markten/ orakelboek/ methode/ archief/ desk/
 │   └── api/v1/              # krant, stukken, markten, products
 ├── src/data/                # articles.ts, edition.ts, markets.ts, oracles.ts, products.ts
+├── src/data/safe-capital.ts # Volglijst + mouwen A–G — niet in de open krant
+├── src/middleware.ts        # /safe fail-closed
 ├── src/lib/series.ts        # CSV-parser en j/j-groei (alleen opgeslagen data)
 ├── src/components/krant/    # Masthead-hulp, tape, story-card, article-body
 ├── redactie/                # Bronnenstaat, dossiers, CSV-vloer, zetter.py
@@ -233,9 +244,14 @@ Before performing any of the following, ask the user to confirm:
 
 ```bash
 # NEXT_PUBLIC_SITE_URL=https://kapitaalkrant.example
+
+# Safe Capital (/safe). Leeg of ontbrekend = 401. Geen default.
+# SAFE_PASSWORD=
 ```
 
-Geen database, geen geheimen in v1. Marktcijfers komen uit `redactie/data`.
+Geen geheimen in git. Marktcijfers van de open krant komen uit `redactie/data`
+of uit de bron-URL’s van de conjunctuur-brief. De clientlaag staat niet in
+de open JSON.
 
 ### Redactieregels
 

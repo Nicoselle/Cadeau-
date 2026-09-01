@@ -20,4 +20,5 @@ export const DESK_LABELS: Record<string, string> = {
   eurozone: "Eurozone",
   belgie: "België",
   methode: "Methode",
+  conjunctuur: "Conjunctuur",
 };

@@ -23,10 +23,12 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
+        disallow: ["/safe", "/safe/"],
       },
       ...AI_CRAWLERS.map((userAgent) => ({
         userAgent,
         allow: "/",
+        disallow: ["/safe", "/safe/"],
       })),
     ],
     sitemap: `${SITE.url}/sitemap.xml`,

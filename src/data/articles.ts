@@ -1,6 +1,8 @@
 import type { Article } from "@/types/newspaper";
+import { CONJUNCTUUR_1_SEPTEMBER } from "./conjunctuur-1-september";
 
 export const articles: Article[] = [
+  CONJUNCTUUR_1_SEPTEMBER,
   {
     slug: "kraan-weer-open",
     kicker: "Voorpagina · Editie 1",
@@ -9,7 +11,7 @@ export const articles: Article[] = [
     desk: "vs",
     published: "2026-08-18",
     author: "Redactie Kapitaalkrant",
-    lead: true,
+    lead: false,
     readingMinutes: 9,
     image: {
       src: "/images/kraan-weer-open.webp",

@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/desk/eurozone",
     "/desk/belgie",
     "/desk/methode",
+    "/desk/conjunctuur",
   ].map((path) => ({
     url: path === "/" ? SITE.url : `${SITE.url}${path}`,
     lastModified,

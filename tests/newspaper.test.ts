@@ -64,12 +64,12 @@ describe("editie", () => {
 
   it("has exactly one lead story", () => {
     expect(articles.filter((article) => article.lead)).toHaveLength(1);
-    expect(leadArticle().slug).toBe("kraan-weer-open");
+    expect(leadArticle().slug).toBe("conjunctuur-1-september");
   });
 
-  it("uses the Statbel core-inflation label 3,13% in the lead", () => {
-    const lead = leadArticle();
-    const haystack = JSON.stringify(lead);
+  it("uses the Statbel core-inflation label 3,13% in the first edition piece", () => {
+    const kraan = getArticle("kraan-weer-open");
+    const haystack = JSON.stringify(kraan);
     expect(haystack).toContain("3,13");
     expect(haystack).not.toContain("kerninflatie van 3,7");
   });
