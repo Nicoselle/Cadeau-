@@ -4,62 +4,89 @@
 
 @layer base {
   :root {
-    --background: 210 25% 98%;
-    --foreground: 215 28% 15%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 215 28% 15%;
-
-    --primary: 214 58% 22%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 210 20% 94%;
-    --secondary-foreground: 215 28% 20%;
-
-    --muted: 210 20% 95%;
-    --muted-foreground: 215 14% 42%;
-
-    --accent: 152 46% 36%;
-    --accent-foreground: 0 0% 100%;
-
-    --border: 214 22% 88%;
-    --input: 214 22% 84%;
-    --ring: 214 58% 32%;
-
-    --radius: 0.6rem;
-  }
-
-  .dark {
-    --background: 215 30% 10%;
-    --foreground: 210 20% 94%;
-
-    --card: 215 28% 13%;
-    --card-foreground: 210 20% 94%;
-
-    --primary: 210 55% 62%;
-    --primary-foreground: 215 30% 10%;
-
-    --secondary: 215 22% 20%;
-    --secondary-foreground: 210 20% 94%;
-
-    --muted: 215 22% 18%;
-    --muted-foreground: 214 14% 65%;
-
-    --accent: 152 40% 46%;
-    --accent-foreground: 215 30% 10%;
-
-    --border: 215 20% 24%;
-    --input: 215 20% 28%;
-    --ring: 210 55% 55%;
+    --background: 40 38% 93%;
+    --foreground: 28 20% 9%;
+    --card: 40 42% 96%;
+    --card-foreground: 28 20% 9%;
+    --primary: 28 20% 9%;
+    --primary-foreground: 40 38% 93%;
+    --secondary: 36 22% 86%;
+    --secondary-foreground: 28 20% 12%;
+    --muted: 36 18% 87%;
+    --muted-foreground: 28 10% 34%;
+    --accent: 0 62% 32%;
+    --accent-foreground: 40 40% 96%;
+    --gold: 38 42% 34%;
+    --border: 30 16% 70%;
+    --input: 30 16% 70%;
+    --ring: 0 62% 32%;
+    --radius: 0.15rem;
+    --hairline: 30 16% 62%;
   }
 
   * {
     border-color: hsl(var(--border));
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(ellipse at top, hsl(38 30% 90% / 0.7), transparent 55%),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 31px,
+        hsl(30 16% 70% / 0.08) 32px
+      );
+  }
+
+  ::selection {
+    background: hsl(0 62% 32% / 0.18);
+  }
+}
+
+@layer components {
+  .hairline {
+    border-color: hsl(var(--hairline));
+  }
+
+  .drop-cap::first-letter {
+    float: left;
+    font-family: var(--font-display), serif;
+    font-size: 4.4rem;
+    line-height: 0.8;
+    padding-right: 0.55rem;
+    padding-top: 0.18rem;
+    color: hsl(var(--accent));
+    font-weight: 650;
+  }
+
+  .article-prose p {
+    margin-bottom: 1.05rem;
+  }
+
+  .article-prose p.duiding {
+    border-left: 2px solid hsl(var(--gold));
+    padding-left: 0.9rem;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+    background-image: none;
+    color: black;
+  }
+
+  header,
+  footer,
+  .no-print {
+    display: none !important;
   }
 }
