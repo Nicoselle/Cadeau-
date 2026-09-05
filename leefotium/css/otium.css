@@ -1,0 +1,588 @@
+/* Otium: chaptered editorial. Volle-breedte hoofdstukgronden met harde cuts,
+   geen vast chrome; de intertitels dragen de plaats. Engine-tokens hier
+   overschreven; engine-klassen nooit gerestyled. */
+
+/* Auteur-display-regels mogen het hidden-attribuut nooit verslaan. */
+[hidden] { display: none !important; }
+
+/* Zelfgehoste fonts (latin-subset, variabele bestanden van Google Fonts):
+   geen derde partij meer op het kritieke renderpad. */
+@font-face {
+  font-family: "Cormorant Garamond"; font-style: normal; font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/cormorant-garamond-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/cormorant-garamond-latin-500.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Cormorant Garamond"; font-style: normal; font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/cormorant-garamond-latin-600.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Cormorant Garamond"; font-style: italic; font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/cormorant-garamond-latin-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Cormorant Garamond"; font-style: italic; font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/cormorant-garamond-latin-italic-500.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Newsreader"; font-style: normal; font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/newsreader-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Newsreader"; font-style: normal; font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/newsreader-latin-500.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Metric-adjusted fallbacks: het swapvenster verspringt de bladspiegel niet. */
+@font-face {
+  font-family: "Cormorant Fallback";
+  src: local("Georgia");
+  size-adjust: 88%; ascent-override: 100%; descent-override: 30%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Cormorant Fallback"; font-style: italic;
+  src: local("Georgia Italic"), local("Georgia-Italic");
+  size-adjust: 88%; ascent-override: 100%; descent-override: 30%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Newsreader Fallback";
+  src: local("Georgia");
+  size-adjust: 98%; ascent-override: 92%; descent-override: 24%; line-gap-override: 0%;
+}
+
+/* Vastgepinde rail en ankers mogen niet soepel door elkaar glijden. */
+html { scroll-behavior: auto; }
+
+:root {
+  --sc-canvas:      #EDEAE1;
+  --sc-surface:     #F4F2EA;
+  --sc-ink:         #1D1A13;
+  --sc-ink-soft:    #5A5342;
+  --sc-accent:      #8F3B24;
+  --sc-accent-ink:  #EDEAE1;
+  --sc-font-display: "Cormorant Garamond", "Cormorant Fallback", Georgia, serif;
+  --sc-font-text:    "Newsreader", "Newsreader Fallback", Georgia, serif;
+  --sc-measure: 54ch;
+  /* Serif-herkalibratie: de engine-tracking is voor grotesken gekalibreerd. */
+  --sc-track-tight: -0.01em;
+  --sc-track-snug:  -0.005em;
+  /* Gutter respecteert de sensorbehuizing (viewport-fit=cover). */
+  --sc-gutter: max(clamp(1.25rem, 5vw, 5.5rem), env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
+  --ot-paper: #EDEAE1;
+  --ot-dark:  #21251A;
+  --ot-pan:   #1F2418;
+  --ot-warm:  #2B2519;
+  /* Twee caps-registers voor alle gespatieerde kapitalen op de site. */
+  --ot-caps-fs: 0.9rem;   --ot-caps-ls: 0.15em;
+  --ot-caps-s-fs: 0.8rem; --ot-caps-s-ls: 0.18em;
+}
+
+body { font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); }
+
+/* Visueel verborgen, wel voorgelezen. */
+.vh {
+  position: absolute; width: 1px; height: 1px;
+  clip-path: inset(50%); overflow: hidden; white-space: nowrap;
+}
+.honeypot {
+  position: absolute; left: -9999px;
+  height: 0; width: 0; opacity: 0;
+}
+
+/* ------------------------------------------------------------- chapters -- */
+/* Hard cuts: every chapter paints its own ground and re-inks its own text. */
+.ch { position: relative; }
+.ch--paper { background: var(--ot-paper); color: var(--sc-ink); }
+.ch--dark, .ch--pan, .ch--warm {
+  --sc-ink: #EDE9DA;
+  --sc-ink-soft: #B0AB95;
+  --sc-accent: #D99574;
+  --sc-accent-ink: #21251A;
+  --sc-surface: #2B3021;
+  color: var(--sc-ink);
+}
+.ch--dark { background: var(--ot-dark); }
+.ch--pan  { background: var(--ot-pan); --sc-surface: #29301F; }
+.ch--warm { background: var(--ot-warm); --sc-surface: #372E20; }
+/* Licht-op-donker compensatie: iets meer interlinie en spatiëring, één stap
+   gewicht. Display-elementen zetten hun eigen gewicht en blijven vrij. */
+.ch--dark, .ch--pan, .ch--warm {
+  line-height: 1.68; letter-spacing: 0.002em; font-weight: 500;
+}
+.ch--dark .ch-plate, .ch--pan .ch-plate, .ch--warm .ch-plate { font-weight: 500; }
+
+/* ------------------------------------------------------------ skip link -- */
+.skip {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  background: #1D1A13; color: #EDEAE1; padding: 10px 18px;
+  text-decoration: none;
+}
+.skip:focus {
+  left: 12px; top: 12px;
+  left: max(12px, env(safe-area-inset-left, 0px));
+  top: max(12px, env(safe-area-inset-top, 0px));
+}
+
+/* ----------------------------------------------------------- title page -- */
+.titel {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.titel__hoofd { margin-block: auto; padding-block: var(--sc-8); }
+.sc-wrap--volgende { padding-block: 0 var(--sc-5); }
+.titel__auteur {
+  font-family: var(--sc-font-display);
+  font-size: var(--ot-caps-fs); letter-spacing: var(--ot-caps-ls);
+  text-transform: uppercase;
+  color: var(--sc-ink-soft); margin: 0 0 var(--sc-5);
+}
+.titel__h1 {
+  font-family: var(--sc-font-display); font-weight: 500;
+  font-size: clamp(2.8rem, 18vw, 11rem);
+  line-height: 0.96; letter-spacing: 0.04em; text-transform: uppercase;
+  margin: 0;
+  padding-inline-end: 0.06em;
+  max-width: 100%;
+  color: var(--sc-ink);
+}
+.titel__sub {
+  font-family: var(--sc-font-display); font-style: italic;
+  font-size: clamp(1.3rem, 1.05rem + 1.4vw, 2rem);
+  line-height: 1.25; color: var(--sc-ink-soft);
+  max-width: 26em; margin: var(--sc-5) 0 0;
+  text-wrap: pretty;
+}
+.titel__sub span { display: block; }
+.titel__verschijnt {
+  margin-top: var(--sc-7);
+  font-family: var(--sc-font-display);
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  color: var(--sc-accent);
+}
+.titel__doel {
+  margin: var(--sc-4) 0 0;
+  font-family: var(--sc-font-text);
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: var(--sc-ink);
+  max-width: 28em;
+}
+.titel__cta {
+  margin: var(--sc-3) 0 0;
+  font-family: var(--sc-font-display);
+  font-size: 1.05rem;
+  font-style: italic;
+}
+.titel__cta a {
+  color: var(--sc-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+.titel__cta a:hover { color: var(--sc-ink); }
+.titel__volgende {
+  margin: 0;
+  font-family: var(--sc-font-display);
+  font-size: var(--ot-caps-s-fs); letter-spacing: var(--ot-caps-s-ls);
+  text-transform: uppercase;
+  color: var(--sc-ink-soft);
+}
+
+/* ----------------------------------------------------------- intertitle -- */
+.ch-plate {
+  font-family: var(--sc-font-display);
+  font-weight: 400; line-height: 1.4;
+  font-size: var(--ot-caps-fs); letter-spacing: var(--ot-caps-ls);
+  text-transform: uppercase;
+  color: var(--sc-ink-soft); margin: 0 0 var(--sc-7);
+}
+.ch-plate b { color: var(--sc-accent); font-weight: 600; }
+
+/* -------------------------------------------------------- ch I: de bus -- */
+.bus .sc-wrap { padding-block: var(--sc-8) var(--sc-7); }
+.bus__plate, .samen__plate { position: relative; width: fit-content; }
+.bus__plate {
+  padding: var(--sc-8) clamp(1.5rem, 4vw, 3rem);
+  max-width: 56rem;
+}
+.bus__grond {
+  position: absolute; inset: 0;
+  background: var(--sc-surface);
+  border: 1px solid rgba(237, 233, 218, 0.14);
+}
+.bus__citaten, .samen__citaten { position: relative; }
+.ot-quote {
+  font-family: var(--sc-font-display);
+  font-size: clamp(1.9rem, 1.3rem + 3.2vw, 3.9rem);
+  line-height: 1.15; font-weight: 500; letter-spacing: -0.01em;
+  margin: 0; text-wrap: balance;
+}
+.ot-quote + .ot-quote { margin-top: 0.5em; }
+.ot-quote--accent { color: var(--sc-accent); }
+.bus__na { margin-top: var(--sc-7); }
+
+/* Vanaf 1000px vult de stempel het rechterveld van de bladspiegel. */
+@media (min-width: 1000px) {
+  .bus .sc-wrap, .samen .sc-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem);
+    column-gap: var(--sc-9);
+  }
+  .bus .ch-plate, .samen .ch-plate { grid-column: 1 / -1; }
+  .bus__plate, .bus__na, .samen__plate, .samen__na { grid-column: 1; }
+  .bus .lexstamp, .samen .lexstamp {
+    grid-column: 2; grid-row: 2 / span 2;
+    align-self: end; margin-top: 0;
+  }
+}
+
+/* ------------------------------------------------- ch II: de diagnose -- */
+.diagnose { overflow: clip; }
+.diagnose .sc-wrap { padding-block: var(--sc-9) var(--sc-7); position: relative; }
+.diagnose__grid {
+  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  gap: var(--sc-9); align-items: start; position: relative;
+}
+@media (max-width: 900px) { .diagnose__grid { grid-template-columns: 1fr; gap: var(--sc-7); } }
+.kracht { border-top: 1px solid rgba(29, 26, 19, 0.16); padding: var(--sc-5) 0 0; margin-top: var(--sc-5); }
+.kracht__n {
+  font-family: var(--sc-font-display); font-weight: 600;
+  color: var(--sc-accent); font-size: 1.1rem; letter-spacing: 0.08em;
+  margin: 0 0 var(--sc-2);
+}
+.kracht p { margin: 0; }
+.kracht .sc-lede { font-family: var(--sc-font-display); font-weight: 500; }
+.diagnose__keer {
+  margin-top: var(--sc-8);
+  font-family: var(--sc-font-display); font-weight: 500;
+  font-size: var(--sc-t-xl); line-height: 1.2; text-wrap: balance;
+  max-width: 22em;
+}
+/* De kaart: geen paneel, gewoon een hangende lijst in dezelfde liniaaltaal
+   als de drie krachten links. */
+.essayindex { margin: 0; }
+.essayindex h3 {
+  font-family: var(--sc-font-display); font-weight: 600;
+  font-size: var(--ot-caps-fs); letter-spacing: var(--ot-caps-ls);
+  text-transform: uppercase;
+  margin: 0 0 var(--sc-4);
+}
+.essayindex ol { list-style: none; margin: 0; padding: 0; }
+.essayindex li {
+  font-size: 0.92rem; line-height: 1.45; color: var(--sc-ink-soft);
+  padding: var(--sc-2) 0; border-top: 1px solid rgba(29, 26, 19, 0.16);
+}
+.essayindex li b {
+  font-weight: 500; color: var(--sc-ink); font-style: italic;
+  font-family: var(--sc-font-display); font-size: 1.02rem;
+}
+.essayindex .deel {
+  font-size: var(--ot-caps-s-fs); letter-spacing: var(--ot-caps-s-ls);
+  text-transform: uppercase;
+  color: var(--sc-accent); border-top: 0; padding-top: var(--sc-4);
+}
+.essayindex__niet { font-size: 0.85em; }
+.essayindex__stuk {
+  margin: 0.35rem 0 0;
+  font-family: var(--sc-font-text);
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: var(--sc-ink-soft);
+  max-width: 38em;
+}
+.essayindex li a { color: inherit; }
+
+/* ---------------------------------------------- ch III: de vijf vormen -- */
+.vormen {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  padding-inline: var(--sc-gutter);
+}
+.vormen__lead { flex: 0 0 auto; width: min(30rem, 78vw); }
+.vormen__lead h2 { margin: var(--sc-4) 0 var(--sc-4); }
+/* Papieren museumplaatjes op de donkere wand: plat, van boven uitgelijnd. */
+.vorm {
+  --sc-ink: #1D1A13; --sc-ink-soft: #5A5342; --sc-accent: #8F3B24; --sc-surface: #F4F2EA;
+  font-weight: 400; line-height: var(--sc-leading-body); letter-spacing: var(--sc-track-normal);
+  flex: 0 0 auto; width: min(23rem, 74vw);
+  background: var(--ot-paper); color: var(--sc-ink);
+  border: 1px solid rgba(29, 26, 19, 0.22);
+  padding: var(--sc-6);
+  min-height: min(16rem, 38vh);
+  max-height: calc(100svh - 4.5rem);
+  display: flex; flex-direction: column; justify-content: flex-start;
+}
+.vorm__rang {
+  font-family: var(--sc-font-display);
+  font-size: var(--ot-caps-s-fs); letter-spacing: var(--ot-caps-s-ls);
+  text-transform: uppercase;
+  color: var(--sc-accent); margin: 0 0 var(--sc-3);
+}
+.vorm h3 {
+  font-family: var(--sc-font-display); font-weight: 600;
+  font-size: var(--sc-t-xl); margin: 0 0 var(--sc-2);
+}
+.vorm p:not(.vorm__rang) { margin: 0; color: var(--sc-ink-soft); font-size: 1rem; text-wrap: pretty; }
+.vorm--hoogste { border-color: #8F3B24; border-width: 2px; }
+.vorm--hoogste h3 { color: var(--sc-accent); }
+.vormen__note {
+  flex: 0 0 auto; width: min(26rem, 74vw);
+  margin-inline-start: calc(-0.5 * clamp(1.5rem, 3vw, 3rem));
+}
+.vormen__note p {
+  font-family: var(--sc-font-display); font-weight: 500; font-style: italic;
+  font-size: var(--sc-t-lg); line-height: 1.3; margin: 0; text-wrap: balance;
+}
+/* De stempel sluit de rail zonder zesde kaart te lijken: kaderloos,
+   een liniaal erboven, het woord groter. */
+.ch--pan:not(.vormen--stapel) .vormen .lexstamp {
+  flex: 0 0 auto; width: min(20rem, 70vw);
+  margin: 0; align-self: center;
+  background: none; border: 0;
+  border-top: 1px solid rgba(237, 233, 218, 0.25);
+  padding: var(--sc-5) 0 0; max-width: none;
+}
+.ch--pan:not(.vormen--stapel) .vormen .lexstamp .lexstamp__woord { font-size: 2.2rem; }
+/* Staggered settle: latere platen arriveren terwijl de rail getrokken wordt.
+   Vloer 0.94: aanwezig, net niet gesetteld. Kind 8 is de stempel. */
+@media (prefers-reduced-motion: no-preference) {
+  .titel__h1 {
+    animation: otium-verkleur 22s ease-in-out infinite;
+  }
+  @keyframes otium-verkleur {
+    0%, 100% { color: var(--sc-ink); }
+    50% { color: color-mix(in srgb, var(--sc-ink) 62%, var(--sc-accent) 38%); }
+  }
+  .ch--pan:not(.vormen--stapel) .vormen > :nth-child(3) { opacity: calc(0.94 + 0.06 * clamp(0, (var(--sc-p, 1) - 0.05) * 6, 1)); }
+  .ch--pan:not(.vormen--stapel) .vormen > :nth-child(4) { opacity: calc(0.94 + 0.06 * clamp(0, (var(--sc-p, 1) - 0.18) * 6, 1)); }
+  .ch--pan:not(.vormen--stapel) .vormen > :nth-child(5) { opacity: calc(0.94 + 0.06 * clamp(0, (var(--sc-p, 1) - 0.34) * 6, 1)); }
+  .ch--pan:not(.vormen--stapel) .vormen > :nth-child(6) { opacity: calc(0.94 + 0.06 * clamp(0, (var(--sc-p, 1) - 0.5) * 6, 1)); }
+  .ch--pan:not(.vormen--stapel) .vormen > :nth-child(7) { opacity: calc(0.94 + 0.06 * clamp(0, (var(--sc-p, 1) - 0.64) * 6, 1)); }
+  .ch--pan:not(.vormen--stapel) .vormen > :nth-child(8) { opacity: calc(0.94 + 0.06 * clamp(0, (var(--sc-p, 1) - 0.76) * 6, 1)); }
+}
+/* Smal scherm: geen rail maar een gewone stapel op gutterbreedte
+   (het pre-mount script strippt de act en zet deze klasse). */
+.vormen--stapel .vormen {
+  display: block; height: auto; flex-wrap: unset;
+  padding-block: var(--sc-8);
+}
+.vormen--stapel .vormen__lead,
+.vormen--stapel .vorm,
+.vormen--stapel .vormen__note,
+.vormen--stapel .vormen .lexstamp {
+  width: auto; max-width: 34rem;
+}
+.vormen--stapel .vorm { min-height: 0; margin-top: var(--sc-5); }
+.vormen--stapel .vormen__lead { margin-bottom: var(--sc-6); }
+.vormen--stapel .vormen__note { margin: var(--sc-6) 0 0; }
+.vormen--stapel .vormen .lexstamp { margin: var(--sc-8) 0 0; }
+
+/* ------------------------------------------------------------ lexstamp -- */
+/* De signature move, in de bladspiegel zelf: elk hoofdstuk stempelt zijn
+   teruggewonnen woord. Erft de tokens van de eigen hoofdstukgrond. */
+.lexstamp {
+  margin: var(--sc-8) 0 0;
+  padding: var(--sc-5) var(--sc-6);
+  max-width: 22rem;
+  background: var(--sc-surface);
+  border: 1px solid color-mix(in oklab, var(--sc-ink) 18%, transparent);
+}
+.lexstamp__woord {
+  font-family: var(--sc-font-display); font-weight: 600;
+  font-size: 1.6rem; line-height: 1.1; color: var(--sc-ink);
+}
+.lexstamp dd { margin: 0; }
+.lexstamp__oud { font-size: 0.85rem; color: var(--sc-ink-soft); margin-top: var(--sc-3); }
+.lexstamp__oud s { text-decoration-thickness: 1px; }
+.lexstamp__nieuw {
+  font-family: var(--sc-font-display);
+  font-size: 1.2rem; line-height: 1.25;
+  color: var(--sc-ink); margin-top: var(--sc-2);
+}
+/* ---------------------------------------------------- ch IV: de piek --- */
+/* Geauthoreerde stilte: een bijna leeg papieren scherm voor het woord. */
+.stilte {
+  min-height: 92vh;
+  min-height: 92svh;
+  display: flex; flex-direction: column;
+  padding-block: var(--sc-7);
+}
+.stilte .sc-wrap {
+  display: flex; flex-direction: column;
+  flex: 1; min-height: inherit;
+}
+.stilte .ch-plate { margin-bottom: 0; }
+.ch-plate--stil b { color: var(--sc-ink-soft); font-weight: 400; }
+.stilte__midden { margin-block: auto; max-width: 34em; }
+.stilte__regel {
+  margin: 0;
+  font-family: var(--sc-font-display); font-style: italic;
+  color: var(--sc-ink-soft); font-size: var(--sc-t-lg);
+}
+.stilte__uitleg {
+  margin: 0.8rem 0 0;
+  font-family: var(--sc-font-text);
+  font-size: 1.02rem;
+  line-height: 1.45;
+  color: var(--sc-ink-soft);
+}
+.piek__hoofd { padding-block: var(--sc-9) var(--sc-10); }
+.piek__woord {
+  font-family: var(--sc-font-display); font-weight: 500;
+  font-size: clamp(3rem, 18vw, 17rem);
+  line-height: 0.96; letter-spacing: 0.03em; text-transform: uppercase;
+  margin: 0 0 var(--sc-5);
+  padding-inline-end: 0.06em;
+  max-width: 100%;
+}
+.piek__plint { margin: 0 0 var(--sc-7); background: rgba(29, 26, 19, 0.3); }
+.piek__def {
+  font-size: 1.05rem; color: var(--sc-ink-soft); max-width: 58ch; margin: 0;
+}
+.piek__def i { font-family: var(--sc-font-display); }
+.piek__rij {
+  font-family: var(--sc-font-display); font-weight: 600;
+  font-size: 1.4rem; color: var(--sc-ink);
+  word-spacing: 0.5em;
+  margin: var(--sc-8) 0 0;
+}
+.piek__zin {
+  margin: var(--sc-4) 0 0;
+  font-family: var(--sc-font-display); font-weight: 500;
+  font-size: clamp(1.7rem, 1.2rem + 2.6vw, 3.3rem);
+  line-height: 1.2;
+  padding-bottom: 0.12em;
+}
+.piek__zin span { display: block; }
+.piek__zin em { font-style: italic; color: var(--sc-accent); }
+.piek__zin span, .stilte__regel { text-wrap: balance; }
+.piek__def, .lexstamp__nieuw, .colofon__lees p, .colofon__meta p { text-wrap: pretty; }
+
+/* -------------------------------------------------- ch V: de gemeenschap -- */
+.samen .sc-wrap { padding-block: var(--sc-9) var(--sc-7); }
+.samen__plate {
+  padding: var(--sc-7) clamp(1.5rem, 4vw, 3.5rem);
+  max-width: 52rem;
+}
+.samen__grond {
+  position: absolute; inset: 0;
+  background: var(--sc-surface);
+  border: 1px solid rgba(237, 233, 218, 0.14);
+  border-left: 2px solid var(--sc-accent);
+}
+.samen__plate .ot-quote { font-size: clamp(1.6rem, 1.15rem + 2.4vw, 3.1rem); }
+.samen__na { margin-top: var(--sc-7); }
+
+/* ------------------------------------------------------------- colofon -- */
+.colofon .sc-wrap {
+  padding-block: var(--sc-9) var(--sc-7);
+  padding-block: var(--sc-9) calc(var(--sc-7) + env(safe-area-inset-bottom, 0px));
+}
+.colofon__grid {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: var(--sc-9); align-items: start;
+}
+@media (max-width: 900px) { .colofon__grid { grid-template-columns: 1fr; gap: var(--sc-7); } }
+.colofon__meta { font-size: 0.88rem; color: var(--sc-ink-soft); }
+.colofon__meta p { margin: 0 0 var(--sc-2); }
+.colofon__meta .werk {
+  font-family: var(--sc-font-display); font-weight: 600;
+  font-size: var(--ot-caps-fs); letter-spacing: var(--ot-caps-ls);
+  color: var(--sc-ink); text-transform: uppercase;
+}
+.colofon__lees { font-size: 1.05rem; max-width: 62ch; }
+.colofon__lees p { margin: 0 0 var(--sc-5); }
+.colofon__mailto a { color: var(--sc-accent); }
+.lees-mee { display: flex; gap: var(--sc-3); flex-wrap: wrap; max-width: 30rem; }
+.lees-mee input[type="email"] {
+  flex: 1 1 14rem;
+  background: var(--sc-surface);
+  border: 1px solid rgba(29, 26, 19, 0.55);
+  padding: 0.7em 0.9em; color: var(--sc-ink);
+  border-radius: 0;
+}
+.lees-mee input[type="email"]::placeholder { color: var(--sc-ink-soft); }
+.lees-mee button {
+  background: #1D1A13; color: #EDEAE1;
+  border: 1px solid #1D1A13; border-radius: 0;
+  padding: 0.7em 1.5em; cursor: pointer;
+  font-family: var(--sc-font-display); font-weight: 600;
+  letter-spacing: 0.06em;
+  transition: background var(--sc-d-fast) var(--sc-ease-out), transform 120ms var(--sc-ease-out);
+}
+.lees-mee button:hover { background: var(--sc-accent); border-color: var(--sc-accent); }
+.lees-mee button:active { transform: translateY(1px); }
+.colofon__klein { margin-top: var(--sc-3); font-size: 0.82rem; color: var(--sc-ink-soft); }
+.lees-mee__ok { font-family: var(--sc-font-display); font-style: italic; }
+.colofon__voet {
+  margin-top: var(--sc-7); padding-top: var(--sc-4);
+  border-top: 1px solid rgba(29, 26, 19, 0.16);
+  display: flex; justify-content: flex-start; align-items: baseline;
+  flex-wrap: wrap; gap: var(--sc-2) var(--sc-7);
+  font-size: 0.82rem; color: var(--sc-ink-soft);
+}
+.colofon__voet p { margin: 0; }
+.colofon__slot { font-family: var(--sc-font-display); font-style: italic; }
+
+/* Desktop: optische hang van de displaykapitalen. Op smal scherm knipt
+   die negatieve marge de O af tegen overflow-x: clip. */
+@media (min-width: 901px) {
+  .titel__h1,
+  .piek__woord { margin-left: -0.03em; }
+}
+
+/* Mobiel: alle kapitalen in de maat, niet achter de chroomrand of de zoom. */
+@media (max-width: 900px) {
+  .titel {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .titel__hoofd { padding-block: var(--sc-6); }
+  .titel__h1,
+  .piek__woord {
+    letter-spacing: 0.02em;
+    overflow: visible;
+  }
+  .titel__auteur,
+  .titel__volgende,
+  .ch-plate,
+  .essayindex h3,
+  .essayindex .deel,
+  .colofon__meta .werk,
+  .vorm__rang {
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+    padding-block: 0.14em 0.1em;
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+  .titel__volgende { text-wrap: balance; }
+  .piek__zin {
+    font-size: clamp(1.35rem, 1.05rem + 2.2vw, 3.3rem);
+    padding-bottom: 0.28em;
+    overflow: visible;
+    max-width: 100%;
+  }
+  .piek__zin span { max-width: 100%; overflow-wrap: break-word; }
+  .piek__rij { word-spacing: 0.28em; }
+}

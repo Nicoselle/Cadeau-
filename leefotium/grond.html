@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>De grond · Otium</title>
+  <meta name="description" content="Otium zonder anderen is een hangmat. Met anderen is het een grond. Eén plek. Geen feed om te vullen.">
+  <link rel="stylesheet" href="css/otium.css">
+  <link rel="stylesheet" href="css/huis.css">
+  
+</head>
+<body class="huis-body">
+<a class="skip" href="#inhoud">Naar de inhoud</a>
+<header class="huis-kop">
+  <div class="huis-kop__in">
+    <a class="huis-merk" href="apps.html">
+      <p class="huis-merk__naam">Otium</p>
+      <p class="huis-merk__sub">schild · doel · grond</p>
+    </a>
+    <nav class="huis-nav">
+          <a href="index.html">Het boek</a>
+          <a href="apps.html">Het huis</a>
+          <a href="vraag.html">De vraag</a>
+          <a href="recht-op-nietsdoen.html">Het recht op nietsdoen</a>
+          <a href="soevereiniteit-over-tijd.html">Soevereiniteit over tijd</a>
+          <a href="grond.html" aria-current="page">De grond</a>
+          <a href="voedsel.html">Voedsel</a>
+    </nav>
+  </div>
+</header>
+<main id="inhoud" class="huis-main">
+  <p class="huis-kicker">Samen lezen</p>
+  <h1 class="huis-h1">De grond</h1>
+  <p class="huis-lead">Otium zonder anderen is een hangmat. Met anderen is het een grond. Eén plek. Geen feed om te vullen.</p>
+  <form id="grond-form" class="huis-form">
+    <label for="naam">Wie zet het woord</label>
+    <input id="naam" type="text" required maxlength="80" placeholder="je naam of een teken" autocomplete="nickname">
+    <label for="woord">Een woord op de grond</label>
+    <textarea id="woord" required minlength="3" maxlength="800" placeholder="Geen status. Een gedachte, een vraag, een zin uit het boek."></textarea>
+    <input class="honeypot" type="text" name="website" value="" tabindex="-1" autocomplete="off">
+    <button type="submit">Zetten</button>
+    <p class="huis-status" id="grond-ok" role="status"></p>
+  </form>
+  <div class="huis-leeg" id="grond-leeg">
+    <h2>De grond is nog stil</h2>
+    <p>Wie het boek vasthoudt, mag het eerste woord zetten. Geen statusupdates. Een gedachte is genoeg.</p>
+  </div>
+  <div id="grond-lijst"></div>
+</main>
+<footer class="huis-voet">
+  <div class="huis-voet__in">Otium · Nico Selleslags · <a href="index.html">leefotium.eu</a></div>
+</footer>
+<script>
+(function () {
+  var lijst = document.getElementById("grond-lijst");
+  var leeg = document.getElementById("grond-leeg");
+  var ok = document.getElementById("grond-ok");
+  var form = document.getElementById("grond-form");
+  function fmt(iso) {
+    try {
+      var d = new Date(iso);
+      return d.toLocaleString("nl-BE", { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" });
+    } catch (e) { return ""; }
+  }
+  function teken(rows) {
+    lijst.innerHTML = "";
+    var posts = rows || [];
+    leeg.hidden = posts.length > 0;
+    posts.slice().reverse().forEach(function (r) {
+      var art = document.createElement("article");
+      art.className = "huis-post";
+      var meta = document.createElement("p");
+      meta.className = "huis-post__meta";
+      meta.textContent = (r.naam || "iemand") + " · " + fmt(r.at);
+      var zin = document.createElement("p");
+      zin.className = "huis-post__zin";
+      zin.textContent = r.woord || "";
+      art.appendChild(meta); art.appendChild(zin);
+      lijst.appendChild(art);
+    });
+  }
+  fetch("/api/grond/", { headers: { "Accept": "application/json" } })
+    .then(function (r) { return r.json(); })
+    .then(function (d) { teken(d.posts || []); })
+    .catch(function () { ok.textContent = "De grond is even stil."; });
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var knop = form.querySelector("button");
+    knop.disabled = true;
+    fetch("/api/grond/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        naam: document.getElementById("naam").value.trim(),
+        woord: document.getElementById("woord").value.trim(),
+        website: form.querySelector('[name="website"]').value
+      })
+    }).then(function (r) { return r.json().then(function (d) { return { r: r, d: d }; }); })
+      .then(function (x) {
+        knop.disabled = false;
+        if (x.r.ok) {
+          document.getElementById("woord").value = "";
+          ok.textContent = "";
+          return fetch("/api/grond/").then(function (r) { return r.json(); }).then(function (d) { teken(d.posts || []); });
+        }
+        ok.textContent = (x.d && x.d.fout) || "Dat lukte niet.";
+      })
+      .catch(function () { knop.disabled = false; ok.textContent = "Dat lukte niet."; });
+  });
+})();
+</script>
+</body>
+</html>
