@@ -156,9 +156,11 @@ body { font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); }
 }
 .titel__h1 {
   font-family: var(--sc-font-display); font-weight: 500;
-  font-size: clamp(4.2rem, 12vw, 11rem);
-  line-height: 0.92; letter-spacing: 0.04em; text-transform: uppercase;
-  margin: 0 0 0 -0.03em;
+  font-size: clamp(2.8rem, 18vw, 11rem);
+  line-height: 0.96; letter-spacing: 0.04em; text-transform: uppercase;
+  margin: 0;
+  padding-inline-end: 0.06em;
+  max-width: 100%;
   color: var(--sc-ink);
 }
 .titel__sub {
@@ -448,9 +450,11 @@ body { font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); }
 .piek__hoofd { padding-block: var(--sc-9) var(--sc-10); }
 .piek__woord {
   font-family: var(--sc-font-display); font-weight: 500;
-  font-size: clamp(5rem, 19vw, 17rem);
-  line-height: 0.95; letter-spacing: 0.03em; text-transform: uppercase;
-  margin: 0 0 var(--sc-5) -0.03em;
+  font-size: clamp(3rem, 18vw, 17rem);
+  line-height: 0.96; letter-spacing: 0.03em; text-transform: uppercase;
+  margin: 0 0 var(--sc-5);
+  padding-inline-end: 0.06em;
+  max-width: 100%;
 }
 .piek__plint { margin: 0 0 var(--sc-7); background: rgba(29, 26, 19, 0.3); }
 .piek__def {
@@ -540,3 +544,45 @@ body { font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem); }
 }
 .colofon__voet p { margin: 0; }
 .colofon__slot { font-family: var(--sc-font-display); font-style: italic; }
+
+/* Desktop: optische hang van de displaykapitalen. Op smal scherm knipt
+   die negatieve marge de O af tegen overflow-x: clip. */
+@media (min-width: 901px) {
+  .titel__h1,
+  .piek__woord { margin-left: -0.03em; }
+}
+
+/* Mobiel: alle kapitalen in de maat, niet achter de chroomrand of de zoom. */
+@media (max-width: 900px) {
+  .titel {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .titel__hoofd { padding-block: var(--sc-6); }
+  .titel__h1,
+  .piek__woord {
+    letter-spacing: 0.02em;
+    overflow: visible;
+  }
+  .titel__auteur,
+  .titel__volgende,
+  .ch-plate,
+  .essayindex h3,
+  .essayindex .deel,
+  .colofon__meta .werk,
+  .vorm__rang {
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+    padding-block: 0.14em 0.1em;
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+  .titel__volgende { text-wrap: balance; }
+  .piek__zin {
+    font-size: clamp(1.35rem, 1.05rem + 2.2vw, 3.3rem);
+    padding-bottom: 0.28em;
+    overflow: visible;
+    max-width: 100%;
+  }
+  .piek__zin span { max-width: 100%; overflow-wrap: break-word; }
+  .piek__rij { word-spacing: 0.28em; }
+}

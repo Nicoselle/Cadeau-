@@ -42,6 +42,8 @@
   margin: 0.35rem 0 0;
   font-size: 0.7rem;
   letter-spacing: 0.18em;
+  line-height: 1.45;
+  padding-block: 0.12em 0.08em;
   text-transform: uppercase;
   color: var(--sc-ink-soft);
 }
@@ -58,6 +60,8 @@
   margin: 0;
   font-size: 0.8rem;
   letter-spacing: 0.2em;
+  line-height: 1.45;
+  padding-block: 0.14em 0.1em;
   text-transform: uppercase;
   color: var(--sc-ink-soft);
 }
@@ -144,6 +148,19 @@
 }
 .huis-voet a { color: inherit; }
 .honeypot { position: absolute; left: -9999px; }
+@media (max-width: 900px) {
+  .huis-merk__sub,
+  .huis-kicker {
+    letter-spacing: 0.08em;
+    overflow-wrap: break-word;
+    text-wrap: balance;
+    max-width: 100%;
+  }
+  .huis-nav {
+    row-gap: 0.45rem;
+    line-height: 1.35;
+  }
+}
 @media print {
   .huis-kop, .huis-voet, .huis-form button { display: none !important; }
 }
